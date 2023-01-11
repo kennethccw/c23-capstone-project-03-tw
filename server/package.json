@@ -27,10 +27,14 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/formidable": "^2.0.5",
     "@types/pg": "^8.6.6",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "formidable": "^2.1.1",
     "knex": "^2.4.0",
     "pg": "^8.8.0",
     "winston": "^3.8.2"

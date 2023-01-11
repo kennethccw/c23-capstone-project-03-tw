@@ -1,8 +1,15 @@
 import express from "express";
 import expressSession from "express-session";
 import { logger } from "./utils/logger";
-
+import dotenv from "dotenv";
+import Knex from "knex";
 const app = express();
+
+dotenv.config();
+import knexConfigs from "./knexfile";
+const configMode = process.env.NODE_ENV || "development";
+const knexConfig = knexConfigs[configMode];
+export const knex = Knex(knexConfig);
 
 app.use(
   expressSession({
