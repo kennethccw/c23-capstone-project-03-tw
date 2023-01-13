@@ -1,0 +1,18 @@
+export const TABLES = Object.freeze({
+  ADMINS: "admins",
+  ADVERTISERS: "advertisers",
+  USERS: "users",
+  ORGANISATIONS: "organisations",
+  BADGES: "badges",
+  ONETIME_PAYMENT_DONATIONS: "onetime_payment_donations",
+  USER_TOTAL_ADVERTISING_WATCH_TIMES: "user_total_advertising_watch_times",
+  USER_TOTAL_ACTIVITIES_PARTICIPATED_TIMES: "user_total_activities_participated_times",
+  USER_TOTAL_DONATIONS: "user_total_donations",
+  BADGE_USER_JUNCTION: "badge_user_junction",
+  PETS: "pets",
+  ADOPTION_APPLICATIONS: "adoption_applications",
+  ACTIVITIES: "activities",
+  ACTIVITY_APPLICATION: "activity_applications",
+  PET_SUPPORTS: "pet_supports",
+  IT_SUPPORTS: "it_supports",
+});

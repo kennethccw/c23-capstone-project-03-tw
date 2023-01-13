@@ -15,7 +15,7 @@ declare global {
 }
 
 // create folder if does not exists
-const uploadDir = path.join(__dirname, "..", "public", "uploads");
+const uploadDir = path.join(__dirname, "..", "..", "uploads");
 fs.mkdirSync(uploadDir, { recursive: true });
 
 let fileCounter = 0;
