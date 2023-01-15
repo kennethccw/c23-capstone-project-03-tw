@@ -117,6 +117,19 @@
   align-items: center;
   height: 100vh;
 }
+.inputEmailContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+}
+
+.inputEmailText {
+  width: 312px;
+  margin-bottom: 24px;
+  color: #898D9E
+}
 
 .loginPageContainer {
   display: flex;
@@ -161,4 +174,12 @@
 .passwordInput input {
   margin-top: -1px;
   height: 48px;
+}
+
+.resetInputEmailValidation {
+  margin-bottom: 340px;
+}
+
+.resetPasswordValidation {
+  margin-bottom: 402px;
 }

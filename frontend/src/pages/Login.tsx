@@ -58,7 +58,7 @@ export default function Login() {
               variant="subtle"
               color="violet"
               onClick={() => {
-                navigate("/password");
+                navigate("/password/email");
               }}
             >
               忘記密碼?
