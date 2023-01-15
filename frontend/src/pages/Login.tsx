@@ -1,6 +1,8 @@
-import { Input, PasswordInput, Button, MantineProvider } from "@mantine/core";
+import { Input, PasswordInput, Button, MantineProvider, Center } from "@mantine/core";
 import { IconUser, IconMail, IconLock, IconArrowNarrowRight } from "@tabler/icons";
 import { useForm } from "react-hook-form";
+// import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import { FaFacebookF } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/login.module.scss";
 
@@ -23,13 +25,13 @@ export default function Login() {
 
           Input: {
             styles: (theme) => ({
-              input: { borderColor: theme.colors.violet[theme.fn.primaryShade()] },
+              input: { height: 48 },
             }),
           },
         },
       }}
     >
-      <div>
+      <div className={styles.loginPageContainer}>
         <h1 className={styles.header}>Petscue歡迎你！</h1>
         <form className={styles.formContainer}>
           {watchUserIdentity.includes("@") ? (
@@ -41,21 +43,31 @@ export default function Login() {
               <Input id="user-identity" radius="md" size="md" placeholder="輸入帳戶名稱或電子郵件" type="text" icon={<IconUser size={16} />} {...register("userIdentity", { required: true })} />
             </Input.Wrapper>
           )}
-          <PasswordInput className={styles.input} radius="md" size="md" placeholder="輸入帳號密碼" label="密碼" icon={<IconLock size={16} />} {...register("password", { required: true })} />
-          <Button
-            className={styles.loginText}
-            variant="subtle"
-            color="violet"
-            onClick={() => {
-              navigate("/password");
-            }}
-          >
-            忘記密碼
-          </Button>
-          <Button className={styles.button} color="violet" radius="xl" type="submit">
-            <span>登入</span>
-            <IconArrowNarrowRight className={styles.registerIcon} />
-          </Button>
+          <PasswordInput
+            className={`${styles.input} ${styles.passwordInput}`}
+            radius="md"
+            size="md"
+            placeholder="輸入帳號密碼"
+            label="密碼"
+            icon={<IconLock size={16} />}
+            {...register("password", { required: true })}
+          />
+          <div className={styles.forFlexColumn}>
+            <Button
+              className={`${styles.loginText} ${styles.forgetPasswordBtn}`}
+              variant="subtle"
+              color="violet"
+              onClick={() => {
+                navigate("/password");
+              }}
+            >
+              忘記密碼?
+            </Button>
+            <Button className={styles.button} color="violet" radius="xl" type="submit">
+              <span>登入</span>
+              <IconArrowNarrowRight className={styles.registerIcon} />
+            </Button>
+          </div>
         </form>
         <div className={styles.separator}>
           <span className={styles.separatorText}>或</span>
@@ -63,7 +75,7 @@ export default function Login() {
         <div className={styles.oauthContainer}>
           <div className={styles.oauthIcon}>
             <a href="/connect/google">
-              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32" viewBox="0 0 48 48">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32" viewBox="0 0 48 48" className={styles.googleIcon}>
                 <path
                   fill="#FFC107"
                   d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"
@@ -84,17 +96,7 @@ export default function Login() {
             </a>
           </div>
           <div className={styles.oauthIcon}>
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32" viewBox="0 0 48 48">
-              <linearGradient id="Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1" x1="9.993" x2="40.615" y1="9.993" y2="40.615" gradientUnits="userSpaceOnUse">
-                <stop offset="0" stop-color="#2aa4f4"></stop>
-                <stop offset="1" stop-color="#007ad9"></stop>
-              </linearGradient>
-              <path fill="url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)" d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z"></path>
-              <path
-                fill="#fff"
-                d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z"
-              ></path>
-            </svg>
+            <FaFacebookF className={styles.facebookLogo} />
           </div>
         </div>
         <div className={styles.loginContainer}>

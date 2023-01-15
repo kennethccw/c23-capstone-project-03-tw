@@ -1,6 +1,12 @@
 .header {
   margin-top: 80px;
-  margin-bottom: 0;
+  margin-bottom: 40px;
+}
+
+.containerForAll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .formContainer {
@@ -10,15 +16,17 @@
 }
 
 .input {
-  width: 344px;
+  width: 312px;
   margin: 10px 0;
 }
 
 .button {
-  height: 60px;
-  width: 344px;
+  height: 56px;
+  width: 312px;
   margin-top: 12px;
   font-size: 20px;
+  background-color: #6b4eff;
+  box-shadow: 0 24px 16px -19px #a1a3f6;
 }
 
 .registerIcon {
@@ -26,11 +34,9 @@
   margin-left: 140px;
 }
 
-// .validationAllContainer {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-// }
+.validationAllContainer {
+  font-size: 15px;
+}
 
 .validationContainer {
   display: flex;
@@ -91,22 +97,68 @@
 }
 
 .logo {
-  width: 280px;
-  height: 280px;
+  margin-top: -40px;
+  width: 232px;
+  height: 232px;
 }
 
 .logoText {
   margin-top: -24px;
-  width: 280px;
+  width: 214px;
+  margin-bottom: 16px;
+}
+.forgetPasswordBtn {
+  margin-bottom: 138px;
+}
+.welcomeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.welcomeContainer {
+.loginPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+}
+
+.welcomeText {
+  margin-bottom: -14px;
+}
+
+.petscueText {
+  margin-bottom: 36px;
+}
+
+.sologan {
+  margin-bottom: 24px;
+}
+
+.introductionPhoto {
+  width: 360px;
+}
+
+.forFlexColumn {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.welcomeText {
-  margin-bottom: -14px;
+.facebookLogo {
+  color: #585ce5;
+  font-size: 22px;
+}
+
+.googleIcon {
+  margin-top: 4px;
+}
+
+.passwordInput input {
+  margin-top: -1px;
+  height: 48px;
 }

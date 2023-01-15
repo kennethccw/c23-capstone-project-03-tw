@@ -9,12 +9,12 @@ export default function Welcome() {
       <img className={styles.logo} src="photos/logo_pic-09-09.png" alt="" />
       <img className={styles.logoText} src="photos/logo_word-10.png" alt="" />
       <h1 className={styles.welcomeText}>歡迎使用</h1>
-      <h1>Petsuce</h1>
-      <div>立刻註冊會員成為熱血的一份子</div>
+      <h1 className={styles.petscueText}>Petsuce</h1>
+      <div className={styles.sologan}>立刻註冊會員成為熱血的一份子</div>
       <Button
         className={styles.button}
-        color="violet"
         radius="xl"
+        color="violet"
         onClick={() => {
           navigate("/introduction");
         }}
