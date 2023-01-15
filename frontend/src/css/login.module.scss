@@ -1,3 +1,8 @@
+.header {
+  margin-top: 80px;
+  margin-bottom: 0;
+}
+
 .formContainer {
   display: flex;
   flex-direction: column;
@@ -6,6 +11,7 @@
 
 .input {
   width: 344px;
+  margin: 10px 0;
 }
 
 .button {
@@ -29,7 +35,7 @@
 .validationContainer {
   display: flex;
   align-items: center;
-  margin: 8px 8px;
+  margin: auto 8px;
 }
 
 .validationIcon {
@@ -37,5 +43,49 @@
 }
 
 .checkbox {
-  margin-top: 8px;
+  margin-top: 20px;
+}
+
+.separator {
+  margin-top: 24px;
+  width: 344px;
+  height: 12px;
+  border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
+  text-align: center;
+}
+
+.separatorText {
+  font-size: 17px;
+  background-color: #ffffff;
+  padding: 0 16px;
+}
+
+.oauthContainer {
+  margin-top: 24px;
+  width: 344px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.oauthIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  border: rgba($color: #000000, $alpha: 0.3) 1px solid;
+  border-radius: 20px;
+}
+.loginContainer {
+  width: 344px;
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginText {
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
