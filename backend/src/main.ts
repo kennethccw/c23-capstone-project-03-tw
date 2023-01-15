@@ -22,7 +22,7 @@ app.use(
 import grant from "grant";
 const grantExpress = grant.express({
   defaults: {
-    origin: "http://localhost:8080",
+    origin: "http://localhost:3000",
     transport: "session",
     state: true,
   },
