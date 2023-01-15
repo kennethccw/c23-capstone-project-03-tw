@@ -1,7 +1,6 @@
-import { Input, PasswordInput, Button, MantineProvider, Center } from "@mantine/core";
+import { Input, PasswordInput, Button, MantineProvider } from "@mantine/core";
 import { IconUser, IconMail, IconLock, IconArrowNarrowRight } from "@tabler/icons";
 import { useForm } from "react-hook-form";
-// import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import { FaFacebookF } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/login.module.scss";
