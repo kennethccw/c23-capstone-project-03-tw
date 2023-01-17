@@ -89,3 +89,60 @@
   font-size: 16px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.adoptionTextContainer {
+  width: 282px;
+  position: relative;
+  padding: 4px 28px 12px 40px;
+  color: #ffffff;
+  border-radius: 40px;
+  margin-bottom: 40px;
+  background: linear-gradient(90deg, #255fa7 0%, #255798 46.87%, #1c3967 100%);
+}
+
+.adoptionDetailHeaderContainer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: -12px;
+  top: -12px;
+  text-align: center;
+  font-size: 36px;
+  border-radius: 80px;
+  width: 64px;
+  height: 64px;
+  background-color: #224081;
+}
+
+.adoptionDetailHeaderImg {
+  width: 80px;
+}
+
+.adoptionDetailH2 {
+  margin-left: 24px;
+}
+
+.adoptionDetailOl {
+  font-size: 14px;
+  margin-left: -24px;
+}
+
+.navigateBackButton {
+  color: #cccccc;
+  margin-left: -12px;
+  font-size: 32px;
+  margin-top: 32px;
+  cursor: pointer;
+}
+
+.adoptionDetailHr {
+  margin: 4px -40px 32px -40px;
+}
