@@ -4,11 +4,46 @@ import { useForm } from "react-hook-form";
 import { FaFacebookF } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/login.module.scss";
+import { loginThunk } from "../redux/auth/thunk";
+import { useRootDispatch } from "../redux/store";
 
 export default function Login() {
-  const { register, watch } = useForm({ defaultValues: { userIdentity: "", password: "" } });
+  const { register, watch, getValues } = useForm({ defaultValues: { userIdentity: "", password: "" } });
   const navigate = useNavigate();
   const watchUserIdentity = watch("userIdentity");
+  const dispatch = useRootDispatch();
+
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(loginThunk({ userIdentity: watchUserIdentity, password: getValues().password }))
+      .unwrap()
+      .then(() => navigate("/home"))
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
+  console.log(process.env.REACT_APP_FACEBOOK_APP_ID);
+  console.log(process.env.REACT_APP_BACKEND_URL);
+
+  const onFacebookLogin = (event: React.MouseEvent) => {
+    event.preventDefault();
+    const authURL = "https://www.facebook.com/dialog/oauth";
+    const search = new URLSearchParams();
+    search.set("client_id", process.env.REACT_APP_FACEBOOK_APP_ID + "");
+    search.set("redirect_uri", `${window.location.origin}/facebook-callback`);
+    search.set("response_type", "code");
+    search.set("state", "");
+    search.set("scope", "email,public_profile");
+    window.location.href = `${authURL}?${search.toString()}`;
+  };
+  const onGoogleLogin = (event: React.MouseEvent) => {
+    event.preventDefault();
+    window.location.href = `${process.env.REACT_APP_BACKEND_URL}/connect/google`;
+  };
+
+  console.log("rendered");
+
   return (
     <MantineProvider
       inherit
@@ -23,7 +58,7 @@ export default function Login() {
           },
 
           Input: {
-            styles: (theme) => ({
+            styles: () => ({
               input: { height: 48 },
             }),
           },
@@ -32,7 +67,7 @@ export default function Login() {
     >
       <div className={styles.loginPageContainer}>
         <h1 className={styles.header}>Petscue歡迎你！</h1>
-        <form className={styles.formContainer}>
+        <form className={styles.formContainer} onSubmit={submitHandler}>
           {watchUserIdentity.includes("@") ? (
             <Input.Wrapper id="user-identity" className={styles.input} label="帳戶名稱 / 電子郵件">
               <Input id="user-identity" radius="md" size="md" placeholder="輸入帳戶名稱或電子郵件" type="text" icon={<IconMail size={16} />} {...register("userIdentity", { required: true })} />
@@ -73,7 +108,7 @@ export default function Login() {
         </div>
         <div className={styles.oauthContainer}>
           <div className={styles.oauthIcon}>
-            <a href="/connect/google">
+            <div onClick={onGoogleLogin}>
               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32" viewBox="0 0 48 48" className={styles.googleIcon}>
                 <path
                   fill="#FFC107"
@@ -92,11 +127,12 @@ export default function Login() {
                   d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
                 ></path>
               </svg>
-            </a>
+            </div>
           </div>
-          <div className={styles.oauthIcon}>
+          <div className={styles.oauthIcon} onClick={onFacebookLogin}>
             <FaFacebookF className={styles.facebookLogo} />
           </div>
+          {/* <ReactFacebookLogin appId={process.env.REACT_APP_FACEBOOK_APP_ID || ""} autoLoad={false} fields="name, email, picture" onlick={fbOnClick}/> */}
         </div>
         <div className={styles.loginContainer}>
           <span className={styles.loginText}>新用戶</span>

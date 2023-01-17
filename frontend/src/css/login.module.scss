@@ -75,6 +75,7 @@
 }
 
 .oauthIcon {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,7 +129,7 @@
 .inputEmailText {
   width: 312px;
   margin-bottom: 24px;
-  color: #898D9E
+  color: #898d9e;
 }
 
 .loginPageContainer {

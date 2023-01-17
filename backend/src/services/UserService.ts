@@ -1,5 +1,5 @@
 import type { Knex } from "knex";
-import { Auth, User } from "../utils/model";
+import { Auth, User } from "../utils/models";
 import { TABLES } from "../utils/tables";
 
 export class UserService {
@@ -17,12 +17,15 @@ export class UserService {
 
   loginWithEmail = async (email: string) => {
     try {
+      console.log("loginWithEmail");
       const result: Auth = await this.knex(TABLES.USERS)
         .select("id", "username", "password")
         .where("email", email)
         .first();
+      // console.log(result);
       return result;
     } catch (e) {
+      console.log("there is error");
       console.log(e);
       throw e;
     }
@@ -34,6 +37,15 @@ export class UserService {
         .select("id", "username", "password")
         .where("username", username)
         .first();
+      return result;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  };
+  verifyUser = async (uid: number) => {
+    try {
+      const result: User = await this.knex(TABLES.USERS).select().where("id", uid).first();
       return result;
     } catch (e) {
       console.log(e);

@@ -1,7 +1,7 @@
 import { knex } from "./main";
 
 import { UserService } from "./services/UserService";
-const userService = new UserService(knex);
+export const userService = new UserService(knex);
 import { UserController } from "./controllers/UserController";
 export const userController = new UserController(userService);
 

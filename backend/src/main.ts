@@ -19,10 +19,25 @@ app.use(
   })
 );
 
+import bodyParser from "body-parser";
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(express.json());
+app.use(
+  expressSession({
+    secret: Math.random().toString(32).slice(2), // 32 base number
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+declare module "express-session" {
+  interface Session {
+    user?: { id: number; username: string };
+  }
+}
 import grant from "grant";
 const grantExpress = grant.express({
   defaults: {
-    origin: "http://localhost:3000",
+    origin: "http://localhost:8080",
     transport: "session",
     state: true,
   },
@@ -35,24 +50,6 @@ const grantExpress = grant.express({
 });
 
 app.use(grantExpress as express.RequestHandler);
-
-import bodyParser from "body-parser";
-app.use(bodyParser.json({ limit: "50mb" }));
-app.use(express.json());
-
-declare module "express-session" {
-  interface Session {
-    user?: { id: number; username: string };
-  }
-}
-
-app.use(
-  expressSession({
-    secret: Math.random().toString(32).slice(2), // 32 base number
-    resave: true,
-    saveUninitialized: true,
-  })
-);
 
 import { routes } from "./routes";
 app.use(routes);
