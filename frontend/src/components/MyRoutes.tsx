@@ -9,6 +9,7 @@ import RequireAuth from "./AuthRoute";
 import Home from "../pages/Home";
 import FacebookCallback from "./FacebookCallback";
 import GoogleLoginCallback from "./GoogleLoginCallback";
+import Home2 from "../pages/Home2";
 
 export default function MyRoutes() {
   return (
@@ -23,6 +24,7 @@ export default function MyRoutes() {
       <Route path="/password/reset" element={<ChangePassword />}></Route>
       <Route element={<RequireAuth />}>
         <Route path="/home" element={<Home />}></Route>
+        <Route path="/home2" element={<Home2 />}></Route>
       </Route>
       <Route path="*" element={<>404 : Page Not Found</>} />
     </Routes>

@@ -28,6 +28,17 @@ export const facebookLogin = async (code: string) => {
   });
   return data;
 };
+export const validateToken = async (token: string | null) => {
+  const data = await fetchJson<{ token: string }>(`${AUTH_API_PATH}/validation`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ token }),
+  });
+  return data;
+};
 export const googleLogin = async () => {
   const data = await fetchJson<{ token: string }>(`${AUTH_API_PATH}/google`);
   return data;

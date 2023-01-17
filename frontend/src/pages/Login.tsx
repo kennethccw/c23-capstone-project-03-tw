@@ -23,9 +23,6 @@ export default function Login() {
       });
   };
 
-  console.log(process.env.REACT_APP_FACEBOOK_APP_ID);
-  console.log(process.env.REACT_APP_BACKEND_URL);
-
   const onFacebookLogin = (event: React.MouseEvent) => {
     event.preventDefault();
     const authURL = "https://www.facebook.com/dialog/oauth";
@@ -41,8 +38,6 @@ export default function Login() {
     event.preventDefault();
     window.location.href = `${process.env.REACT_APP_BACKEND_URL}/connect/google`;
   };
-
-  console.log("rendered");
 
   return (
     <MantineProvider

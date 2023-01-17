@@ -1,8 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { login, UserLoginInfo, facebookLogin, googleLogin } from "../../api/authAPI";
+import { login, UserLoginInfo, facebookLogin, googleLogin, validateToken } from "../../api/authAPI";
 
 export const loginThunk = createAsyncThunk("@auth/login", async (user: UserLoginInfo, _thunkAPI) => {
   const data = await login(user);
+  return data;
+});
+export const validateTokenThunk = createAsyncThunk("@auth/validation", async (token: string | null, _thunkAPI) => {
+  const data = await validateToken(token);
   return data;
 });
 
