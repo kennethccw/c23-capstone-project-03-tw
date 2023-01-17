@@ -6,7 +6,6 @@ const tableName = TABLES.ADMINS;
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable(tableName, (table) => {
     table.increments();
-    table.string("photo");
     table
       .string("username")
       .unique()
