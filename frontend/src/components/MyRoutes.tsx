@@ -16,6 +16,7 @@ import AdoptionApplication from "../pages/AdoptionApplication";
 import AdoptionDetail from "../pages/AdoptionDetail";
 import Donation from "../pages/Donation";
 import Adoption from "../pages/Adoption";
+import AllActivities from "../pages/AllActivities";
 
 export default function MyRoutes() {
   return (
@@ -32,6 +33,8 @@ export default function MyRoutes() {
       <Route path="/" element={<Adoption />}></Route>
       <Route path="/" element={<Donation />}></Route>
       <Route path="/" element={<AdoptionDetail />}></Route>
+      <Route path="allActivities" element={<AllActivities />}></Route>
+
       <Route path="/" element={<RequireAuth />}>
         <Route path="home1" element={<Home />}></Route>
       </Route>
