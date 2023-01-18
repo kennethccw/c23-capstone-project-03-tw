@@ -1,0 +1,27 @@
+.formsubmittedContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.successfulSubmitted {
+  height: 39px;
+  letter-spacing: 0.002em;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.logoPic {
+  width: 59px;
+  height: 59px;
+}
+
+.willContactyou {
+  display: flex;
+  align-items: center;
+  font-size: 19px;
+}
+
