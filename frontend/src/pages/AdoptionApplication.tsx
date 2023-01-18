@@ -7,6 +7,7 @@ import {
   HiClipboardList,
   HiUserCircle,
 } from "react-icons/hi";
+import NewNavbar from "../components/NewNavbar";
 
 export default function AdoptionApplication() {
   const navigate = useNavigate();
@@ -23,18 +24,9 @@ export default function AdoptionApplication() {
           />
           <span>我們會盡快聯絡你</span>
         </div>
+
         {/* nav-bar */}
-        <>
-          <div className={styles.navBArList}>
-            <HiSearchCircle
-              className={`${styles.navbarIcon} ${styles.searchNav}`}
-            />
-            <HiLightningBolt className={styles.navbarIcon} />
-            <HiHome className={styles.navbarIcon} />
-            <HiClipboardList className={styles.navbarIcon} />
-            <HiUserCircle className={`${styles.navbarIcon} ${styles.userNav}`} />
-          </div>
-        </>
+        <NewNavbar/>
 
         {/* nav-bar */}
       </div>
