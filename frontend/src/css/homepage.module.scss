@@ -6,7 +6,7 @@
     position: fixed;
     left: 0px;
     top: 0px;
-  
+    
     // border:1px solid black;
 
 }
@@ -64,21 +64,40 @@
 }
 
 .lowerPart {
-    position: absolute;
+    position: fixed;
     top: 100px;
     left: 0px;
-    border: 1px solid black;
+    // border: 1px solid black;
     background-color: yellow;
     width: 100%;
+    height: 100%;
+    overflow-y: scroll;
 
+
+}
+
+.greeting{
+    font-size:xx-large;
 }
 
 .userName {
     font-weight: bold;
     color: #1c2f56;
     font-size: x-large;
-    // border:1px solid black;
+}
+
+.carouselPart{
+    position: relative;
+    // border: 1px solid black;
+    // background-color: red;
+    width: 100%;
+    height: auto;
+}
 
 
 
+.carouselPhoto{
+    width: 100%;
+    height:auto;
+    
 }
