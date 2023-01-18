@@ -1,4 +1,4 @@
-import styles from "../css/login.module.scss";
+import styles from "../css/adoptionDetail.module.scss";
 import { IoIosArrowBack } from "react-icons/io";
 
 export default function AdoptionDetail() {

@@ -16,13 +16,18 @@ import AdoptionApplication from "../pages/AdoptionApplication";
 import AdoptionDetail from "../pages/AdoptionDetail";
 import Donation from "../pages/Donation";
 import Adoption from "../pages/Adoption";
+import NoticePasswordChanged from "../pages/NoticePasswordChanged";
 
 export default function MyRoutes() {
   return (
     <Routes>
+      <Route path="/" element={<Welcome />}></Route>
+      <Route path="/" element={<AdoptionDetail />}></Route>
+      <Route path="/" element={<Adoption />}></Route>
+      <Route path="/" element={<Donation />}></Route>
+      <Route path="/" element={<NoticePasswordChanged />}></Route>
       <Route path="/" element={<AdoptionApplication />}></Route>
       <Route path="/" element={<Advertising />}></Route>
-      <Route path="/" element={<Welcome />}></Route>
       <Route path="introduction" element={<Introduction />}></Route>
       <Route path="login" element={<Login />}></Route>
       <Route path="facebook-callback" element={<FacebookCallback />} />
@@ -31,14 +36,10 @@ export default function MyRoutes() {
       <Route path="password/email" element={<ForgetPassword />}></Route>
       <Route path="password/reset" element={<ChangePassword />}></Route>
       <Route path="home" element={<Home />}></Route>
-      <Route path="/" element={<Adoption />}></Route>
-      <Route path="/" element={<Donation />}></Route>
-      <Route path="/" element={<AdoptionDetail />}></Route>
       <Route path="/" element={<RequireAuth />}>
         <Route path="home1" element={<Home />}></Route>
       </Route>
       <Route path="*" element={<h1>404 : Page Not Found</h1>} />
-      
     </Routes>
   );
 }

@@ -1,0 +1,315 @@
+.header {
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+
+.containerForAll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.input {
+  width: 312px;
+  margin: 10px 0;
+}
+
+.button {
+  height: 56px;
+  width: 312px;
+  margin-top: 12px;
+  font-size: 20px;
+  background-color: #6b4eff;
+  box-shadow: 0 24px 16px -19px #a1a3f6;
+  position: relative;
+}
+
+.registerIcon {
+  position: absolute;
+  right: 24px;
+}
+
+.validationAllContainer {
+  font-size: 15px;
+}
+
+.validationContainer {
+  display: flex;
+  align-items: center;
+  margin: auto 8px;
+}
+
+.validationIcon {
+  color: #ff0000;
+}
+
+.checkbox {
+  margin-top: 20px;
+}
+
+.separator {
+  margin-top: 24px;
+  width: 312px;
+  height: 12px;
+  border-bottom: 1px solid rgba($color: #0f2851, $alpha: 0.3);
+  text-align: center;
+}
+
+.separatorText {
+  font-size: 17px;
+  background-color: #ffffff;
+  padding: 0 16px;
+}
+
+.oauthContainer {
+  margin-top: 24px;
+  width: 312px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.oauthIcon {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  border: rgba($color: #0f2851, $alpha: 0.3) 1px solid;
+  border-radius: 20px;
+}
+.loginContainer {
+  width: 312px;
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginText {
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo {
+  margin-top: -40px;
+  width: 232px;
+  height: 232px;
+}
+
+.logoText {
+  margin-top: -24px;
+  width: 214px;
+  margin-bottom: 16px;
+}
+.forgetPasswordBtn {
+  margin-bottom: 138px;
+}
+.welcomeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.adoptionTextContainer {
+  width: 282px;
+  position: relative;
+  padding: 4px 28px 12px 40px;
+  color: #ffffff;
+  border-radius: 40px;
+  margin-bottom: 40px;
+  background: linear-gradient(90deg, #255fa7 0%, #255798 46.87%, #1c3967 100%);
+}
+
+.adoptionDetailHeaderContainer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: -12px;
+  top: -12px;
+  text-align: center;
+  font-size: 36px;
+  border-radius: 80px;
+  width: 64px;
+  height: 64px;
+  background-color: #224081;
+}
+
+.adoptionDetailHeaderImg {
+  width: 80px;
+}
+
+.adoptionDetailH2 {
+  margin-left: 24px;
+}
+
+.adoptionDetailOl {
+  font-size: 14px;
+  margin-left: -24px;
+}
+
+.navigateBackButton {
+  color: #cccccc;
+  margin-left: -12px;
+  font-size: 32px;
+  margin-top: 32px;
+  cursor: pointer;
+}
+
+.adoptionDetailHr {
+  margin: 4px -80px 32px -80px;
+  border: 0.4px solid#cccccc;
+}
+.seperatorHr {
+  border: 0.4px solid#cccccc;
+}
+
+.donationAmountBtn div span {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.inputEmailContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+}
+
+.inputEmailText {
+  width: 312px;
+  margin-bottom: 24px;
+  color: #898d9e;
+}
+
+.loginPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+}
+
+.welcomeText {
+  margin-bottom: -14px;
+}
+
+.petscueText {
+  margin-bottom: 36px;
+}
+
+.sologan {
+  margin-bottom: 24px;
+}
+
+.introductionPhoto {
+  width: 360px;
+}
+
+.forFlexColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.facebookLogo {
+  color: #585ce5;
+  font-size: 22px;
+}
+
+.googleIcon {
+  margin-top: 4px;
+}
+
+.passwordInput input {
+  margin-top: -1px;
+  height: 48px;
+}
+
+.resetInputEmailValidation {
+  margin-bottom: 340px;
+}
+
+.resetPasswordValidation {
+  margin-bottom: 402px;
+}
+
+.donationAmountBtn {
+  height: 72px;
+  color: #aaaaaa;
+  border-color: #aaaaaa;
+  border-radius: 14px;
+}
+
+.donationAmountBtnContainer {
+  width: 312px;
+  display: flex;
+  justify-content: space-around;
+}
+.donationAmount {
+  color: #0f2851;
+  margin-bottom: 4px;
+}
+.seperatorContainer {
+  margin: 24px 0;
+  width: 312px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.donationOtherAmountBtn {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  color: #0f2851;
+  height: 43px;
+  width: 178px;
+}
+
+.otherAmountInput {
+  width: 178px;
+  height: 43px;
+}
+.otherAmountInput input {
+  width: 178px;
+  height: 43px;
+}
+
+.otherDonationAmountContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 312px;
+  margin-top: 12px;
+}
+
+.otherDonationAmountLabel {
+  font-size: 16px;
+}
+
+.donationCheckBox label {
+  font-size: 8px;
+  line-height: 12px;
+}
+
+.adoptionConfirmBtn {
+  margin-top: 24px;
+}

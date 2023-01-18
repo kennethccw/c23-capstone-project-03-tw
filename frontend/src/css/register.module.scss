@@ -1,10 +1,9 @@
-.loginPageContainer {
+.containerForAll {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  height: 100vh;
 }
+
 .header {
   margin-top: 80px;
   margin-bottom: 40px;
@@ -21,25 +20,28 @@
   margin: 10px 0;
 }
 
+.validationAllContainer {
+  font-size: 15px;
+}
+
+.validationContainer {
+  display: flex;
+  align-items: center;
+  margin: auto 8px;
+}
+.validationIcon {
+  color: #ff0000;
+}
+
 .passwordInput input {
   margin-top: -1px;
   height: 48px;
 }
 
-.forFlexColumn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.checkbox {
+  margin-top: 20px;
 }
 
-.loginText {
-  font-size: 16px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-.forgetPasswordBtn {
-  margin-bottom: 138px;
-}
 .button {
   height: 56px;
   width: 312px;
@@ -96,11 +98,15 @@
 .googleIcon {
   margin-top: 4px;
 }
-
 .loginContainer {
   width: 312px;
   margin-top: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.loginText {
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
