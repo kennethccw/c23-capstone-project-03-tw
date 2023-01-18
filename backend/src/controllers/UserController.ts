@@ -202,4 +202,10 @@ export class UserController {
     req.user = undefined;
     res.status(200).json({ message: "Successful logout" });
   };
+
+  validation = async (req: Request, res: Response) => {
+    console.log("validated");
+    const token = req.body.token;
+    res.status(200).json({ token });
+  };
 }
