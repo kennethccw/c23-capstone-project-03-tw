@@ -15,18 +15,18 @@ export default function MyRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Welcome />}></Route>
-      <Route path="/introduction" element={<Introduction />}></Route>
-      <Route path="/login" element={<Login />}></Route>
-      <Route path="/facebook-callback" element={<FacebookCallback />} />
-      <Route path="/google-callback" element={<GoogleLoginCallback />} />
-      <Route path="/register" element={<Register />}></Route>
-      <Route path="/password/email" element={<ForgetPassword />}></Route>
-      <Route path="/password/reset" element={<ChangePassword />}></Route>
-      <Route element={<RequireAuth />}>
-        <Route path="/home" element={<Home />}></Route>
-        <Route path="/home2" element={<Home2 />}></Route>
+      <Route path="introduction" element={<Introduction />}></Route>
+      <Route path="login" element={<Login />}></Route>
+      <Route path="facebook-callback" element={<FacebookCallback />} />
+      <Route path="google-callback" element={<GoogleLoginCallback />} />
+      <Route path="register" element={<Register />}></Route>
+      <Route path="password/email" element={<ForgetPassword />}></Route>
+      <Route path="password/reset" element={<ChangePassword />}></Route>
+      <Route path="/" element={<RequireAuth />}>
+        <Route path="home" element={<Home />}></Route>
+        <Route path="home2" element={<Home2 />}></Route>
       </Route>
-      <Route path="*" element={<>404 : Page Not Found</>} />
+      <Route path="*" element={<h1>404 : Page Not Found</h1>} />
     </Routes>
   );
 }

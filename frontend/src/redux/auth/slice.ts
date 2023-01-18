@@ -5,9 +5,9 @@ import { facebookLoginThunk, googleLoginThunk, loginThunk, validateTokenThunk } 
 
 const initialState: AuthState = {
   isAuth: false,
+  loading: true,
   user: undefined,
   message: undefined,
-  loading: false,
 };
 
 const authSlice = createSlice({
@@ -46,7 +46,6 @@ const authSlice = createSlice({
       localStorage.setItem("token", action.payload.token);
       localStorage.setItem("userId", payload.id.toString());
       localStorage.setItem("username", payload.username);
-      state.message = undefined;
       state.loading = false;
     });
     builder.addCase(validateTokenThunk.fulfilled, (state, action) => {
@@ -56,7 +55,6 @@ const authSlice = createSlice({
       localStorage.setItem("token", action.payload.token);
       localStorage.setItem("userId", payload.id.toString());
       localStorage.setItem("username", payload.username);
-      state.message = undefined;
       state.loading = false;
     });
     builder.addCase(facebookLoginThunk.fulfilled, (state, action) => {
