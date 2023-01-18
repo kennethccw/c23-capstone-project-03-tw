@@ -7870,6 +7870,11 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
+react-bell-icon@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-bell-icon/-/react-bell-icon-1.0.1.tgz#f2594d9c34ca629a171f90d1e9381bb50522ef1a"
+  integrity sha512-WxePTEk46XYn1vUnTumLb2RSamdcialERyb2Euk4lrXfEQ59vOkpQaE+Uj6FWXTfAqD+f438XdWfFYccqlmDLg==
+
 react-bootstrap-icons@^1.10.2:
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/react-bootstrap-icons/-/react-bootstrap-icons-1.10.2.tgz#e8e765f5cf9672f1a6b3e9146f441db92bb104cc"
