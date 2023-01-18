@@ -10,6 +10,9 @@ import Home from "../pages/Home";
 import FacebookCallback from "./FacebookCallback";
 import GoogleLoginCallback from "./GoogleLoginCallback";
 import Home2 from "../pages/Home2";
+import Advertising from "../pages/Advertising";
+import AdoptionApplication from "../pages/AdoptionApplication";
+
 import AdoptionDetail from "../pages/AdoptionDetail";
 import Donation from "../pages/Donation";
 import Adoption from "../pages/Adoption";
@@ -17,6 +20,8 @@ import Adoption from "../pages/Adoption";
 export default function MyRoutes() {
   return (
     <Routes>
+      <Route path="/" element={<AdoptionApplication />}></Route>
+      <Route path="/" element={<Advertising />}></Route>
       <Route path="/" element={<Welcome />}></Route>
       <Route path="introduction" element={<Introduction />}></Route>
       <Route path="login" element={<Login />}></Route>
