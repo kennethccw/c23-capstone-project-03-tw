@@ -10,6 +10,9 @@ import Home from "../pages/Home";
 import FacebookCallback from "./FacebookCallback";
 import GoogleLoginCallback from "./GoogleLoginCallback";
 import Home2 from "../pages/Home2";
+import AdoptionDetail from "../pages/AdoptionDetail";
+import Donation from "../pages/Donation";
+import Adoption from "../pages/Adoption";
 
 export default function MyRoutes() {
   return (
@@ -23,10 +26,14 @@ export default function MyRoutes() {
       <Route path="password/email" element={<ForgetPassword />}></Route>
       <Route path="password/reset" element={<ChangePassword />}></Route>
       <Route path="home" element={<Home />}></Route>
+      <Route path="/" element={<Adoption />}></Route>
+      <Route path="/" element={<Donation />}></Route>
+      <Route path="/" element={<AdoptionDetail />}></Route>
       <Route path="/" element={<RequireAuth />}>
         <Route path="home1" element={<Home />}></Route>
       </Route>
       <Route path="*" element={<h1>404 : Page Not Found</h1>} />
+      
     </Routes>
   );
 }

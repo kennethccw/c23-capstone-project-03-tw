@@ -1,14 +1,15 @@
-import type { Knex } from "knex";
+import { Knex } from "knex";
 import { TABLES } from "../src/utils/tables";
 
-const tableName = TABLES.BADGES;
+const tableName =TABLES.USER_TOTAL_ACTIVITIES_PARTICIPATED_TIMES
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable(tableName, (table) => {
     table.increments();
-    table
-      .enum("type", ["warmhearted", "advertising_philanthropist", "donation_philanthropist"])
-      .notNullable();
+    table.integer("total_activities_participated_times");
+    table.integer("year");
+    table.integer("user_id").unsigned();
+    table.foreign("user_id").references("users.id").onDelete("CASCADE");
     table.timestamps(false, true);
   });
 }
