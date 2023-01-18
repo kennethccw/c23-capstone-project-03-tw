@@ -4,10 +4,12 @@ import Register from "../pages/Register";
 import ForgetPassword from "../pages/ForgetPassword";
 import AdoptionDetail from "../pages/AdoptionDetail";
 import Donation from "../pages/Donation";
+import Adoption from "../pages/Adoption";
 
 export default function MyRoutes() {
   return (
     <Routes>
+      <Route path="/" element={<Adoption />}></Route>
       <Route path="/" element={<Donation />}></Route>
       <Route path="/" element={<AdoptionDetail />}></Route>
       <Route path="/" element={<Register />}></Route>
