@@ -68,7 +68,7 @@
     top: 100px;
     left: 0px;
     // border: 1px solid black;
-    background-color: yellow;
+    // background-color: yellow;
     width: 100%;
     height: 100%;
     overflow-y: scroll;
@@ -86,18 +86,56 @@
     font-size: x-large;
 }
 
-.carouselPart{
+.carouselPart, .recommendInstancePart{
     position: relative;
     // border: 1px solid black;
     // background-color: red;
-    width: 100%;
-    height: auto;
+    width: 100vw;
+    max-height: 300px;
 }
-
 
 
 .carouselPhoto{
     width: 100%;
     height:auto;
     
+}
+
+.socialWorkRecommendContainer{
+    //  border: 1px solid black;
+    background-color: palegreen;
+    // height: 40vh;
+    padding: 10px;
+}
+
+.socialRecommendBar{
+    display: flex;
+    justify-content: space-around;
+}
+
+.socialWorkRecommendWord{
+    flex:1;
+    // border: 1px solid black;
+    font-size:x-large;
+    font-weight: bold;
+    color:#4b5e7c;
+}
+
+
+
+.chevronBarIcon{
+    flex:1;
+    // border: 1px solid black;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 10px;
+    font-size:x-large;
+    color:#4b5e7c;
+    font-weight: bold;
+}
+
+.recommendInstancePhoto{
+    width: 100%;
+    height:auto;
 }
