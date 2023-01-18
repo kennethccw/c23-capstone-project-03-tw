@@ -1,23 +1,29 @@
 import styles from "../css/adv.module.scss";
 import { useNavigate } from "react-router-dom";
+import { FiXCircle } from "react-icons/fi";
 import { Button } from "@mantine/core";
-export default function Introduction() {
+
+export default function Advertising() {
   const navigate = useNavigate();
   return (
-    <div className={styles.welcomeContainer}>
-      <img className={styles.introductionPhoto} src="photos/Screenshot 2023-01-12 at 12.35.02 AM.png" alt="" />
-      <h1 className={styles.welcomeText}>歡迎有愛心的你</h1>
-      <h1>加入成為義工！</h1>
+    <div className={styles.advContainer}>
+      
       <Button
-        className={styles.button}
+        className={styles.advBtn}
         color="violet"
-        radius="xl"
-        onClick={() => {
-          navigate("/register");
-        }}
+        // radius="xl"
+        // onClick={() => {
+        // navigate("/register");
       >
-        創建帳戶
+        <div>感謝為流浪動物出一分力</div>
+        <FiXCircle className={styles.closeBtn} />
       </Button>
-      </div>
+      
+      <img
+        className={styles.imgContainer}
+        src="photos/adv-15s.png"
+        alt="嘉頓"
+      />
+    </div>
   );
 }
