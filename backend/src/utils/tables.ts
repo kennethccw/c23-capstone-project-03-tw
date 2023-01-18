@@ -12,7 +12,7 @@ export const TABLES = Object.freeze({
   PETS: "pets",
   ADOPTION_APPLICATIONS: "adoption_applications",
   ACTIVITIES: "activities",
-  ACTIVITY_APPLICATION: "activity_applications",
+  ACTIVITY_APPLICATIONS: "activity_applications",
   PET_SUPPORTS: "pet_supports",
   IT_SUPPORTS: "it_supports",
 });

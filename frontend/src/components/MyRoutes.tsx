@@ -10,6 +10,7 @@ import Home from "../pages/Home";
 import FacebookCallback from "./FacebookCallback";
 import GoogleLoginCallback from "./GoogleLoginCallback";
 import Home2 from "../pages/Home2";
+import AdoptionDetail from "../pages/AdoptionDetail";
 
 export default function MyRoutes() {
   return (
@@ -27,6 +28,8 @@ export default function MyRoutes() {
         <Route path="home1" element={<Home />}></Route>
       </Route>
       <Route path="*" element={<h1>404 : Page Not Found</h1>} />
+      
+      <Route path="/adoption/detail" element={<AdoptionDetail />}></Route>
     </Routes>
   );
 }
