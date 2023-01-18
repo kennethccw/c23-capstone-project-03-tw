@@ -8,11 +8,11 @@ export async function up(knex: Knex): Promise<void> {
     table.increments();
     table.string("image");
     table.string("name");
-    table.integer("age");
+    table.string("age");
     table.decimal("weight");
     table.enum("gender", ["female", "male"]).notNullable();
     table.string("breed");
-    table.string("illness_record");
+    table.string("remark");
     table.integer("organisation_id").unsigned();
     table.foreign("organisation_id").references("organisations.id").onDelete("CASCADE");
     table.timestamps(false, true);

@@ -9,7 +9,6 @@ export async function up(knex: Knex): Promise<void> {
     table
       .enum("type", ["warmhearted", "advertising_philanthropist", "donation_philanthropist"])
       .notNullable();
-    table.string("photo_album").notNullable();
     table.timestamps(false, true);
   });
 }

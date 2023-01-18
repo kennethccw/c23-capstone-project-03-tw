@@ -8,12 +8,12 @@ export async function seed(knex: Knex): Promise<void> {
     await trx("users").insert([
       {
         username: "lovepetuser01",
-        email: "lovepetuser@gmail.com",
+        email: "lovepetuser01@gmail.com",
         password: await hashPassword("123456"),
         mobile: "12345678",
         birthday: "09-09-1997",
         gender: "female",
-        is_experienced: "false",
+        is_experienced: false,
       },
       {
         username: "lovepetuser02",
@@ -22,7 +22,7 @@ export async function seed(knex: Knex): Promise<void> {
         mobile: "12345678",
         birthday: "09-09-1993",
         gender: "male",
-        is_experienced: "true",
+        is_experienced: true,
       },
     ]);
     await trx.commit();

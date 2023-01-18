@@ -7,7 +7,7 @@ export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable(tableName, (table) => {
     table.increments()
     table.string("name");
-    table.enum("type", ["editors_choice", "urgent", "popular", "others"]).notNullable();
+    table.enum("type", ["editors_choice", "urgent", "popular", "general"]).notNullable();
     table.string("image");
     table.text("description");
     table.date("date");

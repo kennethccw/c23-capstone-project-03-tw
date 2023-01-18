@@ -1,7 +1,7 @@
 import { Knex } from "knex";
 import { TABLES } from "../src/utils/tables";
 
-const tableName = TABLES.ADOPTION_APPLICATIONS
+const tableName = TABLES.ADOPTION_APPLICATIONS;
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable(tableName, (table) => {
@@ -11,13 +11,11 @@ export async function up(knex: Knex): Promise<void> {
     table.integer("mobile");
     table.text("remark");
     table.boolean("is_approved").defaultTo(false);
+    table.enum("status", ["pending", "success", "fail"]).notNullable();
     table
-    .enum("status", ["pending", "success", "fail"])
-    .notNullable();
-    table
-    .enum("fail_reason", ["not_applicable","age_under_21", "no_window_screen", "other"])
-    .notNullable();
-    table.text('other_fail_reason')
+      .enum("fail_reason", ["not_applicable", "age_under_21", "no_window_screen", "other"])
+      .notNullable();
+    table.text("other_fail_reason");
     table.integer("user_id").unsigned();
     table.foreign("user_id").references("users.id").onDelete("CASCADE");
     table.integer("pet_id").unsigned();

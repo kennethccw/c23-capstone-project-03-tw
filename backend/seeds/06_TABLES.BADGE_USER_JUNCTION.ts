@@ -6,9 +6,16 @@ export async function seed(knex: Knex): Promise<void> {
   try {
     await trx("badge_user_junction").insert([
       {
-
-       year: "2022",
-       badge: "",
+        rank: "gold",
+        year: "2022",
+        badge_id: 1,
+        user_id: 1,
+      },
+      {
+        rank: "silver",
+        year: "2022",
+        badge_id: 3,
+        user_id: 2,
       },
 
     ]);
