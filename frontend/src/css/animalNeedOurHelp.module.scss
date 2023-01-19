@@ -1,0 +1,46 @@
+.chevronAndAdjustmntIcon {
+  color: #b0b2c3;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 430px;
+  height: 85px;
+  margin-top: 30px;
+}
+
+.chevronIcon {
+  margin-left: 30px;
+  font-size: 38px;
+}
+
+.adjustmentIcon {
+  transform: rotate(90deg);
+  margin-right: 30px;
+  font-size: 30px;
+}
+
+.organisationTab {
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0.002em;
+  margin-left: 40px;
+  width: 390px;
+}
+
+.lineTab {
+  margin-top: 20px;
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
+}
+
+.boxContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 20px;
+  color: #898D9E;
+}

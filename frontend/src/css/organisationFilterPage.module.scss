@@ -1,0 +1,48 @@
+.filterHeader {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 430px;
+  height: 85px;
+  margin-top: 50px;
+}
+.closeTab {
+  margin-left: 40px;
+  font-size: 25px;
+  color: #b0b2c3;
+}
+.filterTab {
+  font-size: 28px;
+  font-weight: 700;
+}
+.deleteAllTab {
+  margin-right: 40px;
+  color: #b0b2c3;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration-line: underline;
+}
+
+.filterContentContainer {
+  margin-left: 60px;
+}
+
+
+.addressTab {
+  font-weight: 700;
+  font-size: 28px;
+  margin-top: 40px;
+}
+
+.addressList label {
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.addressList {
+margin-top: 35px;
+}
+
+
+

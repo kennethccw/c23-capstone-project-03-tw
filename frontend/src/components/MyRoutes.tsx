@@ -16,10 +16,22 @@ import AdoptionApplication from "../pages/AdoptionApplication";
 import AdoptionDetail from "../pages/AdoptionDetail";
 import Donation from "../pages/Donation";
 import Adoption from "../pages/Adoption";
+import Organisation from "../pages/Organisation";
+import OrganisationFilterContainer from "../pages/OrganisationFilterPage";
+import OrganisationMoreDetails from "../pages/OrganisationMoreDetails";
+import AnimalNeedOurHelp from "../pages/AnimalNeedOurHelp";
+import HelpLocationFilter from "../pages/AnimalNeedOurHelpFilter";
+import AnimalHelpChatroom from "../pages/AnimalHelpChat";
 
 export default function MyRoutes() {
   return (
     <Routes>
+      <Route path="/" element={<AnimalHelpChatroom />}></Route>
+      <Route path="/" element={<OrganisationFilterContainer />}></Route>
+      <Route path="/" element={<HelpLocationFilter />}></Route>
+      <Route path="/" element={<AnimalNeedOurHelp />}></Route>
+      <Route path="/" element={<Organisation />}></Route>
+      <Route path="/" element={<OrganisationMoreDetails/>}></Route>
       <Route path="/" element={<AdoptionApplication />}></Route>
       <Route path="/" element={<Advertising />}></Route>
       <Route path="/" element={<Welcome />}></Route>
