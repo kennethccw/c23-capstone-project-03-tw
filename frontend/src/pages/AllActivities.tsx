@@ -30,7 +30,7 @@ export default function AllActivities() {
             探索義工機會
         </div>
 
-        <hr></hr>
+
         
         <div className={styles.chanceContainer}>
             <div className={styles.chanceInstances}>

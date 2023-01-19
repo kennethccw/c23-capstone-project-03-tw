@@ -66,7 +66,7 @@
     left: 0px;
 //   background-color: yellow;
     width: 100vw;
-    height: 950px;
+    height: 80vh;
     overflow-y: scroll;
 
 
@@ -99,26 +99,29 @@
 
 .socialWorkRecommendContainer{
   
-    height: 40vh;
-    // padding: 10px;
+    height: 50vh;
+    padding: 10px;
     width: 100vw;
     // background-color: red;
+    margin-bottom:2vh;
 }
 
 .needHelpContainer{
-    height: 40vh;
-    // padding: 10px;
+    height: 50vh;
+    padding: 10px;
     width: 100vw;
-    background: linear-gradient(#f9ece1, #ffffff)
-
+    background: linear-gradient(#f9ece1, #ffffff);
+    margin-bottom:2vh;
 }
 
 .hotContainer{
-    height: 40vh;
+    height: 50vh;
     // padding: 10px;
     width: 100vw;
-    background: #ece7dd;
-
+    // background: #ece7dd;
+    background: linear-gradient(#ece7dd, #ffffff);
+    margin-bottom:2vh;
+    padding: 10px;
 }
 .socialRecommendBar, .needHelpBar{
     display: flex;
@@ -136,6 +139,7 @@
 .recommendInstance, .needHelpInstance{
     // border: 1px solid black;
     padding: 10px;
+   
 }
 
 .needHelpInstancePart{
@@ -215,7 +219,7 @@
 }
 
 .allOrganisations{
-    width: 95vw;
+    width: 90vw;
     height: 10vh;
     background-color: #ece7dd;
     // padding: 10px;
