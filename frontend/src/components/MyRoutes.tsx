@@ -37,6 +37,7 @@ export default function MyRoutes() {
       <Route path="password/email" element={<ForgetPassword />}></Route>
       <Route path="password/reset" element={<ChangePassword />}></Route>
       <Route path="home" element={<Home />}></Route>
+      <Route path="allActivities" element={<AllActivities />}></Route>
       <Route path="/" element={<RequireAuth />}>
         <Route path="home1" element={<Home />}></Route>
       </Route>
