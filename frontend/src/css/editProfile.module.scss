@@ -1,0 +1,22 @@
+.containerForAll {
+  width: 100vw;
+  height: 100vh;
+}
+.header {
+  width: 312px;
+  margin: 62px auto 12px 35px;
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closingIcon {
+  margin-right: 24px;
+}
+
+.headerHr {
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
+}

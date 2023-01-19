@@ -15,7 +15,10 @@
 
 .adoptionDetailHr {
   margin: 4px -80px 32px -80px;
-  border: 0.4px solid#cccccc;
+  // width: 100vw;
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
 }
 
 .input {
@@ -28,7 +31,7 @@
   width: 312px;
   margin-top: 12px;
   font-size: 20px;
-  background-color: #6b4eff;
+  background-color: #585ce5;
   box-shadow: 0 24px 16px -19px #a1a3f6;
   position: relative;
 }

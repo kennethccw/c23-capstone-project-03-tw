@@ -17,13 +17,20 @@ import AdoptionDetail from "../pages/AdoptionDetail";
 import Donation from "../pages/Donation";
 import Adoption from "../pages/Adoption";
 import NoticePasswordChanged from "../pages/NoticePasswordChanged";
+import Schedule from "../pages/Schedule";
+import Account from "../pages/Account";
+import EditProfile from "../pages/EditProfile";
 
 export default function MyRoutes() {
   return (
     <Routes>
+      <Route path="/" element={<EditProfile />}></Route>
+      <Route path="/" element={<Account />}></Route>
+      <Route path="/" element={<Adoption />}></Route>
+
+      <Route path="/" element={<Schedule />}></Route>
       <Route path="/" element={<Welcome />}></Route>
       <Route path="/" element={<AdoptionDetail />}></Route>
-      <Route path="/" element={<Adoption />}></Route>
       <Route path="/" element={<Donation />}></Route>
       <Route path="/" element={<NoticePasswordChanged />}></Route>
       <Route path="/" element={<AdoptionApplication />}></Route>

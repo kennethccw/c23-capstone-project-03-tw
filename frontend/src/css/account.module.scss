@@ -1,0 +1,80 @@
+.containerForAll {
+  width: 100vw;
+  height: 100vh;
+}
+.header {
+  width: 312px;
+  margin: 62px auto 12px 35px;
+}
+
+.headerHr {
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
+}
+
+.userProfileIcon {
+  font-size: 52px;
+  margin-right: 20px;
+}
+.forFlexColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.paperContainer {
+  margin: 16px auto;
+  width: 312px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.forFlex {
+  width: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+}
+
+.profileBtn {
+  width: 137px;
+  height: 32px;
+  background-color: #a7a0ed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.titleContainer div {
+  font-size: 16px;
+  font-weight: normal;
+  width: 312px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.forFlexColumnLastRow {
+  width: 312px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.titleLastRow {
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 8px;
+  padding: 0;
+  height: 16px;
+}
+
+.logoutBtn {
+  font-size: 16px;
+  margin-top: 32px;
+  padding: 0;
+  height: 16px;
+}
