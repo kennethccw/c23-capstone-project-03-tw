@@ -1,4 +1,4 @@
-import styles from "../css/login.module.scss";
+import styles from "../css/introduction.module.scss";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mantine/core";
 export default function Introduction() {

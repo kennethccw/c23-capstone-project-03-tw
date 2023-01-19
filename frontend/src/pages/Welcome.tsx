@@ -1,4 +1,4 @@
-import styles from "../css/login.module.scss";
+import styles from "../css/welcome.module.scss";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mantine/core";
 import { IconArrowNarrowRight } from "@tabler/icons";
@@ -19,8 +19,8 @@ export default function Welcome() {
           navigate("/introduction");
         }}
       >
-        <span>開始</span>
-        <IconArrowNarrowRight className={styles.registerIcon} />
+        <div>開始</div>
+        <IconArrowNarrowRight className={styles.rightArrowIcon} />
       </Button>
     </div>
   );

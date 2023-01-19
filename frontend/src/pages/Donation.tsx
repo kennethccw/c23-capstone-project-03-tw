@@ -1,7 +1,7 @@
 import { Button, Checkbox, Input, MantineProvider } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { IoIosArrowBack } from "react-icons/io";
-import styles from "../css/login.module.scss";
+import styles from "../css/donation.module.scss";
 import { useState } from "react";
 import { IconArrowNarrowRight } from "@tabler/icons";
 
@@ -45,11 +45,11 @@ export default function Donation() {
     >
       <div>
         <IoIosArrowBack className={styles.navigateBackButton} />
-        <div className={styles.adoptionDetailHeaderContainer}>
+        <div className={styles.donationHeaderContainer}>
           <h1>捐款樂</h1>
         </div>
-        <hr className={styles.adoptionDetailHr} />
-        <form action="">
+        <hr className={styles.donationHr} />
+        <form>
           <Input.Wrapper id="full-name" className={styles.input} label="捐款人全名" withAsterisk>
             <Input id="full-name" radius="md" size="md" type="text" {...register("fullName", { required: true })} />
           </Input.Wrapper>
@@ -114,8 +114,8 @@ export default function Donation() {
             color="violet"
           />
           <Button className={styles.button} color="violet" radius="xl" type="submit">
-            <span>下一步信用卡填寫</span>
-            <IconArrowNarrowRight className={styles.registerIcon} />
+            <div>下一步信用卡填寫</div>
+            <IconArrowNarrowRight className={styles.rightArrowIcon} />
           </Button>
         </form>
       </div>

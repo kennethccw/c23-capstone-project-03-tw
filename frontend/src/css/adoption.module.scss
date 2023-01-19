@@ -1,0 +1,43 @@
+.navigateBackButton {
+  color: #cccccc;
+  margin-left: -12px;
+  font-size: 32px;
+  margin-top: 32px;
+  cursor: pointer;
+}
+
+.adoptionDetailHeaderContainer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adoptionDetailHr {
+  margin: 4px -80px 32px -80px;
+  border: 0.4px solid#cccccc;
+}
+
+.input {
+  width: 312px;
+  margin: 10px 0;
+}
+
+.button {
+  height: 56px;
+  width: 312px;
+  margin-top: 12px;
+  font-size: 20px;
+  background-color: #6b4eff;
+  box-shadow: 0 24px 16px -19px #a1a3f6;
+  position: relative;
+}
+
+.adoptionConfirmBtn {
+  margin-top: 24px;
+}
+
+.rightArrowIcon {
+  position: absolute;
+  right: 24px;
+}

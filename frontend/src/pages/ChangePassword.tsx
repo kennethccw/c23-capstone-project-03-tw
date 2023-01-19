@@ -1,7 +1,7 @@
 import { Button, MantineProvider, PasswordInput } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import styles from "../css/login.module.scss";
+import styles from "../css/changePassword.module.scss";
 import { IconLock, IconCircleX, IconArrowNarrowRight } from "@tabler/icons";
 
 export default function ChangePassword() {
@@ -39,53 +39,53 @@ export default function ChangePassword() {
         },
       }}
     >
-      <div className={styles.inputEmailContainer}>
+      <div className={styles.containerForAll}>
         <h1 className={styles.header}>輸入新密碼</h1>
         <form className={styles.formContainer}>
-          {isCorrectFormatPassword ? (
-            <PasswordInput
-              height={48}
-              className={`${styles.input} ${styles.passwordInput}`}
-              radius="md"
-              size="md"
-              placeholder="輸入帳號密碼"
-              label="密碼"
-              icon={<IconLock size={16} />}
-              {...register("password", { required: true })}
-              withAsterisk
-            />
-          ) : (
-            <PasswordInput
-              className={`${styles.input} ${styles.passwordInput}`}
-              radius="md"
-              size="md"
-              placeholder="輸入帳號密碼"
-              label="密碼"
-              icon={<IconLock size={16} />}
-              {...register("password", { required: true })}
-              error
-              withAsterisk
-            />
-          )}
-
-          <div className={`${styles.validationAllContainer} ${styles.resetPasswordValidation}`}>
-            {watchPassword.length < 8 && watchPassword !== "" && (
-              <div className={styles.validationContainer}>
-                <IconCircleX className={styles.validationIcon} /> <span>至少8個字符</span>
-              </div>
+          <div>
+            {isCorrectFormatPassword ? (
+              <PasswordInput
+                height={48}
+                className={`${styles.input} ${styles.passwordInput}`}
+                radius="md"
+                size="md"
+                placeholder="輸入帳號密碼"
+                label="密碼"
+                icon={<IconLock size={16} />}
+                {...register("password", { required: true })}
+              />
+            ) : (
+              <PasswordInput
+                className={`${styles.input} ${styles.passwordInput}`}
+                radius="md"
+                size="md"
+                placeholder="輸入帳號密碼"
+                label="密碼"
+                icon={<IconLock size={16} />}
+                {...register("password", { required: true })}
+                error
+              />
             )}
 
-            {!regexBothCases.test(watchPassword) && watchPassword !== "" && (
-              <div className={styles.validationContainer}>
-                <IconCircleX className={styles.validationIcon} /> <span>包括大寫及小寫字母</span>
-              </div>
-            )}
+            <div className={styles.validationAllContainer}>
+              {watchPassword.length < 8 && watchPassword !== "" && (
+                <div className={styles.validationContainer}>
+                  <IconCircleX className={styles.validationIcon} /> <span>至少8個字符</span>
+                </div>
+              )}
 
-            {!regexNumberAndSymbol.test(watchPassword) && watchPassword !== "" && (
-              <div className={styles.validationContainer}>
-                <IconCircleX className={styles.validationIcon} /> <span>至少一個數字和符號 (!, @, #, $, %, ^, &, *)</span>
-              </div>
-            )}
+              {!regexBothCases.test(watchPassword) && watchPassword !== "" && (
+                <div className={styles.validationContainer}>
+                  <IconCircleX className={styles.validationIcon} /> <span>包括大寫及小寫字母</span>
+                </div>
+              )}
+
+              {!regexNumberAndSymbol.test(watchPassword) && watchPassword !== "" && (
+                <div className={styles.validationContainer}>
+                  <IconCircleX className={styles.validationIcon} /> <span>至少一個數字和符號 (!, @, #, $, %, ^, &, *)</span>
+                </div>
+              )}
+            </div>
           </div>
           <Button
             className={styles.button}
@@ -96,8 +96,8 @@ export default function ChangePassword() {
               navigate("/");
             }}
           >
-            <span>確認新密碼</span>
-            <IconArrowNarrowRight className={styles.registerIcon} />
+            <div>確認新密碼</div>
+            <IconArrowNarrowRight className={styles.rightArrowIcon} />
           </Button>
         </form>
       </div>
