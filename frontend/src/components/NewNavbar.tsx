@@ -1,6 +1,7 @@
 
 import { HiClipboardList, HiHome, HiLightningBolt, HiSearchCircle, HiUserCircle } from 'react-icons/hi'
 import styles from '../css/newNavBar.module.scss'
+
 export default function NewNavbar() {
   return (<>
     <div className={styles.navBArList}>

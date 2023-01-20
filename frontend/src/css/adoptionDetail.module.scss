@@ -18,8 +18,9 @@
 }
 
 .adoptionDetailHr {
-  margin: 4px -80px 32px -80px;
-  border: 0.4px solid#cccccc;
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
 }
 
 .adoptionTextContainer {

@@ -19,13 +19,33 @@ import Adoption from "../pages/Adoption";
 import AllActivities from "../pages/AllActivities";
 import NoticePasswordChanged from "../pages/NoticePasswordChanged";
 import Filter from "../pages/Filter";
+import Organisation from "../pages/Organisation";
+import OrganisationFilterContainer from "../pages/OrganisationFilterPage";
+import OrganisationMoreDetails from "../pages/OrganisationMoreDetails";
+import AnimalNeedOurHelp from "../pages/AnimalNeedOurHelp";
+import HelpLocationFilter from "../pages/AnimalNeedOurHelpFilter";
+import AnimalHelpChatroom from "../pages/AnimalHelpChat";
+import NoticePasswordChanged from "../pages/NoticePasswordChanged";
+import Schedule from "../pages/Schedule";
+import Account from "../pages/Account";
+import EditProfile from "../pages/EditProfile";
 
 export default function MyRoutes() {
   return (
     <Routes>
+      <Route path="/" element={<AnimalHelpChatroom />}></Route>
+      <Route path="/" element={<OrganisationFilterContainer />}></Route>
+      <Route path="/" element={<HelpLocationFilter />}></Route>
+      <Route path="/" element={<AnimalNeedOurHelp />}></Route>
+      <Route path="/" element={<Organisation />}></Route>
+      <Route path="/" element={<OrganisationMoreDetails/>}></Route>
+      <Route path="/" element={<EditProfile />}></Route>
+      <Route path="/" element={<Account />}></Route>
+      <Route path="/" element={<Adoption />}></Route>
+
+      <Route path="/" element={<Schedule />}></Route>
       <Route path="/" element={<Welcome />}></Route>
       <Route path="/" element={<AdoptionDetail />}></Route>
-      <Route path="/" element={<Adoption />}></Route>
       <Route path="/" element={<Donation />}></Route>
       <Route path="/" element={<NoticePasswordChanged />}></Route>
       <Route path="/" element={<AdoptionApplication />}></Route>
