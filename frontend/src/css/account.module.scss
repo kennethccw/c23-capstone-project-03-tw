@@ -13,6 +13,13 @@
   transform: rotate(0.15deg);
 }
 
+.headerHr90vw {
+  width: 90vw;
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
+}
+
 .userProfileIcon {
   font-size: 52px;
   margin-right: 20px;

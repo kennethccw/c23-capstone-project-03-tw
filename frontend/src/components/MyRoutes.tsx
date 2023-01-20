@@ -20,10 +20,15 @@ import NoticePasswordChanged from "../pages/NoticePasswordChanged";
 import Schedule from "../pages/Schedule";
 import Account from "../pages/Account";
 import EditProfile from "../pages/EditProfile";
+import VolunteerRecord from "../pages/VolunteerRecord";
+import Badge from "../pages/Badge";
 
 export default function MyRoutes() {
   return (
     <Routes>
+      <Route path="/" element={<Badge />}></Route>
+
+      <Route path="/" element={<VolunteerRecord />}></Route>
       <Route path="/" element={<EditProfile />}></Route>
       <Route path="/" element={<Account />}></Route>
       <Route path="/" element={<Adoption />}></Route>

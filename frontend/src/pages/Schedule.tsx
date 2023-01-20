@@ -13,18 +13,18 @@ export default function Schedule() {
         colors: {
           "ocean-blue": ["#7AD1DD", "#5FCCDB", "#44CADC", "#2AC9DE", "#1AC2D9", "#11B7CD", "#09ADC3", "#0E99AC", "#128797", "#147885"],
           "bright-pink": ["#F0BBDD", "#ED9BCF", "#EC7CC3", "#ED5DB8", "#F13EAF", "#F71FA7", "#FF00A1", "#E00890", "#C50E82", "#AD1374"],
-          "petsuce-purple": ["#585ce5", "#585ce5", "#585ce5", "#585ce5", "#585ce5", "#585ce5", "#585ce5", "#585ce5", "#585ce5", "#585ce5"],
+          "petscue-purple": ["#585ce5", "#585ce5", "#585ce5", "#585ce5", "#585ce5", "#585ce5", "#585ce5", "#585ce5", "#585ce5", "#585ce5"],
         },
       }}
     >
       <div className={styles.containerForAll}>
         <h1 className={styles.header}>你的日程</h1>
 
-        <Tabs className={styles.scheduleTabContainer} color="petsuce-purple">
+        <Tabs className={styles.scheduleTabContainer} color="petscue-purple">
           <Tabs.List grow>
             <Tabs.Tab
               rightSection={
-                <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petsuce-purple" variant="filled" size="xs" p={0}>
+                <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
                   6
                 </Badge>
               }
@@ -36,7 +36,7 @@ export default function Schedule() {
             <Tabs.Tab
               value="處理中"
               rightSection={
-                <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petsuce-purple" variant="filled" size="xs" p={0}>
+                <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
                   6
                 </Badge>
               }
@@ -52,7 +52,7 @@ export default function Schedule() {
           <div className={styles.noApplicationsAppliedText}>查看其他熱門活動</div>
           <Button
             className={styles.button}
-            color="petsuce-purple"
+            color="petscue-purple"
             radius="xl"
             onClick={() => {
               navigate("/home");

@@ -11,7 +11,7 @@ export function NoApplicationContainer() {
       <div className={styles.noApplicationsAppliedText}>查看其他熱門活動</div>
       <Button
         className={styles.button}
-        color="petsuce-purple"
+        color="petscue-purple"
         radius="xl"
         onClick={() => {
           navigate("/home");
