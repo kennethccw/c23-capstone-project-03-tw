@@ -18,7 +18,7 @@ import Donation from "../pages/Donation";
 import Adoption from "../pages/Adoption";
 import AllActivities from "../pages/AllActivities";
 import NoticePasswordChanged from "../pages/NoticePasswordChanged";
-import Filter from "../pages/Filter";
+import Filter from "../pages/AllActivitiesFilter";
 import Organisation from "../pages/Organisation";
 import OrganisationFilterContainer from "../pages/OrganisationFilterPage";
 import OrganisationMoreDetails from "../pages/OrganisationMoreDetails";
@@ -28,6 +28,8 @@ import AnimalHelpChatroom from "../pages/AnimalHelpChat";
 import Schedule from "../pages/Schedule";
 import Account from "../pages/Account";
 import EditProfile from "../pages/EditProfile";
+import ActivitiesDetailPage from "../pages/ActivitiesDetailPage";
+import AllActivitiesFilter from "../pages/AllActivitiesFilter";
 
 export default function MyRoutes() {
   return (
@@ -58,7 +60,8 @@ export default function MyRoutes() {
       <Route path="password/reset" element={<ChangePassword />}></Route>
       <Route path="home" element={<Home />}></Route>
       <Route path="allActivities" element={<AllActivities />}></Route>
-      <Route path="filter" element={<Filter />}></Route>
+      <Route path="activitiesDetailPage" element={<ActivitiesDetailPage/>}></Route>
+      <Route path="allActivitiesFilter" element={<AllActivitiesFilter />}></Route>
 
       <Route path="/" element={<RequireAuth />}>
         <Route path="home1" element={<Home />}></Route>
