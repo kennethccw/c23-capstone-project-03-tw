@@ -7,7 +7,7 @@ export function NoApplicationContainer() {
   const navigate = useNavigate();
   return (
     <div className={styles.noApplicationsAppliedContainer}>
-      <h3 className={styles.noApplicationsAppliedHeader}>你暫時沒有已確認的報名</h3>
+      <h3 className={styles.noApplicationsAppliedHeader}>你暫時沒有已確認或處理中的報名</h3>
       <div className={styles.noApplicationsAppliedText}>查看其他熱門活動</div>
       <Button
         className={styles.button}

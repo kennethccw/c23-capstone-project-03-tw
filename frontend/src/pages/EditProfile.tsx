@@ -28,6 +28,8 @@ export default function EditProfile() {
   const isMobileInvalid = (watchMobile.length !== 8 || !/^[0-9]+$/.test(watchMobile)) && watchMobile !== "";
   const watchBirthday = watch("birthday");
   const isBirthdayInvalid = (new Date(watchBirthday).toString() === "Invalid Date" || new Date(watchBirthday) > new Date()) && watchBirthday !== "" && watchBirthday !== "____-__-__";
+
+  console.log(watchBirthday);
   return (
     <MantineProvider
       inherit
@@ -126,7 +128,7 @@ export default function EditProfile() {
 
           {isBirthdayInvalid ? (
             <Input.Wrapper id="birthday" className={styles.input} label="出生日子" required error="請輸入正確的生日日期 (格式為YYYY-MM-DD)">
-              <Input id="birthday" radius="md" size="md" component={InputMask} mask="9999-99-99" placeholder="輸入出生日子" {...register("birthday", { required: true })} invalid />
+              <Input id="birthday" radius="md" size="md" component={InputMask} mask="$9999-99-99" placeholder="輸入出生日子" {...register("birthday", { required: true })} invalid />
             </Input.Wrapper>
           ) : (
             <Input.Wrapper id="birthday" className={styles.input} label="出生日子" required>
