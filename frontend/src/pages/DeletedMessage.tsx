@@ -1,9 +1,10 @@
 import { Button, MantineProvider } from "@mantine/core";
-import styles from "../css/deleteAccount.module.scss";
+import styles from "../css/deletedMessage.module.scss";
 import { HiXMark } from "react-icons/hi2";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-export default function PrivacyAndSecurity() {
+import { IconArrowNarrowRight } from "@tabler/icons";
+export default function DeletedMessage() {
   const navigate = useNavigate();
   return (
     <MantineProvider
@@ -54,26 +55,21 @@ export default function PrivacyAndSecurity() {
         },
       }}
     >
-      <div className={styles.containerForAll}>
-        <div className={styles.header}>
-          <HiXMark className={styles.closingIcon} />
-          <span>刪除帳戶</span>
-        </div>
-        <hr className={styles.headerHr} />
-        <div className={styles.forFlexColumn}>
-          <div className={styles.deleteAccountTitle}>感謝你一直以來對Petscue的支持。</div>
-          <div className={styles.deleteAccountContent}>請注意，帳戶刪除後，你的報名紀錄和義工紀錄也會一併刪除，也會取消所有機構會員連結。</div>
-          <Button
-            className={styles.button}
-            color="violet"
-            radius="xl"
-            onClick={() => {
-              navigate("/register");
-            }}
-          >
-            確定刪除
-          </Button>
-        </div>
+      <div className={styles.logoContainer}>
+        <h3 className={styles.noticeText}>我們已經刪除你的帳戶</h3>
+        <img className={styles.logo} src="photos/logo_pic-09-09.png" alt="" />
+        <img className={styles.logoText} src="photos/logo_word-10.png" alt="" />
+        <div className={styles.sologan}>你的帳戶已被刪除，我們希望你能回來並再次加入我們。</div>
+        <Button
+          className={styles.button}
+          color="violet"
+          radius="xl"
+          onClick={() => {
+            navigate("/register");
+          }}
+        >
+          返回主頁
+        </Button>
       </div>
     </MantineProvider>
   );

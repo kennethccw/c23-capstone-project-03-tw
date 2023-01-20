@@ -21,7 +21,7 @@ export default function Introduction() {
       <div className={styles.loginContainer}>
         <span className={styles.loginText}>已有帳號?</span>
         <Button
-          className={styles.loginText}
+          className={`${styles.loginText} ${styles.loginBtn}`}
           variant="subtle"
           color="violet"
           onClick={() => {

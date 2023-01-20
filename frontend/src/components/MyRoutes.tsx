@@ -32,12 +32,17 @@ import { BadgeFilterYear } from "../pages/BadgeFilterYear";
 import ContactUs from "../pages/ContactUs";
 import AdoptionApplicationResult from "../pages/AdoptionApplicationResult";
 import PrivacyAndSecurity from "../pages/PrivacyAndSecurity";
+import DeleteAccount from "../pages/DeleteAccount";
+import DeletedMessage from "../pages/DeletedMessage";
 
 export default function MyRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<EditProfile />}></Route>
+      <Route path="/" element={<DeletedMessage />}></Route>
+      <Route path="/" element={<DeleteAccount />}></Route>
+
       <Route path="/" element={<PrivacyAndSecurity />}></Route>
+      <Route path="/" element={<EditProfile />}></Route>
       <Route path="/" element={<Account />}></Route>
       <Route path="/" element={<AdoptionApplicationResult />}></Route>
       <Route path="/" element={<ContactUs />}></Route>
