@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Input, PasswordInput, Checkbox, MantineProvider, Button } from "@mantine/core";
 import { IconLock, IconCircleX, IconMail, IconUser, IconArrowNarrowRight } from "@tabler/icons";
-import styles from "../css/login.module.scss";
+import styles from "../css/register.module.scss";
 import { FaFacebookF } from "react-icons/fa";
 export default function Register() {
   const { register, watch } = useForm({
@@ -145,8 +145,8 @@ export default function Register() {
             </div>
             <Checkbox className={`${styles.input} ${styles.checkbox}`} label="當你繼續登記帳號，即代表你同意Petscue的服務條款，私穩政策及個人資料收集聲明。" color="violet" />
             <Button className={styles.button} color="violet" radius="xl" type="submit">
-              <span>註冊</span>
-              <IconArrowNarrowRight className={styles.registerIcon} />
+              <div>註冊</div>
+              <IconArrowNarrowRight className={styles.rightArrowIcon} />
             </Button>
           </form>
           <div className={styles.separator}>

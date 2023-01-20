@@ -1,0 +1,45 @@
+.welcomeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.logo {
+  margin-top: -40px;
+  width: 232px;
+  height: 232px;
+}
+
+.logoText {
+  margin-top: -24px;
+  width: 214px;
+  margin-bottom: 16px;
+}
+
+.welcomeText {
+  margin-bottom: -14px;
+}
+
+.petscueText {
+  margin-bottom: 36px;
+}
+
+.sologan {
+  margin-bottom: 24px;
+}
+
+.button {
+  height: 56px;
+  width: 312px;
+  margin-top: 12px;
+  font-size: 20px;
+  background-color: #585ce5;
+  box-shadow: 0 24px 16px -19px #a1a3f6;
+  position: relative;
+}
+.rightArrowIcon {
+  position: absolute;
+  right: 24px;
+}

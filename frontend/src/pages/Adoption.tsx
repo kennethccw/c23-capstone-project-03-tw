@@ -1,7 +1,7 @@
 import { Button, Checkbox, Input, MantineProvider, Textarea } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { IoIosArrowBack } from "react-icons/io";
-import styles from "../css/login.module.scss";
+import styles from "../css/adoption.module.scss";
 import { useState } from "react";
 import { IconArrowNarrowRight } from "@tabler/icons";
 
@@ -60,8 +60,8 @@ export default function Adoption() {
 
           <Textarea label="留言內容" withAsterisk autosize minRows={3} maxRows={7} {...register("remark", { required: false })} />
           <Button className={`${styles.button} ${styles.adoptionConfirmBtn}`} color="violet" radius="xl" type="submit">
-            <span>確認遞交申請</span>
-            <IconArrowNarrowRight className={styles.registerIcon} />
+            <div>確認遞交申請</div>
+            <IconArrowNarrowRight className={styles.rightArrowIcon} />
           </Button>
         </form>
       </div>

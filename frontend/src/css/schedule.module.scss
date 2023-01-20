@@ -1,0 +1,75 @@
+.containerForAll {
+  width: 100vw;
+  height: 100vh;
+}
+.header {
+  width: 312px;
+  margin: 62px auto 12px 35px;
+}
+.scheduleTabContainer {
+  width: 100vw;
+}
+
+.scheduleTabContainer div {
+  font-weight: bold;
+}
+
+.noApplicationsAppliedContainer {
+  margin-top: 172px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.noApplicationsAppliedHeader {
+  margin-bottom: 48px;
+}
+.noApplicationsAppliedText {
+  margin-bottom: 48px;
+}
+.button {
+  height: 55px;
+  width: 218px;
+
+  font-size: 20px;
+
+  box-shadow: 0 24px 16px -19px #a1a3f6;
+}
+.applicationsAppliedContainer {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.applicationsAppliedImg {
+  width: 312px;
+  border-radius: 20px;
+  box-shadow: 0 7px 7px 1px #cccccc;
+  margin: 16px 0;
+}
+
+.applicationsAppliedTextContent {
+  width: 312px;
+}
+
+.detailContainer {
+  display: flex;
+  color: #898d9e;
+  margin-bottom: 4px;
+}
+
+.organisationName {
+  color: #898d9e;
+  margin-bottom: 4px;
+}
+
+.detailIcon {
+  margin-right: 4px;
+}
+
+.activityName {
+  font-size: 24px;
+  font-weight: bold;
+
+  margin-bottom: 4px;
+}

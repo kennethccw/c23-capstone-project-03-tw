@@ -1,0 +1,123 @@
+.navigateBackButton {
+  color: #cccccc;
+  margin-left: -12px;
+  font-size: 32px;
+  margin-top: 32px;
+  cursor: pointer;
+}
+
+.donationHeaderContainer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.donationHr {
+  margin: 4px -80px 32px -80px;
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
+}
+
+.button {
+  height: 56px;
+  width: 312px;
+  margin-top: 12px;
+  font-size: 20px;
+  background-color: #585ce5;
+  box-shadow: 0 24px 16px -19px #a1a3f6;
+  position: relative;
+}
+
+.input {
+  width: 312px;
+  margin: 10px 0;
+}
+
+.seperatorContainer {
+  margin: 24px 0;
+  width: 312px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.seperatorHr {
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
+}
+
+.donationAmountBtnContainer {
+  width: 312px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.donationAmountBtn {
+  height: 72px;
+  color: #aaaaaa;
+  border-color: #aaaaaa;
+  border-radius: 14px;
+}
+
+.donationAmountBtn div span {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.donationAmount {
+  color: #0f2851;
+  margin-bottom: 4px;
+}
+
+.otherDonationAmountContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 312px;
+  margin-top: 12px;
+}
+
+.otherDonationAmountLabel {
+  font-size: 16px;
+}
+
+.donationCheckBox label {
+  font-size: 8px;
+  line-height: 12px;
+}
+
+.otherAmountInput {
+  width: 178px;
+  height: 43px;
+}
+.otherAmountInput input {
+  width: 178px;
+  height: 43px;
+  text-align: center;
+}
+
+.donationOtherAmountBtn {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  color: #0f2851;
+  height: 43px;
+  width: 178px;
+}
+
+.checkbox {
+  margin-top: 20px;
+}
+
+.donationCheckBox label {
+  font-size: 8px;
+  line-height: 12px;
+}
+
+.rightArrowIcon {
+  position: absolute;
+  right: 24px;
+}

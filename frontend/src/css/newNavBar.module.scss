@@ -1,7 +1,8 @@
 .navbarIcon {
   font-size: 40px;
   height: 47px;
-  color: #B0B2C3;
+  color: #b0b2c3;
+  margin-top: 18px;
 }
 
 .searchNav {
@@ -15,11 +16,12 @@
   position: fixed;
   bottom: 14px;
   display: flex;
+  bottom: 0;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   width: 430px;
-  height: 85px;
-  background: #FFFFFF;
+  height: 99px;
+  background: #ffffff;
   box-shadow: 0px -15px 40px rgba(237, 238, 251, 0.8);
   border-radius: 10px;
   flex-direction: row;

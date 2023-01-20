@@ -1,0 +1,46 @@
+.navigateBackButton {
+  color: #cccccc;
+  margin-left: -12px;
+  font-size: 32px;
+  margin-top: 32px;
+  cursor: pointer;
+}
+
+.adoptionDetailHeaderContainer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adoptionDetailHr {
+  margin: 4px -80px 32px -80px;
+  // width: 100vw;
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
+}
+
+.input {
+  width: 312px;
+  margin: 10px 0;
+}
+
+.button {
+  height: 56px;
+  width: 312px;
+  margin-top: 12px;
+  font-size: 20px;
+  background-color: #585ce5;
+  box-shadow: 0 24px 16px -19px #a1a3f6;
+  position: relative;
+}
+
+.adoptionConfirmBtn {
+  margin-top: 24px;
+}
+
+.rightArrowIcon {
+  position: absolute;
+  right: 24px;
+}

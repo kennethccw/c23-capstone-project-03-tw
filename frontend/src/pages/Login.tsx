@@ -93,8 +93,8 @@ export default function Login() {
               忘記密碼?
             </Button>
             <Button className={styles.button} color="violet" radius="xl" type="submit">
-              <span>登入</span>
-              <IconArrowNarrowRight className={styles.registerIcon} />
+              <div>登入</div>
+              <IconArrowNarrowRight className={styles.rightArrowIcon} />
             </Button>
           </div>
         </form>
