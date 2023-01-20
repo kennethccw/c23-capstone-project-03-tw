@@ -16,6 +16,12 @@ import AdoptionApplication from "../pages/AdoptionApplication";
 import AdoptionDetail from "../pages/AdoptionDetail";
 import Donation from "../pages/Donation";
 import Adoption from "../pages/Adoption";
+import Organisation from "../pages/Organisation";
+import OrganisationFilterContainer from "../pages/OrganisationFilterPage";
+import OrganisationMoreDetails from "../pages/OrganisationMoreDetails";
+import AnimalNeedOurHelp from "../pages/AnimalNeedOurHelp";
+import HelpLocationFilter from "../pages/AnimalNeedOurHelpFilter";
+import AnimalHelpChatroom from "../pages/AnimalHelpChat";
 import NoticePasswordChanged from "../pages/NoticePasswordChanged";
 import Schedule from "../pages/Schedule";
 import Account from "../pages/Account";
@@ -29,6 +35,12 @@ export default function MyRoutes() {
       <Route path="/" element={<Badge />}></Route>
 
       <Route path="/" element={<VolunteerRecord />}></Route>
+      <Route path="/" element={<AnimalHelpChatroom />}></Route>
+      <Route path="/" element={<OrganisationFilterContainer />}></Route>
+      <Route path="/" element={<HelpLocationFilter />}></Route>
+      <Route path="/" element={<AnimalNeedOurHelp />}></Route>
+      <Route path="/" element={<Organisation />}></Route>
+      <Route path="/" element={<OrganisationMoreDetails />}></Route>
       <Route path="/" element={<EditProfile />}></Route>
       <Route path="/" element={<Account />}></Route>
       <Route path="/" element={<Adoption />}></Route>

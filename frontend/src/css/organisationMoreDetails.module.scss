@@ -1,0 +1,104 @@
+.detailsContainer {
+  margin-left: 50px;
+}
+
+.chevronAndAdjustmntIcon {
+  color: #b0b2c3;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 430px;
+  height: 85px;
+  margin-top: 30px;
+}
+
+.chevronIcon {
+  margin-left: 30px;
+  font-size: 38px;
+  color: #b0b2c3;
+}
+
+.outlineShare {
+  margin-right: 30px;
+  font-size: 30px;
+  color: #b0b2c3;
+}
+
+.headerList {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 430px;
+  font-size: 16px;
+}
+
+.tabList div {
+  font-size: 18px;
+}
+.basicInfo {
+  margin-top: 50px;
+  font-weight: 700;
+  font-size: 23px;
+  margin-bottom: 30px;
+}
+
+.square {
+  border: 1px solid #e8e8e8;
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 20px;
+  width: 110px;
+  height: 110px;
+  flex-direction: row;
+  margin-bottom: 12px;
+}
+
+.organisationName {
+  color: #898d9e;
+  font-weight: 400;
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.organisationTabContainer {
+  align-items: center;
+  display: flex;
+}
+
+.locationIcon {
+  color: #898d9e;
+  font-size: 22px;
+}
+
+.locationName {
+  font-weight: 400;
+  font-size: 18px;
+  color: #898d9e;
+}
+
+.addressNameDetails {
+  margin-top: 20px;
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.hrStylist {
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  width: 390px;
+}
+
+.inquiryIcon {
+  color: #898d9e;
+  font-size: 22px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.inquiryContainer {
+  display: flex;
+  flex-direction: row;
+  color: #898D9E;
+  font-weight: 400;
+}
