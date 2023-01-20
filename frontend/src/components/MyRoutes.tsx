@@ -25,7 +25,6 @@ import OrganisationMoreDetails from "../pages/OrganisationMoreDetails";
 import AnimalNeedOurHelp from "../pages/AnimalNeedOurHelp";
 import HelpLocationFilter from "../pages/AnimalNeedOurHelpFilter";
 import AnimalHelpChatroom from "../pages/AnimalHelpChat";
-import NoticePasswordChanged from "../pages/NoticePasswordChanged";
 import Schedule from "../pages/Schedule";
 import Account from "../pages/Account";
 import EditProfile from "../pages/EditProfile";
