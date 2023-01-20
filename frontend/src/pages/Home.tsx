@@ -5,6 +5,7 @@ import { NavBarUtilis } from "../components/NavBarUtilis";
 import styles from "../css/homepage.module.scss";
 import { Bell, ChevronRight, Person, Calendar4, Building } from "react-bootstrap-icons";
 import { Carousel } from '@mantine/carousel';
+import NewNavbar from "../components/NewNavbar";
 
 
 export default function Home() {
@@ -27,7 +28,7 @@ export default function Home() {
 
 
   return (
-    <div>
+    <div className={styles.containerForAll}>
       <div className={styles.upperLayer}>
 
         <div className={styles.logoIconContainer}><img src="photos/logo_pic-09-09.png" className={styles.logoIcon}></img></div>
@@ -246,8 +247,8 @@ export default function Home() {
       </div>
 
 
-
-      {NavBar}
+<NewNavbar/>
+      {/* {NavBar} */}
     </div>
   );
 }

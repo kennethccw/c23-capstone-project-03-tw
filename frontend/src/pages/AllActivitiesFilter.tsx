@@ -7,7 +7,7 @@ import {
   createStyles,
   MantineProvider,
 } from "@mantine/core";
-import styles from "../css/organisationFilterPage.module.scss";
+import styles from "../css/filterPage.module.scss";
 
 
 export default function AllActivitiesFilter() {

@@ -1,3 +1,8 @@
+.containerForAll{
+    width:100vw;
+   
+}
+
 .upperLayer {
     display: flex;
     align-items: center;
@@ -26,27 +31,35 @@
 }
 
 .bellIconContainer {
-    height: 50px;
-    width: 50px;
+    // height: 40px;
+    // width: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 8em;
-    padding: 10px;
-  
+    // padding: 10px;
+    // background-color: green;
     // border-radius: 50%;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
+    
 }
 
 .bellIcon{
-    height: 50px;
-    width: 50px;
+    font-size: 8px;
+    width:  60px;
+    height: 60px;
     border-radius: 10px;
     color: #b0b2c3;
     background-color: rgb(246, 241, 241);
+    background-color: #FFFFFF;
+    padding:5px;
+    // border-radius: 50%;
+    border: 5px solid #FFFFFF;
+/* shadow */
 
+box-shadow: 0px 15px 40px #EDEEFB;
+box-sizing: border-box;
 
 }
 
@@ -80,6 +93,8 @@
     font-weight: bold;
     color: #1c2f56;
     font-size: x-large;
+    // background-color: red;
+    width: 100vw;
 }
 
 .carouselPart{
@@ -99,33 +114,35 @@
 
 .socialWorkRecommendContainer{
   
-    height: 50vh;
-    padding: 10px;
+    // height: 50vh;
+    padding: 0px;
     width: 100vw;
     // background-color: red;
     margin-bottom:2vh;
 }
 
 .needHelpContainer{
-    height: 50vh;
-    padding: 10px;
+    // height: 50vh;
+    padding: 0px;
     width: 100vw;
-    background: linear-gradient(#f9ece1, #ffffff);
-    margin-bottom:2vh;
+    // background: linear-gradient(#f9ece1, #ffffff);
+    // background-color: red;
+    // margin-bottom:10px;
 }
 
 .hotContainer{
-    height: 50vh;
+    // height: 50vh;
     // padding: 10px;
     width: 100vw;
     // background: #ece7dd;
     background: linear-gradient(#ece7dd, #ffffff);
-    margin-bottom:2vh;
-    padding: 10px;
+    margin-bottom:0px;
+    padding: 0px;
 }
 .socialRecommendBar, .needHelpBar{
     display: flex;
     justify-content: space-around;
+    width: 100vw;
 }
 
 .socialWorkRecommendWord, .needHelpWord{
@@ -143,8 +160,8 @@
 }
 
 .needHelpInstancePart{
-    position: relative;
-    width: 100vw;
+    // position: relative;
+    width: 97.4vw;
     height: 340px;
 }
 
@@ -166,10 +183,10 @@
 }
 
 
-.needHelpInstanceBox{
-    // border: 1px solid black;
-    height: 340px;
-}
+// .needHelpInstanceBox{
+//     // border: 1px solid black;
+//     height: 340px;
+// }
 .box{
     position: relative;
     height: 400px;
@@ -215,16 +232,17 @@
 
 .banner{
     width: 100vw;
-    margin-top: 20px;;
+    margin-top: 10px;
 }
 
 .allOrganisations{
     width: 90vw;
-    height: 10vh;
+    height: 80px;
     background-color: #ece7dd;
     // padding: 10px;
     border-radius: 15px;
     margin: 10px;
+    margin-bottom:40px;
     display: flex;
     align-items: center;
     padding-left: 20px;

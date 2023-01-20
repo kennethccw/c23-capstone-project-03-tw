@@ -43,6 +43,7 @@ import PrivacyAndSecurity from "../pages/PrivacyAndSecurity";
 export default function MyRoutes() {
   return (
     <Routes>
+      <Route path="/" element={<Home />}></Route>
       <Route path="/" element={<EditProfile />}></Route>
       <Route path="/" element={<PrivacyAndSecurity />}></Route>
       <Route path="/" element={<Account />}></Route>
