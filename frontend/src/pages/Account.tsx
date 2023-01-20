@@ -19,7 +19,7 @@ export default function Account() {
           </div>
         </Paper>
       </div>
-      <hr className={styles.headerHr} />
+      <hr className={styles.headerHr90vw} />
       <div className={styles.forFlexColumn}>
         <Button variant="subtle" color="dark" className={styles.titleContainer}>
           <div>報名紀錄</div>
@@ -38,7 +38,7 @@ export default function Account() {
           <RiArrowRightSLine />
         </Button>
       </div>
-      <hr className={styles.headerHr} />
+      <hr className={styles.headerHr90vw} />
       <div className={styles.forFlexColumn}>
         <Button variant="subtle" color="dark" className={styles.titleContainer}>
           <div>私隱和安全</div>
@@ -46,14 +46,14 @@ export default function Account() {
         </Button>
       </div>
 
-      <hr className={styles.headerHr} />
+      <hr className={styles.headerHr90vw} />
       <div className={styles.forFlexColumn}>
         <Button variant="subtle" color="dark" className={styles.titleContainer}>
           <div>聯絡我們</div>
           <RiArrowRightSLine />
         </Button>
       </div>
-      <hr className={styles.headerHr} />
+      <hr className={styles.headerHr90vw} />
 
       <div className={styles.forFlexColumn}>
         <div className={styles.forFlexColumnLastRow}>
