@@ -6,7 +6,8 @@ import { IconSearch } from '@tabler/icons';
 import { useNavigate } from "react-router-dom";
 import {Activity} from "../components/ActivitiesUtilis";
 
-export default function AllActivities() {
+
+export default function Urgent() {
     const NavBar = NavBarUtilis();
     const navigate = useNavigate();
 
@@ -27,15 +28,13 @@ export default function AllActivities() {
         </div>
 
         <div className={styles.searchChance}>
-            探索義工機會
+            急需支援
         </div>
 
 
-        <Activity/>
-       
+       <Activity/>
 
 
         {NavBar}
-        
     </div>)
 }

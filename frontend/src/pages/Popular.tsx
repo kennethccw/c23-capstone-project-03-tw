@@ -4,9 +4,10 @@ import { Calendar4, ChevronLeft, Filter, Person, GeoAlt } from "react-bootstrap-
 import { TextInput } from '@mantine/core'; //https://ui.mantine.dev/category/inputs
 import { IconSearch } from '@tabler/icons';
 import { useNavigate } from "react-router-dom";
-import {Activity} from "../components/ActivitiesUtilis";
+import { Activity } from "../components/ActivitiesUtilis";
 
-export default function AllActivities() {
+
+export default function Popular() {
     const NavBar = NavBarUtilis();
     const navigate = useNavigate();
 
@@ -27,15 +28,19 @@ export default function AllActivities() {
         </div>
 
         <div className={styles.searchChance}>
-            探索義工機會
+            熱門活動
         </div>
 
 
+        
         <Activity/>
-       
+
+
+
+
+
 
 
         {NavBar}
-        
     </div>)
 }

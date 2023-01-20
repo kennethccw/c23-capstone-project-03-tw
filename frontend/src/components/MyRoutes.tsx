@@ -30,6 +30,9 @@ import Account from "../pages/Account";
 import EditProfile from "../pages/EditProfile";
 import ActivitiesDetailPage from "../pages/ActivitiesDetailPage";
 import AllActivitiesFilter from "../pages/AllActivitiesFilter";
+import EditorsChoice from "../pages/EditorsChoice";
+import Urgent from "../pages/Urgent";
+import Popular from "../pages/Popular";
 
 export default function MyRoutes() {
   return (
@@ -62,6 +65,10 @@ export default function MyRoutes() {
       <Route path="allActivities" element={<AllActivities />}></Route>
       <Route path="activitiesDetailPage" element={<ActivitiesDetailPage/>}></Route>
       <Route path="allActivitiesFilter" element={<AllActivitiesFilter />}></Route>
+      <Route path="editorsChoice" element={<EditorsChoice />}></Route>
+      <Route path="urgent" element={<Urgent />}></Route>
+      <Route path="popular" element={<Popular />}></Route>
+
 
       <Route path="/" element={<RequireAuth />}>
         <Route path="home1" element={<Home />}></Route>
