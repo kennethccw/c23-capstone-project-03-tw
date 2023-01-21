@@ -61,6 +61,22 @@ export default function Register() {
       .then((result) => result.message && alert(result.message));
   };
 
+  const onFacebookLogin = (event: React.MouseEvent) => {
+    event.preventDefault();
+    const authURL = "https://www.facebook.com/dialog/oauth";
+    const search = new URLSearchParams();
+    search.set("client_id", process.env.REACT_APP_FACEBOOK_APP_ID + "");
+    search.set("redirect_uri", `${window.location.origin}/facebook-callback`);
+    search.set("response_type", "code");
+    search.set("state", "");
+    search.set("scope", "email,public_profile");
+    window.location.href = `${authURL}?${search.toString()}`;
+  };
+  const onGoogleLogin = (event: React.MouseEvent) => {
+    event.preventDefault();
+    window.location.href = `${process.env.REACT_APP_BACKEND_URL}/connect/google`;
+  };
+
   return (
     <MantineProvider
       inherit
@@ -192,8 +208,8 @@ export default function Register() {
           <span className={styles.separatorText}>或</span>
         </div>
         <div className={styles.oauthContainer}>
-          <div className={styles.oauthIcon}>
-            <a href="/connect/google">
+          <div className={styles.oauthIcon} onClick={onGoogleLogin}>
+            <div>
               <svg className={styles.googleIcon} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32" viewBox="0 0 48 48">
                 <path
                   fill="#FFC107"
@@ -212,9 +228,9 @@ export default function Register() {
                   d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
                 ></path>
               </svg>
-            </a>
+            </div>
           </div>
-          <div className={styles.oauthIcon}>
+          <div className={styles.oauthIcon} onClick={onFacebookLogin}>
             <FaFacebookF className={styles.facebookLogo} />
           </div>
         </div>

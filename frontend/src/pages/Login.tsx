@@ -102,8 +102,8 @@ export default function Login() {
           <span className={styles.separatorText}>或</span>
         </div>
         <div className={styles.oauthContainer}>
-          <div className={styles.oauthIcon}>
-            <div onClick={onGoogleLogin}>
+          <div className={styles.oauthIcon} onClick={onGoogleLogin}>
+            <div>
               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32" viewBox="0 0 48 48" className={styles.googleIcon}>
                 <path
                   fill="#FFC107"
