@@ -1,0 +1,121 @@
+.chevronAndAdjustmntIcon {
+  color: #b0b2c3;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 430px;
+  height: 105px;
+  top:0;
+  // margin-top: 20px;
+  background-color: #FFFFFF;
+  position:fixed;
+}
+
+.conversationContainer {
+  margin-top: 105px;
+  margin-bottom: 112px;
+}
+
+.chevronIcon {
+  margin-left: 30px;
+  font-size: 38px;
+
+}
+
+.dateTab {
+  background: #f5f5f6;
+  border-radius: 10px;
+  width: 79px;
+  height: 26px;
+  margin-left: 151px;
+  padding: 4px 25px;
+  color: #92919a;
+  font-weight: 400;
+  text-align: center;
+}
+
+//// chat ////
+.supportSide {
+  font-weight: 400;
+}
+
+.supportSideContainer {
+  width: fit-content;
+  margin-top: 20px;
+  background: #f6f6f6;
+  border-radius: 10px;
+  // text-align: center;
+  // width: auto;
+  // height: 52px;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  margin-left: 35px;
+  padding: 12px 20px;
+  max-width: 240px;
+}
+
+.clientSideContainer {
+  width: fit-content;
+  max-width: 240px;
+  margin-top: 20px;
+  background: #a7a0ed;
+  border-radius: 10px;
+  margin-right: 20px;
+  padding: 12px 20px;
+}
+
+.clientSideBigContainer {
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
+}
+//// chat ////
+
+.imgContainer {
+  margin-top: 10px;
+  border-radius: 10px;
+  width: 218px;
+  height: 133px;
+}
+
+.issueFixedContainer {
+  margin-left: 80px;
+  width: fit-content;
+  max-width: 240px;
+  margin-top: 155px;
+  padding: 12px 20px;
+  background: #f7bb93;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.textContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textBigContainer{
+  padding-top: 8px;
+  position:fixed;
+  bottom: 0;
+  width: 100vw;
+  background-color:  #F5F5F5;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.textInputClass input {
+  width: 290px;
+  height: 50px
+}
+
+.textInputIconLeft {
+  margin-right: 10px;
+}
+.textInputIconRight {
+  margin-left: 10px;
+}

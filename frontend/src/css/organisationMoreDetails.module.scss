@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
   display: flex;
-  width: 430px;
+  width: 100vw;
   height: 85px;
   margin-top: 30px;
 }
@@ -28,13 +28,18 @@
   justify-content: space-between;
   align-items: center;
   display: flex;
-  width: 430px;
+  width: 100vw;
   font-size: 16px;
 }
 
+.tabList {
+  width: 100vw;
+  font-size: 18px;
+}
 .tabList div {
   font-size: 18px;
 }
+
 .basicInfo {
   margin-top: 50px;
   font-weight: 700;
@@ -86,11 +91,10 @@
 .hrStylist {
   border: 1px solid #e5e6ee;
   filter: blur(0.5px);
-  width: 390px;
+  width: 100vw;
 }
 
 .inquiryIcon {
-  color: #898d9e;
   font-size: 22px;
   margin-bottom: 20px;
   margin-right: 20px;
@@ -99,6 +103,27 @@
 .inquiryContainer {
   display: flex;
   flex-direction: row;
-  color: #898D9E;
   font-weight: 400;
+}
+
+.controlPanelContainer {
+  width: 100vw;
+}
+
+.choice {
+  width: 80vw;
+  height: 58px;
+  color: black;
+  font-size: 19px;
+  margin: 20px auto;
+}
+
+.containerForAll {
+  width: 100vw
+}
+
+.choiceBtnContainer {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 }

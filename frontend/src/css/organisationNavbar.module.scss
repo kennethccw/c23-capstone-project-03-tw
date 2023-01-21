@@ -1,0 +1,33 @@
+.navbarIcon {
+  font-size: 40px;
+  height: 47px;
+  color: #b0b2c3;
+  margin-top: 18px;
+}
+
+.searchNav {
+  font-size: 47px;
+}
+.userNav {
+  font-size: 45px;
+}
+
+.navBArList {
+  position: fixed;
+  bottom: 14px;
+  display: flex;
+  bottom: 0;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 430px;
+  height: 99px;
+  background: #ffffff;
+  box-shadow: 0px -15px 40px rgba(237, 238, 251, 0.8);
+  border-radius: 10px;
+  flex-direction: row;
+}
+
+.containerForAll {
+  display: flex;
+  width: 100vw;
+}

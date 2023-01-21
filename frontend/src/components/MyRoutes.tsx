@@ -26,6 +26,11 @@ import NoticePasswordChanged from "../pages/NoticePasswordChanged";
 import Schedule from "../pages/Schedule";
 import Account from "../pages/Account";
 import EditProfile from "../pages/EditProfile";
+import SearchResultFuction from "../pages/SearchResult";
+import SearchShowResultFunction from "../pages/SearchShowResultPage";
+import OrganisationHomePageContainer from "../pages/Organisation/OrganisationHomePage";
+import DashboardPicture from "../pages/Organisation/OrganisationDashboard";
+import ApprovalFunction from "../pages/Organisation/ControlUserPanel";
 import VolunteerRecord from "../pages/VolunteerRecord";
 import Badge from "../pages/Badge";
 import { BadgeFilterYear } from "../pages/BadgeFilterYear";
@@ -34,12 +39,22 @@ import AdoptionApplicationResult from "../pages/AdoptionApplicationResult";
 import PrivacyAndSecurity from "../pages/PrivacyAndSecurity";
 import DeleteAccount from "../pages/DeleteAccount";
 import DeletedMessage from "../pages/DeletedMessage";
-import OrganisationAdoptionApplicationResult from "../pages/organisation/AdoptionApplicationResult";
+// import OrganisationAdoptionApplicationResult from "../pages/organisation/AdoptionApplicationResult";
 
 export default function MyRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
+      <Route path="/" element={<OrganisationMoreDetails/>}></Route>
+      <Route path="/" element={<Schedule />}></Route>
+      <Route path="/" element={<ApprovalFunction />}></Route>
+      <Route path="/" element={<AdoptionApplication />}></Route>
+      <Route path="/" element={<Adoption />}></Route>
+      <Route path="/" element={<DashboardPicture />}></Route>
+      <Route path="/" element={<OrganisationHomePageContainer />}></Route>
+      <Route path="/" element={<SearchShowResultFunction />}></Route>
+      <Route path="/" element={<SearchResultFuction />}></Route>
+      <Route path="/" element={<AnimalHelpChatroom />}></Route>
+      {/* <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route> */}
       <Route path="/" element={<DeletedMessage />}></Route>
       <Route path="/" element={<DeleteAccount />}></Route>
 
@@ -57,15 +72,15 @@ export default function MyRoutes() {
       <Route path="/" element={<HelpLocationFilter />}></Route>
       <Route path="/" element={<AnimalNeedOurHelp />}></Route>
       <Route path="/" element={<Organisation />}></Route>
+      <Route path="/" element={<EditProfile />}></Route>
+      <Route path="/" element={<Account />}></Route>
       <Route path="/" element={<OrganisationMoreDetails />}></Route>
       <Route path="/" element={<Adoption />}></Route>
 
-      <Route path="/" element={<Schedule />}></Route>
       <Route path="/" element={<Welcome />}></Route>
       <Route path="/" element={<AdoptionDetail />}></Route>
       <Route path="/" element={<Donation />}></Route>
       <Route path="/" element={<NoticePasswordChanged />}></Route>
-      <Route path="/" element={<AdoptionApplication />}></Route>
       <Route path="/" element={<Advertising />}></Route>
       <Route path="introduction" element={<Introduction />}></Route>
       <Route path="login" element={<Login />}></Route>

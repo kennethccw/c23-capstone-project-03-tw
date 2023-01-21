@@ -1,0 +1,88 @@
+.chevronAndAdjustmntIcon {
+  color: #b0b2c3;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 430px;
+  height: 85px;
+  margin-top: 30px;
+}
+
+.chevronIcon {
+  margin-left: 30px;
+  font-size: 38px;
+}
+
+.headNavBar {
+  margin-top: 40px;
+}
+
+.searchContainer{
+  width: 80vw;
+}
+
+.searchContainer input{
+  background: #ffffff;
+  box-shadow: 0px 1px 9px -1px rgba(88, 92, 229, 0.5);
+  border-radius: 30px;
+  height: 57px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  padding-left: 75px;
+  font-size: 18px;
+}
+
+.searchBigContainer {
+  margin-right: 12px;
+  font-size: 20px;
+}
+
+.searchMargin {
+  margin-left: 20px;
+}
+
+// .searchIcon div {
+//   margin-left: 40px;
+//   width: 400px;
+// }
+
+.searchIcon  {
+  width: 160px;
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.volunterOpportunity {
+  font-weight: 400;
+  font-size: 15px;
+  margin-left: 40px;
+  font-size: 19px;
+  margin-top: 10px;
+}
+
+
+.activityContaner {
+  margin-top: 20px;
+  flex-direction: column;
+  margin-left: 40px;
+  width: fit-content;
+}
+
+.lineTab {
+  border: 1px solid #E5E6EE;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  width: 365px;
+  margin-top: 20px;
+}
+
+.activityTab {
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.activitycontent{
+  color: #898D9E;
+  font-weight: 400;
+}
