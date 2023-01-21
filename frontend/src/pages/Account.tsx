@@ -1,9 +1,11 @@
 import { Button, Paper } from "@mantine/core";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import { RiArrowRightSLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 import NewNavbar from "../components/NewNavbar";
 import styles from "../css/account.module.scss";
 export default function Account() {
+  const navigate = useNavigate();
   return (
     <div className={styles.containerForAll}>
       <h1 className={styles.header}>帳戶</h1>
@@ -12,9 +14,9 @@ export default function Account() {
         <Paper shadow="xl" radius="xl" p="xl" className={styles.paperContainer}>
           <div className={styles.forFlex}>
             <HiOutlineUserCircle className={styles.userProfileIcon} />
-            <div>編輯帳號</div>
+            <div>{localStorage.getItem("username")}</div>
           </div>
-          <div className={styles.profileBtn}>
+          <div className={styles.profileBtn} onClick={() => navigate("/profile")}>
             <span>查看完整帳號</span>
           </div>
         </Paper>
@@ -69,7 +71,7 @@ export default function Account() {
         </div>
       </div>
 
-      <NewNavbar />
+      <NewNavbar activeBtn="user" />
     </div>
   );
 }

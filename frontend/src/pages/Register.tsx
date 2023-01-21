@@ -45,8 +45,14 @@ export default function Register() {
       },
       body: JSON.stringify(newUser),
     })
-      .then((res) => res.json)
-      .then(() => navigate("/login"));
+      .then((res) => {
+        const result = res.json();
+        if (res.status === 200) {
+          navigate("/login");
+        }
+        return result;
+      })
+      .then((result) => result.message && alert(result.message));
   };
 
   return (

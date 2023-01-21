@@ -158,7 +158,7 @@ export default function EditProfile() {
             <IconArrowNarrowRight className={styles.rightArrowIcon} />
           </Button>
         </form>
-        <NewNavbar />
+        <NewNavbar activeBtn="user" />
       </div>
     </MantineProvider>
   );

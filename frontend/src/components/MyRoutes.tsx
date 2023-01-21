@@ -44,8 +44,8 @@ import DeletedMessage from "../pages/DeletedMessage";
 export default function MyRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<OrganisationMoreDetails />}></Route>
       <Route path="/" element={<Schedule />}></Route>
+      <Route path="/" element={<OrganisationMoreDetails />}></Route>
       <Route path="/" element={<ApprovalFunction />}></Route>
       <Route path="/" element={<AdoptionApplication />}></Route>
       <Route path="/" element={<Adoption />}></Route>
@@ -59,8 +59,8 @@ export default function MyRoutes() {
       <Route path="/" element={<DeleteAccount />}></Route>
 
       <Route path="/" element={<PrivacyAndSecurity />}></Route>
-      <Route path="/" element={<EditProfile />}></Route>
-      <Route path="/" element={<Account />}></Route>
+      <Route path="/profile" element={<EditProfile />}></Route>
+      <Route path="account" element={<Account />}></Route>
       <Route path="/" element={<AdoptionApplicationResult />}></Route>
       <Route path="/" element={<ContactUs />}></Route>
       <Route path="/" element={<BadgeFilterYear />}></Route>

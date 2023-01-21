@@ -84,7 +84,7 @@ export default function Schedule() {
           </div>
         </div> */}
         {/* APPLICATION COMPONENT */}
-        <NewNavbar />
+        <NewNavbar activeBtn="clipboard" />
       </div>
     </MantineProvider>
   );

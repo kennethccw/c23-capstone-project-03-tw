@@ -98,7 +98,7 @@ export default function VolunteerRecord() {
             </div>
           </Timeline.Item>
         </Timeline>
-        <NewNavbar />
+        <NewNavbar activeBtn="user" />
       </div>
     </MantineProvider>
   );
