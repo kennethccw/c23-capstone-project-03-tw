@@ -35,13 +35,22 @@
 .noApplicationsAppliedText {
   margin-bottom: 48px;
 }
-.button {
-  height: 55px;
-  width: 218px;
-
-  font-size: 20px;
-
+.approvedButton,
+.notApprovedButton {
+  margin-top: 12px;
+  height: 42px;
+  width: 79px;
+  border-radius: 10px;
+  font-size: 15px;
+  padding: 0;
   box-shadow: 0 24px 16px -19px #a1a3f6;
+}
+
+.approvedButton {
+  background-color: #585ce5;
+}
+.notApprovedButton {
+  background-color: #b0b2c3;
 }
 
 .paperContainer {
@@ -81,5 +90,32 @@
 }
 .petLabelText,
 .petContentText {
+  margin-top: 8px;
+}
+
+.rejectedReasonOption {
+  width: 60vw;
+  margin-top: 3px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 60vw;
+}
+
+.bottomContainer {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputLabelText {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.otherReasonContainer {
   margin-top: 8px;
 }

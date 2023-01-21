@@ -34,10 +34,12 @@ import AdoptionApplicationResult from "../pages/AdoptionApplicationResult";
 import PrivacyAndSecurity from "../pages/PrivacyAndSecurity";
 import DeleteAccount from "../pages/DeleteAccount";
 import DeletedMessage from "../pages/DeletedMessage";
+import OrganisationAdoptionApplicationResult from "../pages/organisation/AdoptionApplicationResult";
 
 export default function MyRoutes() {
   return (
     <Routes>
+      <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
       <Route path="/" element={<DeletedMessage />}></Route>
       <Route path="/" element={<DeleteAccount />}></Route>
 
