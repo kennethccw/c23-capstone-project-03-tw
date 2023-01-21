@@ -31,6 +31,15 @@ import SearchShowResultFunction from "../pages/SearchShowResultPage";
 import OrganisationHomePageContainer from "../pages/Organisation/OrganisationHomePage";
 import DashboardPicture from "../pages/Organisation/OrganisationDashboard";
 import ApprovalFunction from "../pages/Organisation/ControlUserPanel";
+import VolunteerRecord from "../pages/VolunteerRecord";
+import Badge from "../pages/Badge";
+import { BadgeFilterYear } from "../pages/BadgeFilterYear";
+import ContactUs from "../pages/ContactUs";
+import AdoptionApplicationResult from "../pages/AdoptionApplicationResult";
+import PrivacyAndSecurity from "../pages/PrivacyAndSecurity";
+import DeleteAccount from "../pages/DeleteAccount";
+import DeletedMessage from "../pages/DeletedMessage";
+// import OrganisationAdoptionApplicationResult from "../pages/organisation/AdoptionApplicationResult";
 
 export default function MyRoutes() {
   return (
@@ -45,12 +54,28 @@ export default function MyRoutes() {
       <Route path="/" element={<SearchShowResultFunction />}></Route>
       <Route path="/" element={<SearchResultFuction />}></Route>
       <Route path="/" element={<AnimalHelpChatroom />}></Route>
+      {/* <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route> */}
+      <Route path="/" element={<DeletedMessage />}></Route>
+      <Route path="/" element={<DeleteAccount />}></Route>
+
+      <Route path="/" element={<PrivacyAndSecurity />}></Route>
+      <Route path="/" element={<EditProfile />}></Route>
+      <Route path="/" element={<Account />}></Route>
+      <Route path="/" element={<AdoptionApplicationResult />}></Route>
+      <Route path="/" element={<ContactUs />}></Route>
+      <Route path="/" element={<BadgeFilterYear />}></Route>
       <Route path="/" element={<OrganisationFilterContainer />}></Route>
+      <Route path="/" element={<Badge />}></Route>
+
+      <Route path="/" element={<VolunteerRecord />}></Route>
+      <Route path="/" element={<AnimalHelpChatroom />}></Route>
       <Route path="/" element={<HelpLocationFilter />}></Route>
       <Route path="/" element={<AnimalNeedOurHelp />}></Route>
       <Route path="/" element={<Organisation />}></Route>
       <Route path="/" element={<EditProfile />}></Route>
       <Route path="/" element={<Account />}></Route>
+      <Route path="/" element={<OrganisationMoreDetails />}></Route>
+      <Route path="/" element={<Adoption />}></Route>
 
       <Route path="/" element={<Welcome />}></Route>
       <Route path="/" element={<AdoptionDetail />}></Route>

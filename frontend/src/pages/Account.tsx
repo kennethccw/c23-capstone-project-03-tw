@@ -19,41 +19,41 @@ export default function Account() {
           </div>
         </Paper>
       </div>
-      <hr className={styles.headerHr} />
+      <hr className={styles.headerHr90vw} />
       <div className={styles.forFlexColumn}>
         <Button variant="subtle" color="dark" className={styles.titleContainer}>
           <div>報名紀錄</div>
-          <RiArrowRightSLine />
+          <RiArrowRightSLine size={24} />
         </Button>
         <Button variant="subtle" color="dark" className={styles.titleContainer}>
           <div>社職紀錄</div>
-          <RiArrowRightSLine />
+          <RiArrowRightSLine size={24} />
         </Button>
         <Button variant="subtle" color="dark" className={styles.titleContainer}>
           <div>徽章</div>
-          <RiArrowRightSLine />
+          <RiArrowRightSLine size={24} />
         </Button>
         <Button variant="subtle" color="dark" className={styles.titleContainer}>
           <div>申請領養紀錄</div>
-          <RiArrowRightSLine />
+          <RiArrowRightSLine size={24} />
         </Button>
       </div>
-      <hr className={styles.headerHr} />
+      <hr className={styles.headerHr90vw} />
       <div className={styles.forFlexColumn}>
         <Button variant="subtle" color="dark" className={styles.titleContainer}>
           <div>私隱和安全</div>
-          <RiArrowRightSLine />
+          <RiArrowRightSLine size={24} />
         </Button>
       </div>
 
-      <hr className={styles.headerHr} />
+      <hr className={styles.headerHr90vw} />
       <div className={styles.forFlexColumn}>
         <Button variant="subtle" color="dark" className={styles.titleContainer}>
           <div>聯絡我們</div>
-          <RiArrowRightSLine />
+          <RiArrowRightSLine size={24} />
         </Button>
       </div>
-      <hr className={styles.headerHr} />
+      <hr className={styles.headerHr90vw} />
 
       <div className={styles.forFlexColumn}>
         <div className={styles.forFlexColumnLastRow}>
