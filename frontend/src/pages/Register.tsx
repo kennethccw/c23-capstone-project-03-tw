@@ -8,11 +8,12 @@ import styles from "../css/register.module.scss";
 import { FaFacebookF } from "react-icons/fa";
 import { useState } from "react";
 export default function Register() {
-  const { register, watch } = useForm({
+  const { register, watch, getValues } = useForm({
     defaultValues: {
       username: "",
       email: "",
       password: "",
+      checkbox: false,
     },
   });
 
@@ -35,6 +36,11 @@ export default function Register() {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isCorrectFormatUsername || !isCorrectFormatEmail || !isCorrectFormatPassword || watchUsername === "" || watchEmail === "" || watchPassword === "") {
+      alert("請正確輸入再遞交註冊表格");
+      return;
+    }
+    if (!getValues().checkbox) {
+      alert("請先同意Petscue的服務條款，私穩政策及個人資料收集聲明，再遞交註冊表格");
       return;
     }
     const newUser = { username: watchUsername, email: watchEmail, password: watchPassword };
@@ -171,7 +177,12 @@ export default function Register() {
               </div>
             )}
           </div>
-          <Checkbox className={`${styles.input} ${styles.checkbox}`} label="當你繼續登記帳號，即代表你同意Petscue的服務條款，私穩政策及個人資料收集聲明。" color="violet" />
+          <Checkbox
+            className={`${styles.input} ${styles.checkbox}`}
+            label="當你繼續登記帳號，即代表你同意Petscue的服務條款，私穩政策及個人資料收集聲明。"
+            color="violet"
+            {...register("checkbox", { required: true })}
+          />
           <Button className={styles.button} color="violet" radius="xl" type="submit">
             <div>註冊</div>
             <IconArrowNarrowRight className={styles.rightArrowIcon} />
