@@ -44,7 +44,7 @@ export default function OrganisationMoreDetails() {
         },
       }}
     >
-      <div>
+      <div className={styles.containerForAll}>
         <div className={styles.chevronAndAdjustmntIcon}>
           <HiChevronLeft className={styles.chevronIcon} />
           <HiOutlineShare className={styles.outlineShare} />
@@ -73,7 +73,10 @@ export default function OrganisationMoreDetails() {
         </div>
 
         <hr className={styles.hrStylist} />
-        <Button style={{ width: 390, height: 58, color: "black", fontSize: 19, margin: 20, }} color="milkTea"> 義工機會</Button>
+        <div className={styles.choiceBtnContainer}>
+
+        <Button className={styles.choice} color="milkTea"> 義工機會</Button>
+        </div>
         <hr className={styles.hrStylist} />
 
         <div className={styles.detailsContainer}>
