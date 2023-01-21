@@ -11,30 +11,31 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   register = async (req: Request, res: Response) => {
-    const formFields: User = req.form.fields as any;
-
+    // const formFields: User = req.form.fields as any;
+    const form: User = req.body;
     const {
       username,
       email,
       password: plainPassword,
-      mobile,
-      birthday,
-      gender,
-      is_experienced,
-    } = formFields;
+      // mobile,
+      // birthday,
+      // gender,
+      // is_experienced,
+      // } = formFields;
+    } = form;
 
     const password = await hashPassword(plainPassword as string);
 
-    const photo = (req.form.files["image"] as formidable.File)?.newFilename || undefined;
+    // const photo = (req.form.files["image"] as formidable.File)?.newFilename || undefined;
     const user: User = {
       username,
       email,
       password,
-      mobile,
-      birthday,
-      gender,
-      is_experienced,
-      photo,
+      // mobile,
+      // birthday,
+      // gender,
+      // is_experienced,
+      // photo,
     };
     try {
       const result = await this.userService.register(user);

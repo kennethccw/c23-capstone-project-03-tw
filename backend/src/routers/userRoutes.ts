@@ -5,7 +5,7 @@ import { isLoggedInAPI } from "../utils/guards";
 
 export const userRoutes = Router();
 
-userRoutes.post("/register", uploadMiddleware, userController.register);
+userRoutes.post("/register", userController.register);
 userRoutes.post("/login/validation", isLoggedInAPI, userController.validation);
 userRoutes.post("/login", userController.loginWithUsernameOrEmail);
 userRoutes.get("/login/google", userController.loginWithGoogle);
