@@ -28,9 +28,9 @@ import Account from "../pages/Account";
 import EditProfile from "../pages/EditProfile";
 import SearchResultFuction from "../pages/SearchResult";
 import SearchShowResultFunction from "../pages/SearchShowResultPage";
-import OrganisationHomePageContainer from "../pages/Organisation/OrganisationHomePage";
-import DashboardPicture from "../pages/Organisation/OrganisationDashboard";
-import ApprovalFunction from "../pages/Organisation/ControlUserPanel";
+import OrganisationHomePageContainer from "../pages/organisation/OrganisationHomePage";
+import DashboardPicture from "../pages/organisation/OrganisationDashboard";
+import ApprovalFunction from "../pages/organisation/ControlUserPanel";
 import VolunteerRecord from "../pages/VolunteerRecord";
 import Badge from "../pages/Badge";
 import { BadgeFilterYear } from "../pages/BadgeFilterYear";
@@ -44,7 +44,7 @@ import DeletedMessage from "../pages/DeletedMessage";
 export default function MyRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<OrganisationMoreDetails/>}></Route>
+      <Route path="/" element={<OrganisationMoreDetails />}></Route>
       <Route path="/" element={<Schedule />}></Route>
       <Route path="/" element={<ApprovalFunction />}></Route>
       <Route path="/" element={<AdoptionApplication />}></Route>
