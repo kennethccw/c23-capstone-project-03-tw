@@ -42,7 +42,7 @@ export class UserController {
       console.log(result);
       res.status(200).json(result);
     } catch (e) {
-      res.status(400).json({ message: "Intenal Server Error" });
+      res.status(400).json({ message: "帳戶名稱或電郵地址已被採用" });
     }
   };
 
