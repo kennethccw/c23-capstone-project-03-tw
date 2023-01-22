@@ -30,9 +30,9 @@ import Account from "../pages/Account";
 import EditProfile from "../pages/EditProfile";
 import SearchResultFuction from "../pages/SearchResult";
 import SearchShowResultFunction from "../pages/SearchShowResultPage";
-import OrganisationHomePageContainer from "../pages/organisation/OrganisationHomePage";
-import DashboardPicture from "../pages/organisation/OrganisationDashboard";
-import ApprovalFunction from "../pages/organisation/ControlUserPanel";
+import OrganisationHomePageContainer from "../pages/Organisation/OrganisationHomePage";
+import DashboardPicture from "../pages/Organisation/OrganisationDashboard";
+import ApprovalFunction from "../pages/Organisation/ControlUserPanel";
 import ActivitiesDetailPage from "../pages/ActivitiesDetailPage";
 import AllActivitiesFilter from "../pages/AllActivitiesFilter";
 import EditorsChoice from "../pages/EditorsChoice";
@@ -46,11 +46,12 @@ import AdoptionApplicationResult from "../pages/AdoptionApplicationResult";
 import PrivacyAndSecurity from "../pages/PrivacyAndSecurity";
 import DeleteAccount from "../pages/DeleteAccount";
 import DeletedMessage from "../pages/DeletedMessage";
-// import OrganisationAdoptionApplicationResult from "../pages/organisation/AdoptionApplicationResult";
+import OrganisationAdoptionApplicationResult from "../pages/Organisation/AdoptionApplicationResult";
 
 export default function MyRoutes() {
   return (
     <Routes>
+      <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
       <Route path="/" element={<Schedule />}></Route>
       <Route path="/" element={<AdoptionApplicationResult />}></Route>
       <Route path="/" element={<OrganisationMoreDetails />}></Route>
