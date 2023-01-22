@@ -4,7 +4,7 @@ import express from "express";
 
 import { Bearer } from "permit";
 import { userService } from "../routes";
-import { User } from "./models";
+import { Auth } from "./models";
 
 const permit = new Bearer({
   query: "access_token",
@@ -25,7 +25,7 @@ export async function isLoggedInAPI(
 
     const payload: { id: number; username: string } = jwtSimple.decode(token, jwt.jwtSecret);
     // Querying Database is not compulsory
-    const user: User = await userService.verifyUser(payload.id);
+    const user: Auth = await userService.verifyUser(payload.id);
     if (user) {
       req.user = user;
       return next();

@@ -2,7 +2,9 @@ import { MantineProvider, Timeline } from "@mantine/core";
 import styles from "../css/volunteerRecord.module.scss";
 import { HiXMark } from "react-icons/hi2";
 import NewNavbar from "../components/NewNavbar";
+import { useNavigate } from "react-router-dom";
 export default function VolunteerRecord() {
+  const navigate = useNavigate();
   return (
     <MantineProvider
       inherit
@@ -54,7 +56,7 @@ export default function VolunteerRecord() {
     >
       <div className={styles.containerForAll}>
         <div className={styles.header}>
-          <HiXMark className={styles.closingIcon} />
+          <HiXMark className={styles.closingIcon} onClick={() => navigate(-1)} />
           <span>社職紀錄</span>
         </div>
         <hr className={styles.headerHr} />

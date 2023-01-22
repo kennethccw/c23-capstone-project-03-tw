@@ -3,7 +3,9 @@ import styles from "../css/badge.module.scss";
 import React from "react";
 import { HiAdjustmentsHorizontal, HiXMark } from "react-icons/hi2";
 import NewNavbar from "../components/NewNavbar";
+import { useNavigate } from "react-router-dom";
 export default function Badge() {
+  const navigate = useNavigate();
   return (
     <MantineProvider
       inherit
@@ -55,7 +57,7 @@ export default function Badge() {
     >
       <div className={styles.containerForAll}>
         <div className={styles.header}>
-          <HiXMark className={styles.closingIcon} />
+          <HiXMark className={styles.closingIcon} onClick={() => navigate(-1)} />
           <span>徽章</span>
         </div>
         <hr className={styles.headerHr} />

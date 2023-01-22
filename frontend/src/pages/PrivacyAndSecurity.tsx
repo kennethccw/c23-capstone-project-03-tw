@@ -2,7 +2,9 @@ import { Button, MantineProvider } from "@mantine/core";
 import styles from "../css/privacyAndSecurity.module.scss";
 import { HiXMark } from "react-icons/hi2";
 import { RiArrowRightSLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 export default function PrivacyAndSecurity() {
+  const navigate = useNavigate();
   const date = new Date("2022-10-28, 24:00");
   console.log(date);
   return (
@@ -56,7 +58,7 @@ export default function PrivacyAndSecurity() {
     >
       <div className={styles.containerForAll}>
         <div className={styles.header}>
-          <HiXMark className={styles.closingIcon} />
+          <HiXMark className={styles.closingIcon} onClick={() => navigate(-1)} />
           <span>私穩和安全</span>
         </div>
         <hr className={styles.headerHr} />

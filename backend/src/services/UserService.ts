@@ -45,7 +45,10 @@ export class UserService {
   };
   verifyUser = async (uid: number) => {
     try {
-      const result: User = await this.knex(TABLES.USERS).select().where("id", uid).first();
+      const result: Auth = await this.knex(TABLES.USERS)
+        .select("id", "username", "email")
+        .where("id", uid)
+        .first();
       return result;
     } catch (e) {
       console.log(e);

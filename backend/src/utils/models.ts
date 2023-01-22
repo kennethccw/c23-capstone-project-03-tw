@@ -5,6 +5,7 @@ export enum Gender {
 }
 
 export interface User {
+  id?: number;
   username: string;
   email: string;
   password?: string;
@@ -24,7 +25,15 @@ export interface Auth {
 declare global {
   namespace Express {
     interface Request {
-      user?: User;
+      user?: Auth;
     }
   }
+}
+
+export interface Profile {
+  username: string;
+  email: string;
+  mobile: string;
+  birthday: Date;
+  gender: Gender;
 }

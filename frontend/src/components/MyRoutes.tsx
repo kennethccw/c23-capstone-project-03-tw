@@ -45,6 +45,7 @@ export default function MyRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Schedule />}></Route>
+      <Route path="/" element={<AdoptionApplicationResult />}></Route>
       <Route path="/" element={<OrganisationMoreDetails />}></Route>
       <Route path="/" element={<ApprovalFunction />}></Route>
       <Route path="/" element={<AdoptionApplication />}></Route>
@@ -58,22 +59,20 @@ export default function MyRoutes() {
       <Route path="/" element={<DeletedMessage />}></Route>
       <Route path="/" element={<DeleteAccount />}></Route>
 
-      <Route path="/" element={<PrivacyAndSecurity />}></Route>
-      <Route path="/profile" element={<EditProfile />}></Route>
+      <Route path="privacy-and-security" element={<PrivacyAndSecurity />}></Route>
+      <Route path="profile" element={<EditProfile />}></Route>
       <Route path="account" element={<Account />}></Route>
-      <Route path="/" element={<AdoptionApplicationResult />}></Route>
-      <Route path="/" element={<ContactUs />}></Route>
+      <Route path="result" element={<AdoptionApplicationResult />}></Route>
+      <Route path="contact" element={<ContactUs />}></Route>
       <Route path="/" element={<BadgeFilterYear />}></Route>
       <Route path="/" element={<OrganisationFilterContainer />}></Route>
-      <Route path="/" element={<Badge />}></Route>
+      <Route path="badge" element={<Badge />}></Route>
 
-      <Route path="/" element={<VolunteerRecord />}></Route>
+      <Route path="record" element={<VolunteerRecord />}></Route>
       <Route path="/" element={<AnimalHelpChatroom />}></Route>
       <Route path="/" element={<HelpLocationFilter />}></Route>
       <Route path="/" element={<AnimalNeedOurHelp />}></Route>
       <Route path="/" element={<Organisation />}></Route>
-      <Route path="/" element={<EditProfile />}></Route>
-      <Route path="/" element={<Account />}></Route>
       <Route path="/" element={<OrganisationMoreDetails />}></Route>
       <Route path="/" element={<Adoption />}></Route>
 

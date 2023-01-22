@@ -23,26 +23,26 @@ export default function Account() {
       </div>
       <hr className={styles.headerHr90vw} />
       <div className={styles.forFlexColumn}>
-        <Button variant="subtle" color="dark" className={styles.titleContainer}>
+        <Button variant="subtle" color="dark" className={styles.titleContainer} onClick={() => navigate("/profile")}>
           <div>報名紀錄</div>
           <RiArrowRightSLine size={24} />
         </Button>
-        <Button variant="subtle" color="dark" className={styles.titleContainer}>
+        <Button variant="subtle" color="dark" className={styles.titleContainer} onClick={() => navigate("/record")}>
           <div>社職紀錄</div>
           <RiArrowRightSLine size={24} />
         </Button>
-        <Button variant="subtle" color="dark" className={styles.titleContainer}>
+        <Button variant="subtle" color="dark" className={styles.titleContainer} onClick={() => navigate("/badge")}>
           <div>徽章</div>
           <RiArrowRightSLine size={24} />
         </Button>
-        <Button variant="subtle" color="dark" className={styles.titleContainer}>
+        <Button variant="subtle" color="dark" className={styles.titleContainer} onClick={() => navigate("/result")}>
           <div>申請領養紀錄</div>
           <RiArrowRightSLine size={24} />
         </Button>
       </div>
       <hr className={styles.headerHr90vw} />
       <div className={styles.forFlexColumn}>
-        <Button variant="subtle" color="dark" className={styles.titleContainer}>
+        <Button variant="subtle" color="dark" className={styles.titleContainer} onClick={() => navigate("/privacy-and-security")}>
           <div>私隱和安全</div>
           <RiArrowRightSLine size={24} />
         </Button>
@@ -50,7 +50,7 @@ export default function Account() {
 
       <hr className={styles.headerHr90vw} />
       <div className={styles.forFlexColumn}>
-        <Button variant="subtle" color="dark" className={styles.titleContainer}>
+        <Button variant="subtle" color="dark" className={styles.titleContainer} onClick={() => navigate("/contact")}>
           <div>聯絡我們</div>
           <RiArrowRightSLine size={24} />
         </Button>
@@ -59,13 +59,21 @@ export default function Account() {
 
       <div className={styles.forFlexColumn}>
         <div className={styles.forFlexColumnLastRow}>
-          <Button variant="subtle" color="dark" className={styles.titleLastRow}>
+          <Button variant="subtle" color="dark" className={styles.titleLastRow} onClick={() => navigate("/profile")}>
             服務條款
           </Button>
-          <Button variant="subtle" color="dark" className={styles.titleLastRow}>
+          <Button variant="subtle" color="dark" className={styles.titleLastRow} onClick={() => navigate("/profile")}>
             私隱政策
           </Button>
-          <Button variant="subtle" color="violet" className={styles.logoutBtn}>
+          <Button
+            variant="subtle"
+            color="violet"
+            className={styles.logoutBtn}
+            onClick={() => {
+              navigate("/");
+              localStorage.clear();
+            }}
+          >
             登出
           </Button>
         </div>

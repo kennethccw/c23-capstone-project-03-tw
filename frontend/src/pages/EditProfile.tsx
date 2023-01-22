@@ -1,4 +1,4 @@
-import { Button, Checkbox, Input, MantineProvider, Select } from "@mantine/core";
+import { Button, Checkbox, Input, LoadingOverlay, MantineProvider, Select } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import InputMask from "react-input-mask";
 import { IconArrowNarrowRight, IconChevronDown, IconCircleX } from "@tabler/icons";
@@ -6,16 +6,78 @@ import { useForm } from "react-hook-form";
 import { HiXMark } from "react-icons/hi2";
 import styles from "../css/editProfile.module.scss";
 import NewNavbar from "../components/NewNavbar";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useQuery } from "react-query";
+import { getProfile, postProfile } from "../api/profileAPI";
+import { fetchJson } from "../api/utilsAPI";
+import { useNavigate } from "react-router-dom";
 export default function EditProfile() {
-  const { register, watch } = useForm({
-    defaultValues: {
-      username: "",
-      email: "",
-      mobile: "",
-      birthday: "",
-      gender: "",
-    },
+  enum Gender {
+    MALE = "male",
+    FEMALE = "female",
+    OTHER = "others",
+  }
+  interface Profile {
+    username: string;
+    email: string;
+    mobile?: string;
+    birthday?: Date;
+    gender?: string;
+  }
+  const { isLoading, isError, data, error } = useQuery({
+    queryKey: ["profile"],
+    queryFn: getProfile,
+    // refetchInterval: 5_000,
+    // staleTime: 10_000,
+    // retry: 1,
   });
+
+  // const { isLoading, isError, data, error } = useQuery("profile", () =>
+  //   fetch(`${process.env.REACT_APP_BACKEND_URL}/user/profile`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //     },
+  //   })
+  // );
+  const { register, watch, getValues, setValue } = useForm({
+    defaultValues: { username: data?.username || "", email: data?.email || "", mobile: data?.mobile || "", birthday: data?.birthday || "", checkbox: false },
+
+    // username: data?.username || "",
+    // email: data?.email || "",
+    // mobile: data?.mobile || "",
+    // birthday: data?.birthday || "",
+    // gender: data?.gender || "",
+    // checkbox: false,
+    // },
+  });
+  const genderRef = useRef(data?.gender || "");
+  const [gender, setGender] = useState(data?.gender || "");
+  useEffect(() => {
+    if (!isLoading) {
+      setValue("username", data?.username || "");
+      setValue("email", data?.email || "");
+      setValue("mobile", data?.mobile || "");
+      setValue(
+        "birthday",
+        data?.birthday
+          ? `${new Date(data.birthday).getFullYear().toString().padStart(2, "0")}-${(new Date(data.birthday).getMonth() + 1).toString().padStart(2, "0")}-${new Date(data.birthday)
+              .getDate()
+              .toString()
+              .padStart(2, "0")}`
+          : ""
+      );
+      console.log(data?.gender);
+      genderRef.current = data?.gender || "";
+      setGender(data?.gender || "");
+      console.log(genderRef.current);
+    }
+  }, [data]);
+  console.log(genderRef.current);
+
+  console.log(data, "react query data");
+  console.log(isError, "react query error");
 
   const watchUsername = watch("username");
   const regexUsername = /^[A-Za-z0-9]+$/.test(watchUsername);
@@ -30,6 +92,41 @@ export default function EditProfile() {
   const isBirthdayInvalid = (new Date(watchBirthday).toString() === "Invalid Date" || new Date(watchBirthday) > new Date()) && watchBirthday !== "" && watchBirthday !== "____-__-__";
 
   console.log(watchBirthday);
+
+  const navigate = useNavigate();
+
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (
+      !isCorrectFormatUsername ||
+      !isCorrectFormatEmail ||
+      isMobileInvalid ||
+      isBirthdayInvalid ||
+      watchUsername === "" ||
+      watchEmail === "" ||
+      watchMobile === "" ||
+      watchBirthday === "" ||
+      genderRef.current === ""
+    ) {
+      alert("請正確輸入再遞交");
+      return;
+    }
+    if (!getValues().checkbox) {
+      alert("請先同意Petscue的服務條款，私穩政策及個人資料收集聲明，再遞交");
+      return;
+    }
+    const profile = { username: watchUsername, email: watchEmail, mobile: watchMobile, birthday: new Date(watchBirthday), gender: gender };
+    postProfile(profile)
+      .then((res) => {
+        const result = res.json();
+        if (res.status === 200) {
+          localStorage.setItem("username", watchUsername);
+          navigate("/account");
+        }
+        return result;
+      })
+      .then((result) => result.message && alert(result.message));
+  };
   return (
     <MantineProvider
       inherit
@@ -80,8 +177,10 @@ export default function EditProfile() {
       }}
     >
       <div className={styles.containerForAll}>
+        <LoadingOverlay visible={isLoading} overlayBlur={2} />
+
         <div className={styles.header}>
-          <HiXMark className={styles.closingIcon} />
+          <HiXMark className={styles.closingIcon} onClick={() => navigate(-1)} />
           <span>編輯帳戶</span>
         </div>
         <hr className={styles.headerHr} />
@@ -91,7 +190,7 @@ export default function EditProfile() {
             <h3>帳戶資料</h3>
           </div>
         </div>
-        <form className={styles.formContainer}>
+        <form className={styles.formContainer} onSubmit={submitHandler}>
           {isCorrectFormatUsername ? (
             <Input.Wrapper id="username" className={styles.input} label="帳戶名稱" withAsterisk>
               <Input id="username" radius="md" size="md" placeholder="輸入帳戶名稱" type="text" {...register("username", { required: true })} />
@@ -128,7 +227,7 @@ export default function EditProfile() {
 
           {isBirthdayInvalid ? (
             <Input.Wrapper id="birthday" className={styles.input} label="出生日子" required error="請輸入正確的生日日期 (格式為YYYY-MM-DD)">
-              <Input id="birthday" radius="md" size="md" component={InputMask} mask="$9999-99-99" placeholder="輸入出生日子" {...register("birthday", { required: true })} invalid />
+              <Input id="birthday" radius="md" size="md" component={InputMask} mask="9999-99-99" placeholder="輸入出生日子" {...register("birthday", { required: true })} invalid />
             </Input.Wrapper>
           ) : (
             <Input.Wrapper id="birthday" className={styles.input} label="出生日子" required>
@@ -137,6 +236,8 @@ export default function EditProfile() {
           )}
 
           <Select
+            onChange={(value: Gender) => setGender(value)}
+            value={gender}
             radius="md"
             size="md"
             className={styles.input}
@@ -152,7 +253,12 @@ export default function EditProfile() {
               { value: "others", label: "其他或不提供" },
             ]}
           />
-          <Checkbox className={`${styles.input} ${styles.checkbox}`} label="我同意根據私隱政策中所列出的原因使用我的個人資料作推廣，收取會員通訊及最新資訊用途。" color="petscue-purple" />
+          <Checkbox
+            className={`${styles.input} ${styles.checkbox}`}
+            label="我同意根據私隱政策中所列出的原因使用我的個人資料作推廣，收取會員通訊及最新資訊用途。"
+            color="petscue-purple"
+            {...register("checkbox", { required: true })}
+          />
           <Button className={styles.button} color="violet" radius="xl" type="submit">
             <div>更新個人資料</div>
             <IconArrowNarrowRight className={styles.rightArrowIcon} />
