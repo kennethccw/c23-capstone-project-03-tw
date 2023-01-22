@@ -16,13 +16,15 @@ import AdoptionApplication from "../pages/AdoptionApplication";
 import AdoptionDetail from "../pages/AdoptionDetail";
 import Donation from "../pages/Donation";
 import Adoption from "../pages/Adoption";
+import AllActivities from "../pages/AllActivities";
+import NoticePasswordChanged from "../pages/NoticePasswordChanged";
+import Filter from "../pages/AllActivitiesFilter";
 import Organisation from "../pages/Organisation";
 import OrganisationFilterContainer from "../pages/OrganisationFilterPage";
 import OrganisationMoreDetails from "../pages/OrganisationMoreDetails";
 import AnimalNeedOurHelp from "../pages/AnimalNeedOurHelp";
 import HelpLocationFilter from "../pages/AnimalNeedOurHelpFilter";
 import AnimalHelpChatroom from "../pages/AnimalHelpChat";
-import NoticePasswordChanged from "../pages/NoticePasswordChanged";
 import Schedule from "../pages/Schedule";
 import Account from "../pages/Account";
 import EditProfile from "../pages/EditProfile";
@@ -31,6 +33,11 @@ import SearchShowResultFunction from "../pages/SearchShowResultPage";
 import OrganisationHomePageContainer from "../pages/organisation/OrganisationHomePage";
 import DashboardPicture from "../pages/organisation/OrganisationDashboard";
 import ApprovalFunction from "../pages/organisation/ControlUserPanel";
+import ActivitiesDetailPage from "../pages/ActivitiesDetailPage";
+import AllActivitiesFilter from "../pages/AllActivitiesFilter";
+import EditorsChoice from "../pages/EditorsChoice";
+import Urgent from "../pages/Urgent";
+import Popular from "../pages/Popular";
 import VolunteerRecord from "../pages/VolunteerRecord";
 import Badge from "../pages/Badge";
 import { BadgeFilterYear } from "../pages/BadgeFilterYear";
@@ -89,6 +96,13 @@ export default function MyRoutes() {
       <Route path="password/email" element={<ForgetPassword />}></Route>
       <Route path="password/reset" element={<ChangePassword />}></Route>
       <Route path="home" element={<Home />}></Route>
+      <Route path="allActivities" element={<AllActivities />}></Route>
+      <Route path="activitiesDetailPage" element={<ActivitiesDetailPage />}></Route>
+      <Route path="allActivitiesFilter" element={<AllActivitiesFilter />}></Route>
+      <Route path="editorsChoice" element={<EditorsChoice />}></Route>
+      <Route path="urgent" element={<Urgent />}></Route>
+      <Route path="popular" element={<Popular />}></Route>
+
       <Route path="/" element={<RequireAuth />}>
         <Route path="home1" element={<Home />}></Route>
       </Route>

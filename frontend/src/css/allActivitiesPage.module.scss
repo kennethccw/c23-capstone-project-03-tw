@@ -1,0 +1,144 @@
+.upperPart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100vw;
+    height: 10vh;
+    position: fixed;
+}
+
+.leftArrow {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.leftArrowIcon {
+    font-size: 10px;
+    height: 40px;
+    width: 40px;
+}
+
+.searchBarPart {
+    flex: 4;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBar {
+    width: 60vw;
+}
+
+.searchBar:hover {
+    border-color: 0 0 5pt 0.5pt #D3D3D3;
+}
+
+.searchBar:focus {
+    border-color: 0 0 5pt 0.5pt #D3D3D3;
+    outline-width: 0px;
+}
+
+.filter {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.filterIcon {
+    font-size: 10px;
+    height: 40px;
+    width: 40px;
+}
+
+.searchChance {
+    color: #0f2851;
+    font-weight: bold;
+    font-size: xx-large;
+    margin-left: 40px;
+    position: fixed;
+    top:10vh;
+    // background-color: yellowgreen;
+}
+
+
+
+
+.chanceContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15vh;
+    width: 100vw;
+    // height: 600px;
+    border-top: 1px solid #ccc ;
+    height: 65vh;
+    overflow-y: scroll;
+    // background-color: red;
+   padding-top: 40px;
+   padding-bottom: 40px;
+}
+
+.chanceInstances{
+    margin-bottom: 20px;
+    }
+
+
+.chancePhoto {
+    width: 90vw;
+    height: 30vh;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.box {
+    position: relative;
+    width: 100%;
+
+}
+
+.remainingPlace {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    width: 25vw;
+    height: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    background-color: #f1f3f5;
+    font-weight: bold;
+    box-sizing: border-box;
+    box-shadow: 1px 2.5px rgb(169, 163, 163);
+}
+
+.organisationName {
+    color: #898d9e;
+}
+
+.taskName {
+    color: #0f2851;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.address, .dateDetail {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    color: #898d9e;
+}
+
+/////////////////filter.tsx START ////////////////////////////////////////////
+
+
+
+////////////////// ActivitiesDetailPage.tsx START ///////////////////////////
