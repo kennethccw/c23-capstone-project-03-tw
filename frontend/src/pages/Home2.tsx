@@ -13,20 +13,29 @@ import { useQuery } from "react-query";
 import { homeActivityThunk } from "../redux/home/thunk";
 import { HomeActivityComponent } from "../components/HomeActivityCompoent";
 import { LoadingOverlay } from "@mantine/core";
+import { getHomeActivities } from "../api/homeAPI";
 
 export default function Home2() {
   const authLoading = useRootSelector((state) => state.auth.loading);
-  const activityArr = useRootSelector((state) => state.home.activity);
-  const homeLoading = useRootSelector((state) => state.home.loading);
-  console.log(activityArr);
-  const dispatch = useRootDispatch();
+  // const activityArr = useRootSelector((state) => state.home.activity);
+  // const homeLoading = useRootSelector((state) => state.home.loading);
+  // console.log(activityArr);
+  // const dispatch = useRootDispatch();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState(localStorage.getItem("username"));
 
-  useEffect(() => {
-    dispatch(homeActivityThunk());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(homeActivityThunk());
+  // }, [dispatch]);
+
+  const { isLoading, isError, data, error } = useQuery({
+    queryKey: ["home/activities"],
+    queryFn: getHomeActivities,
+    refetchInterval: 5_000,
+    staleTime: 10_000,
+    retry: 1,
+  });
 
   useEffect(() => {
     if (!authLoading) {
@@ -36,7 +45,7 @@ export default function Home2() {
 
   return (
     <div className={styles.containerForAll}>
-      <LoadingOverlay visible={homeLoading} overlayBlur={2} />
+      <LoadingOverlay visible={isLoading} overlayBlur={2} />
 
       <div className={styles.upperLayer}>
         <div className={styles.logoIconContainer}>
@@ -134,7 +143,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {activityArr?.map((activity) => (activity.type === "editors_choice" ? <HomeActivityComponent key={`editor-${activity.id}`} activity={activity} /> : <></>))}
+                  {data?.map((activity) => (activity.type === "editors_choice" ? <HomeActivityComponent key={`editor-${activity.id}`} activity={activity} /> : <></>))}
 
                   {/* props */}
                 </Carousel>
@@ -203,7 +212,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {activityArr?.map((activity) => (activity.type === "urgent" ? <HomeActivityComponent key={`urgent-${activity.id}`} activity={activity} /> : <></>))}
+                  {data?.map((activity) => (activity.type === "urgent" ? <HomeActivityComponent key={`urgent-${activity.id}`} activity={activity} /> : <></>))}
 
                   {/* props */}
                 </Carousel>
@@ -271,7 +280,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {activityArr?.map((activity) => (activity.type === "popular" ? <HomeActivityComponent key={`popular-${activity.id}`} activity={activity} /> : <></>))}
+                  {data?.map((activity) => (activity.type === "popular" ? <HomeActivityComponent key={`popular-${activity.id}`} activity={activity} /> : <></>))}
 
                   {/* props */}
                 </Carousel>

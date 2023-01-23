@@ -51,7 +51,7 @@ export default function Advertising() {
         )}
       </Button>
 
-      <img className={styles.imgContainer} src="photos/adv-15s.png" alt="嘉頓" />
+      <img className={styles.imgContainer} src="photos/adv-15s.png" alt="嘉頓" onClick={() => window.location.replace("http://www.garden.com.hk/cht/home")} />
     </div>
   );
 }
