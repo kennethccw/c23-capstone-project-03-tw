@@ -66,7 +66,7 @@ export default function MyRoutes() {
       <Route path="facebook-callback" element={<FacebookCallback />} />
       <Route path="google-callback" element={<GoogleLoginCallback />} />
       <Route path="/password/reset/notice" element={<NoticePasswordChanged />}></Route>
-      <Route path="/" element={<Home2 />}></Route>
+      <Route path="home" element={<Home2 />}></Route>
       {/* <Route path="home" element={<Home />}></Route> */}
       <Route path="/" element={<AdoptionDetail />}></Route>
       <Route path="/" element={<Donation />}></Route>

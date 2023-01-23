@@ -11,10 +11,12 @@ import { CiBellOn } from "react-icons/ci";
 import { HiArrowRight, HiChevronRight } from "react-icons/hi";
 import { useQuery } from "react-query";
 import { homeActivityThunk } from "../redux/home/thunk";
+import { HomeActivityComponent } from "../components/HomeActivityCompoent";
 
 export default function Home2() {
   const loading = useRootSelector((state) => state.home.loading);
   const activityArr = useRootSelector((state) => state.home.activity);
+  console.log(activityArr);
   const dispatch = useRootDispatch();
   const navigate = useNavigate();
 
@@ -68,7 +70,7 @@ export default function Home2() {
 
         <div className={styles.socialWorkRecommendContainer}>
           <div className={styles.socialRecommendBar}>
-            <div className={styles.socialWorkRecommendWord}>&nbsp;&nbsp; 社職推介</div>
+            <div className={styles.categoryTitle}>&nbsp;&nbsp; Petscue 推介</div>
             <div className={styles.chevronBarIcon}>
               <HiChevronRight />
             </div>
@@ -78,7 +80,7 @@ export default function Home2() {
             <div>
               <div className={styles.recommendInstancePart}>
                 <Carousel slideSize="70%" align={"start"} slideGap="md" controlSize={33} withControls={false} loop dragFree>
-                  <Carousel.Slide className={styles.recommendInstanceBox}>
+                  {/* <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.recommendInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -87,13 +89,13 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>Marketing義工</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
                   </Carousel.Slide>
-                  <Carousel.Slide className={styles.recommendInstanceBox}>
+                  <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.recommendInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -102,13 +104,13 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>Marketing義工</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
                   </Carousel.Slide>
-                  <Carousel.Slide className={styles.recommendInstanceBox}>
+                  <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.recommendInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -117,16 +119,18 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>Marketing義工</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
-                      {/* <div className={styles.clickForMore}>
-                        <HiArrowRight />
-                        <div className={styles.clickForMoreText}>更多</div>
-                      </div> */}
+                      
                     </div>
-                  </Carousel.Slide>
+                  </Carousel.Slide> */}
+
+                  {/* props */}
+                  {activityArr?.map((activity) => (activity.type === "editors_choice" ? <HomeActivityComponent activity={activity} /> : <></>))}
+
+                  {/* props */}
                 </Carousel>
               </div>
             </div>
@@ -135,7 +139,7 @@ export default function Home2() {
 
         <div className={styles.needHelpContainer}>
           <div className={styles.needHelpBar}>
-            <div className={styles.needHelpWord}>&nbsp;&nbsp; 急需支援</div>
+            <div className={styles.categoryTitle}>&nbsp;&nbsp; 急需支援</div>
             <div className={styles.chevronBarIcon}>
               <HiChevronRight />
             </div>
@@ -145,7 +149,7 @@ export default function Home2() {
             <div>
               <div className={styles.needHelpInstancePart}>
                 <Carousel slideSize="70%" align="start" slideGap="md" controlSize={33} withControls={false} loop dragFree>
-                  <Carousel.Slide className={styles.needHelpInstanceBox}>
+                  {/* <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.needHelpInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -154,13 +158,13 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>賣旗日</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
                   </Carousel.Slide>
-                  <Carousel.Slide className={styles.needHelpInstanceBox}>
+                  <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.needHelpInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -169,13 +173,13 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>賣旗日</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
                   </Carousel.Slide>
-                  <Carousel.Slide className={styles.needHelpInstanceBox}>
+                  <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.needHelpInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -184,13 +188,18 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>賣旗日</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
-                      {/* <HiArrowRight className={styles.clickForMore} /> */}
+                      
                     </div>
-                  </Carousel.Slide>
+                  </Carousel.Slide> */}
+
+                  {/* props */}
+                  {activityArr?.map((activity) => (activity.type === "urgent" ? <HomeActivityComponent activity={activity} /> : <></>))}
+
+                  {/* props */}
                 </Carousel>
               </div>
             </div>
@@ -199,7 +208,7 @@ export default function Home2() {
 
         <div className={styles.hotContainer}>
           <div className={styles.needHelpBar}>
-            <div className={styles.needHelpWord}>&nbsp;&nbsp; 熱門活動</div>
+            <div className={styles.categoryTitle}>&nbsp;&nbsp; 熱門活動</div>
             <div className={styles.chevronBarIcon}>
               <HiChevronRight />
             </div>
@@ -209,7 +218,7 @@ export default function Home2() {
             <div>
               <div className={styles.needHelpInstancePart}>
                 <Carousel slideSize="70%" align="start" slideGap="md" controlSize={33} loop withControls={false} dragFree>
-                  <Carousel.Slide className={styles.needHelpInstanceBox}>
+                  {/* <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.needHelpInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -218,13 +227,13 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>賣旗日</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
                   </Carousel.Slide>
-                  <Carousel.Slide className={styles.needHelpInstanceBox}>
+                  <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.needHelpInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -233,13 +242,13 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>賣旗日</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
                   </Carousel.Slide>
-                  <Carousel.Slide className={styles.needHelpInstanceBox}>
+                  <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.needHelpInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -248,12 +257,17 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>賣旗日</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
-                  </Carousel.Slide>
+                  </Carousel.Slide> */}
+
+                  {/* props */}
+                  {activityArr?.map((activity) => (activity.type === "popular" ? <HomeActivityComponent activity={activity} /> : <></>))}
+
+                  {/* props */}
                 </Carousel>
               </div>
             </div>
