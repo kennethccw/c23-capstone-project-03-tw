@@ -202,6 +202,27 @@ export class UserController {
       res.status(400).json({ message: "Internal server error" });
     }
   };
+  changePassword = async (req: Request, res: Response) => {
+    // const uid = req.session.user!.id;
+    const uid = req.user!.id;
+    // const formFields: User = req.form.fields as any;
+
+    // const { username, email, birthday, gender, is_experienced } = formFields;
+    // const photo = (req.form.files["image"] as formidable.File)?.newFilename || undefined;
+
+    // const user: User = { username, email, birthday, gender, is_experienced, photo };
+
+    const plainPassword: string = req.body.password;
+    console.log(plainPassword);
+    const password = await hashPassword(plainPassword);
+
+    try {
+      const result = await this.userService.changePassword(uid, password);
+      res.status(200).json(result);
+    } catch (e) {
+      res.status(400).json({ message: "Internal server error" });
+    }
+  };
 
   logout = async (req: Request, res: Response) => {
     req.user = undefined;

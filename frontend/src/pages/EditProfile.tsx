@@ -8,7 +8,7 @@ import styles from "../css/editProfile.module.scss";
 import NewNavbar from "../components/NewNavbar";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "react-query";
-import { getProfile, postProfile } from "../api/profileAPI";
+import { getProfile, putProfile } from "../api/profileAPI";
 import { fetchJson } from "../api/utilsAPI";
 import { useNavigate } from "react-router-dom";
 export default function EditProfile() {
@@ -116,7 +116,7 @@ export default function EditProfile() {
       return;
     }
     const profile = { username: watchUsername, email: watchEmail, mobile: watchMobile, birthday: new Date(watchBirthday), gender: gender };
-    postProfile(profile)
+    putProfile(profile)
       .then((res) => {
         const result = res.json();
         if (res.status === 200) {
@@ -191,49 +191,34 @@ export default function EditProfile() {
           </div>
         </div>
         <form className={styles.formContainer} onSubmit={submitHandler}>
-          {isCorrectFormatUsername ? (
-            <Input.Wrapper id="username" className={styles.input} label="帳戶名稱" withAsterisk>
-              <Input id="username" radius="md" size="md" placeholder="輸入帳戶名稱" type="text" {...register("username", { required: true })} />
-            </Input.Wrapper>
-          ) : (
-            <Input.Wrapper id="username" className={styles.input} label="帳戶名稱" withAsterisk>
-              <Input id="username" radius="md" size="md" placeholder="輸入帳戶名稱" type="text" {...register("username", { required: true })} invalid />
-              <div className={styles.validationAllContainer}>
-                {!(watchUsername.length <= 16 && watchUsername.length >= 6) && watchUsername !== "" && <div className={styles.validationText}>長度為6個字符至16個字符之間</div>}
-                {!regexUsername && watchUsername !== "" && <div className={styles.validationText}>只可由大、小寫字母以及數字組成</div>}
-              </div>
-            </Input.Wrapper>
-          )}
+          <Input.Wrapper id="username" className={styles.input} label="帳戶名稱" withAsterisk>
+            <Input id="username" radius="md" size="md" placeholder="輸入帳戶名稱" type="text" {...register("username", { required: true })} invalid={isCorrectFormatUsername ? undefined : true} />
+            <div className={styles.validationAllContainer}>
+              {!(watchUsername.length <= 16 && watchUsername.length >= 6) && watchUsername !== "" && <div className={styles.validationText}>長度為6個字符至16個字符之間</div>}
+              {!regexUsername && watchUsername !== "" && <div className={styles.validationText}>只可由大、小寫字母以及數字組成</div>}
+            </div>
+          </Input.Wrapper>
 
-          {isCorrectFormatEmail ? (
-            <Input.Wrapper id="email" className={styles.input} label="電子郵件" withAsterisk>
-              <Input id="email" radius="md" size="md" placeholder="輸入電子郵件" type="email" {...register("email", { required: true })} />
-            </Input.Wrapper>
-          ) : (
-            <Input.Wrapper id="email" className={styles.input} label="電子郵件" withAsterisk error="請輸入正確的電子郵件帳戶">
-              <Input id="email" radius="md" size="md" placeholder="輸入電子郵件" type="email" {...register("email", { required: true })} invalid />
-            </Input.Wrapper>
-          )}
+          <Input.Wrapper id="email" className={styles.input} label="電子郵件" withAsterisk error={isCorrectFormatEmail ? undefined : "請輸入正確的電子郵件帳戶"}>
+            <Input id="email" radius="md" size="md" placeholder="輸入電子郵件" type="email" {...register("email", { required: true })} invalid={isCorrectFormatEmail ? undefined : true} />
+          </Input.Wrapper>
 
-          {isMobileInvalid ? (
-            <Input.Wrapper id="mobile" className={styles.input} label="聯絡電話" withAsterisk error="請輸入正確的聯絡電話">
-              <Input id="mobile" radius="md" size="md" placeholder="輸入聯絡電話" type="text" {...register("mobile", { required: true })} invalid />
-            </Input.Wrapper>
-          ) : (
-            <Input.Wrapper id="mobile" className={styles.input} label="聯絡電話" withAsterisk>
-              <Input id="mobile" radius="md" size="md" placeholder="輸入聯絡電話" type="text" {...register("mobile", { required: true })} />
-            </Input.Wrapper>
-          )}
+          <Input.Wrapper id="mobile" className={styles.input} label="聯絡電話" withAsterisk error={isMobileInvalid ? "請輸入正確的聯絡電話" : undefined}>
+            <Input id="mobile" radius="md" size="md" placeholder="輸入聯絡電話" type="text" {...register("mobile", { required: true })} invalid={isMobileInvalid ? true : undefined} />
+          </Input.Wrapper>
 
-          {isBirthdayInvalid ? (
-            <Input.Wrapper id="birthday" className={styles.input} label="出生日子" required error="請輸入正確的生日日期 (格式為YYYY-MM-DD)">
-              <Input id="birthday" radius="md" size="md" component={InputMask} mask="9999-99-99" placeholder="輸入出生日子" {...register("birthday", { required: true })} invalid />
-            </Input.Wrapper>
-          ) : (
-            <Input.Wrapper id="birthday" className={styles.input} label="出生日子" required>
-              <Input id="birthday" radius="md" size="md" component={InputMask} mask="9999-99-99" placeholder="輸入出生日子" {...register("birthday", { required: true })} />
-            </Input.Wrapper>
-          )}
+          <Input.Wrapper id="birthday" className={styles.input} label="出生日子" required error={isBirthdayInvalid ? "請輸入正確的生日日期 (格式為YYYY-MM-DD)" : undefined}>
+            <Input
+              id="birthday"
+              radius="md"
+              size="md"
+              component={InputMask}
+              mask="9999-99-99"
+              placeholder="輸入出生日子"
+              {...register("birthday", { required: true })}
+              invalid={isBirthdayInvalid ? true : undefined}
+            />
+          </Input.Wrapper>
 
           <Select
             onChange={(value: Gender) => setGender(value)}

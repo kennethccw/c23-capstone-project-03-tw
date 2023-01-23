@@ -12,4 +12,5 @@ userRoutes.get("/login/google", userController.loginWithGoogle);
 userRoutes.post("/login/facebook", userController.loginWithFacebook);
 userRoutes.get("/profile", isLoggedInAPI, userController.getProfile);
 userRoutes.put("/profile", isLoggedInAPI, userController.editProfile);
+userRoutes.put("/profile/password", isLoggedInAPI, userController.changePassword);
 userRoutes.get("/logout", userController.logout);

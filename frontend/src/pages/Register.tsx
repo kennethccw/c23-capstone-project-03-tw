@@ -108,15 +108,18 @@ export default function Register() {
         {/* <LoadingOverlay visible={isLoading} overlayBlur={2} /> */}
         <h1 className={styles.header}>創建帳戶</h1>
         <form className={styles.formContainer} onSubmit={submitHandler}>
-          {isCorrectFormatUsername ? (
-            <Input.Wrapper id="username" className={styles.input} label="帳戶名稱" withAsterisk>
-              <Input id="username" radius="md" size="md" placeholder="輸入帳戶名稱" type="text" icon={<IconUser size={16} />} {...register("username", { required: true })} />
-            </Input.Wrapper>
-          ) : (
-            <Input.Wrapper id="username" className={styles.input} label="帳戶名稱" withAsterisk>
-              <Input id="username" radius="md" size="md" placeholder="輸入帳戶名稱" type="text" icon={<IconUser size={16} />} {...register("username", { required: true })} invalid />
-            </Input.Wrapper>
-          )}
+          <Input.Wrapper id="username" className={styles.input} label="帳戶名稱" withAsterisk>
+            <Input
+              id="username"
+              radius="md"
+              size="md"
+              placeholder="輸入帳戶名稱"
+              type="text"
+              icon={<IconUser size={16} />}
+              {...register("username", { required: true })}
+              invalid={isCorrectFormatUsername ? undefined : true}
+            />
+          </Input.Wrapper>
 
           <div className={styles.validationAllContainer}>
             {!(watchUsername.length <= 16 && watchUsername.length >= 6) && watchUsername !== "" && (
@@ -131,15 +134,19 @@ export default function Register() {
             )}
           </div>
 
-          {isCorrectFormatEmail ? (
-            <Input.Wrapper id="email" className={styles.input} label="電子郵件" withAsterisk>
-              <Input id="email" radius="md" size="md" placeholder="輸入電子郵件" type="email" icon={<IconMail size={16} />} {...register("email", { required: true })} />
-            </Input.Wrapper>
-          ) : (
-            <Input.Wrapper id="email" className={styles.input} label="電子郵件" withAsterisk>
-              <Input id="email" radius="md" size="md" placeholder="輸入電子郵件" type="email" icon={<IconMail size={16} />} {...register("email", { required: true })} invalid />
-            </Input.Wrapper>
-          )}
+          <Input.Wrapper id="email" className={styles.input} label="電子郵件" withAsterisk>
+            <Input
+              id="email"
+              radius="md"
+              size="md"
+              placeholder="輸入電子郵件"
+              type="email"
+              icon={<IconMail size={16} />}
+              {...register("email", { required: true })}
+              invalid={isCorrectFormatEmail ? undefined : true}
+            />
+          </Input.Wrapper>
+
           <div className={styles.validationAllContainer}>
             {!isCorrectFormatEmail && (
               <div className={styles.validationContainer}>
@@ -169,7 +176,7 @@ export default function Register() {
               label="密碼"
               icon={<IconLock size={16} />}
               {...register("password", { required: true })}
-              error
+              error={isCorrectFormatPassword ? undefined : true}
               withAsterisk
             />
           )}

@@ -20,7 +20,7 @@ export const getProfile = async () => {
   return data;
 };
 
-export const postProfile = async (profile: Profile) => {
+export const putProfile = async (profile: Profile) => {
   const res = fetch(PROFILE_API_PATH, {
     method: "PUT",
     headers: {
@@ -28,6 +28,18 @@ export const postProfile = async (profile: Profile) => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify(profile),
+  });
+  return res;
+};
+
+export const changePassword = async (password: string) => {
+  const res = fetch(`${PROFILE_API_PATH}/password`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({ password }),
   });
   return res;
 };

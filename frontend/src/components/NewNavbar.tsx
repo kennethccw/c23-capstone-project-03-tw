@@ -56,7 +56,7 @@ export default function NewNavbar(props: { activeBtn: string }) {
         )}
         {/* {chosenBtn.current === ChosenBtn.HOME ? ( */}
         {chosenBtn === ChosenBtn.HOME ? (
-          <div className={`${styles.navbarIconBackground} ${styles.navbarIconBackgroundActive}`} onClick={() => navigate("/")}>
+          <div className={`${styles.navbarIconBackground} ${styles.navbarIconBackgroundActive}`} onClick={() => navigate("/home")}>
             <HiHome className={`${styles.navbarIcon}  ${styles.navIconActive}`} />
           </div>
         ) : (
@@ -66,7 +66,7 @@ export default function NewNavbar(props: { activeBtn: string }) {
               // chosenBtn.current = ChosenBtn.HOME;
               // sessionStorage.setItem("navIcon", ChosenBtn.HOME);
               // setChosenBtn(ChosenBtn.HOME);
-              navigate("/");
+              navigate("/home");
             }}
           >
             <HiHome className={`${styles.navbarIcon} `} />

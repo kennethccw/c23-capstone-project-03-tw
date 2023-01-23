@@ -51,8 +51,9 @@ import OrganisationAdoptionApplicationResult from "../pages/Organisation/Adoptio
 export default function MyRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
+      <Route path="/" element={<Home2 />}></Route>
       <Route path="/" element={<Schedule />}></Route>
+      <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
       <Route path="/" element={<AdoptionApplicationResult />}></Route>
       <Route path="/" element={<OrganisationMoreDetails />}></Route>
       <Route path="/" element={<ApprovalFunction />}></Route>
@@ -87,7 +88,7 @@ export default function MyRoutes() {
       <Route path="/" element={<Welcome />}></Route>
       <Route path="/" element={<AdoptionDetail />}></Route>
       <Route path="/" element={<Donation />}></Route>
-      <Route path="/" element={<NoticePasswordChanged />}></Route>
+      <Route path="/password/reset/notice" element={<NoticePasswordChanged />}></Route>
       <Route path="/" element={<Advertising />}></Route>
       <Route path="introduction" element={<Introduction />}></Route>
       <Route path="login" element={<Login />}></Route>

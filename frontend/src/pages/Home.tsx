@@ -37,8 +37,7 @@ export default function Home() {
 
       <div className={styles.lowerPart}>
         <div className={styles.userName}>
-          <div className={styles.greeting}>&nbsp;Hi Jason{username} !</div>
-          <button onClick={() => logout()}>logout</button>
+          <div className={styles.greeting}>&nbsp;你好，{username}！</div>
         </div>
 
         <div className={styles.carouselPart}>
@@ -55,17 +54,13 @@ export default function Home() {
           </Carousel>
         </div>
 
-        <br></br>
-
         <div className={styles.socialWorkRecommendContainer}>
           <div className={styles.socialRecommendBar}>
-            <div className={styles.socialWorkRecommendWord}>&nbsp;&nbsp;社職推介</div>
+            <div className={styles.socialWorkRecommendWord}>&nbsp;&nbsp; 社職推介</div>
             <div className={styles.chevronBarIcon}>
               <ChevronRight />
             </div>
           </div>
-
-          <br></br>
 
           <div className={styles.recommendInstance}>
             <div>

@@ -79,4 +79,18 @@ export class UserService {
       throw e;
     }
   };
+  changePassword = async (uid: number, password: string) => {
+    try {
+      console.log("here is database");
+      const result = await this.knex(TABLES.USERS)
+        .update({ password })
+        .update("updated_at", this.knex.fn.now())
+        .where("id", uid)
+        .returning("*");
+      return result;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  };
 }
