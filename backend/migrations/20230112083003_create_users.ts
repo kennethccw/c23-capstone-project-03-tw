@@ -16,8 +16,8 @@ export async function up(knex: Knex): Promise<void> {
     table.string("password").notNullable();
     table.string("mobile").checkRegex("[0-9]{8}");
     table.date("birthday");
-    table.enum("gender", ["male", "female", "others"]).notNullable();
-    table.boolean("is_experienced").notNullable();
+    table.enum("gender", ["male", "female", "others"]);
+    table.boolean("is_experienced");
     table.timestamps(false, true);
   });
 }

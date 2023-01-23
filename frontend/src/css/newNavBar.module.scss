@@ -2,7 +2,6 @@
   font-size: 40px;
   height: 47px;
   color: #b0b2c3;
-  margin-top: 18px;
 }
 
 .searchNav {
@@ -19,10 +18,29 @@
   bottom: 0;
   justify-content: space-around;
   align-items: flex-start;
-  width: 430px;
+  width: 100vw;
   height: 99px;
   background: #ffffff;
   box-shadow: 0px -15px 40px rgba(237, 238, 251, 0.8);
   border-radius: 10px;
   flex-direction: row;
+}
+
+.navIconActive {
+  color: #585ce5;
+}
+
+.navbarIconBackground {
+  margin-top: 18px;
+  border-radius: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+}
+
+.navbarIconBackgroundActive {
+  background-color: #d0d1ff;
 }

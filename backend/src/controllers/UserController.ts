@@ -1,7 +1,7 @@
 import { UserService } from "../services/UserService";
 import { Request, Response } from "express";
-import formidable from "formidable";
-import { User } from "../utils/models";
+// import formidable from "formidable";
+import { Profile, User } from "../utils/models";
 import jwt from "../utils/jwt";
 import fetch from "cross-fetch";
 import jwtSimple from "jwt-simple";
@@ -11,37 +11,38 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   register = async (req: Request, res: Response) => {
-    const formFields: User = req.form.fields as any;
-
+    // const formFields: User = req.form.fields as any;
+    const form: User = req.body;
     const {
       username,
       email,
       password: plainPassword,
-      mobile,
-      birthday,
-      gender,
-      is_experienced,
-    } = formFields;
+      // mobile,
+      // birthday,
+      // gender,
+      // is_experienced,
+      // } = formFields;
+    } = form;
 
     const password = await hashPassword(plainPassword as string);
 
-    const photo = (req.form.files["image"] as formidable.File)?.newFilename || undefined;
+    // const photo = (req.form.files["image"] as formidable.File)?.newFilename || undefined;
     const user: User = {
       username,
       email,
       password,
-      mobile,
-      birthday,
-      gender,
-      is_experienced,
-      photo,
+      // mobile,
+      // birthday,
+      // gender,
+      // is_experienced,
+      // photo,
     };
     try {
       const result = await this.userService.register(user);
       console.log(result);
       res.status(200).json(result);
     } catch (e) {
-      res.status(400).json({ message: "Intenal Server Error" });
+      res.status(400).json({ message: "帳戶名稱或電郵地址已被採用" });
     }
   };
 
@@ -171,9 +172,12 @@ export class UserController {
 
   getProfile = async (req: Request, res: Response) => {
     // const uid = req.session.user!.id;
-    const uid = 7;
+    // const uid = 7;
+
+    const uid = req.user!.id;
     try {
       const result = await this.userService.getProfile(uid);
+      console.log(result);
       res.status(200).json(result);
     } catch (e) {
       res.status(400).json({ message: "Internal server error" });
@@ -181,17 +185,39 @@ export class UserController {
   };
   editProfile = async (req: Request, res: Response) => {
     // const uid = req.session.user!.id;
-    const uid = 7;
+    const uid = req.user!.id;
+    // const formFields: User = req.form.fields as any;
 
-    const formFields: User = req.form.fields as any;
+    // const { username, email, birthday, gender, is_experienced } = formFields;
+    // const photo = (req.form.files["image"] as formidable.File)?.newFilename || undefined;
 
-    const { username, email, birthday, gender, is_experienced } = formFields;
-    const photo = (req.form.files["image"] as formidable.File)?.newFilename || undefined;
+    // const user: User = { username, email, birthday, gender, is_experienced, photo };
 
-    const user: User = { username, email, birthday, gender, is_experienced, photo };
+    const user: Profile = req.body;
 
     try {
       const result = await this.userService.editProfile(uid, user);
+      res.status(200).json(result);
+    } catch (e) {
+      res.status(400).json({ message: "Internal server error" });
+    }
+  };
+  changePassword = async (req: Request, res: Response) => {
+    // const uid = req.session.user!.id;
+    const uid = req.user!.id;
+    // const formFields: User = req.form.fields as any;
+
+    // const { username, email, birthday, gender, is_experienced } = formFields;
+    // const photo = (req.form.files["image"] as formidable.File)?.newFilename || undefined;
+
+    // const user: User = { username, email, birthday, gender, is_experienced, photo };
+
+    const plainPassword: string = req.body.password;
+    console.log(plainPassword);
+    const password = await hashPassword(plainPassword);
+
+    try {
+      const result = await this.userService.changePassword(uid, password);
       res.status(200).json(result);
     } catch (e) {
       res.status(400).json({ message: "Internal server error" });

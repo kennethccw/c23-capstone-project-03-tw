@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import styles from "../css/changePassword.module.scss";
 import { IconLock, IconCircleX, IconArrowNarrowRight } from "@tabler/icons";
+import { changePassword } from "../api/profileAPI";
 
 export default function ChangePassword() {
   const { register, watch } = useForm({
@@ -17,6 +18,24 @@ export default function ChangePassword() {
   const regexBothCases = new RegExp("^(?=.*[a-z])(?=.*[A-Z])");
   const regexNumberAndSymbol = new RegExp("^(?=.*[0-9])(?=.*[!@#$%^&*])");
   const isCorrectFormatPassword = (!(watchPassword.length < 8) && regexBothCases.test(watchPassword) && regexNumberAndSymbol.test(watchPassword)) || watchPassword === "";
+
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!isCorrectFormatPassword || watchPassword === "") {
+      alert("請正確輸入再遞交");
+      return;
+    }
+    const password = watchPassword;
+    const res = await changePassword(password);
+    const result = await res.json();
+    if (res.status === 200) {
+      navigate("/password/reset/notice");
+      return;
+    }
+    if (res.status === 400) {
+      alert(result.message);
+    }
+  };
 
   return (
     <MantineProvider
@@ -41,7 +60,7 @@ export default function ChangePassword() {
     >
       <div className={styles.containerForAll}>
         <h1 className={styles.header}>輸入新密碼</h1>
-        <form className={styles.formContainer}>
+        <form className={styles.formContainer} onSubmit={submitHandler}>
           <div>
             {isCorrectFormatPassword ? (
               <PasswordInput
@@ -87,15 +106,7 @@ export default function ChangePassword() {
               )}
             </div>
           </div>
-          <Button
-            className={styles.button}
-            color="violet"
-            radius="xl"
-            type="submit"
-            onClick={() => {
-              navigate("/");
-            }}
-          >
+          <Button className={styles.button} color="violet" radius="xl" type="submit">
             <div>確認新密碼</div>
             <IconArrowNarrowRight className={styles.rightArrowIcon} />
           </Button>

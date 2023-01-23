@@ -63,15 +63,17 @@ export default function Login() {
       <div className={styles.loginPageContainer}>
         <h1 className={styles.header}>Petscue歡迎你！</h1>
         <form className={styles.formContainer} onSubmit={submitHandler}>
-          {watchUserIdentity.includes("@") ? (
-            <Input.Wrapper id="user-identity" className={styles.input} label="帳戶名稱 / 電子郵件">
-              <Input id="user-identity" radius="md" size="md" placeholder="輸入帳戶名稱或電子郵件" type="text" icon={<IconMail size={16} />} {...register("userIdentity", { required: true })} />
-            </Input.Wrapper>
-          ) : (
-            <Input.Wrapper id="user-identity" className={styles.input} label="帳戶名稱 / 電子郵件">
-              <Input id="user-identity" radius="md" size="md" placeholder="輸入帳戶名稱或電子郵件" type="text" icon={<IconUser size={16} />} {...register("userIdentity", { required: true })} />
-            </Input.Wrapper>
-          )}
+          <Input.Wrapper id="user-identity" className={styles.input} label="帳戶名稱 / 電子郵件">
+            <Input
+              id="user-identity"
+              radius="md"
+              size="md"
+              placeholder="輸入帳戶名稱或電子郵件"
+              type="text"
+              icon={watchUserIdentity.includes("@") ? <IconMail size={16} /> : <IconUser size={16} />}
+              {...register("userIdentity", { required: true })}
+            />
+          </Input.Wrapper>
           <PasswordInput
             className={`${styles.input} ${styles.passwordInput}`}
             radius="md"
@@ -102,8 +104,8 @@ export default function Login() {
           <span className={styles.separatorText}>或</span>
         </div>
         <div className={styles.oauthContainer}>
-          <div className={styles.oauthIcon}>
-            <div onClick={onGoogleLogin}>
+          <div className={styles.oauthIcon} onClick={onGoogleLogin}>
+            <div>
               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32" viewBox="0 0 48 48" className={styles.googleIcon}>
                 <path
                   fill="#FFC107"

@@ -96,7 +96,7 @@ export default function AdoptionApplicationResult() {
 
       <div className={styles.containerForAll}>
         <div className={styles.header}>
-          <HiXMark className={styles.closingIcon} />
+          <HiXMark className={styles.closingIcon} onClick={() => navigate(-1)} />
           <span>申請領養記錄</span>
         </div>
         <Tabs className={styles.scheduleTabContainer} color="petscue-purple">

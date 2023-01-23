@@ -7,7 +7,7 @@ export default function HelpLocationFilter() {
   return (
     <div>
       <OrganisationFilter />
-      <NewNavbar />
-  </div>
+      <NewNavbar activeBtn="bolt" />
+    </div>
   );
 }

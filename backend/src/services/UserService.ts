@@ -45,7 +45,10 @@ export class UserService {
   };
   verifyUser = async (uid: number) => {
     try {
-      const result: User = await this.knex(TABLES.USERS).select().where("id", uid).first();
+      const result: Auth = await this.knex(TABLES.USERS)
+        .select("id", "username", "email")
+        .where("id", uid)
+        .first();
       return result;
     } catch (e) {
       console.log(e);
@@ -67,6 +70,20 @@ export class UserService {
     try {
       const result = await this.knex<User>(TABLES.USERS)
         .update(user)
+        .update("updated_at", this.knex.fn.now())
+        .where("id", uid)
+        .returning("*");
+      return result;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  };
+  changePassword = async (uid: number, password: string) => {
+    try {
+      console.log("here is database");
+      const result = await this.knex(TABLES.USERS)
+        .update({ password })
         .update("updated_at", this.knex.fn.now())
         .where("id", uid)
         .returning("*");
