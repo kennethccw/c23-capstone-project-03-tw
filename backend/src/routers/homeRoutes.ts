@@ -4,3 +4,4 @@ import { homeController } from "../routes";
 export const homeRoutes = Router();
 
 homeRoutes.get("/activity", homeController.getHomeActivities);
+homeRoutes.get("/organisation", homeController.getHomeOrganisation);

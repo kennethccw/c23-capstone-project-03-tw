@@ -6,7 +6,7 @@ export async function seed(knex: Knex): Promise<void> {
   try {
     await trx("organisations").insert([
       {
-        logo: "frontend/public/photos/organisation/organisation1.png",
+        logo: "photos/organisation/organisation1.png",
         name: "香港動物群益會",
         email: "hkaca01@gmail.com",
         password: "12345678",
@@ -14,7 +14,7 @@ export async function seed(knex: Knex): Promise<void> {
         address: "香港旺角駱克道三號",
       },
       {
-        logo: "frontend/public/photos/organisation/organisation2.png",
+        logo: "photos/organisation/organisation2.png",
         name: "保護動物協會",
         email: "volunteer02@protectanimal.org.hk",
         password: "12345678",
@@ -22,7 +22,7 @@ export async function seed(knex: Knex): Promise<void> {
         address: "香港灣仔中心 (總部)",
       },
       {
-        logo: "frontend/public/photos/organisation/organisation4.png",
+        logo: "photos/organisation/organisation4.png",
         name: "保護遺棄貓狗協會",
         email: "pcd03@pcd.org.hk",
         password: "12345678",
@@ -31,7 +31,7 @@ export async function seed(knex: Knex): Promise<void> {
       },
 
       {
-        logo: "frontend/public/photos/organisation/organisation3.png",
+        logo: "photos/organisation/organisation3.png",
         name: "香港關愛庇護動物之家",
         email: "volunteer.lovepet04@gmail.com",
         password: "12345678",

@@ -47,3 +47,9 @@ export interface HomeActivity {
   end_time: Date;
   place: number;
 }
+
+export interface HomeOrganisation {
+  id: number;
+  name: string;
+  logo: string;
+}
