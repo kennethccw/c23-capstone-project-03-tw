@@ -110,7 +110,7 @@
   position: relative;
 
   width: 100vw;
-  max-height: 400px;
+  // max-height: 400px;
 }
 
 .carouselPhoto {
@@ -217,13 +217,13 @@
 // }
 .box {
   position: relative;
-  height: 400px;
+  height: 290px;
 }
 
 .recommendInstanceDetails {
   position: absolute;
   left: 10px;
-  bottom: 124px;
+  bottom: 14px;
 }
 
 .volunteerWord {
@@ -242,7 +242,7 @@
 
 .remainingPlace {
   position: absolute;
-  bottom: 190px;
+  bottom: 80px;
   left: 15px;
   width: 25vw;
   height: 3vh;

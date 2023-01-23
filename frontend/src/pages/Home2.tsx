@@ -12,26 +12,32 @@ import { HiArrowRight, HiChevronRight } from "react-icons/hi";
 import { useQuery } from "react-query";
 import { homeActivityThunk } from "../redux/home/thunk";
 import { HomeActivityComponent } from "../components/HomeActivityCompoent";
+import { LoadingOverlay } from "@mantine/core";
 
 export default function Home2() {
-  const loading = useRootSelector((state) => state.home.loading);
+  const authLoading = useRootSelector((state) => state.auth.loading);
   const activityArr = useRootSelector((state) => state.home.activity);
+  const homeLoading = useRootSelector((state) => state.home.loading);
   console.log(activityArr);
   const dispatch = useRootDispatch();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState(localStorage.getItem("username"));
+
   useEffect(() => {
     dispatch(homeActivityThunk());
   }, [dispatch]);
+
   useEffect(() => {
-    if (!loading) {
+    if (!authLoading) {
       setUsername(localStorage.getItem("username"));
     }
-  }, [loading]);
+  }, [authLoading]);
 
   return (
     <div className={styles.containerForAll}>
+      <LoadingOverlay visible={homeLoading} overlayBlur={2} />
+
       <div className={styles.upperLayer}>
         <div className={styles.logoIconContainer}>
           <img src="photos/logo_pic-09-09.png" className={styles.logoIcon}></img>
@@ -128,7 +134,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {activityArr?.map((activity) => (activity.type === "editors_choice" ? <HomeActivityComponent activity={activity} /> : <></>))}
+                  {activityArr?.map((activity) => (activity.type === "editors_choice" ? <HomeActivityComponent key={`editor-${activity.id}`} activity={activity} /> : <></>))}
 
                   {/* props */}
                 </Carousel>
@@ -197,7 +203,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {activityArr?.map((activity) => (activity.type === "urgent" ? <HomeActivityComponent activity={activity} /> : <></>))}
+                  {activityArr?.map((activity) => (activity.type === "urgent" ? <HomeActivityComponent key={`urgent-${activity.id}`} activity={activity} /> : <></>))}
 
                   {/* props */}
                 </Carousel>
@@ -265,7 +271,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {activityArr?.map((activity) => (activity.type === "popular" ? <HomeActivityComponent activity={activity} /> : <></>))}
+                  {activityArr?.map((activity) => (activity.type === "popular" ? <HomeActivityComponent key={`popular-${activity.id}`} activity={activity} /> : <></>))}
 
                   {/* props */}
                 </Carousel>
@@ -274,23 +280,23 @@ export default function Home2() {
           </div>
         </div>
 
-        <div>
+        <div onClick={() => navigate("/advertiser")}>
           <img src="photos/advertising-04.png" className={styles.banner}></img>
         </div>
 
-        <div>
+        <div onClick={() => navigate("/adoption/detail")}>
           <img src="photos/adoption-03.png" className={styles.banner}></img>
         </div>
 
-        <div>
+        <div onClick={() => navigate("/donation")}>
           <img src="photos/donation-05.png" className={styles.banner}></img>
         </div>
 
-        <div>
+        <div onClick={() => navigate("/adoption")}>
           <img src="photos/apply-to-adopt-06.png" className={styles.banner}></img>
         </div>
 
-        <div className={styles.allOrganisationsContainer}>
+        <div className={styles.allOrganisationsContainer} onClick={() => navigate("/organisation")}>
           <div className={styles.allOrganisations}>
             <Building className={styles.buildingIcon} />
             所有機構

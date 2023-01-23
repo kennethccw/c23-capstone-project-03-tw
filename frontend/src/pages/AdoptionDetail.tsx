@@ -1,10 +1,12 @@
 import styles from "../css/adoptionDetail.module.scss";
 import { IoIosArrowBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 export default function AdoptionDetail() {
+  const navigate = useNavigate();
   return (
     <div>
-      <IoIosArrowBack className={styles.navigateBackButton} />
+      <IoIosArrowBack className={styles.navigateBackButton} onClick={() => navigate(-1)} />
       <div className={styles.adoptionDetailHeaderContainer}>
         <img className={styles.adoptionDetailHeaderImg} src="/photos/logo_pic-09-09.png" alt="" />
         <h1>申請領養動物程序</h1>

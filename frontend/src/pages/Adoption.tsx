@@ -4,6 +4,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import styles from "../css/adoption.module.scss";
 import { useState } from "react";
 import { IconArrowNarrowRight } from "@tabler/icons";
+import { useNavigate } from "react-router-dom";
 
 export default function Adoption() {
   const { register, watch } = useForm({
@@ -14,6 +15,8 @@ export default function Adoption() {
       remark: "",
     },
   });
+
+  const navigate = useNavigate();
 
   return (
     <MantineProvider
@@ -42,7 +45,7 @@ export default function Adoption() {
       }}
     >
       <div>
-        <IoIosArrowBack className={styles.navigateBackButton} />
+        <IoIosArrowBack className={styles.navigateBackButton} onClick={() => navigate(-1)} />
         <div className={styles.adoptionDetailHeaderContainer}>
           <h1>領養申請</h1>
         </div>
@@ -59,7 +62,7 @@ export default function Adoption() {
           </Input.Wrapper>
 
           <Textarea label="留言內容" withAsterisk autosize minRows={3} maxRows={7} {...register("remark", { required: false })} />
-          <Button className={`${styles.button} ${styles.adoptionConfirmBtn}`} color="violet" radius="xl" type="submit">
+          <Button className={`${styles.button} ${styles.adoptionConfirmBtn}`} color="violet" radius="xl" type="submit" onClick={() => navigate("/application")}>
             <div>確認遞交申請</div>
             <IconArrowNarrowRight className={styles.rightArrowIcon} />
           </Button>

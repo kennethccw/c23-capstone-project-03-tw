@@ -68,9 +68,9 @@ export default function MyRoutes() {
       <Route path="/password/reset/notice" element={<NoticePasswordChanged />}></Route>
       <Route path="home" element={<Home2 />}></Route>
       {/* <Route path="home" element={<Home />}></Route> */}
-      <Route path="/" element={<AdoptionDetail />}></Route>
-      <Route path="/" element={<Donation />}></Route>
-      <Route path="/" element={<Advertising />}></Route>
+      <Route path="adoption/detail" element={<AdoptionDetail />}></Route>
+      <Route path="donation" element={<Donation />}></Route>
+      <Route path="advertiser" element={<Advertising />}></Route>
       <Route path="/" element={<Schedule />}></Route>
       <Route path="register" element={<Register />}></Route>
       <Route path="password/email" element={<ForgetPassword />}></Route>
@@ -83,9 +83,9 @@ export default function MyRoutes() {
       <Route path="urgent" element={<Urgent />}></Route>
       <Route path="popular" element={<Popular />}></Route>
 
-      <Route path="/" element={<Adoption />}></Route>
+      <Route path="adoption" element={<Adoption />}></Route>
       <Route path="result" element={<AdoptionApplicationResult />}></Route>
-      <Route path="/" element={<AdoptionApplication />}></Route>
+      <Route path="application" element={<AdoptionApplication />}></Route>
 
       <Route path="/" element={<SearchShowResultFunction />}></Route>
       <Route path="/" element={<SearchResultFuction />}></Route>
@@ -105,7 +105,7 @@ export default function MyRoutes() {
       <Route path="badge" element={<Badge />}></Route>
 
       <Route path="/" element={<OrganisationMoreDetails />}></Route>
-      <Route path="/" element={<Organisation />}></Route>
+      <Route path="organisation" element={<Organisation />}></Route>
       <Route path="/" element={<OrganisationFilterContainer />}></Route>
       <Route path="record" element={<VolunteerRecord />}></Route>
       {/* User */}
