@@ -71,7 +71,7 @@ export default function MyRoutes() {
       <Route path="adoption/detail" element={<AdoptionDetail />}></Route>
       <Route path="donation" element={<Donation />}></Route>
       <Route path="advertiser" element={<Advertising />}></Route>
-      <Route path="/" element={<Schedule />}></Route>
+      <Route path="schedule" element={<Schedule />}></Route>
       <Route path="register" element={<Register />}></Route>
       <Route path="password/email" element={<ForgetPassword />}></Route>
       <Route path="password/reset" element={<ChangePassword />}></Route>
@@ -91,7 +91,7 @@ export default function MyRoutes() {
       <Route path="/" element={<SearchResultFuction />}></Route>
 
       <Route path="/" element={<AnimalHelpFunction />}></Route>
-      <Route path="/" element={<AnimalNeedOurHelp />}></Route>
+      <Route path="help" element={<AnimalNeedOurHelp />}></Route>
       <Route path="/" element={<HelpLocationFilter />}></Route>
       <Route path="/" element={<AnimalHelpChatroom />}></Route>
 

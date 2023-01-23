@@ -10,7 +10,7 @@ export interface Profile {
 }
 
 export const getProfile = async () => {
-  const data = fetchJson<Profile>(PROFILE_API_PATH, {
+  const data = await fetchJson<Profile>(PROFILE_API_PATH, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export const getProfile = async () => {
 };
 
 export const putProfile = async (profile: Profile) => {
-  const res = fetch(PROFILE_API_PATH, {
+  const res = await fetch(PROFILE_API_PATH, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export const putProfile = async (profile: Profile) => {
 };
 
 export const changePassword = async (password: string) => {
-  const res = fetch(`${PROFILE_API_PATH}/password`, {
+  const res = await fetch(`${PROFILE_API_PATH}/password`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

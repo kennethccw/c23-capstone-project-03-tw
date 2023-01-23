@@ -1,4 +1,4 @@
-import { ActivityState, JWTPayload } from "./state";
+import { ActivityState } from "./state";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode";
 import { homeActivityThunk } from "./thunk";

@@ -3,9 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { OrganisationContainer } from "../components/OrganisationElement";
 import { HiChevronLeft, HiOutlineAdjustments } from "react-icons/hi";
 import NewNavbar from "../components/NewNavbar";
+import { useQuery } from "react-query";
+import { getHomeOrganisation } from "../api/homeAPI";
 
 export default function AnimalNeedOurHelp() {
   const navigate = useNavigate();
+  const { isLoading, isError, data, error } = useQuery({
+    queryKey: ["organisation"],
+    queryFn: getHomeOrganisation,
+    refetchInterval: 5_000,
+    staleTime: 10_000,
+    retry: 1,
+  });
   return (
     <div>
       <div>
@@ -17,10 +26,9 @@ export default function AnimalNeedOurHelp() {
         <hr className={styles.lineTab}></hr>
       </div>
       <div className={styles.boxContainer}>
-        <OrganisationContainer />
-        <OrganisationContainer />
-        <OrganisationContainer />
-        <OrganisationContainer />
+        {data?.map((organisation) => (
+          <OrganisationContainer key={organisation.id} organisation={organisation} />
+        ))}
       </div>
 
       <NewNavbar activeBtn="bolt" />

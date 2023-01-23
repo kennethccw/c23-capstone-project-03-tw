@@ -51,7 +51,7 @@ export default function Donation() {
           <h1>捐款樂</h1>
         </div>
         <hr className={styles.donationHr} />
-        <form>
+        <form className={styles.containerForAll}>
           <Input.Wrapper id="full-name" className={styles.input} label="捐款人全名" withAsterisk>
             <Input id="full-name" radius="md" size="md" type="text" {...register("fullName", { required: true })} />
           </Input.Wrapper>

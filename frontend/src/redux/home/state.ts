@@ -3,10 +3,6 @@ export interface ActivityState {
   activity?: HomeActivity[];
   message?: string;
 }
-export type JWTPayload = {
-  id: number;
-  username: string;
-};
 
 export interface HomeActivity {
   id: number;

@@ -48,7 +48,7 @@ export default function NewNavbar(props: { activeBtn: string }) {
               // chosenBtn.current = ChosenBtn.BOLT;
               // sessionStorage.setItem("navIcon", ChosenBtn.BOLT);
               // setChosenBtn(ChosenBtn.BOLT);
-              navigate("/");
+              navigate("/help");
             }}
           >
             <HiLightningBolt className={`${styles.navbarIcon} `} />
@@ -84,7 +84,7 @@ export default function NewNavbar(props: { activeBtn: string }) {
               // chosenBtn.current = ChosenBtn.CLIPBOARD;
               // sessionStorage.setItem("navIcon", ChosenBtn.CLIPBOARD);
               // setChosenBtn(ChosenBtn.CLIPBOARD);
-              navigate("/");
+              navigate("/schedule");
             }}
           >
             <HiClipboardList className={`${styles.navbarIcon} `} />
