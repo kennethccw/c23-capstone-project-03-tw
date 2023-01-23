@@ -50,15 +50,21 @@ export default function ApprovalFunction() {
           <HiChevronLeft className={styles.chevronIcon} />
         </div>
 
+        <div className={styles.headerContainer}>
+          <span className={styles.organisationTab}>義工報名批核</span>
+        </div>
+
         <Tabs defaultValue="基本資料" color="ocean" className={styles.tabList}>
-          <Tabs.List>
+          <Tabs.List grow>
             <Tabs.Tab value="已批核">已批核</Tabs.Tab>
             <Tabs.Tab value="處理中">處理中</Tabs.Tab>
           </Tabs.List>
         </Tabs>
 
+
         <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
-    
+        <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
+
       </div>
     </MantineProvider>
   );

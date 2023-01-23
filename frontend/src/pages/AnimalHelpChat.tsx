@@ -1,6 +1,6 @@
 import styles from "../css/animalHelpChat.module.scss";
 import { useNavigate } from "react-router-dom";
-import { HiChevronLeft, HiOutlinePhotograph } from "react-icons/hi";
+import { HiChevronLeft, HiOutlinePhotograph, } from "react-icons/hi";
 import { MantineProvider, Button, TextInput } from "@mantine/core";
 import { IconCamera, IconSend } from "@tabler/icons";
 

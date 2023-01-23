@@ -1,6 +1,6 @@
 .chevronAndAdjustmntIcon {
   color: #b0b2c3;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   display: flex;
   width: 430px;
@@ -19,7 +19,25 @@
 .chevronIcon {
   margin-left: 30px;
   font-size: 38px;
+}
+.chevronIconTab {
+  // margin-right: -130px;
+  margin-left: 30px;
+  font-size: 38px;
+}
 
+.chevronIconContainer {
+  color: #b0b2c3;
+  justify-content: start;
+  align-items: center;
+  display: flex;
+  width: 100vw;
+  height: 105px;
+  top:0;
+  left: 0;
+  // margin-top: 20px;
+  background-color: #FFFFFF;
+  position:fixed;
 }
 
 .dateTab {
@@ -118,4 +136,36 @@
 }
 .textInputIconRight {
   margin-left: 10px;
+}
+
+
+.taskContanier {
+  margin-top: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border-radius: 10px 10px 0 0;
+  background: #F6F6F6;
+  width: 72vw;
+  height: 70px;
+}
+
+.taskTab {
+  font-weight: 400;
+  text-align: center;
+  margin-left: 4vw;
+}
+.statusContainer {
+  margin-top: 0px;
+  background: #A7A0ED;
+  border-radius: 0px 0px 10px 10px;
+  width: 72vw;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+.statusTab {
+font-weight: 400;
+margin-left: 4vw;
 }

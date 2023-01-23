@@ -13,6 +13,7 @@ import Home2 from "../pages/Home2";
 import Advertising from "../pages/Advertising";
 import AdoptionApplication from "../pages/AdoptionApplication";
 
+import HelpLocationFilter from "../pages/AnimalNeedOurHelpFilter";
 import AdoptionDetail from "../pages/AdoptionDetail";
 import Donation from "../pages/Donation";
 import Adoption from "../pages/Adoption";
@@ -23,14 +24,12 @@ import Organisation from "../pages/Organisation";
 import OrganisationFilterContainer from "../pages/OrganisationFilterPage";
 import OrganisationMoreDetails from "../pages/OrganisationMoreDetails";
 import AnimalNeedOurHelp from "../pages/AnimalNeedOurHelp";
-import HelpLocationFilter from "../pages/AnimalNeedOurHelpFilter";
 import AnimalHelpChatroom from "../pages/AnimalHelpChat";
 import Schedule from "../pages/Schedule";
 import Account from "../pages/Account";
 import EditProfile from "../pages/EditProfile";
 import SearchResultFuction from "../pages/SearchResult";
 import SearchShowResultFunction from "../pages/SearchShowResultPage";
-import OrganisationHomePageContainer from "../pages/Organisation/OrganisationHomePage";
 import DashboardPicture from "../pages/Organisation/OrganisationDashboard";
 import ApprovalFunction from "../pages/Organisation/ControlUserPanel";
 import ActivitiesDetailPage from "../pages/ActivitiesDetailPage";
@@ -46,11 +45,46 @@ import AdoptionApplicationResult from "../pages/AdoptionApplicationResult";
 import PrivacyAndSecurity from "../pages/PrivacyAndSecurity";
 import DeleteAccount from "../pages/DeleteAccount";
 import DeletedMessage from "../pages/DeletedMessage";
+import ApproveApplication from "../pages/Organisation/OrganisationApproveApplication";
+import ApprovedResult from "../pages/Organisation/ApprovedResult";
+import AnimalHelpFunction from "../pages/Organisation/AnimalSupportChat";
+import AnimalHelpToDoListfrom from "../pages/Organisation/AnimalSupportPanel";
+import OrganisationHomePageContainer from "../pages/Organisation/OrganisationHomePage";
+import AdminHomePageContainer from "../pages/Admins/AdminHomePage";
+import AdminsDashboardPicture from "../pages/Admins/AdminsDashboard";
+import AdminsHelpToDoListfrom from "../pages/Admins/AdminControlUserPanel";
+import ItHelpFunction from "../pages/Admins/AdminItSupportChat";
 import OrganisationAdoptionApplicationResult from "../pages/Organisation/AdoptionApplicationResult";
 
 export default function MyRoutes() {
   return (
     <Routes>
+
+
+
+      {/* User */}
+      <Route path="/" element={<AdoptionApplicationResult />}></Route>
+      <Route path="/" element={<AdoptionApplication />}></Route>
+      {/* User */}
+
+      {/* Admin */}
+      <Route path="/" element={<AdminHomePageContainer />}></Route>
+      <Route path="/" element={<AdminsDashboardPicture />}></Route>
+      <Route path="/" element={<AdminsHelpToDoListfrom />}></Route>
+      <Route path="/" element={<ItHelpFunction />}></Route>
+      {/* Admin */}
+
+      {/* Organisation  */}
+      <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
+      {/* Organisation  */}
+
+      <Route path="/" element={<AnimalHelpToDoListfrom />}></Route>
+      <Route path="/" element={<AnimalHelpFunction />}></Route>
+      <Route path="/" element={<ApprovedResult />}></Route>
+      <Route path="/" element={<ApproveApplication />}></Route>
+      <Route path="/" element={<ApprovalFunction />}></Route>
+      <Route path="/" element={<OrganisationMoreDetails/>}></Route>
+      <Route path="/" element={<Schedule />}></Route>
       <Route path="/" element={<Home2 />}></Route>
       <Route path="/" element={<Schedule />}></Route>
       <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
@@ -64,7 +98,6 @@ export default function MyRoutes() {
       <Route path="/" element={<SearchShowResultFunction />}></Route>
       <Route path="/" element={<SearchResultFuction />}></Route>
       <Route path="/" element={<AnimalHelpChatroom />}></Route>
-      {/* <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route> */}
       <Route path="/" element={<DeletedMessage />}></Route>
       <Route path="/" element={<DeleteAccount />}></Route>
 

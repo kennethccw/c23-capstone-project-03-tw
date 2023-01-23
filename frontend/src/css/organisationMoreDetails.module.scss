@@ -35,6 +35,7 @@
 .tabList {
   width: 100vw;
   font-size: 18px;
+  margin-bottom: 10px;
 }
 .tabList div {
   font-size: 18px;
@@ -55,6 +56,11 @@
   height: 110px;
   flex-direction: row;
   margin-bottom: 12px;
+}
+
+.OrganisationName {
+  color: #898D9E;
+  font-weight: 400;
 }
 
 .organisationName {
@@ -127,3 +133,109 @@
   display: flex;
   justify-content: center;
 }
+
+
+.organisationTab {
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0.002em;
+  margin-left: 40px;
+  width: 390px;
+}
+
+.headerContainer {
+  margin-bottom: 10px;
+}
+
+
+.activityName {
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 12px;
+}
+
+.activtyContainer {
+  margin-top: 40px;
+  margin-left: 50px;
+}
+
+
+.locationContanier {
+  font-weight: 400;
+font-size: 16px;
+display: flex;
+margin-top: 12px;
+}
+.DateContainer {
+  font-weight: 400;
+font-size: 16px;
+display: flex;
+margin-top: 12px;
+}
+
+.locationName {
+  margin-left: 15px;
+  color: #898D9E;
+}
+.DateTab {
+  margin-left: 15px;
+  color: #898D9E;
+}
+
+.locationIcon {
+  color: #898D9E;
+  font-size: 19px;
+}
+.dateIcon {
+  color: #898D9E;
+  font-size: 19px;
+}
+
+.lineStyle {
+  width: 350px;
+  border: 1px solid #E5E6EE;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.memberName {
+  font-weight: 700;
+  font-size: 18px;
+}
+.nameTab {
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+
+.NameAndApprovalContainer {
+  display: flex;
+  justify-content: start;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
+.approveContainer {
+  font-weight: 700;
+  display: flex;
+  justify-content: end;
+  margin-right: 5px;
+}
+
+.addressList {
+  font-weight: 700;
+  margin-left: 5px;
+}
+.approveTab {
+  font-weight: 700;
+  margin-left: 80px;
+  font-size: 18px;
+}
+
+
+.approvedResult {
+  font-weight: 700;
+  margin-left:50px;
+  font-size: 18px;
+}
+
