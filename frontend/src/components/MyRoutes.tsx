@@ -59,9 +59,6 @@ import OrganisationAdoptionApplicationResult from "../pages/Organisation/Adoptio
 export default function MyRoutes() {
   return (
     <Routes>
-
-
-
       {/* User */}
       <Route path="/" element={<AdoptionApplicationResult />}></Route>
       <Route path="/" element={<AdoptionApplication />}></Route>
@@ -78,14 +75,14 @@ export default function MyRoutes() {
       <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
       {/* Organisation  */}
 
+      <Route path="/" element={<Home2 />}></Route>
       <Route path="/" element={<AnimalHelpToDoListfrom />}></Route>
       <Route path="/" element={<AnimalHelpFunction />}></Route>
       <Route path="/" element={<ApprovedResult />}></Route>
       <Route path="/" element={<ApproveApplication />}></Route>
       <Route path="/" element={<ApprovalFunction />}></Route>
-      <Route path="/" element={<OrganisationMoreDetails/>}></Route>
+      <Route path="/" element={<OrganisationMoreDetails />}></Route>
       <Route path="/" element={<Schedule />}></Route>
-      <Route path="/" element={<Home2 />}></Route>
       <Route path="/" element={<Schedule />}></Route>
       <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
       <Route path="/" element={<AdoptionApplicationResult />}></Route>

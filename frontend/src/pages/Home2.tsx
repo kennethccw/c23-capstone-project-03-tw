@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRootSelector } from "../redux/store";
+import { useRootDispatch, useRootSelector } from "../redux/store";
 import { NavBarUtilis } from "../components/NavBarUtilis";
 import styles from "../css/home2.module.scss";
 import { Bell, ChevronRight, Person, Calendar4, Building } from "react-bootstrap-icons";
@@ -10,13 +10,18 @@ import { BiBell } from "react-icons/bi";
 import { CiBellOn } from "react-icons/ci";
 import { HiArrowRight, HiChevronRight } from "react-icons/hi";
 import { useQuery } from "react-query";
-import { getEditorChoice } from "../api/homeAPI";
+import { homeActivityThunk } from "../redux/home/thunk";
 
 export default function Home2() {
-  const loading = useRootSelector((state) => state.auth.loading);
+  const loading = useRootSelector((state) => state.home.loading);
+  const activityArr = useRootSelector((state) => state.home.activity);
+  const dispatch = useRootDispatch();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState(localStorage.getItem("username"));
+  useEffect(() => {
+    dispatch(homeActivityThunk());
+  }, [dispatch]);
   useEffect(() => {
     if (!loading) {
       setUsername(localStorage.getItem("username"));
