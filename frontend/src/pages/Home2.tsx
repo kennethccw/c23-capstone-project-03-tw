@@ -9,23 +9,19 @@ import NewNavbar from "../components/NewNavbar";
 import { BiBell } from "react-icons/bi";
 import { CiBellOn } from "react-icons/ci";
 import { HiArrowRight, HiChevronRight } from "react-icons/hi";
+import { useQuery } from "react-query";
+import { getEditorChoice } from "../api/homeAPI";
 
 export default function Home2() {
-  const loading = useRootSelector((state: { auth: { loading: any } }) => state.auth.loading);
+  const loading = useRootSelector((state) => state.auth.loading);
   const navigate = useNavigate();
-  const logout = () => {
-    console.log("logout");
-    localStorage.clear();
-    navigate("/");
-  };
+
   const [username, setUsername] = useState(localStorage.getItem("username"));
   useEffect(() => {
     if (!loading) {
       setUsername(localStorage.getItem("username"));
     }
   }, [loading]);
-
-  const NavBar = NavBarUtilis();
 
   return (
     <div className={styles.containerForAll}>
