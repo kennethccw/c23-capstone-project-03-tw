@@ -37,3 +37,19 @@ export interface Profile {
   birthday: Date;
   gender: Gender;
 }
+
+export interface Activity {
+  name: string;
+  type: string;
+  image: string;
+  description: string;
+  date: Date;
+  start_time: Date;
+  end_time: Date;
+  requirement: string;
+  district: string;
+  location: string;
+  place: number;
+  fee: number;
+  organisation: string;
+}

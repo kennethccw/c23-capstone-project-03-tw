@@ -60,10 +60,7 @@ export default function Home2() {
               <img src="photos/carousel-02.png" className={styles.carouselPhoto}></img>
             </Carousel.Slide>
             <Carousel.Slide>
-              <img src="photos/寵物美容義工.jpeg" className={styles.carouselPhoto}></img>
-            </Carousel.Slide>
-            <Carousel.Slide>
-              <img src="photos/義工活動.jpeg" className={styles.carouselPhoto}></img>
+              <img src="photos/carousel-01.png" className={styles.carouselPhoto}></img>
             </Carousel.Slide>
           </Carousel>
         </div>
