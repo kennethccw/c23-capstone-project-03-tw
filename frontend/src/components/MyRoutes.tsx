@@ -104,8 +104,10 @@ export default function MyRoutes() {
       <Route path="/" element={<BadgeFilterYear />}></Route>
       <Route path="badge" element={<Badge />}></Route>
 
-      <Route path="/" element={<OrganisationMoreDetails />}></Route>
-      <Route path="organisation" element={<Organisation />}></Route>
+      <Route path="organisation" element={<Organisation />}>
+        <Route path="detail" element={<OrganisationMoreDetails />}></Route>
+      </Route>
+      {/* <Route path="organisation" element={<Organisation />}></Route> */}
       <Route path="/" element={<OrganisationFilterContainer />}></Route>
       <Route path="record" element={<VolunteerRecord />}></Route>
       {/* User */}

@@ -4,13 +4,13 @@ import { OrganisationContainer } from "../components/OrganisationElement";
 import { HiChevronLeft, HiOutlineAdjustments } from "react-icons/hi";
 import NewNavbar from "../components/NewNavbar";
 import { useQuery } from "react-query";
-import { getHomeOrganisation } from "../api/homeAPI";
+import { getOrganisationList } from "../api/organisationAPI";
 
 export default function AnimalNeedOurHelp() {
   const navigate = useNavigate();
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["organisation"],
-    queryFn: getHomeOrganisation,
+    queryFn: getOrganisationList,
     refetchInterval: 5_000,
     staleTime: 10_000,
     retry: 1,
@@ -27,7 +27,7 @@ export default function AnimalNeedOurHelp() {
       </div>
       <div className={styles.boxContainer}>
         {data?.map((organisation) => (
-          <OrganisationContainer key={organisation.id} organisation={organisation} />
+          <OrganisationContainer key={organisation.id} organisation={organisation} page="animalNeedHelp" />
         ))}
       </div>
 

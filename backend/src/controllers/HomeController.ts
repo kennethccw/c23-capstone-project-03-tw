@@ -12,12 +12,4 @@ export class HomeController {
       res.status(400).json({ message: "Internal Server Error" });
     }
   };
-  getHomeOrganisation = async (req: Request, res: Response) => {
-    try {
-      const data = await this.homeService.getHomeOrganisation();
-      res.status(200).json(data);
-    } catch (e) {
-      res.status(400).json({ message: "Internal Server Error" });
-    }
-  };
 }

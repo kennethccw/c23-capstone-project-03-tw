@@ -48,8 +48,17 @@ export interface HomeActivity {
   place: number;
 }
 
-export interface HomeOrganisation {
+export interface OrganisationList {
   id: number;
   name: string;
   logo: string;
+}
+
+export interface OrganisationDetail {
+  id: number;
+  logo: string;
+  name: string;
+  email: string;
+  mobile: string;
+  address: string;
 }
