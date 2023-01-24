@@ -25,7 +25,8 @@ export const getOrganisationList = async () => {
   });
   return data;
 };
-export const getOrganisationDetail = async (id: number) => {
+export const getOrganisationDetail = async (id: string) => {
+  console.log("hihi");
   const data = await fetchJson<OrganisationDetail>(`${ORGANISATION_API_PATH}/detail?id=${id}`, {
     method: "GET",
     headers: {

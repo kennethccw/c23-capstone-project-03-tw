@@ -10,9 +10,8 @@ import { getOrganisationDetail } from "../api/organisationAPI";
 export default function OrganisationMoreDetails() {
   const navigate = useNavigate();
   const params = new URLSearchParams(document.location.search);
-  const id: number = parseInt(params.get("id")!);
-  const getOrganisationDetailNoParam = () => {
-    const res = getOrganisationDetail(id);
+  const getOrganisationDetailNoParam = async () => {
+    const res = await getOrganisationDetail(params.get("id")!);
     return res;
   };
 

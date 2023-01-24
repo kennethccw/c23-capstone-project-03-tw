@@ -30,7 +30,7 @@ export default function NewNavbar(props: { activeBtn: string }) {
               // chosenBtn.current = ChosenBtn.SEARCH;
               // sessionStorage.setItem("navIcon", ChosenBtn.SEARCH);
               // setChosenBtn(ChosenBtn.SEARCH);
-              navigate("/");
+              navigate("/search");
             }}
           >
             <HiSearchCircle className={`${styles.navbarIcon} ${styles.searchNav}`} />

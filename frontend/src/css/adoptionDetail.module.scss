@@ -1,6 +1,10 @@
+.containerForAll {
+  width: 100vw;
+}
+
 .navigateBackButton {
   color: #cccccc;
-  margin-left: -12px;
+  margin-left: 36px;
   font-size: 32px;
   margin-top: 32px;
   cursor: pointer;
@@ -23,13 +27,20 @@
   transform: rotate(0.15deg);
 }
 
+.adoptionAllContianer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .adoptionTextContainer {
   width: 282px;
+  margin-top: 36px;
   position: relative;
   padding: 4px 28px 12px 40px;
   color: #ffffff;
   border-radius: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 12px;
   background: linear-gradient(90deg, #255fa7 0%, #255798 46.87%, #1c3967 100%);
 }
 

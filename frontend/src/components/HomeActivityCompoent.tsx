@@ -1,5 +1,6 @@
 import { Carousel } from "@mantine/carousel";
 import { Calendar4, Person } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 import styles from "../css/home2.module.scss";
 import { HomeActivity } from "../redux/home";
 
@@ -10,10 +11,11 @@ export function HomeActivityComponent(props: { activity: HomeActivity }) {
   const endTime = new Date(props.activity.end_time);
   const endMonth = endTime.getMonth() + 1;
   const endDate = endTime.getDate();
+  const navigate = useNavigate();
   return (
     <>
       <Carousel.Slide className={styles.carouselSlide}>
-        <div className={styles.box}>
+        <div className={styles.box} onClick={() => navigate(`/activity/detail?id=${props.activity.id}`)}>
           <img src={props.activity.image} className={styles.recommendInstancePhoto}></img>
           <div className={styles.remainingPlace}>
             <Person /> 剩餘名額 <span>{props.activity.place}</span>

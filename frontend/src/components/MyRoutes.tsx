@@ -77,7 +77,7 @@ export default function MyRoutes() {
       <Route path="password/reset" element={<ChangePassword />}></Route>
 
       <Route path="allActivities" element={<AllActivities />}></Route>
-      <Route path="activitiesDetailPage" element={<ActivitiesDetailPage />}></Route>
+      <Route path="activity/detail" element={<ActivitiesDetailPage />}></Route>
       <Route path="allActivitiesFilter" element={<AllActivitiesFilter />}></Route>
       <Route path="editorsChoice" element={<EditorsChoice />}></Route>
       <Route path="urgent" element={<Urgent />}></Route>
@@ -87,7 +87,7 @@ export default function MyRoutes() {
       <Route path="result" element={<AdoptionApplicationResult />}></Route>
       <Route path="application" element={<AdoptionApplication />}></Route>
 
-      <Route path="/" element={<SearchShowResultFunction />}></Route>
+      <Route path="search" element={<SearchShowResultFunction />}></Route>
       <Route path="/" element={<SearchResultFuction />}></Route>
 
       <Route path="/" element={<AnimalHelpFunction />}></Route>
