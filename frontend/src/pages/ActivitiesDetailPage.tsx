@@ -145,7 +145,7 @@ export default function ActivitiesDetailPage() {
                 <div className={detailStyles.taskName}>{data?.data.name}</div>
                 <div className={detailStyles.address}>
                   <GeoAlt />
-                  &nbsp;&nbsp;&nbsp; {convertEnumToDistrict(data?.data.district!)}
+                  &nbsp;&nbsp; {convertEnumToDistrict(data?.data.district!)}
                 </div>
                 <div className={detailStyles.dateDetail}>
                   <Calendar4 />
@@ -165,11 +165,11 @@ export default function ActivitiesDetailPage() {
                 <div className={detailStyles.sameDetail}>此環節必須出席全部時段</div>
                 <div className={detailStyles.where}>{convertEnumToDistrict(data?.data.district!)}</div>
                 <div className={detailStyles.sameDetail}>
-                  <GeoAlt /> &nbsp;{data?.data.location}
+                  <GeoAlt className={detailStyles.scheduleIcon} /> &nbsp;{data?.data.location}
                 </div>
                 <div className={detailStyles.sameDetail}>
-                  <Calendar4 /> &nbsp;<span>{data?.startYear}</span>年<span>{data?.startMonth}</span>月<span>{data?.startDate}</span>日&nbsp;（
-                  <span>{convertNumberToDay(data?.startDay!)}</span>）&nbsp;{" "}
+                  <Calendar4 className={detailStyles.scheduleIcon} /> &nbsp;<span>{data?.startYear}</span>年<span>{data?.startMonth}</span>月<span>{data?.startDate}</span>日（
+                  <span>{convertNumberToDay(data?.startDay!)}</span>）
                   <span>
                     {data?.startHr}:{data?.startMin}-{data?.endHr}:{data?.endMin}
                   </span>
@@ -221,7 +221,7 @@ export default function ActivitiesDetailPage() {
                 剩餘名額<span>{data?.data.remaining_place}</span>
               </div>
               <div>
-                （<span>{data?.data.total_place}</span>個名額）
+                (<span>{data?.data.total_place}</span>個名額)
               </div>
             </div>
           </div>

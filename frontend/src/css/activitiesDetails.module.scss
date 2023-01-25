@@ -89,7 +89,8 @@
 }
 
 .personIcon {
-  font-size: 5vh;
+  font-size: 52px;
+  margin-bottom: -8px;
 }
 
 .right {
@@ -103,7 +104,8 @@
 }
 
 .countPart {
-  font-size: x-large;
+  font-size: 20px;
+  margin-left: 12px;
 }
 
 .joinButton {
@@ -122,6 +124,10 @@
 .badge,
 .enquiry {
   width: 90vw;
+}
+
+.scheduleIcon {
+  margin-bottom: -2px;
 }
 
 .badgeWordTitle {
@@ -143,4 +149,5 @@
 }
 .enquiryIcon {
   margin-bottom: -3px;
+  margin-right: 8px;
 }

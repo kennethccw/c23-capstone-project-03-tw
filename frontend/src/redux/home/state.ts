@@ -12,5 +12,6 @@ export interface HomeActivity {
   date: Date;
   start_time: Date;
   end_time: Date;
-  place: number;
+  total_place: number;
+  remaining_place: number;
 }
