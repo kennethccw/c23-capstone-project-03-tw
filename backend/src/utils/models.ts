@@ -84,3 +84,9 @@ export enum District {
   hong_kong_island = "hong_kong_island",
   new_territories = "new_territories",
 }
+
+export interface HomeAdvertiser {
+  id: number;
+  media: string;
+  link: string;
+}

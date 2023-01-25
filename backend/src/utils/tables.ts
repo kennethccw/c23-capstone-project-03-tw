@@ -15,4 +15,6 @@ export const TABLES = Object.freeze({
   ACTIVITY_APPLICATIONS: "activity_applications",
   PET_SUPPORTS: "pet_supports",
   IT_SUPPORTS: "it_supports",
+  ADVERTISER_WATCHED_PER_YEAR: "advertiser_watched_per_year",
+  ADVERTISER_CLICKED_PER_YEAR: "advertiser_clicked_per_year",
 });

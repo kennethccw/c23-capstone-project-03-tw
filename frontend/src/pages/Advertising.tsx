@@ -1,8 +1,10 @@
 import styles from "../css/adv.module.scss";
 import { useNavigate } from "react-router-dom";
 import { FiXCircle } from "react-icons/fi";
-import { Button } from "@mantine/core";
+import { Button, LoadingOverlay } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
+import { getHomeAdvertisers, HomeAdvertiser, postHomeAdvertiser } from "../api/homeAPI";
+import { useQuery } from "react-query";
 
 export default function Advertising() {
   const navigate = useNavigate();
@@ -23,6 +25,18 @@ export default function Advertising() {
       }
     };
   }, []);
+
+  const getChosenHomeAdvertiser = async () => {
+    const advertiserArr = await getHomeAdvertisers();
+    const idx = Math.floor(Math.random()) * advertiserArr.length;
+    console.log(advertiserArr[idx]);
+    return advertiserArr[idx];
+  };
+
+  const { isLoading, data, error, isError } = useQuery({
+    queryKey: ["home/advertiser"],
+    queryFn: getChosenHomeAdvertiser,
+  });
   // useEffect(() => {
   //   (intervalId.current = setInterval(() => {
   //     count !== 0 ? setCount(count - 1) : clearInterval(intervalId.current);
@@ -30,11 +44,20 @@ export default function Advertising() {
   //     1_000;
   // }, [count]);
 
+  const clickHandler = () => {
+    postHomeAdvertiser(data?.id!);
+    navigate("/home");
+  };
+
+  console.log(data);
+
   return (
     <div className={styles.advContainer}>
+      <LoadingOverlay visible={isLoading} overlayBlur={2} />
+
       <Button
         // disabled={count > 0 ? true : undefined}
-        onClick={count > 0 ? undefined : () => navigate("/home")}
+        onClick={count > 0 ? undefined : clickHandler}
         className={styles.advBtn}
         color="gray"
         // radius="xl"
@@ -51,7 +74,7 @@ export default function Advertising() {
         )}
       </Button>
 
-      <img className={styles.imgContainer} src="photos/adv-15s.png" alt="嘉頓" onClick={() => window.location.replace("http://www.garden.com.hk/cht/home")} />
+      <img className={styles.imgContainer} src={`/photos/${data?.media}`} alt="嘉頓" onClick={() => window.location.replace(data?.link!)} />
     </div>
   );
 }
