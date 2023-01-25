@@ -90,3 +90,14 @@ export interface HomeAdvertiser {
   media: string;
   link: string;
 }
+
+export enum BadgeType {
+  warmhearted = 1,
+  advertising_philanthropist = 2,
+  donation_philanthropist = 3,
+}
+export enum BadgeRank {
+  gold = "gold",
+  silver = "silver",
+  copper = "copper",
+}

@@ -1,5 +1,5 @@
 import type { Knex } from "knex";
-import { HomeActivity, HomeAdvertiser } from "../utils/models";
+import { BadgeRank, BadgeType, HomeActivity, HomeAdvertiser } from "../utils/models";
 import { TABLES } from "../utils/tables";
 
 export class HomeService {
@@ -26,6 +26,7 @@ export class HomeService {
 
   postHomeAdvertiser = async (uid: number, adsId: number) => {
     const trx = await this.knex.transaction();
+    let badgeResult;
 
     const isUserExist = await this.knex(TABLES.USER_TOTAL_ADVERTISING_WATCH_TIMES)
       .select()
@@ -49,6 +50,25 @@ export class HomeService {
           .where("year", new Date().getFullYear())
           .andWhere(`${TABLES.USER_TOTAL_ADVERTISING_WATCH_TIMES}.user_id`, uid)
           .returning("*");
+        if (userResult[0]["total_advertising_watch_times"] > 20) {
+          badgeResult = await trx(TABLES.BADGE_USER_JUNCTION)
+            .update({
+              rank: BadgeRank.gold,
+            })
+            .where("badge_id", BadgeType.advertising_philanthropist)
+            .andWhere("user_id", uid)
+            .returning("*");
+        }
+        if (userResult[0]["total_advertising_watch_times"] > 10) {
+          badgeResult = await trx(TABLES.BADGE_USER_JUNCTION)
+            .update({
+              rank: BadgeRank.silver,
+            })
+            .where("badge_id", BadgeType.advertising_philanthropist)
+            .andWhere("user_id", uid)
+            .returning("*");
+        }
+        console.log(badgeResult);
         if (isAdvertiserExist) {
           const adsResult = await trx(TABLES.ADVERTISER_WATCHED_PER_YEAR)
             .update("updated_at", this.knex.fn.now())
@@ -57,7 +77,11 @@ export class HomeService {
             .andWhere(`${TABLES.ADVERTISER_WATCHED_PER_YEAR}.advertiser_id`, adsId)
             .returning("*");
           await trx.commit();
-          return { userResult: userResult[0], adsResult: adsResult[0] };
+          return {
+            badgeReuslt: badgeResult && badgeResult[0],
+            userResult: userResult[0],
+            adsResult: adsResult[0],
+          };
         } else {
           const adsResult = await trx(TABLES.ADVERTISER_WATCHED_PER_YEAR)
             .insert({
@@ -67,7 +91,11 @@ export class HomeService {
             })
             .returning("*");
           await trx.commit();
-          return { userResult: userResult[0], adsResult: adsResult[0] };
+          return {
+            badgeReuslt: badgeResult && badgeResult[0],
+            userResult: userResult[0],
+            adsResult: adsResult[0],
+          };
         }
       } else {
         const userResult = await trx(TABLES.USER_TOTAL_ADVERTISING_WATCH_TIMES)
@@ -79,6 +107,15 @@ export class HomeService {
           .returning("*");
         console.log("sir this way");
         console.log(userResult);
+        const badgeResult = await trx(TABLES.BADGE_USER_JUNCTION)
+          .insert({
+            rank: BadgeRank.copper,
+            year: new Date().getFullYear(),
+            badge_id: BadgeType.advertising_philanthropist,
+            user_id: uid,
+          })
+          .returning("*");
+        console.log(badgeResult);
         if (isAdvertiserExist) {
           const adsResult = await trx(TABLES.ADVERTISER_WATCHED_PER_YEAR)
             .update("updated_at", this.knex.fn.now())
@@ -88,7 +125,11 @@ export class HomeService {
             .returning("*");
 
           await trx.commit();
-          return { userResult: userResult[0], adsResult: adsResult[0] };
+          return {
+            badgeReuslt: badgeResult[0],
+            userResult: userResult[0],
+            adsResult: adsResult[0],
+          };
         } else {
           const adsResult = await trx(TABLES.ADVERTISER_WATCHED_PER_YEAR)
             .insert({
@@ -99,7 +140,11 @@ export class HomeService {
             .returning("*");
           console.log(adsResult);
           await trx.commit();
-          return { userResult: userResult[0], adsResult: adsResult[0] };
+          return {
+            badgeReuslt: badgeResult[0],
+            userResult: userResult[0],
+            adsResult: adsResult[0],
+          };
         }
       }
     } catch (e) {
