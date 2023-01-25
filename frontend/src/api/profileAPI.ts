@@ -2,6 +2,7 @@ import { fetchJson } from "./utilsAPI";
 const PROFILE_API_PATH = "http://localhost:8080/user/profile";
 
 export interface Profile {
+  fullname?: string;
   username: string;
   email: string;
   mobile?: string;

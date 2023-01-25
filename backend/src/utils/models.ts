@@ -6,6 +6,7 @@ export enum Gender {
 
 export interface User {
   id?: number;
+  fullname?: string;
   username: string;
   email: string;
   password?: string;
@@ -31,6 +32,7 @@ declare global {
 }
 
 export interface Profile {
+  fullname: string;
   username: string;
   email: string;
   mobile: string;
@@ -72,7 +74,8 @@ export interface ActivityDetail {
   date: Date;
   requirement: string;
   description: string;
-  place: number;
+  total_place: number;
+  remaining_place: number;
   organisation: string;
   district: District;
   mobile: string;

@@ -1,3 +1,4 @@
+import { Profile } from "./profileAPI";
 import { fetchJson } from "./utilsAPI";
 
 const ACTIVITY_API_PATH = "http://localhost:8080/activity";
@@ -18,7 +19,8 @@ export interface ActivityDetail {
   date: Date;
   requirement: string;
   description: string;
-  place: number;
+  total_place: number;
+  remaining_place: number;
   organisation: string;
   district: District;
   mobile: string;
@@ -33,6 +35,18 @@ export const getActivityDetail = async (id: string) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
+  });
+  return data;
+};
+export const postActivityApplication = async (id: string, profile: Profile) => {
+  console.log("hihi");
+  const data = await fetch(`${ACTIVITY_API_PATH}/application?id=${id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify(profile),
   });
   return data;
 };

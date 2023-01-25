@@ -46,7 +46,7 @@
 .badgeYearContainer {
   display: flex;
   flex-direction: column;
-  margin-left: 32px;
+  margin: 0 32px;
   align-items: flex-start;
 }
 
@@ -58,7 +58,7 @@
 }
 .badgeContainer {
   margin-top: 8px;
-  width: 84%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -124,5 +124,6 @@
 }
 
 .badgeDescription {
-  width: 56%;
+  width: 58%;
+  line-height: 24px;
 }

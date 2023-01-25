@@ -218,15 +218,17 @@ export default function ActivitiesDetailPage() {
             </div>
             <div className={detailStyles.countPart}>
               <div>
-                剩餘名額<span>2</span>
+                剩餘名額<span>{data?.data.remaining_place}</span>
               </div>
               <div>
-                （<span>{data?.data.place}</span>個名額）
+                （<span>{data?.data.total_place}</span>個名額）
               </div>
             </div>
           </div>
           <div className={detailStyles.right}>
-            <div className={detailStyles.joinButton}>參加</div>
+            <Button disabled={!data?.data.remaining_place} color="pink" className={detailStyles.joinButton} onClick={() => navigate(`/activity/application?id=${params.get("id")!}`)}>
+              <div>參加</div>
+            </Button>
           </div>
         </div>
       </div>

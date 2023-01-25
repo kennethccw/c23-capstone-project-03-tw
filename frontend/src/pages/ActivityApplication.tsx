@@ -4,14 +4,16 @@ import InputMask from "react-input-mask";
 import { IconArrowNarrowRight, IconChevronDown, IconCircleX } from "@tabler/icons";
 import { useForm } from "react-hook-form";
 import { HiXMark } from "react-icons/hi2";
-import styles from "../css/editProfile.module.scss";
+import styles from "../css/activityApplication.module.scss";
 import NewNavbar from "../components/NewNavbar";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { getProfile, putProfile } from "../api/profileAPI";
 import { fetchJson } from "../api/utilsAPI";
 import { useNavigate } from "react-router-dom";
-export default function EditProfile() {
+import { getValue } from "@testing-library/user-event/dist/utils";
+import { postActivityApplication } from "../api/activityAPI";
+export default function ActivityApplication() {
   enum Gender {
     MALE = "male",
     FEMALE = "female",
@@ -24,6 +26,9 @@ export default function EditProfile() {
     birthday?: Date;
     gender?: string;
   }
+
+  const params = new URLSearchParams(document.location.search);
+
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["activity/application"],
     queryFn: getProfile,
@@ -92,7 +97,7 @@ export default function EditProfile() {
 
   const navigate = useNavigate();
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
       !isCorrectFormatUsername ||
@@ -113,16 +118,15 @@ export default function EditProfile() {
       return;
     }
     const profile = { fullname: getValues().fullname, username: watchUsername, email: watchEmail, mobile: watchMobile, birthday: new Date(watchBirthday), gender: gender };
-    putProfile(profile)
-      .then((res) => {
-        const result = res.json();
-        if (res.status === 200) {
-          localStorage.setItem("username", watchUsername);
-          navigate("/account");
-        }
-        return result;
-      })
-      .then((result) => result.message && alert(result.message));
+    const resp = await postActivityApplication(params.get("id")!, profile);
+    const result = await resp.json();
+    if (resp.status === 200 && !result.message) {
+      localStorage.setItem("username", watchUsername);
+      navigate("/application/success");
+    } else {
+      localStorage.setItem("username", watchUsername);
+      alert(result.message);
+    }
   };
   return (
     <MantineProvider
@@ -178,7 +182,7 @@ export default function EditProfile() {
 
         <div className={styles.header}>
           <HiXMark className={styles.closingIcon} onClick={() => navigate(-1)} />
-          <span>編輯帳戶</span>
+          <span>活動申請表</span>
         </div>
         <hr className={styles.headerHr} />
 
@@ -244,11 +248,11 @@ export default function EditProfile() {
             {...register("checkbox", { required: true })}
           />
           <Button className={styles.button} color="violet" radius="xl" type="submit">
-            <div>更新個人資料</div>
+            <div>遞交報名表格</div>
             <IconArrowNarrowRight className={styles.rightArrowIcon} />
           </Button>
         </form>
-        <NewNavbar activeBtn="user" />
+        {/* <NewNavbar activeBtn="user" /> */}
       </div>
     </MantineProvider>
   );

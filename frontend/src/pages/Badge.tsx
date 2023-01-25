@@ -121,7 +121,7 @@ export default function Badge() {
         <div className={styles.forFlex100vw}>
           <div className={styles.yearContainer}>
             <h3 className={styles.yearValue}>2023</h3>
-            <div className={styles.yearIcon}>
+            <div className={styles.yearIcon} onClick={() => navigate("/badge/filter")}>
               <h3 className={styles.yearTitle}>年份</h3>
               <HiAdjustmentsHorizontal className={styles.adjustmentIcon} />
             </div>
