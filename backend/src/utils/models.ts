@@ -101,3 +101,27 @@ export enum BadgeRank {
   silver = "silver",
   copper = "copper",
 }
+export enum BadgeImage {
+  gold = "goldbadge.png",
+  silver = "silverbadge.png",
+  copper = "cropperbadge.png",
+}
+
+export interface BadgeList {
+  rank: BadgeRank;
+  year: string;
+  badge_id: BadgeType;
+}
+
+export interface AdvertiserWatchedTimes {
+  total_advertising_watch_times: number;
+  year: number;
+}
+export interface DonationAmount {
+  total_donation: number;
+  year: number;
+}
+export interface ActivityParticipatedTimes {
+  total_activities_participated_times: number;
+  year: number;
+}

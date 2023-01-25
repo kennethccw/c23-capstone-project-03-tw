@@ -110,6 +110,19 @@
   border-radius: 80%;
 }
 
+.badgesText {
+  margin-left: -4px;
+  width: 116px;
+  height: 116px;
+  border-radius: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px dashed #e8e8e8;
+  border-spacing: 100px;
+  font-size: 14px;
+}
+
 .badgeDescription {
   width: 56%;
 }
