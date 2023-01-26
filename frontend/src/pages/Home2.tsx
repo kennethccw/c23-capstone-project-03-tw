@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRootDispatch, useRootSelector } from "../redux/store";
 import { NavBarUtilis } from "../components/NavBarUtilis";
@@ -43,6 +43,7 @@ export default function Home2() {
     }
   }, [authLoading]);
 
+  // data?.map((activity) => {console.log("check id", activity.id)})
   return (
     <div className={styles.containerForAll}>
       <LoadingOverlay visible={isLoading} overlayBlur={2} />
@@ -143,7 +144,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {data?.map((activity) => (activity.type === "editors_choice" ? <HomeActivityComponent key={`editor-${activity.id}`} activity={activity} /> : <></>))}
+                  {data?.map((activity) => activity.type === "editors_choice" && <HomeActivityComponent key={activity.id} activity={activity} />)}
 
                   {/* props */}
                 </Carousel>
@@ -212,7 +213,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {data?.map((activity) => (activity.type === "urgent" ? <HomeActivityComponent key={`urgent-${activity.id}`} activity={activity} /> : <></>))}
+                  {data?.map((activity) => activity.type === "urgent" && <HomeActivityComponent key={`urgent-${activity.id}`} activity={activity} />)}
 
                   {/* props */}
                 </Carousel>
@@ -280,7 +281,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {data?.map((activity) => (activity.type === "popular" ? <HomeActivityComponent key={`popular-${activity.id}`} activity={activity} /> : <></>))}
+                  {data?.map((activity) => activity.type === "popular" && <HomeActivityComponent key={`popular-${activity.id}`} activity={activity} />)}
 
                   {/* props */}
                 </Carousel>

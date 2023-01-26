@@ -10,24 +10,43 @@ export class ScheduleService {
     console.log(uid);
     try {
       const confirmedActivities = await trx<ScheduleActivity>(TABLES.ACTIVITY_APPLICATIONS)
-        .select()
+        .select(
+          "*",
+          "organisations.name as organisation",
+          "activity_applications.id as application_id"
+        )
         .innerJoin(
           TABLES.ACTIVITIES,
           `${TABLES.ACTIVITIES}.id`,
           `${TABLES.ACTIVITY_APPLICATIONS}.activity_id`
         )
-        .where("user_id", uid)
-        .andWhere("is_approved", true);
+        .innerJoin(
+          TABLES.ORGANISATIONS,
+          `${TABLES.ACTIVITIES}.organisation_id`,
+          `${TABLES.ORGANISATIONS}.id`
+        )
+        .where("activity_applications.user_id", uid)
+        .andWhere("activity_applications.is_approved", true);
       const pendingActivities = await trx<ScheduleActivity>(TABLES.ACTIVITY_APPLICATIONS)
-        .select()
+        .select(
+          "*",
+          "organisations.name as organisation",
+          "activity_applications.id as application_id"
+        )
         .innerJoin(
           TABLES.ACTIVITIES,
           `${TABLES.ACTIVITIES}.id`,
           `${TABLES.ACTIVITY_APPLICATIONS}.activity_id`
         )
-        .where("user_id", uid)
-        .andWhere("is_approved", false);
+        .innerJoin(
+          TABLES.ORGANISATIONS,
+          `${TABLES.ACTIVITIES}.organisation_id`,
+          `${TABLES.ORGANISATIONS}.id`
+        )
+        .where("activity_applications.user_id", uid)
+        .andWhere("activity_applications.is_approved", false);
       await trx.commit();
+      console.log(confirmedActivities, pendingActivities);
       return { confirmed: confirmedActivities, pending: pendingActivities };
     } catch (e) {
       console.log(e);

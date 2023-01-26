@@ -131,7 +131,8 @@ export interface ActivityParticipatedTimes {
 }
 
 export interface ScheduleActivity {
-  id: number;
+  application_id: number;
+  image: string;
   organisation: string;
   name: string;
   location: string;

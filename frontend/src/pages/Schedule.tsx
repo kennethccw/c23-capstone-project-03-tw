@@ -1,10 +1,8 @@
 import { Badge, Button, LoadingOverlay, MantineProvider, Tabs } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/schedule.module.scss";
-import { HiOutlineLocationMarker } from "react-icons/hi";
-import { HiCalendar } from "react-icons/hi2";
 import NewNavbar from "../components/NewNavbar";
-import { ApplicationContainer, NoApplicationContainer } from "../components/ScheduleComponents";
+import { ApplicationContainer } from "../components/ScheduleComponents";
 import { useQuery } from "react-query";
 import { getScheduleActivities } from "../api/scheduleAPI";
 import { useState } from "react";
@@ -16,7 +14,7 @@ export default function Schedule() {
     pending = "pending",
   }
 
-  const [tabButton, setTabButton] = useState<ScheduleButton>();
+  const [tabButton, setTabButton] = useState<ScheduleButton>(ScheduleButton.pending);
   const { isLoading, data, error, isError } = useQuery({
     queryKey: ["schdule"],
     queryFn: getScheduleActivities,
@@ -48,12 +46,10 @@ export default function Schedule() {
               }}
               value="處理中"
               rightSection={
-                data?.pending.length ? (
+                !!data?.pending.length && (
                   <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
                     {data?.pending.length}
                   </Badge>
-                ) : (
-                  <></>
                 )
               }
             >
@@ -64,12 +60,10 @@ export default function Schedule() {
                 setTabButton(ScheduleButton.confirmed);
               }}
               rightSection={
-                data?.confirmed.length ? (
+                !!data?.confirmed.length && (
                   <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
                     {data?.confirmed.length}
                   </Badge>
-                ) : (
-                  <></>
                 )
               }
               value="已確認"
@@ -80,32 +74,62 @@ export default function Schedule() {
         </Tabs>
         {/* NO APPLICATION COMPONENT */}
         {/* <NoApplicationContainer /> */}
-        {data?.confirmed.length}
-        {tabButton === "confirmed" && (
-          <div className={styles.noApplicationsAppliedContainer}>
-            <h3 className={styles.noApplicationsAppliedHeader}>你暫時沒有已確認的報名</h3>
-            <div className={styles.noApplicationsAppliedText}>查看其他熱門活動</div>
-            <Button
-              className={styles.button}
-              color="petscue-purple"
-              radius="xl"
-              onClick={() => {
-                navigate("/home");
-              }}
-            >
-              立即探索
-            </Button>
-          </div>
-        )}
+        {tabButton === ScheduleButton.pending &&
+          (data?.pending.length ? (
+            <div className={styles.applicationContainer}>
+              {data?.pending.map((activity) => (
+                <ApplicationContainer key={activity.application_id} activity={activity} />
+              ))}
+            </div>
+          ) : (
+            <div className={styles.noApplicationsAppliedContainer}>
+              <h3 className={styles.noApplicationsAppliedHeader}>你暫時沒有處理中的報名</h3>
+              <div className={styles.noApplicationsAppliedText}>查看其他熱門活動</div>
+              <Button
+                className={styles.button}
+                color="petscue-purple"
+                radius="xl"
+                onClick={() => {
+                  navigate("/home");
+                }}
+              >
+                立即探索
+              </Button>
+            </div>
+          ))}
+
+        {tabButton === ScheduleButton.confirmed &&
+          (data?.confirmed.length ? (
+            <div className={styles.applicationContainer}>
+              {data?.confirmed.map((activity) => (
+                <ApplicationContainer key={activity.application_id} activity={activity} />
+              ))}
+            </div>
+          ) : (
+            <div className={styles.noApplicationsAppliedContainer}>
+              <h3 className={styles.noApplicationsAppliedHeader}>你暫時沒有已確認的報名</h3>
+              <div className={styles.noApplicationsAppliedText}>查看其他熱門活動</div>
+              <Button
+                className={styles.button}
+                color="petscue-purple"
+                radius="xl"
+                onClick={() => {
+                  navigate("/home");
+                }}
+              >
+                立即探索
+              </Button>
+            </div>
+          ))}
 
         {/* NO APPLICATION COMPONENT */}
         {/* APPLICATION COMPONENT */}
         <div className={styles.applicationContainer}>
+          {/* <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
           <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
           <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
           <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
-          <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
-          <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
+          <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" /> */}
         </div>
         {/* <div className={styles.applicationsAppliedContainer}>
           <img className={styles.applicationsAppliedImg} src="photos/寵物美容義工.jpeg" alt="" />
