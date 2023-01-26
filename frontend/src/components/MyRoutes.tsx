@@ -56,11 +56,15 @@ import AdminsHelpToDoListfrom from "../pages/Admins/AdminControlUserPanel";
 import ItHelpFunction from "../pages/Admins/AdminItSupportChat";
 import OrganisationAdoptionApplicationResult from "../pages/Organisation/AdoptionApplicationResult";
 import ActivityApplication from "../pages/ActivityApplication";
+import AdoptionShowDetails from "../pages/AdoptionSlideShow";
+import PetDetails from "../pages/AdoptionPet";
 
 export default function MyRoutes() {
   return (
     <Routes>
       {/* User */}
+      <Route path="/" element={<PetDetails />}></Route>
+      <Route path="/" element={<AdoptionShowDetails />}></Route>
       <Route path="/" element={<Welcome />}></Route>
       <Route path="introduction" element={<Introduction />}></Route>
       <Route path="login" element={<Login />}></Route>
@@ -70,6 +74,7 @@ export default function MyRoutes() {
       <Route path="home" element={<Home2 />}></Route>
       {/* <Route path="home" element={<Home />}></Route> */}
       <Route path="adoption/detail" element={<AdoptionDetail />}></Route>
+      <Route path="allActivities" element={<AllActivities />}></Route>
       <Route path="donation" element={<Donation />}></Route>
       <Route path="advertiser" element={<Advertising />}></Route>
       <Route path="schedule" element={<Schedule />}></Route>
@@ -77,7 +82,6 @@ export default function MyRoutes() {
       <Route path="password/email" element={<ForgetPassword />}></Route>
       <Route path="password/reset" element={<ChangePassword />}></Route>
 
-      <Route path="allActivities" element={<AllActivities />}></Route>
       <Route path="activity/detail" element={<ActivitiesDetailPage />}></Route>
       <Route path="activity/application" element={<ActivityApplication />}></Route>
       <Route path="allActivitiesFilter" element={<AllActivitiesFilter />}></Route>

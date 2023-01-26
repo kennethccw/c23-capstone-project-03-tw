@@ -86,3 +86,109 @@
   color: #898D9E;
   font-weight: 400;
 }
+
+.adoptionTab {
+  font-weight: 700;
+  letter-spacing: 0.002em;
+  font-size: 30px;
+  margin-left: 40px;
+  margin-top: 10px;
+}
+
+.imgContent {
+  width: 320px;
+  height: 231px;
+  border-radius: 32px;
+  margin-top: 20px;
+}
+
+.petContainer {
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.nameTab {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 2px;
+  margin-left: 24px;
+}
+
+.nameContainer {
+  // text-align: left;
+  align-items: center;
+  justify-content: space-between;
+  // flex-direction: row;
+  display: flex;
+  background: rgba(244, 243, 243, 0.8);
+  border-radius: 0px 0px 32px 32px;
+  width: 320px;
+  height: 62px;
+  position: absolute;
+  bottom: 3px;
+}
+.nameContentContainer{
+  justify-content: center;
+  flex-direction: column;
+}
+
+.button {
+  margin-right: 30px;
+  font-size: 15px;
+  background-color: #585ce5;
+  box-shadow: 0 24px 16px -19px #a1a3f6;
+}
+.buttonsecond {
+  width: 40vw;
+  height: 5vh;
+  margin-top: 6px;
+  margin-left: 130px;
+  font-size: 15px;
+  background-color: #585ce5;
+  box-shadow: 0 24px 16px -19px #a1a3f6;
+}
+
+.containerForAll {
+  margin-bottom: 112px;
+}
+
+.headerContainer {
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.organisationTab {
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0.002em;
+  margin-left: 40px;
+  width: 390px;
+}
+
+.adoptionDetailHr {
+  margin: 4px -80px 32px -80px;
+  // width: 100vw;
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
+}
+
+.detailsContainer{
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.illnessRecordContainer {
+  width: 65vw;
+  margin-bottom: 5px;
+}
+
+.detailsforAll {
+  margin-left: 15vw;
+}

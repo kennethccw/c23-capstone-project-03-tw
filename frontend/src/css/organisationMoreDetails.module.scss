@@ -242,3 +242,21 @@ margin-top: 12px;
 .bottomArea {
   margin-bottom: 50px;
 }
+
+.searchChance {
+    color: #0f2851;
+    font-weight: bold;
+    font-size: xx-large;
+    margin-left: 40px;
+    position: fixed;
+    top:10vh;
+    // background-color: yellowgreen;
+}
+
+.searchBarPart {
+    flex: 4;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

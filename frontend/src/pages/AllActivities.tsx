@@ -11,7 +11,7 @@ export default function AllActivities() {
     const navigate = useNavigate();
 
     return (<div>
-       
+      
         <div className={styles.upperPart}>
             <div className={styles.leftArrow}><ChevronLeft className={styles.leftArrowIcon} onClick={() => { navigate('/') }} /></div>
             <div className={styles.searchBarPart}>
