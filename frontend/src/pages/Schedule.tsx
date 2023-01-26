@@ -19,7 +19,7 @@ export default function Schedule() {
     queryKey: ["schdule"],
     queryFn: getScheduleActivities,
     refetchInterval: 5_000,
-    staleTime: 10_000,
+    // staleTime: 10_000,
     retry: 1,
   });
 
@@ -78,7 +78,13 @@ export default function Schedule() {
           (data?.pending.length ? (
             <div className={styles.applicationContainer}>
               {data?.pending.map((activity) => (
-                <ApplicationContainer key={activity.application_id} activity={activity} />
+                <ApplicationContainer
+                  key={activity.application_id}
+                  activity={activity}
+                  clickHandler={() => {
+                    navigate(`/activity/detail?id=${activity.activity_id}&status=${ScheduleButton.pending}`);
+                  }}
+                />
               ))}
             </div>
           ) : (
@@ -102,7 +108,13 @@ export default function Schedule() {
           (data?.confirmed.length ? (
             <div className={styles.applicationContainer}>
               {data?.confirmed.map((activity) => (
-                <ApplicationContainer key={activity.application_id} activity={activity} />
+                <ApplicationContainer
+                  key={activity.application_id}
+                  activity={activity}
+                  clickHandler={() => {
+                    navigate(`/activity/detail?id=${activity.activity_id}&?confirmed=true`);
+                  }}
+                />
               ))}
             </div>
           ) : (
@@ -124,13 +136,13 @@ export default function Schedule() {
 
         {/* NO APPLICATION COMPONENT */}
         {/* APPLICATION COMPONENT */}
-        <div className={styles.applicationContainer}>
-          {/* <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
+        {/* <div className={styles.applicationContainer}> */}
+        {/* <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
           <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
           <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
           <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
           <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" /> */}
-        </div>
+        {/* </div> */}
         {/* <div className={styles.applicationsAppliedContainer}>
           <img className={styles.applicationsAppliedImg} src="photos/寵物美容義工.jpeg" alt="" />
           <div className={styles.applicationsAppliedTextContent}>

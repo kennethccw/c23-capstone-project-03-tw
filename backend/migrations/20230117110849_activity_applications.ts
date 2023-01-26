@@ -8,6 +8,7 @@ export async function up(knex: Knex): Promise<void> {
     table.increments();
     table.boolean("is_approved").defaultTo(false);
     table.boolean("is_participated").defaultTo(false);
+    table.boolean("is_cancelled").defaultTo(false);
     table.integer("user_id").unsigned();
     table.foreign("user_id").references("users.id").onDelete("CASCADE");
     table.integer("activity_id").unsigned();

@@ -26,7 +26,8 @@ export class ScheduleService {
           `${TABLES.ORGANISATIONS}.id`
         )
         .where("activity_applications.user_id", uid)
-        .andWhere("activity_applications.is_approved", true);
+        .andWhere("activity_applications.is_approved", true)
+        .andWhere("activity_applications.is_cancelled", false);
       const pendingActivities = await trx<ScheduleActivity>(TABLES.ACTIVITY_APPLICATIONS)
         .select(
           "*",
@@ -44,7 +45,8 @@ export class ScheduleService {
           `${TABLES.ORGANISATIONS}.id`
         )
         .where("activity_applications.user_id", uid)
-        .andWhere("activity_applications.is_approved", false);
+        .andWhere("activity_applications.is_approved", false)
+        .andWhere("activity_applications.is_cancelled", false);
       await trx.commit();
       console.log(confirmedActivities, pendingActivities);
       return { confirmed: confirmedActivities, pending: pendingActivities };

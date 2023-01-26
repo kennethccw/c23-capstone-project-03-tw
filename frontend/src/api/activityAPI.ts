@@ -28,7 +28,6 @@ export interface ActivityDetail {
 }
 
 export const getActivityDetail = async (id: string) => {
-  console.log("hihi");
   const data = await fetchJson<ActivityDetail>(`${ACTIVITY_API_PATH}/detail?id=${id}`, {
     method: "GET",
     headers: {
@@ -38,15 +37,25 @@ export const getActivityDetail = async (id: string) => {
   });
   return data;
 };
-export const postActivityApplication = async (id: string, profile: Profile) => {
-  console.log("hihi");
-  const data = await fetch(`${ACTIVITY_API_PATH}/application?id=${id}`, {
+export const postActivityApplication = async (activityId: string, profile: Profile) => {
+  const data = await fetch(`${ACTIVITY_API_PATH}/application`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    body: JSON.stringify(profile),
+    body: JSON.stringify({ profile, activityId }),
+  });
+  return data;
+};
+export const putActivityApplication = async (activityId: string) => {
+  const data = await fetch(`${ACTIVITY_API_PATH}/application`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({ activityId }),
   });
   return data;
 };

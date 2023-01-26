@@ -58,6 +58,7 @@ import OrganisationAdoptionApplicationResult from "../pages/Organisation/Adoptio
 import ActivityApplication from "../pages/ActivityApplication";
 import AdoptionShowDetails from "../pages/AdoptionSlideShow";
 import PetDetails from "../pages/AdoptionPet";
+import ApplicationCancelled from "../pages/ApplicationCancelled";
 
 export default function MyRoutes() {
   return (
@@ -92,6 +93,7 @@ export default function MyRoutes() {
       <Route path="adoption" element={<Adoption />}></Route>
       <Route path="result" element={<AdoptionApplicationResult />}></Route>
       <Route path="application/success" element={<ApplicationSuccess />}></Route>
+      <Route path="application/cancellation" element={<ApplicationCancelled />}></Route>
 
       <Route path="search" element={<SearchShowResultFunction />}></Route>
       <Route path="/" element={<SearchResultFuction />}></Route>

@@ -32,7 +32,7 @@ interface Application {
   date: string;
 }
 
-export function ApplicationContainer(props: { activity: ScheduleActivity }) {
+export function ApplicationContainer(props: { activity: ScheduleActivity; clickHandler: () => void }) {
   const startTime = new Date(props.activity.start_time);
   const startMonth = startTime.getMonth() + 1;
   const startDate = startTime.getDate();
@@ -41,7 +41,7 @@ export function ApplicationContainer(props: { activity: ScheduleActivity }) {
   const endDate = endTime.getDate();
 
   return (
-    <div className={styles.applicationsAppliedContainer}>
+    <div className={styles.applicationsAppliedContainer} onClick={() => props.clickHandler()}>
       <img className={styles.applicationsAppliedImg} src={`${props.activity.image}`} alt="" />
       <div className={styles.applicationsAppliedTextContent}>
         <div className={styles.organisationName}>{props.activity.organisation}</div>

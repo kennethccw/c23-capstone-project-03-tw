@@ -4,6 +4,7 @@ const SCHEDULE_API_PATH = "http://localhost:8080/schedule";
 
 export interface ScheduleActivity {
   application_id: number;
+  activity_id: number;
   image: string;
   organisation: string;
   name: string;

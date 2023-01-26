@@ -6,7 +6,6 @@ export class ActivityController {
   constructor(private activityService: ActivityService) {}
 
   getActivityDetail = async (req: Request, res: Response) => {
-    console.log("controller");
     const id = parseInt(req.query.id as string);
     try {
       const data = await this.activityService.getActivityDetail(id);
@@ -16,12 +15,21 @@ export class ActivityController {
     }
   };
   postActivityApplication = async (req: Request, res: Response) => {
-    console.log("controller");
     const uid = req.user?.id!;
-    const activityId = parseInt(req.query.id as string);
-    const user: Profile = req.body;
+    const activityId: number = req.body.activityId;
+    const user: Profile = req.body.profile;
     try {
       const data = await this.activityService.postActivityApplication(uid, activityId, user);
+      res.status(200).json(data);
+    } catch (e) {
+      res.status(400).json({ message: "Internal Server Error" });
+    }
+  };
+  putActivityApplication = async (req: Request, res: Response) => {
+    const uid = req.user?.id!;
+    const activityId: number = req.body.activityId;
+    try {
+      const data = await this.activityService.putActivityApplication(uid, activityId);
       res.status(200).json(data);
     } catch (e) {
       res.status(400).json({ message: "Internal Server Error" });
