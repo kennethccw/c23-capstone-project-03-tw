@@ -7,4 +7,5 @@ export interface AuthState {
 export type JWTPayload = {
   id: number;
   username: string;
+  role: string;
 };

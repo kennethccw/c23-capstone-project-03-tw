@@ -19,6 +19,7 @@ export interface User {
 
 export interface Auth {
   id: number;
+  name?: string;
   username: string;
   password: string;
 }
@@ -127,4 +128,19 @@ export interface DonationAmount {
 export interface ActivityParticipatedTimes {
   total_activities_participated_times: number;
   year: number;
+}
+
+export interface ScheduleActivity {
+  id: number;
+  organisation: string;
+  name: string;
+  location: string;
+  start_time: Date;
+  end_time: Date;
+  date: Date;
+}
+
+export enum LoginRole {
+  organisation = "organisation",
+  user = "user",
 }

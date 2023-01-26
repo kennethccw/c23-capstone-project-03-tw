@@ -6,8 +6,19 @@ export class UserService {
   constructor(private knex: Knex) {}
 
   register = async (user: User) => {
+    const isOrganisationEmail = await this.knex(TABLES.ORGANISATIONS)
+      .select()
+      .where("email", user.email)
+      .first();
+
+    if (isOrganisationEmail) {
+      return;
+    }
     try {
-      const result = await this.knex<User>(TABLES.USERS).insert(user).returning(["id", "username"]);
+      const result = await this.knex<User>(TABLES.USERS)
+        .insert(user)
+        .returning(["id", "username"])
+        .returning("*");
       return result;
     } catch (e) {
       console.log(e);
@@ -16,17 +27,27 @@ export class UserService {
   };
 
   loginWithEmail = async (email: string) => {
+    const trx = await this.knex.transaction();
     try {
       console.log("loginWithEmail");
-      const result: Auth = await this.knex(TABLES.USERS)
+      const userResult: Auth = await trx(TABLES.USERS)
         .select("id", "username", "password")
         .where("email", email)
         .first();
       // console.log(result);
-      return result;
+      const oldOrganisationResult: Auth = await trx(TABLES.ORGANISATIONS)
+        .select("id", "name", "password")
+        .where("email", email)
+        .first();
+
+      const { id, name: username, password } = oldOrganisationResult;
+      const organisationResult = { id, username, password };
+      await trx.commit();
+      return { userResult, organisationResult };
     } catch (e) {
       console.log("there is error");
       console.log(e);
+      await trx.rollback();
       throw e;
     }
   };

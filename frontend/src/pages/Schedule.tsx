@@ -1,12 +1,30 @@
-import { Badge, Button, MantineProvider, Tabs } from "@mantine/core";
+import { Badge, Button, LoadingOverlay, MantineProvider, Tabs } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/schedule.module.scss";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { HiCalendar } from "react-icons/hi2";
 import NewNavbar from "../components/NewNavbar";
 import { ApplicationContainer, NoApplicationContainer } from "../components/ScheduleComponents";
+import { useQuery } from "react-query";
+import { getScheduleActivities } from "../api/scheduleAPI";
+import { useState } from "react";
 export default function Schedule() {
   const navigate = useNavigate();
+
+  enum ScheduleButton {
+    confirmed = "confirmed",
+    pending = "pending",
+  }
+
+  const [tabButton, setTabButton] = useState<ScheduleButton>();
+  const { isLoading, data, error, isError } = useQuery({
+    queryKey: ["schdule"],
+    queryFn: getScheduleActivities,
+    refetchInterval: 5_000,
+    staleTime: 10_000,
+    retry: 1,
+  });
+
   return (
     <MantineProvider
       theme={{
@@ -18,49 +36,68 @@ export default function Schedule() {
       }}
     >
       <div className={styles.containerForAll}>
+        <LoadingOverlay visible={isLoading} overlayBlur={2} />
+
         <h1 className={styles.header}>你的日程</h1>
 
-        <Tabs className={styles.scheduleTabContainer} color="petscue-purple">
+        <Tabs className={styles.scheduleTabContainer} color="petscue-purple" defaultValue="處理中">
           <Tabs.List grow>
             <Tabs.Tab
+              onClick={() => {
+                setTabButton(ScheduleButton.pending);
+              }}
+              value="處理中"
               rightSection={
-                <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
-                  6
-                </Badge>
+                data?.pending.length ? (
+                  <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
+                    {data?.pending.length}
+                  </Badge>
+                ) : (
+                  <></>
+                )
+              }
+            >
+              處理中
+            </Tabs.Tab>
+            <Tabs.Tab
+              onClick={() => {
+                setTabButton(ScheduleButton.confirmed);
+              }}
+              rightSection={
+                data?.confirmed.length ? (
+                  <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
+                    {data?.confirmed.length}
+                  </Badge>
+                ) : (
+                  <></>
+                )
               }
               value="已確認"
             >
               已確認
             </Tabs.Tab>
-
-            <Tabs.Tab
-              value="處理中"
-              rightSection={
-                <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
-                  6
-                </Badge>
-              }
-            >
-              處理中
-            </Tabs.Tab>
           </Tabs.List>
         </Tabs>
         {/* NO APPLICATION COMPONENT */}
         {/* <NoApplicationContainer /> */}
-        {/* <div className={styles.noApplicationsAppliedContainer}>
-          <h3 className={styles.noApplicationsAppliedHeader}>你暫時沒有已確認的報名</h3>
-          <div className={styles.noApplicationsAppliedText}>查看其他熱門活動</div>
-          <Button
-            className={styles.button}
-            color="petscue-purple"
-            radius="xl"
-            onClick={() => {
-              navigate("/home");
-            }}
-          >
-            立即探索
-          </Button>
-          </div> */}
+        {data?.confirmed.length}
+        {tabButton === "confirmed" && (
+          <div className={styles.noApplicationsAppliedContainer}>
+            <h3 className={styles.noApplicationsAppliedHeader}>你暫時沒有已確認的報名</h3>
+            <div className={styles.noApplicationsAppliedText}>查看其他熱門活動</div>
+            <Button
+              className={styles.button}
+              color="petscue-purple"
+              radius="xl"
+              onClick={() => {
+                navigate("/home");
+              }}
+            >
+              立即探索
+            </Button>
+          </div>
+        )}
+
         {/* NO APPLICATION COMPONENT */}
         {/* APPLICATION COMPONENT */}
         <div className={styles.applicationContainer}>
