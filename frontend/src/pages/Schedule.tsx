@@ -1,10 +1,8 @@
 import { Badge, Button, LoadingOverlay, MantineProvider, Tabs } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/schedule.module.scss";
-import { HiOutlineLocationMarker } from "react-icons/hi";
-import { HiCalendar } from "react-icons/hi2";
 import NewNavbar from "../components/NewNavbar";
-import { ApplicationContainer, NoApplicationContainer } from "../components/ScheduleComponents";
+import { ApplicationContainer } from "../components/ScheduleComponents";
 import { useQuery } from "react-query";
 import { getScheduleActivities } from "../api/scheduleAPI";
 import { useState } from "react";

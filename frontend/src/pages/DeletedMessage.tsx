@@ -1,9 +1,6 @@
 import { Button, MantineProvider } from "@mantine/core";
 import styles from "../css/deletedMessage.module.scss";
-import { HiXMark } from "react-icons/hi2";
-import { RiArrowRightSLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { IconArrowNarrowRight } from "@tabler/icons";
 export default function DeletedMessage() {
   const navigate = useNavigate();
   return (

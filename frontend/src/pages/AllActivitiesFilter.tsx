@@ -1,12 +1,5 @@
 import { OrganisationFilter } from "../components/OrganisationFilterComponent";
 import { useNavigate } from "react-router-dom";
-import {
-  UnstyledButton,
-  Checkbox,
-  Text,
-  createStyles,
-  MantineProvider,
-} from "@mantine/core";
 import styles from "../css/filterPage.module.scss";
 
 

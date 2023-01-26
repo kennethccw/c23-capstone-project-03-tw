@@ -1,8 +1,7 @@
-import { Badge, Button, MantineProvider, Paper, Tabs } from "@mantine/core";
+import { Badge, MantineProvider, Paper, Tabs } from "@mantine/core";
 import styles from "../css/adoptionApplicationResult.module.scss";
 import { HiXMark } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 export default function AdoptionApplicationResult() {
   const navigate = useNavigate();

@@ -3,7 +3,7 @@ import { HiOutlineX } from "react-icons/hi";
 
 import { Button, Checkbox, MantineProvider } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 export function BadgeFilterYear() {
   const navigate = useNavigate();

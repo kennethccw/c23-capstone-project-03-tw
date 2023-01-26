@@ -2,7 +2,6 @@ import styles from "../css/organisation.module.scss";
 import { HiChevronLeft, HiOutlineAdjustments } from "react-icons/hi";
 import { Outlet, useNavigate } from "react-router-dom";
 import { OrganisationContainer } from "../components/OrganisationElement";
-import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { getOrganisationList } from "../api/organisationAPI";
 import { LoadingOverlay } from "@mantine/core";

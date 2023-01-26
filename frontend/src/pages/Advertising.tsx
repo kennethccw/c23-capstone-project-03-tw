@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FiXCircle } from "react-icons/fi";
 import { Button, LoadingOverlay } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
-import { getHomeAdvertisers, HomeAdvertiser, postHomeAdvertiser } from "../api/homeAPI";
+import { getHomeAdvertisers, postHomeAdvertiser } from "../api/homeAPI";
 import { useQuery } from "react-query";
 
 export default function Advertising() {

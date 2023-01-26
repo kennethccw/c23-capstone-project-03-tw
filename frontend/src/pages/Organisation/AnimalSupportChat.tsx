@@ -2,15 +2,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "../../css/animalHelpChat.module.scss";
 import {
   HiChevronLeft,
-  HiOutlineShare,
-  HiOutlineLocationMarker,
-  HiOutlinePhone,
-  HiOutlineMail,
-  HiCalendar,
 } from "react-icons/hi";
-import { MantineProvider, Tabs, Button, Checkbox, TextInput } from "@mantine/core";
-import { sizes } from "@mantine/core/lib/ActionIcon/ActionIcon.styles";
-import { ApplicationContainer } from "../../components/ScheduleComponents";
+import { MantineProvider, Button, TextInput } from "@mantine/core";
 import { IconCamera, IconSend } from "@tabler/icons";
 
 export default function AnimalHelpFunction() {

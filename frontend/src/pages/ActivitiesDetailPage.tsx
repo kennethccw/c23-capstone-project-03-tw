@@ -1,12 +1,10 @@
-import { OrganisationFilter } from "../components/OrganisationFilterComponent";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/organisationMoreDetails.module.scss";
 import detailStyles from "../css/activitiesDetails.module.scss";
-import { HiChevronLeft, HiOutlineShare, HiOutlineLocationMarker, HiOutlinePhone, HiOutlineMail } from "react-icons/hi";
+import { HiChevronLeft, HiOutlineShare } from "react-icons/hi";
 import { MantineProvider, Tabs, Button, LoadingOverlay } from "@mantine/core";
-import { sizes } from "@mantine/core/lib/ActionIcon/ActionIcon.styles";
 import { Calendar4, GeoAlt, Person, House, Telephone, Envelope } from "react-bootstrap-icons";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { District, getActivityDetail } from "../api/activityAPI";
 

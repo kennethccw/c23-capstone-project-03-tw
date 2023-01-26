@@ -2,23 +2,12 @@ import { useNavigate } from "react-router-dom";
 import styles from "../css/searchResult.module.scss";
 import {
   HiChevronLeft,
-  HiOutlineShare,
-  HiOutlineLocationMarker,
-  HiOutlinePhone,
-  HiOutlineMail,
-  HiCalendar,
   HiSearch,
 } from "react-icons/hi";
 import {
   MantineProvider,
-  Tabs,
-  Button,
-  Checkbox,
-  TextInput,
   Input,
 } from "@mantine/core";
-import { IconCamera, IconSearch, IconSend } from "@tabler/icons";
-import { ChevronLeft } from "react-bootstrap-icons";
 import NewNavbar from "../components/NewNavbar";
 import { AnimalShow } from "../components/AnimationSlideShowComponent";
 
