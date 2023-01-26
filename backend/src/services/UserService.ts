@@ -73,7 +73,7 @@ export class UserService {
         .update("updated_at", this.knex.fn.now())
         .where("id", uid)
         .returning("*");
-      return result;
+      return result[0];
     } catch (e) {
       console.log(e);
       throw e;

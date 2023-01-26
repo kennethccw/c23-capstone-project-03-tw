@@ -4,6 +4,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import styles from "../css/donation.module.scss";
 import { useState } from "react";
 import { IconArrowNarrowRight } from "@tabler/icons";
+import { useNavigate } from "react-router-dom";
 
 export default function Donation() {
   const { register, watch } = useForm({
@@ -17,6 +18,7 @@ export default function Donation() {
 
   const watchDonation = watch("donation");
   const [isCustomAmount, setIsCustomAmount] = useState(false);
+  const navigate = useNavigate();
   return (
     <MantineProvider
       inherit
@@ -44,12 +46,12 @@ export default function Donation() {
       }}
     >
       <div>
-        <IoIosArrowBack className={styles.navigateBackButton} />
+        <IoIosArrowBack className={styles.navigateBackButton} onClick={() => navigate(-1)} />
         <div className={styles.donationHeaderContainer}>
           <h1>捐款樂</h1>
         </div>
         <hr className={styles.donationHr} />
-        <form>
+        <form className={styles.containerForAll}>
           <Input.Wrapper id="full-name" className={styles.input} label="捐款人全名" withAsterisk>
             <Input id="full-name" radius="md" size="md" type="text" {...register("fullName", { required: true })} />
           </Input.Wrapper>

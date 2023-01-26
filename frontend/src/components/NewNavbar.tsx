@@ -20,7 +20,7 @@ export default function NewNavbar(props: { activeBtn: string }) {
       <div className={styles.navBArList}>
         {/* {chosenBtn.current === ChosenBtn.SEARCH ? ( */}
         {chosenBtn === ChosenBtn.SEARCH ? (
-          <div className={`${styles.navbarIconBackground} ${styles.navbarIconBackgroundActive}`} onClick={() => navigate("/")}>
+          <div className={`${styles.navbarIconBackground} ${styles.navbarIconBackgroundActive}`} onClick={() => navigate("/search")}>
             <HiSearchCircle className={`${styles.navbarIcon} ${styles.searchNav} ${styles.navIconActive}`} />
           </div>
         ) : (
@@ -30,7 +30,7 @@ export default function NewNavbar(props: { activeBtn: string }) {
               // chosenBtn.current = ChosenBtn.SEARCH;
               // sessionStorage.setItem("navIcon", ChosenBtn.SEARCH);
               // setChosenBtn(ChosenBtn.SEARCH);
-              navigate("/");
+              navigate("/search");
             }}
           >
             <HiSearchCircle className={`${styles.navbarIcon} ${styles.searchNav}`} />
@@ -38,7 +38,7 @@ export default function NewNavbar(props: { activeBtn: string }) {
         )}
         {/* {chosenBtn.current === ChosenBtn.BOLT ? ( */}
         {chosenBtn === ChosenBtn.BOLT ? (
-          <div className={`${styles.navbarIconBackground} ${styles.navbarIconBackgroundActive}`} onClick={() => navigate("/")}>
+          <div className={`${styles.navbarIconBackground} ${styles.navbarIconBackgroundActive}`} onClick={() => navigate("/help")}>
             <HiLightningBolt className={`${styles.navbarIcon}  ${styles.navIconActive}`} />
           </div>
         ) : (
@@ -48,7 +48,7 @@ export default function NewNavbar(props: { activeBtn: string }) {
               // chosenBtn.current = ChosenBtn.BOLT;
               // sessionStorage.setItem("navIcon", ChosenBtn.BOLT);
               // setChosenBtn(ChosenBtn.BOLT);
-              navigate("/");
+              navigate("/help");
             }}
           >
             <HiLightningBolt className={`${styles.navbarIcon} `} />
@@ -74,7 +74,7 @@ export default function NewNavbar(props: { activeBtn: string }) {
         )}
         {/* {chosenBtn.current === ChosenBtn.CLIPBOARD ? ( */}
         {chosenBtn === ChosenBtn.CLIPBOARD ? (
-          <div className={`${styles.navbarIconBackground} ${styles.navbarIconBackgroundActive}`} onClick={() => navigate("/")}>
+          <div className={`${styles.navbarIconBackground} ${styles.navbarIconBackgroundActive}`} onClick={() => navigate("/schedule")}>
             <HiClipboardList className={`${styles.navbarIcon}  ${styles.navIconActive}`} />
           </div>
         ) : (
@@ -84,7 +84,7 @@ export default function NewNavbar(props: { activeBtn: string }) {
               // chosenBtn.current = ChosenBtn.CLIPBOARD;
               // sessionStorage.setItem("navIcon", ChosenBtn.CLIPBOARD);
               // setChosenBtn(ChosenBtn.CLIPBOARD);
-              navigate("/");
+              navigate("/schedule");
             }}
           >
             <HiClipboardList className={`${styles.navbarIcon} `} />

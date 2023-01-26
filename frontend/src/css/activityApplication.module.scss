@@ -1,0 +1,90 @@
+.containerForAll {
+  width: 100vw;
+  height: 100vh;
+}
+.header {
+  width: 312px;
+  margin: 62px auto 12px 25px;
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closingIcon {
+  margin-right: 36px;
+  color: #cccccc;
+}
+
+.headerHr {
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  width: 312px;
+  margin: 10px 0;
+}
+
+.validationAllContainer {
+  font-size: 15px;
+}
+
+.validationContainer {
+  display: flex;
+  align-items: center;
+  margin: auto 8px;
+}
+.validationIcon {
+  color: #ff0000;
+}
+.forFlex100vw {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+.forFlex312px {
+  display: flex;
+  justify-content: flex-start;
+  width: 312px;
+}
+
+.validationAllContainer {
+  width: 312px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.validationText {
+  height: 15px;
+  margin-top: 2px;
+  font-size: 12px;
+  color: #ff0000;
+}
+.checkbox {
+  margin-top: 24px;
+}
+.checkbox label {
+  font-size: 13px;
+}
+
+.button {
+  height: 56px;
+  width: 312px;
+  margin-top: 12px;
+  font-size: 20px;
+  background-color: #585ce5;
+  box-shadow: 0 24px 16px -19px #a1a3f6;
+  position: relative;
+}
+.rightArrowIcon {
+  position: absolute;
+  right: 24px;
+}

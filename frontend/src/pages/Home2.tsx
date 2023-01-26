@@ -11,25 +11,42 @@ import { CiBellOn } from "react-icons/ci";
 import { HiArrowRight, HiChevronRight } from "react-icons/hi";
 import { useQuery } from "react-query";
 import { homeActivityThunk } from "../redux/home/thunk";
+import { HomeActivityComponent } from "../components/HomeActivityCompoent";
+import { LoadingOverlay } from "@mantine/core";
+import { getHomeActivities } from "../api/homeAPI";
 
 export default function Home2() {
-  const loading = useRootSelector((state) => state.home.loading);
-  const activityArr = useRootSelector((state) => state.home.activity);
-  const dispatch = useRootDispatch();
+  const authLoading = useRootSelector((state) => state.auth.loading);
+  // const activityArr = useRootSelector((state) => state.home.activity);
+  // const homeLoading = useRootSelector((state) => state.home.loading);
+  // console.log(activityArr);
+  // const dispatch = useRootDispatch();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState(localStorage.getItem("username"));
+
+  // useEffect(() => {
+  //   dispatch(homeActivityThunk());
+  // }, [dispatch]);
+
+  const { isLoading, isError, data, error } = useQuery({
+    queryKey: ["home/activities"],
+    queryFn: getHomeActivities,
+    refetchInterval: 5_000,
+    staleTime: 10_000,
+    retry: 1,
+  });
+
   useEffect(() => {
-    dispatch(homeActivityThunk());
-  }, [dispatch]);
-  useEffect(() => {
-    if (!loading) {
+    if (!authLoading) {
       setUsername(localStorage.getItem("username"));
     }
-  }, [loading]);
+  }, [authLoading]);
 
   return (
     <div className={styles.containerForAll}>
+      <LoadingOverlay visible={isLoading} overlayBlur={2} />
+
       <div className={styles.upperLayer}>
         <div className={styles.logoIconContainer}>
           <img src="photos/logo_pic-09-09.png" className={styles.logoIcon}></img>
@@ -68,7 +85,7 @@ export default function Home2() {
 
         <div className={styles.socialWorkRecommendContainer}>
           <div className={styles.socialRecommendBar}>
-            <div className={styles.socialWorkRecommendWord}>&nbsp;&nbsp; 社職推介</div>
+            <div className={styles.categoryTitle}>&nbsp;&nbsp; Petscue 推介</div>
             <div className={styles.chevronBarIcon}>
               <HiChevronRight />
             </div>
@@ -78,7 +95,7 @@ export default function Home2() {
             <div>
               <div className={styles.recommendInstancePart}>
                 <Carousel slideSize="70%" align={"start"} slideGap="md" controlSize={33} withControls={false} loop dragFree>
-                  <Carousel.Slide className={styles.recommendInstanceBox}>
+                  {/* <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.recommendInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -87,13 +104,13 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>Marketing義工</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
                   </Carousel.Slide>
-                  <Carousel.Slide className={styles.recommendInstanceBox}>
+                  <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.recommendInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -102,13 +119,13 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>Marketing義工</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
                   </Carousel.Slide>
-                  <Carousel.Slide className={styles.recommendInstanceBox}>
+                  <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.recommendInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -117,16 +134,18 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>Marketing義工</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
-                      {/* <div className={styles.clickForMore}>
-                        <HiArrowRight />
-                        <div className={styles.clickForMoreText}>更多</div>
-                      </div> */}
+                      
                     </div>
-                  </Carousel.Slide>
+                  </Carousel.Slide> */}
+
+                  {/* props */}
+                  {data?.map((activity) => (activity.type === "editors_choice" ? <HomeActivityComponent key={`editor-${activity.id}`} activity={activity} /> : <></>))}
+
+                  {/* props */}
                 </Carousel>
               </div>
             </div>
@@ -135,7 +154,7 @@ export default function Home2() {
 
         <div className={styles.needHelpContainer}>
           <div className={styles.needHelpBar}>
-            <div className={styles.needHelpWord}>&nbsp;&nbsp; 急需支援</div>
+            <div className={styles.categoryTitle}>&nbsp;&nbsp; 急需支援</div>
             <div className={styles.chevronBarIcon}>
               <HiChevronRight />
             </div>
@@ -145,7 +164,7 @@ export default function Home2() {
             <div>
               <div className={styles.needHelpInstancePart}>
                 <Carousel slideSize="70%" align="start" slideGap="md" controlSize={33} withControls={false} loop dragFree>
-                  <Carousel.Slide className={styles.needHelpInstanceBox}>
+                  {/* <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.needHelpInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -154,13 +173,13 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>賣旗日</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
                   </Carousel.Slide>
-                  <Carousel.Slide className={styles.needHelpInstanceBox}>
+                  <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.needHelpInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -169,13 +188,13 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>賣旗日</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
                   </Carousel.Slide>
-                  <Carousel.Slide className={styles.needHelpInstanceBox}>
+                  <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.needHelpInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -184,13 +203,18 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>賣旗日</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
-                      {/* <HiArrowRight className={styles.clickForMore} /> */}
+                      
                     </div>
-                  </Carousel.Slide>
+                  </Carousel.Slide> */}
+
+                  {/* props */}
+                  {data?.map((activity) => (activity.type === "urgent" ? <HomeActivityComponent key={`urgent-${activity.id}`} activity={activity} /> : <></>))}
+
+                  {/* props */}
                 </Carousel>
               </div>
             </div>
@@ -199,7 +223,7 @@ export default function Home2() {
 
         <div className={styles.hotContainer}>
           <div className={styles.needHelpBar}>
-            <div className={styles.needHelpWord}>&nbsp;&nbsp; 熱門活動</div>
+            <div className={styles.categoryTitle}>&nbsp;&nbsp; 熱門活動</div>
             <div className={styles.chevronBarIcon}>
               <HiChevronRight />
             </div>
@@ -209,7 +233,7 @@ export default function Home2() {
             <div>
               <div className={styles.needHelpInstancePart}>
                 <Carousel slideSize="70%" align="start" slideGap="md" controlSize={33} loop withControls={false} dragFree>
-                  <Carousel.Slide className={styles.needHelpInstanceBox}>
+                  {/* <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.needHelpInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -218,13 +242,13 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>賣旗日</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
                   </Carousel.Slide>
-                  <Carousel.Slide className={styles.needHelpInstanceBox}>
+                  <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.needHelpInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -233,13 +257,13 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>賣旗日</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
                   </Carousel.Slide>
-                  <Carousel.Slide className={styles.needHelpInstanceBox}>
+                  <Carousel.Slide className={styles.carouselSlide}>
                     <div className={styles.box}>
                       <img src="photos/carousel-02.png" className={styles.needHelpInstancePhoto}></img>
                       <div className={styles.remainingPlace}>
@@ -248,35 +272,40 @@ export default function Home2() {
                       <div className={styles.recommendInstanceDetails}>
                         <div className={styles.volunteerWord}>賣旗日</div>
                         <div className={styles.dateDetail}>
-                          <Calendar4 />
+                          <Calendar4 className={styles.calendarIcon} />
                           &nbsp;<span>3</span>月<span>4</span>日-<span>3</span>月<span>5</span>日
                         </div>
                       </div>
                     </div>
-                  </Carousel.Slide>
+                  </Carousel.Slide> */}
+
+                  {/* props */}
+                  {data?.map((activity) => (activity.type === "popular" ? <HomeActivityComponent key={`popular-${activity.id}`} activity={activity} /> : <></>))}
+
+                  {/* props */}
                 </Carousel>
               </div>
             </div>
           </div>
         </div>
 
-        <div>
+        <div onClick={() => navigate("/advertiser")}>
           <img src="photos/advertising-04.png" className={styles.banner}></img>
         </div>
 
-        <div>
+        <div onClick={() => navigate("/adoption/detail")}>
           <img src="photos/adoption-03.png" className={styles.banner}></img>
         </div>
 
-        <div>
+        <div onClick={() => navigate("/donation")}>
           <img src="photos/donation-05.png" className={styles.banner}></img>
         </div>
 
-        <div>
+        <div onClick={() => navigate("/adoption")}>
           <img src="photos/apply-to-adopt-06.png" className={styles.banner}></img>
         </div>
 
-        <div className={styles.allOrganisationsContainer}>
+        <div className={styles.allOrganisationsContainer} onClick={() => navigate("/organisation")}>
           <div className={styles.allOrganisations}>
             <Building className={styles.buildingIcon} />
             所有機構

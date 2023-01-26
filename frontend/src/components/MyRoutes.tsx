@@ -11,7 +11,7 @@ import FacebookCallback from "./FacebookCallback";
 import GoogleLoginCallback from "./GoogleLoginCallback";
 import Home2 from "../pages/Home2";
 import Advertising from "../pages/Advertising";
-import AdoptionApplication from "../pages/AdoptionApplication";
+import ApplicationSuccess from "../pages/ApplicationSuccess";
 
 import HelpLocationFilter from "../pages/AnimalNeedOurHelpFilter";
 import AdoptionDetail from "../pages/AdoptionDetail";
@@ -57,6 +57,7 @@ import ItHelpFunction from "../pages/Admins/AdminItSupportChat";
 import OrganisationAdoptionApplicationResult from "../pages/Organisation/AdoptionApplicationResult";
 import EditActivities from "../pages/Organisation/EditActivities";
 
+import ActivityApplication from "../pages/ActivityApplication";
 
 export default function MyRoutes() {
   return (
@@ -67,33 +68,34 @@ export default function MyRoutes() {
       <Route path="login" element={<Login />}></Route>
       <Route path="facebook-callback" element={<FacebookCallback />} />
       <Route path="google-callback" element={<GoogleLoginCallback />} />
-      <Route path="/password/reset/notice" element={<NoticePasswordChanged />}></Route>
-      <Route path="/" element={<Home2 />}></Route>
+      <Route path="password/reset/notice" element={<NoticePasswordChanged />}></Route>
+      <Route path="home" element={<Home2 />}></Route>
       {/* <Route path="home" element={<Home />}></Route> */}
-      <Route path="/" element={<AdoptionDetail />}></Route>
-      <Route path="/" element={<Donation />}></Route>
-      <Route path="/" element={<Advertising />}></Route>
-      <Route path="/" element={<Schedule />}></Route>
+      <Route path="adoption/detail" element={<AdoptionDetail />}></Route>
+      <Route path="donation" element={<Donation />}></Route>
+      <Route path="advertiser" element={<Advertising />}></Route>
+      <Route path="schedule" element={<Schedule />}></Route>
       <Route path="register" element={<Register />}></Route>
       <Route path="password/email" element={<ForgetPassword />}></Route>
       <Route path="password/reset" element={<ChangePassword />}></Route>
 
       <Route path="allActivities" element={<AllActivities />}></Route>
-      <Route path="activitiesDetailPage" element={<ActivitiesDetailPage />}></Route>
+      <Route path="activity/detail" element={<ActivitiesDetailPage />}></Route>
+      <Route path="activity/application" element={<ActivityApplication />}></Route>
       <Route path="allActivitiesFilter" element={<AllActivitiesFilter />}></Route>
       <Route path="editorsChoice" element={<EditorsChoice />}></Route>
       <Route path="urgent" element={<Urgent />}></Route>
       <Route path="popular" element={<Popular />}></Route>
 
-      <Route path="/" element={<Adoption />}></Route>
+      <Route path="adoption" element={<Adoption />}></Route>
       <Route path="result" element={<AdoptionApplicationResult />}></Route>
-      <Route path="/" element={<AdoptionApplication />}></Route>
+      <Route path="application/success" element={<ApplicationSuccess />}></Route>
 
-      <Route path="/" element={<SearchShowResultFunction />}></Route>
+      <Route path="search" element={<SearchShowResultFunction />}></Route>
       <Route path="/" element={<SearchResultFuction />}></Route>
 
       <Route path="/" element={<AnimalHelpFunction />}></Route>
-      <Route path="/" element={<AnimalNeedOurHelp />}></Route>
+      <Route path="help" element={<AnimalNeedOurHelp />}></Route>
       <Route path="/" element={<HelpLocationFilter />}></Route>
       <Route path="/" element={<AnimalHelpChatroom />}></Route>
 
@@ -103,11 +105,13 @@ export default function MyRoutes() {
       <Route path="account" element={<Account />}></Route>
       <Route path="/" element={<DeletedMessage />}></Route>
       <Route path="/" element={<DeleteAccount />}></Route>
-      <Route path="/" element={<BadgeFilterYear />}></Route>
+      <Route path="badge/filter" element={<BadgeFilterYear />}></Route>
       <Route path="badge" element={<Badge />}></Route>
 
-      <Route path="/" element={<OrganisationMoreDetails />}></Route>
-      <Route path="/" element={<Organisation />}></Route>
+      <Route path="organisation" element={<Organisation />}>
+        <Route path="detail" element={<OrganisationMoreDetails />}></Route>
+      </Route>
+      {/* <Route path="organisation" element={<Organisation />}></Route> */}
       <Route path="/" element={<OrganisationFilterContainer />}></Route>
       <Route path="record" element={<VolunteerRecord />}></Route>
       {/* User */}

@@ -5,7 +5,7 @@ const tableName = TABLES.ACTIVITIES;
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable(tableName, (table) => {
-    table.increments()
+    table.increments();
     table.string("name");
     table.enum("type", ["editors_choice", "urgent", "popular", "general"]).notNullable();
     table.string("image");
@@ -16,7 +16,8 @@ export async function up(knex: Knex): Promise<void> {
     table.text("requirement");
     table.enum("district", ["hong_kong_island", "new_territories", "kowloon"]).notNullable();
     table.string("location");
-    table.integer("place");
+    table.integer("total_place");
+    table.integer("remaining_place");
     table.decimal("fee");
     table.integer("organisation_id").unsigned();
     table.foreign("organisation_id").references("organisations.id").onDelete("CASCADE");

@@ -1,3 +1,7 @@
+.containerForAll {
+  height: 100vh;
+}
+
 .filterHeader {
   justify-content: space-between;
   align-items: center;
@@ -26,8 +30,11 @@
 
 .filterContentContainer {
   margin-left: 60px;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-
 
 .addressTab {
   font-weight: 700;
@@ -41,17 +48,17 @@
 }
 
 .addressList {
-margin-top: 35px;
+  margin-top: 35px;
 }
 
-
 /////////////////////  allActivitiesFilter Page START  //////////////////////////////////////
-.dateContainer{
+.dateContainer {
   // background-color: red ;
   margin-top: 2vh;
 }
 
-.firstDate, .secondDate{
+.firstDate,
+.secondDate {
   border: 1px solid black;
   width: 70vw;
   border-radius: 10px;
@@ -62,3 +69,12 @@ margin-top: 35px;
   align-items: center;
 }
 
+.button {
+  height: 56px;
+  width: 312px;
+  margin-top: 12px;
+  font-size: 20px;
+  background-color: #585ce5;
+  box-shadow: 0 24px 16px -19px #a1a3f6;
+  position: relative;
+}

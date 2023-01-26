@@ -1,5 +1,5 @@
 import type { Knex } from "knex";
-import { HomeActivity } from "../utils/models";
+import { BadgeRank, BadgeType, HomeActivity, HomeAdvertiser } from "../utils/models";
 import { TABLES } from "../utils/tables";
 
 export class HomeService {
@@ -11,6 +11,145 @@ export class HomeService {
       return result;
     } catch (e) {
       console.log(e);
+      throw e;
+    }
+  };
+  getHomeAdvertisers = async () => {
+    try {
+      const result = await this.knex<HomeAdvertiser>(TABLES.ADVERTISERS).select();
+      return result;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  };
+
+  postHomeAdvertiser = async (uid: number, adsId: number) => {
+    const trx = await this.knex.transaction();
+    let badgeResult;
+
+    const isUserExist = await this.knex(TABLES.USER_TOTAL_ADVERTISING_WATCH_TIMES)
+      .select()
+      .where("year", new Date().getFullYear())
+      .andWhere(`${TABLES.USER_TOTAL_ADVERTISING_WATCH_TIMES}.user_id`, uid)
+      .first();
+
+    console.log(isUserExist);
+    const isAdvertiserExist = await this.knex(TABLES.ADVERTISER_WATCHED_PER_YEAR)
+      .select()
+      .where("year", new Date().getFullYear())
+      .andWhere(`${TABLES.ADVERTISER_WATCHED_PER_YEAR}.advertiser_id`, adsId)
+      .first();
+    console.log(isAdvertiserExist);
+
+    try {
+      if (isUserExist) {
+        const userResult = await trx(TABLES.USER_TOTAL_ADVERTISING_WATCH_TIMES)
+          .update("updated_at", this.knex.fn.now())
+          .increment("total_advertising_watch_times", 1)
+          .where("year", new Date().getFullYear())
+          .andWhere(`${TABLES.USER_TOTAL_ADVERTISING_WATCH_TIMES}.user_id`, uid)
+          .returning("*");
+        if (userResult[0]["total_advertising_watch_times"] > 20) {
+          badgeResult = await trx(TABLES.BADGE_USER_JUNCTION)
+            .update({
+              rank: BadgeRank.gold,
+            })
+            .where("badge_id", BadgeType.advertising_philanthropist)
+            .andWhere("user_id", uid)
+            .returning("*");
+        }
+        if (userResult[0]["total_advertising_watch_times"] > 10) {
+          badgeResult = await trx(TABLES.BADGE_USER_JUNCTION)
+            .update({
+              rank: BadgeRank.silver,
+            })
+            .where("badge_id", BadgeType.advertising_philanthropist)
+            .andWhere("user_id", uid)
+            .returning("*");
+        }
+        console.log(badgeResult);
+        if (isAdvertiserExist) {
+          const adsResult = await trx(TABLES.ADVERTISER_WATCHED_PER_YEAR)
+            .update("updated_at", this.knex.fn.now())
+            .increment("total_watch_times", 1)
+            .where("year", new Date().getFullYear())
+            .andWhere(`${TABLES.ADVERTISER_WATCHED_PER_YEAR}.advertiser_id`, adsId)
+            .returning("*");
+          await trx.commit();
+          return {
+            badgeReuslt: badgeResult && badgeResult[0],
+            userResult: userResult[0],
+            adsResult: adsResult[0],
+          };
+        } else {
+          const adsResult = await trx(TABLES.ADVERTISER_WATCHED_PER_YEAR)
+            .insert({
+              year: new Date().getFullYear(),
+              total_watch_times: 1,
+              advertiser_id: adsId,
+            })
+            .returning("*");
+          await trx.commit();
+          return {
+            badgeReuslt: badgeResult && badgeResult[0],
+            userResult: userResult[0],
+            adsResult: adsResult[0],
+          };
+        }
+      } else {
+        const userResult = await trx(TABLES.USER_TOTAL_ADVERTISING_WATCH_TIMES)
+          .insert({
+            year: new Date().getFullYear(),
+            total_advertising_watch_times: 1,
+            user_id: uid,
+          })
+          .returning("*");
+        console.log("sir this way");
+        console.log(userResult);
+        const badgeResult = await trx(TABLES.BADGE_USER_JUNCTION)
+          .insert({
+            rank: BadgeRank.copper,
+            year: new Date().getFullYear(),
+            badge_id: BadgeType.advertising_philanthropist,
+            user_id: uid,
+          })
+          .returning("*");
+        console.log(badgeResult);
+        if (isAdvertiserExist) {
+          const adsResult = await trx(TABLES.ADVERTISER_WATCHED_PER_YEAR)
+            .update("updated_at", this.knex.fn.now())
+            .increment("total_watch_times", 1)
+            .where("year", new Date().getFullYear())
+            .andWhere(`${TABLES.ADVERTISER_WATCHED_PER_YEAR}.advertiser_id`, adsId)
+            .returning("*");
+
+          await trx.commit();
+          return {
+            badgeReuslt: badgeResult[0],
+            userResult: userResult[0],
+            adsResult: adsResult[0],
+          };
+        } else {
+          const adsResult = await trx(TABLES.ADVERTISER_WATCHED_PER_YEAR)
+            .insert({
+              year: new Date().getFullYear(),
+              total_watch_times: 1,
+              advertiser_id: adsId,
+            })
+            .returning("*");
+          console.log(adsResult);
+          await trx.commit();
+          return {
+            badgeReuslt: badgeResult[0],
+            userResult: userResult[0],
+            adsResult: adsResult[0],
+          };
+        }
+      }
+    } catch (e) {
+      console.log(e);
+      await trx.rollback();
       throw e;
     }
   };
