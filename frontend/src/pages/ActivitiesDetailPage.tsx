@@ -21,7 +21,7 @@ export default function OrganisationMoreDetails() {
     const click = (value: string) => {
         setChoice(value)
     }
-    console.log(choice == "basicInfo")
+    // console.log(choice == "basicInfo")
     return (
         <MantineProvider
             theme={{

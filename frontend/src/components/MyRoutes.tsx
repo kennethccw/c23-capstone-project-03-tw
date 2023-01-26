@@ -55,6 +55,8 @@ import AdminsDashboardPicture from "../pages/Admins/AdminsDashboard";
 import AdminsHelpToDoListfrom from "../pages/Admins/AdminControlUserPanel";
 import ItHelpFunction from "../pages/Admins/AdminItSupportChat";
 import OrganisationAdoptionApplicationResult from "../pages/Organisation/AdoptionApplicationResult";
+import EditActivities from "../pages/Organisation/EditActivities";
+
 
 export default function MyRoutes() {
   return (
@@ -126,6 +128,8 @@ export default function MyRoutes() {
       <Route path="/" element={<AnimalHelpToDoListfrom />}></Route>
       <Route path="/" element={<ApprovalFunction />}></Route>
       <Route path="/" element={<DashboardPicture />}></Route>
+      <Route path="editActivities" element={<EditActivities />}></Route>
+
       {/* Organisation  */}
 
       <Route path="/" element={<RequireAuth />}>
