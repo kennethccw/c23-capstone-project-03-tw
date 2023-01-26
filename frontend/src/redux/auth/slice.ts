@@ -46,6 +46,7 @@ const authSlice = createSlice({
       localStorage.setItem("token", action.payload.token);
       localStorage.setItem("userId", payload.id.toString());
       localStorage.setItem("username", payload.username);
+      localStorage.setItem("role", payload.role);
       state.loading = false;
     });
     builder.addCase(validateTokenThunk.fulfilled, (state, action) => {
@@ -55,6 +56,7 @@ const authSlice = createSlice({
       localStorage.setItem("token", action.payload.token);
       localStorage.setItem("userId", payload.id.toString());
       localStorage.setItem("username", payload.username);
+      localStorage.setItem("role", payload.role);
       state.loading = false;
     });
     builder.addCase(facebookLoginThunk.fulfilled, (state, action) => {
@@ -64,6 +66,7 @@ const authSlice = createSlice({
       localStorage.setItem("token", action.payload.token);
       localStorage.setItem("userId", payload.id.toString());
       localStorage.setItem("username", payload.username);
+      localStorage.setItem("role", payload.role);
       state.loading = false;
     });
     builder.addCase(googleLoginThunk.fulfilled, (state, action) => {
@@ -73,6 +76,7 @@ const authSlice = createSlice({
       localStorage.setItem("token", action.payload.token);
       localStorage.setItem("userId", payload.id.toString());
       localStorage.setItem("username", payload.username);
+      localStorage.setItem("role", payload.role);
       state.loading = false;
     });
     builder.addCase(loginThunk.rejected, (state) => {

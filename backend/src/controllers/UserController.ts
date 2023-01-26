@@ -1,7 +1,7 @@
 import { UserService } from "../services/UserService";
 import { Request, Response } from "express";
 // import formidable from "formidable";
-import { Profile, User } from "../utils/models";
+import { LoginRole, Profile, User } from "../utils/models";
 import jwt from "../utils/jwt";
 import fetch from "cross-fetch";
 import jwtSimple from "jwt-simple";
@@ -40,7 +40,11 @@ export class UserController {
     try {
       const result = await this.userService.register(user);
       console.log(result);
-      res.status(200).json(result);
+      if (result) {
+        res.status(200).json(result);
+      } else {
+        res.status(400).json({ message: "此帳戶電郵地址已被動物機構採用" });
+      }
     } catch (e) {
       res.status(400).json({ message: "帳戶名稱或電郵地址已被採用" });
     }
@@ -52,11 +56,27 @@ export class UserController {
       try {
         const user = await this.userService.loginWithEmail(userIdentity);
 
-        if (await checkPassword(password, user.password)) {
-          const payload = {
-            id: user.id,
-            username: user.username,
-          };
+        const payload = {
+          id: 0,
+          username: "",
+          role: "",
+        };
+        if (user) {
+          if (user.userResult) {
+            if (await checkPassword(password, user.userResult.password)) {
+              payload.id = user.userResult.id;
+              payload.username = user.userResult.username;
+              payload.role = LoginRole.user;
+            }
+          }
+          if (user.organisationResult) {
+            if (await checkPassword(password, user.organisationResult.password)) {
+              payload.id = user.organisationResult.id;
+              payload.username = user.organisationResult.username!;
+              payload.role = LoginRole.organisation;
+            }
+          }
+
           const token = jwtSimple.encode(payload, jwt.jwtSecret);
           // req.session.user = { id: user.id, username: user.username };
           res.status(200).json({ token });
@@ -73,7 +93,8 @@ export class UserController {
         if (await checkPassword(password, user.password)) {
           const payload = {
             id: user.id,
-            username: user.username,
+            username: user.username!,
+            role: LoginRole.user,
           };
           const token = jwtSimple.encode(payload, jwt.jwtSecret);
           // req.session.user = { id: user.id, username: user.username };
@@ -101,15 +122,22 @@ export class UserController {
         return;
       }
       const payload = {
-        id: user.id,
-        username: user.username,
+        id: 0,
+        username: "",
+        role: "",
       };
+      if (user.organisationResult) {
+        payload.id = user.organisationResult.id;
+        payload.username = user.organisationResult.username!;
+        payload.role = LoginRole.organisation;
+      }
+      if (user.userResult) {
+        payload.id = user.userResult.id;
+        payload.username = user.userResult.username;
+        payload.role = LoginRole.user;
+      }
       const token = jwtSimple.encode(payload, jwt.jwtSecret);
-      res
-        // .json({
-        //   token: token,
-        // })
-        .redirect(`${process.env.FRONTEND_URL}/google-callback?token=${token}`);
+      res.redirect(`${process.env.FRONTEND_URL}/google-callback?token=${token}`);
     } catch (e) {
       res.status(400).json({ email: data.email, message: "User not found" });
     }
@@ -157,10 +185,23 @@ export class UserController {
         res.status(400).json({ email: profileData.email, message: "User not found" });
         return;
       }
+
       const payload = {
-        id: user.id,
-        username: user.username,
+        id: 0,
+        username: "",
+        role: "",
       };
+      if (user.organisationResult) {
+        payload.id = user.organisationResult.id;
+        payload.username = user.organisationResult.username!;
+        payload.role = LoginRole.organisation;
+      }
+      if (user.userResult) {
+        payload.id = user.userResult.id;
+        payload.username = user.userResult.username;
+        payload.role = LoginRole.user;
+      }
+
       const token = jwtSimple.encode(payload, jwt.jwtSecret);
       res.json({
         token: token,

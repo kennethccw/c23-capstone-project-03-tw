@@ -20,6 +20,10 @@ import { BadgeService } from "./services/BadgeService";
 export const badgeService = new BadgeService(knex);
 import { BadgeController } from "./controllers/BadgeController";
 export const badgeController = new BadgeController(badgeService);
+import { ScheduleService } from "./services/ScheduleService";
+export const scheduleService = new ScheduleService(knex);
+import { ScheduleController } from "./controllers/ScheduleController";
+export const scheduleController = new ScheduleController(scheduleService);
 
 import { Router } from "express";
 import { userRoutes } from "./routers/userRoutes";
@@ -27,6 +31,7 @@ import { homeRoutes } from "./routers/homeRoutes";
 import { organisationRoutes } from "./routers/organisationRoutes";
 import { activityRoutes } from "./routers/activityRoutes";
 import { badgeRoutes } from "./routers/badgeRoutes";
+import { scheduleRoutes } from "./routers/scheduleRoutes";
 
 export const routes = Router();
 
@@ -35,3 +40,4 @@ routes.use("/home", homeRoutes);
 routes.use("/organisation", organisationRoutes);
 routes.use("/activity", activityRoutes);
 routes.use("/badge", badgeRoutes);
+routes.use("/schedule", scheduleRoutes);

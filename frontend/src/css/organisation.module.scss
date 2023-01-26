@@ -42,10 +42,10 @@
   align-items: flex-start;
   flex-wrap: wrap;
   padding: 20px;
-  color: #898D9E;
+  color: #898d9e;
 }
 
-.organisationContainer{
+.organisationContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,12 +55,16 @@
 
 .square {
   border: 1px solid #e8e8e8;
-  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+  // filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
   border-radius: 20px;
   width: 159px;
   height: 159px;
-  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 12px;
 }
 
-
+.organisationLogo {
+  width: 94%;
+}
