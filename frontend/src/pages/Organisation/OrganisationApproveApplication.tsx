@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import styles from "../../css/organisationMoreDetails.module.scss";
-import { HiChevronLeft, HiOutlineShare, HiOutlineLocationMarker, HiOutlinePhone, HiOutlineMail, HiCalendar } from "react-icons/hi";
+import { HiChevronLeft } from "react-icons/hi";
 import { MantineProvider, Tabs, Button, Checkbox } from "@mantine/core";
-import { sizes } from "@mantine/core/lib/ActionIcon/ActionIcon.styles";
-import { ApplicationContainer } from "../../components/ScheduleComponents";
+// import { ApplicationContainer } from "../../components/ScheduleComponents";
 
 export default function ApproveApplication() {
   const navigate = useNavigate();

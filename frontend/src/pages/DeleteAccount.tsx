@@ -1,7 +1,6 @@
 import { Button, MantineProvider } from "@mantine/core";
 import styles from "../css/deleteAccount.module.scss";
 import { HiXMark } from "react-icons/hi2";
-import { RiArrowRightSLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 export default function PrivacyAndSecurity() {
   const navigate = useNavigate();

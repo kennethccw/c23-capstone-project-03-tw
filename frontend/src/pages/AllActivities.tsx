@@ -1,6 +1,6 @@
 import { NavBarUtilis } from "../components/NavBarUtilis";
 import styles from "../css/allActivitiesPage.module.scss";
-import { Calendar4, ChevronLeft, Filter, Person, GeoAlt } from "react-bootstrap-icons";
+import { ChevronLeft, Filter } from "react-bootstrap-icons";
 import { TextInput } from '@mantine/core'; //https://ui.mantine.dev/category/inputs
 import { IconSearch } from '@tabler/icons';
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ export default function AllActivities() {
     const navigate = useNavigate();
 
     return (<div>
-       
+      
         <div className={styles.upperPart}>
             <div className={styles.leftArrow}><ChevronLeft className={styles.leftArrowIcon} onClick={() => { navigate('/') }} /></div>
             <div className={styles.searchBarPart}>

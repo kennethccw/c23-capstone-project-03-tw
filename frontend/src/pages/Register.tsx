@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Input, PasswordInput, Checkbox, MantineProvider, Button, LoadingOverlay } from "@mantine/core";
+import { Input, PasswordInput, Checkbox, MantineProvider, Button } from "@mantine/core";
 import { IconLock, IconCircleX, IconMail, IconUser, IconArrowNarrowRight } from "@tabler/icons";
-import { useQuery, useQueryClient } from "react-query";
+import { useQueryClient } from "react-query";
 
 import styles from "../css/register.module.scss";
 import { FaFacebookF } from "react-icons/fa";

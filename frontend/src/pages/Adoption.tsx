@@ -1,8 +1,7 @@
-import { Button, Checkbox, Input, MantineProvider, Textarea } from "@mantine/core";
+import { Button, Input, MantineProvider, Textarea } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { IoIosArrowBack } from "react-icons/io";
 import styles from "../css/adoption.module.scss";
-import { useState } from "react";
 import { IconArrowNarrowRight } from "@tabler/icons";
 import { useNavigate } from "react-router-dom";
 

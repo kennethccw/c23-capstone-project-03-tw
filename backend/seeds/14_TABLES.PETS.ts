@@ -8,11 +8,11 @@ export async function seed(knex: Knex): Promise<void> {
       {
         image: "frontend/public/photos/pet/pet-boss.png",
         name: "Boss",
-        age: "2-3 year old",
-        weight: 2,
+        age: "2-3 months",
+        weight: 1.8,
         gender: "male",
-        breed: "異短",
-        remark: "齊針 / 已絕育 / 非常乖 / 任摸任抱 / 識砂盆便便 / 但時會屙係地。",
+        breed: "英短",
+        remark: "1針  / 非常乖 / 任摸任抱 / 識砂盆便便 / 但時會屙係地。",
         organisation_id: 1,
       },
       {

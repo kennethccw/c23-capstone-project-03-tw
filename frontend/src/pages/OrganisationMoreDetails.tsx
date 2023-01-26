@@ -1,9 +1,7 @@
-import { OrganisationFilter } from "../components/OrganisationFilterComponent";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/organisationMoreDetails.module.scss";
 import { HiChevronLeft, HiOutlineShare, HiOutlineLocationMarker, HiOutlinePhone, HiOutlineMail } from "react-icons/hi";
-import { MantineProvider, Tabs, Button, LoadingOverlay } from "@mantine/core";
-import { sizes } from "@mantine/core/lib/ActionIcon/ActionIcon.styles";
+import { MantineProvider, Button, LoadingOverlay } from "@mantine/core";
 import { useQuery } from "react-query";
 import { getOrganisationDetail } from "../api/organisationAPI";
 

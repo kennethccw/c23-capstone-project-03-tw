@@ -1,6 +1,5 @@
 import styles from "../css/applicationSuccess.module.scss";
 import { useNavigate } from "react-router-dom";
-import { HiSearchCircle, HiLightningBolt, HiHome, HiClipboardList, HiUserCircle } from "react-icons/hi";
 import NewNavbar from "../components/NewNavbar";
 
 export default function ApplicationSuccess() {
