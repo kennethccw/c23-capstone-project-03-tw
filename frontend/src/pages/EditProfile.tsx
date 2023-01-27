@@ -1,15 +1,13 @@
 import { Button, Checkbox, Input, LoadingOverlay, MantineProvider, Select } from "@mantine/core";
-import { DatePicker } from "@mantine/dates";
 import InputMask from "react-input-mask";
-import { IconArrowNarrowRight, IconChevronDown, IconCircleX } from "@tabler/icons";
+import { IconArrowNarrowRight, IconChevronDown } from "@tabler/icons";
 import { useForm } from "react-hook-form";
 import { HiXMark } from "react-icons/hi2";
 import styles from "../css/editProfile.module.scss";
 import NewNavbar from "../components/NewNavbar";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getProfile, putProfile } from "../api/profileAPI";
-import { fetchJson } from "../api/utilsAPI";
 import { useNavigate } from "react-router-dom";
 export default function EditProfile() {
   enum Gender {

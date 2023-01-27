@@ -4,9 +4,6 @@ import { HiXMark } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { IconChevronDown } from "@tabler/icons";
-import InputMask from "react-input-mask";
-import { useForm } from "react-hook-form";
-import { RiContrastDropLine } from "react-icons/ri";
 
 export default function OrganisationAdoptionApplicationResult() {
   const navigate = useNavigate();

@@ -1,8 +1,7 @@
-import { MantineProvider, Timeline } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
 import styles from "../css/badge.module.scss";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { HiAdjustmentsHorizontal, HiXMark } from "react-icons/hi2";
-import NewNavbar from "../components/NewNavbar";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { BadgeImage, BadgeList, BadgeRank, BadgeType, getBadges } from "../api/badgeAPI";

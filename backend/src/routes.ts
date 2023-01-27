@@ -20,6 +20,10 @@ import { BadgeService } from "./services/BadgeService";
 export const badgeService = new BadgeService(knex);
 import { BadgeController } from "./controllers/BadgeController";
 export const badgeController = new BadgeController(badgeService);
+import { ScheduleService } from "./services/ScheduleService";
+export const scheduleService = new ScheduleService(knex);
+import { ScheduleController } from "./controllers/ScheduleController";
+export const scheduleController = new ScheduleController(scheduleService);
 
 
 /////// for edit activities page ////////////////////
@@ -36,19 +40,15 @@ import { homeRoutes } from "./routers/homeRoutes";
 import { organisationRoutes } from "./routers/organisationRoutes";
 import { activityRoutes } from "./routers/activityRoutes";
 import { badgeRoutes } from "./routers/badgeRoutes";
-import { isLoggedInAPI } from "./utils/guards";
+import { scheduleRoutes } from "./routers/scheduleRoutes";
 import { editActivitiesRoutes } from "./routers/editActivitiesRoutes";
-
-
-
-
-
 
 export const routes = Router();
 
-routes.use("/user",  userRoutes);
-routes.use("/home",isLoggedInAPI, homeRoutes);
-routes.use("/organisation",isLoggedInAPI, organisationRoutes);
-routes.use("/activity",isLoggedInAPI, activityRoutes);
-routes.use("/badge",isLoggedInAPI, badgeRoutes);
-routes.use("/editActivities",isLoggedInAPI, editActivitiesRoutes)
+routes.use("/user", userRoutes);
+routes.use("/home", homeRoutes);
+routes.use("/organisation", organisationRoutes);
+routes.use("/activity", activityRoutes);
+routes.use("/badge", badgeRoutes);
+routes.use("/schedule", scheduleRoutes);
+routes.use("/editActivities", editActivitiesRoutes)

@@ -58,11 +58,16 @@ import OrganisationAdoptionApplicationResult from "../pages/Organisation/Adoptio
 import EditActivities from "../pages/Organisation/EditActivities";
 
 import ActivityApplication from "../pages/ActivityApplication";
+import AdoptionShowDetails from "../pages/AdoptionSlideShow";
+import PetDetails from "../pages/AdoptionPet";
+import ApplicationCancelled from "../pages/ApplicationCancelled";
 
 export default function MyRoutes() {
   return (
     <Routes>
       {/* User */}
+      <Route path="/" element={<PetDetails />}></Route>
+      <Route path="/" element={<AdoptionShowDetails />}></Route>
       <Route path="/" element={<Welcome />}></Route>
       <Route path="introduction" element={<Introduction />}></Route>
       <Route path="login" element={<Login />}></Route>
@@ -72,6 +77,7 @@ export default function MyRoutes() {
       <Route path="home" element={<Home2 />}></Route>
       {/* <Route path="home" element={<Home />}></Route> */}
       <Route path="adoption/detail" element={<AdoptionDetail />}></Route>
+      <Route path="allActivities" element={<AllActivities />}></Route>
       <Route path="donation" element={<Donation />}></Route>
       <Route path="advertiser" element={<Advertising />}></Route>
       <Route path="schedule" element={<Schedule />}></Route>
@@ -79,7 +85,6 @@ export default function MyRoutes() {
       <Route path="password/email" element={<ForgetPassword />}></Route>
       <Route path="password/reset" element={<ChangePassword />}></Route>
 
-      <Route path="allActivities" element={<AllActivities />}></Route>
       <Route path="activity/detail" element={<ActivitiesDetailPage />}></Route>
       <Route path="activity/application" element={<ActivityApplication />}></Route>
       <Route path="allActivitiesFilter" element={<AllActivitiesFilter />}></Route>
@@ -90,6 +95,7 @@ export default function MyRoutes() {
       <Route path="adoption" element={<Adoption />}></Route>
       <Route path="result" element={<AdoptionApplicationResult />}></Route>
       <Route path="application/success" element={<ApplicationSuccess />}></Route>
+      <Route path="application/cancellation" element={<ApplicationCancelled />}></Route>
 
       <Route path="search" element={<SearchShowResultFunction />}></Route>
       <Route path="/" element={<SearchResultFuction />}></Route>

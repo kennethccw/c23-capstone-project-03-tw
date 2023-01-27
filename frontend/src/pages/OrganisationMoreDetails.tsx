@@ -1,9 +1,7 @@
-import { OrganisationFilter } from "../components/OrganisationFilterComponent";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/organisationMoreDetails.module.scss";
 import { HiChevronLeft, HiOutlineShare, HiOutlineLocationMarker, HiOutlinePhone, HiOutlineMail } from "react-icons/hi";
-import { MantineProvider, Tabs, Button, LoadingOverlay } from "@mantine/core";
-import { sizes } from "@mantine/core/lib/ActionIcon/ActionIcon.styles";
+import { MantineProvider, Button, LoadingOverlay } from "@mantine/core";
 import { useQuery } from "react-query";
 import { getOrganisationDetail } from "../api/organisationAPI";
 
@@ -42,19 +40,22 @@ export default function OrganisationMoreDetails() {
           <HiOutlineShare className={styles.outlineShare} />
         </div>
 
-        <Tabs defaultValue="基本資料" color="ocean" className={styles.tabList}>
+        {/* <Tabs defaultValue="基本資料" color="ocean" className={styles.tabList}>
           <Tabs.List grow>
             <Tabs.Tab value="基本資料">基本資料</Tabs.Tab>
             <Tabs.Tab value="義工機會">義工機會</Tabs.Tab>
             <Tabs.Tab value="查詢">查詢</Tabs.Tab>
           </Tabs.List>
-        </Tabs>
+        </Tabs> */}
 
         <div className={styles.detailsContainer}>
           <div className={styles.basicInfo}>基本資料</div>
 
           <div className={styles.organisationTabContainer}>
-            <img className={styles.square} src={imgPath + "/" + data?.logo}></img>
+            <div className={styles.square}>
+              <img className={styles.organisationLogo} src={imgPath + "/" + data?.logo}></img>
+            </div>
+
             <div className={styles.organisationName}>{data?.name}</div>
           </div>
 

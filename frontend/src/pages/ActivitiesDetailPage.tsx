@@ -1,19 +1,28 @@
-import { OrganisationFilter } from "../components/OrganisationFilterComponent";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/organisationMoreDetails.module.scss";
 import detailStyles from "../css/activitiesDetails.module.scss";
-import { HiChevronLeft, HiOutlineShare, HiOutlineLocationMarker, HiOutlinePhone, HiOutlineMail } from "react-icons/hi";
-import { MantineProvider, Tabs, Button, LoadingOverlay } from "@mantine/core";
-import { sizes } from "@mantine/core/lib/ActionIcon/ActionIcon.styles";
+import { HiChevronLeft, HiOutlineShare } from "react-icons/hi";
+import { MantineProvider, Tabs, Button, LoadingOverlay, Modal } from "@mantine/core";
 import { Calendar4, GeoAlt, Person, House, Telephone, Envelope } from "react-bootstrap-icons";
-import { useEffect, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useQuery } from "react-query";
-import { District, getActivityDetail } from "../api/activityAPI";
+import { District, getActivityDetail, putActivityApplication } from "../api/activityAPI";
 
 export default function ActivitiesDetailPage() {
   const navigate = useNavigate();
 
+  enum PageStatus {
+    beforeApplication = "beforeApplication",
+    pending = "pending",
+    confirmed = "confirmed",
+  }
+
   const params = new URLSearchParams(document.location.search);
+
+  const pageStatusRef = useRef<string>(PageStatus.beforeApplication);
+  if (params.get("status")) {
+    pageStatusRef.current = params.get("status")!;
+  }
 
   const getActivityDetailNoParam = async () => {
     const data = await getActivityDetail(params.get("id")!);
@@ -43,6 +52,9 @@ export default function ActivitiesDetailPage() {
     // staleTime: 10_000,
     // retry: 1,
   });
+
+  console.log(params.get("pending"));
+  const [opened, setOpened] = useState(false);
 
   const convertNumberToDay = (idx: number) => {
     const dayArr = ["週日", "週一", "週二", "週三", "週四", "週五", "週六"];
@@ -226,9 +238,41 @@ export default function ActivitiesDetailPage() {
             </div>
           </div>
           <div className={detailStyles.right}>
-            <Button disabled={!data?.data.remaining_place} color="pink" className={detailStyles.joinButton} onClick={() => navigate(`/activity/application?id=${params.get("id")!}`)}>
-              <div>參加</div>
-            </Button>
+            {pageStatusRef.current === PageStatus.beforeApplication && (
+              <Button disabled={!data?.data.remaining_place} color="pink" className={detailStyles.joinButton} onClick={() => navigate(`/activity/application?id=${params.get("id")!}`)}>
+                <div>參加</div>
+              </Button>
+            )}
+            {params.get("status") === PageStatus.pending && (
+              <Button color="pink" className={detailStyles.joinButton} onClick={() => setOpened(true)}>
+                <div>取消報名</div>
+              </Button>
+            )}
+            {params.get("status") === PageStatus.confirmed && (
+              <Button disabled color="pink" className={detailStyles.joinButton}>
+                <div>取消報名</div>
+              </Button>
+            )}
+            <Modal radius="lg" size="80%" centered overlayOpacity={0.55} overlayBlur={3} opened={opened} onClose={() => setOpened(false)} className={detailStyles.modalConfirmCancelModal}>
+              <div className={detailStyles.modalConfirmCancelContainer}>
+                <h2 className={detailStyles.modalConfirmCancelTitle}>確定取消報名？</h2>
+                <Button
+                  color="pink"
+                  className={detailStyles.joinButton}
+                  onClick={async () => {
+                    const res = await putActivityApplication(params.get("id")!);
+                    const result = await res.json();
+                    if (res.status === 200) {
+                      navigate("/application/cancellation");
+                    } else {
+                      alert(result.message);
+                    }
+                  }}
+                >
+                  <div>確定</div>
+                </Button>
+              </div>
+            </Modal>
           </div>
         </div>
       </div>

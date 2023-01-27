@@ -1,16 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRootDispatch, useRootSelector } from "../redux/store";
-import { NavBarUtilis } from "../components/NavBarUtilis";
+import { useRootSelector } from "../redux/store";
 import styles from "../css/home2.module.scss";
-import { Bell, ChevronRight, Person, Calendar4, Building } from "react-bootstrap-icons";
+import { Building } from "react-bootstrap-icons";
 import { Carousel } from "@mantine/carousel";
 import NewNavbar from "../components/NewNavbar";
-import { BiBell } from "react-icons/bi";
 import { CiBellOn } from "react-icons/ci";
-import { HiArrowRight, HiChevronRight } from "react-icons/hi";
+import { HiChevronRight } from "react-icons/hi";
 import { useQuery } from "react-query";
-import { homeActivityThunk } from "../redux/home/thunk";
 import { HomeActivityComponent } from "../components/HomeActivityCompoent";
 import { LoadingOverlay } from "@mantine/core";
 import { getHomeActivities } from "../api/homeAPI";
@@ -43,6 +40,7 @@ export default function Home2() {
   //   }
   // }, [authLoading]);
 
+  // data?.map((activity) => {console.log("check id", activity.id)})
   return (
     <div className={styles.containerForAll}>
       <LoadingOverlay visible={isLoading} overlayBlur={2} />
@@ -143,7 +141,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {data?.map((activity) => (activity.type === "editors_choice" ? <HomeActivityComponent key={`editor-${activity.id}`} activity={activity} /> : <></>))}
+                  {data?.map((activity) => activity.type === "editors_choice" && <HomeActivityComponent key={activity.id} activity={activity} />)}
 
                   {/* props */}
                 </Carousel>
@@ -212,7 +210,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {data?.map((activity) => (activity.type === "urgent" ? <HomeActivityComponent key={`urgent-${activity.id}`} activity={activity} /> : <></>))}
+                  {data?.map((activity) => activity.type === "urgent" && <HomeActivityComponent key={`urgent-${activity.id}`} activity={activity} />)}
 
                   {/* props */}
                 </Carousel>
@@ -280,7 +278,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {data?.map((activity) => (activity.type === "popular" ? <HomeActivityComponent key={`popular-${activity.id}`} activity={activity} /> : <></>))}
+                  {data?.map((activity) => activity.type === "popular" && <HomeActivityComponent key={`popular-${activity.id}`} activity={activity} />)}
 
                   {/* props */}
                 </Carousel>
