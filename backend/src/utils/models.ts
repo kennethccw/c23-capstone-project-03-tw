@@ -146,3 +146,14 @@ export enum LoginRole {
   organisation = "organisation",
   user = "user",
 }
+
+export interface ActivityPreview {
+  activity_id: number;
+  image: string;
+  organisation: string;
+  name: string;
+  location: string;
+  start_time: Date;
+  end_time: Date;
+  date: Date;
+}

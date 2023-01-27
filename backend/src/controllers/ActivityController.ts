@@ -1,15 +1,32 @@
 import { ActivityService } from "../services/ActivityService";
 import { Request, Response } from "express";
-import { Profile } from "../utils/models";
+import { ActivityPreview, Profile } from "../utils/models";
 import { logger } from "../utils/logger";
 
 export class ActivityController {
   constructor(private activityService: ActivityService) {}
 
+  getAllActivities = async (req: Request, res: Response) => {
+    try {
+      const data = await this.activityService.getAllActivities();
+      res.status(200).json(data);
+    } catch (e) {
+      res.status(400).json({ message: "Internal Server Error" });
+    }
+  };
   getActivityDetail = async (req: Request, res: Response) => {
     const id = parseInt(req.query.id as string);
     try {
       const data = await this.activityService.getActivityDetail(id);
+      res.status(200).json(data);
+    } catch (e) {
+      res.status(400).json({ message: "Internal Server Error" });
+    }
+  };
+  getActivitiesByCategory = async (req: Request, res: Response) => {
+    const type = req.query.type as string;
+    try {
+      const data: ActivityPreview[] = await this.activityService.getActivitiesByCategory(type);
       res.status(200).json(data);
     } catch (e) {
       res.status(400).json({ message: "Internal Server Error" });

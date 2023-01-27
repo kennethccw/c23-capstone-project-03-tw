@@ -122,7 +122,7 @@ export default function ActivitiesDetailPage() {
             <HiChevronLeft
               className={styles.chevronIcon}
               onClick={() => {
-                navigate("/home");
+                navigate(-1);
               }}
             />
             <HiOutlineShare className={styles.outlineShare} />

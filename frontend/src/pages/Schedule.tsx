@@ -47,7 +47,7 @@ export default function Schedule() {
               value="處理中"
               rightSection={
                 !!data?.pending.length && (
-                  <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
+                  <Badge sx={{ width: 20, height: 20, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
                     {data?.pending.length}
                   </Badge>
                 )

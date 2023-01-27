@@ -1,12 +1,23 @@
 import type { Knex } from "knex";
-import { ActivityDetail, Profile, User } from "../utils/models";
+import { ActivityDetail, ActivityPreview, Profile, User } from "../utils/models";
 import { TABLES } from "../utils/tables";
 
 export class ActivityService {
   constructor(private knex: Knex) {}
 
+  getAllActivities = async () => {
+    try {
+      const result: ActivityPreview[] = await this.knex<ActivityPreview>(TABLES.ACTIVITIES)
+        .select("*", "organisations.name as organisation", "activities.id as activity_id")
+        .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id");
+      console.log(result);
+      return result;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  };
   getActivityDetail = async (id: number) => {
-    console.log("hihhi");
     try {
       const result: ActivityDetail = await this.knex<ActivityDetail>(TABLES.ACTIVITIES)
         .select("*", "organisations.name as organisation")
@@ -20,6 +31,21 @@ export class ActivityService {
       throw e;
     }
   };
+
+  getActivitiesByCategory = async (type: string) => {
+    try {
+      const result: ActivityPreview[] = await this.knex<ActivityPreview>(TABLES.ACTIVITIES)
+        .select("*", "organisations.name as organisation", "activities.id as activity_id")
+        .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id")
+        .where("activities.type", type);
+      console.log(result);
+      return result;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  };
+
   postActivityApplication = async (uid: number, activityId: number, user: Profile) => {
     console.log("sir this way 1");
     const trx = await this.knex.transaction();
