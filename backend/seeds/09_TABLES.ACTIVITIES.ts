@@ -58,7 +58,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "活動義工",
         type: "popular",
-        image: "photos/activities/popular/image-popular1",
+        image: "photos/activities/popular/image-popular1.jpeg",
         description:
           "不定期成為Event Helper❤用行動為被遺棄、被虐待、被遺忘的一群找個家 (活動：領養日、義賣日、活動日、教育講座、慈善活動,領養人講座)",
         date: new Date("2023/02/12"),

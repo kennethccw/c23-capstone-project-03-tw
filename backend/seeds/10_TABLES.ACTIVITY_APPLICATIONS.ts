@@ -8,12 +8,14 @@ export async function seed(knex: Knex): Promise<void> {
       {
         is_approved: true,
         is_participated: true,
+        is_cancelled: false,
         user_id: 1,
         activity_id: 1,
       },
       {
         is_approved: true,
         is_participated: true,
+        is_cancelled: false,
         user_id: 2,
         activity_id: 2,
       },

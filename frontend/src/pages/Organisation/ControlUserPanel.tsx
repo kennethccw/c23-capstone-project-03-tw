@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styles from "../../css/organisationMoreDetails.module.scss";
-import {
-  HiChevronLeft,
-} from "react-icons/hi";
+import { HiChevronLeft } from "react-icons/hi";
 import { MantineProvider, Tabs } from "@mantine/core";
 import { ApplicationContainer } from "../../components/ScheduleComponents";
 
@@ -12,30 +10,8 @@ export default function ApprovalFunction() {
     <MantineProvider
       theme={{
         colors: {
-          ocean: [
-            "#585CE5",
-            "#585CE5",
-            "#585CE5",
-            "#585CE5",
-            "#585CE5",
-            "#585CE5",
-            "#585CE5",
-            "#585CE5",
-            "#585CE5",
-            "#585CE5",
-          ],
-          "milkTea": [
-            "#ECE7DD",
-            "#ECE7DD",
-            "#ECE7DD",
-            "#ECE7DD",
-            "#ECE7DD",
-            "#ECE7DD",
-            "#ECE7DD",
-            "#ECE7DD",
-            "#ECE7DD",
-            "#ECE7DD",
-          ],
+          ocean: ["#585CE5", "#585CE5", "#585CE5", "#585CE5", "#585CE5", "#585CE5", "#585CE5", "#585CE5", "#585CE5", "#585CE5"],
+          milkTea: ["#ECE7DD", "#ECE7DD", "#ECE7DD", "#ECE7DD", "#ECE7DD", "#ECE7DD", "#ECE7DD", "#ECE7DD", "#ECE7DD", "#ECE7DD"],
         },
       }}
     >
@@ -55,9 +31,9 @@ export default function ApprovalFunction() {
           </Tabs.List>
         </Tabs>
 
-
+        {/* 
         <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
-        <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" />
+        <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" /> */}
 
         <div className={styles.bottomArea}></div>
       </div>

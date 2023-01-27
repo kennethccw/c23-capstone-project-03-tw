@@ -3,7 +3,9 @@ import { fetchJson } from "../api/utilsAPI";
 const SCHEDULE_API_PATH = "http://localhost:8080/schedule";
 
 export interface ScheduleActivity {
-  id: number;
+  application_id: number;
+  activity_id: number;
+  image: string;
   organisation: string;
   name: string;
   location: string;
