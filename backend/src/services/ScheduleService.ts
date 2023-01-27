@@ -6,10 +6,9 @@ export class ScheduleService {
   constructor(private knex: Knex) {}
 
   getScheduleActivities = async (uid: number) => {
-    const trx = await this.knex.transaction();
     console.log(uid);
     try {
-      const confirmedActivities = await trx<ScheduleActivity>(TABLES.ACTIVITY_APPLICATIONS)
+      const confirmedActivities = await this.knex<ScheduleActivity>(TABLES.ACTIVITY_APPLICATIONS)
         .select(
           "*",
           "organisations.name as organisation",
@@ -28,7 +27,7 @@ export class ScheduleService {
         .where("activity_applications.user_id", uid)
         .andWhere("activity_applications.is_approved", true)
         .andWhere("activity_applications.is_cancelled", false);
-      const pendingActivities = await trx<ScheduleActivity>(TABLES.ACTIVITY_APPLICATIONS)
+      const pendingActivities = await this.knex<ScheduleActivity>(TABLES.ACTIVITY_APPLICATIONS)
         .select(
           "*",
           "organisations.name as organisation",
@@ -47,12 +46,10 @@ export class ScheduleService {
         .where("activity_applications.user_id", uid)
         .andWhere("activity_applications.is_approved", false)
         .andWhere("activity_applications.is_cancelled", false);
-      await trx.commit();
       console.log(confirmedActivities, pendingActivities);
       return { confirmed: confirmedActivities, pending: pendingActivities };
     } catch (e) {
       console.log(e);
-      await trx.rollback();
       throw e;
     }
   };

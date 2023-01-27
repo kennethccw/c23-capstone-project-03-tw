@@ -1,6 +1,7 @@
 import { ActivityService } from "../services/ActivityService";
 import { Request, Response } from "express";
 import { Profile } from "../utils/models";
+import { logger } from "../utils/logger";
 
 export class ActivityController {
   constructor(private activityService: ActivityService) {}
@@ -22,6 +23,7 @@ export class ActivityController {
       const data = await this.activityService.postActivityApplication(uid, activityId, user);
       res.status(200).json(data);
     } catch (e) {
+      logger.error(e.message);
       res.status(400).json({ message: "Internal Server Error" });
     }
   };

@@ -11,9 +11,8 @@ export class BadgeService {
   constructor(private knex: Knex) {}
 
   getBadges = async (uid: number) => {
-    const trx = await this.knex.transaction();
     try {
-      const badges: BadgeList[] = await trx<BadgeList>(TABLES.BADGE_USER_JUNCTION)
+      const badges: BadgeList[] = await this.knex<BadgeList>(TABLES.BADGE_USER_JUNCTION)
         .select()
         .innerJoin(TABLES.BADGES, `${TABLES.BADGES}.id`, `${TABLES.BADGE_USER_JUNCTION}.badge_id`)
         .innerJoin(TABLES.USERS, `${TABLES.USERS}.id`, `${TABLES.BADGE_USER_JUNCTION}.user_id`)
@@ -22,19 +21,19 @@ export class BadgeService {
 
       console.log(badges);
 
-      const advertiserWatchedTimes = await trx<AdvertiserWatchedTimes>(
+      const advertiserWatchedTimes = await this.knex<AdvertiserWatchedTimes>(
         TABLES.USER_TOTAL_ADVERTISING_WATCH_TIMES
       )
         .select()
         .where("user_id", uid)
         .andWhere(`${TABLES.USER_TOTAL_ADVERTISING_WATCH_TIMES}.year`, new Date().getFullYear())
         .first();
-      const donationAmount = await trx<DonationAmount>(TABLES.USER_TOTAL_DONATIONS)
+      const donationAmount = await this.knex<DonationAmount>(TABLES.USER_TOTAL_DONATIONS)
         .select()
         .where("user_id", uid)
         .andWhere(`${TABLES.USER_TOTAL_DONATIONS}.year`, new Date().getFullYear())
         .first();
-      const activityParticipatedTimes = await trx<ActivityParticipatedTimes>(
+      const activityParticipatedTimes = await this.knex<ActivityParticipatedTimes>(
         TABLES.USER_TOTAL_ACTIVITIES_PARTICIPATED_TIMES
       )
         .select()
@@ -44,11 +43,9 @@ export class BadgeService {
           new Date().getFullYear()
         )
         .first();
-      await trx.commit();
       return { badges, advertiserWatchedTimes, donationAmount, activityParticipatedTimes };
     } catch (e) {
       console.log(e);
-      await trx.rollback();
       throw e;
       // .innerJoin(
       //   TABLES.USER_TOTAL_ADVERTISING_WATCH_TIMES,
