@@ -8,7 +8,12 @@ export class ActivityService {
   getAllActivities = async () => {
     try {
       const result: ActivityPreview[] = await this.knex<ActivityPreview>(TABLES.ACTIVITIES)
-        .select("*", "organisations.name as organisation", "activities.id as activity_id")
+        .select(
+          "*",
+          "organisations.name as organisation",
+          "activities.name as activity",
+          "activities.id as activity_id"
+        )
         .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id");
       console.log(result);
       return result;
@@ -20,7 +25,12 @@ export class ActivityService {
   getActivityDetail = async (id: number) => {
     try {
       const result: ActivityDetail = await this.knex<ActivityDetail>(TABLES.ACTIVITIES)
-        .select("*", "organisations.name as organisation")
+        .select(
+          "*",
+          "organisations.name as organisation",
+          "activities.name as activity",
+          "activities.id as activity_id"
+        )
         .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id")
         .first()
         .where("activities.id", id);
@@ -35,7 +45,12 @@ export class ActivityService {
   getActivitiesByCategory = async (type: string) => {
     try {
       const result: ActivityPreview[] = await this.knex<ActivityPreview>(TABLES.ACTIVITIES)
-        .select("*", "organisations.name as organisation", "activities.id as activity_id")
+        .select(
+          "*",
+          "organisations.name as organisation",
+          "activities.name as activity",
+          "activities.id as activity_id"
+        )
         .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id")
         .where("activities.type", type);
       console.log(result);

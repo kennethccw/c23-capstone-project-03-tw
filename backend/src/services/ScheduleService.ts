@@ -12,6 +12,7 @@ export class ScheduleService {
         .select(
           "*",
           "organisations.name as organisation",
+          "activities.name as activity",
           "activity_applications.id as application_id"
         )
         .innerJoin(
@@ -31,6 +32,7 @@ export class ScheduleService {
         .select(
           "*",
           "organisations.name as organisation",
+          "activities.name as activity",
           "activity_applications.id as application_id"
         )
         .innerJoin(

@@ -10,9 +10,9 @@ export enum District {
 }
 
 export interface ActivityDetail {
-  id: number;
+  activity_id: number;
   image: string;
-  name: string;
+  activity: string;
   location: string;
   start_time: Date;
   end_time: Date;
@@ -30,7 +30,7 @@ export interface ActivityPreview {
   activity_id: number;
   image: string;
   organisation: string;
-  name: string;
+  activity: string;
   location: string;
   start_time: Date;
   end_time: Date;
