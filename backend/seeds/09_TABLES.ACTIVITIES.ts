@@ -60,7 +60,7 @@ export async function seed(knex: Knex): Promise<void> {
         type: "popular",
         image: "photos/activities/popular/image-popular1.png",
         description:
-          "不定期成為Event Helper❤用行動為被遺棄、被虐待、被遺忘的一群找個家 (活動：領養日、義賣日、活動日、教育講座、慈善活動,領養人講座)",
+          "不定期成為Event Helper用行動為被遺棄、被虐待、被遺忘的一群找個家 (活動：領養日、義賣日、活動日、教育講座、慈善活動,領養人講座)",
         date: new Date("2023/02/12"),
         start_time: new Date("2023/02/12 11:00"),
         end_time: new Date("2023/02/12 14:00"),
@@ -126,7 +126,7 @@ export async function seed(knex: Knex): Promise<void> {
         type: "editors_choice",
         image: "photos/activities/urgent/image-urgent2.jpg",
         description:
-          "公關犬大使”，從前都是被主人放棄飼養的家犬，牠們剛進入動物收容中心的時候，都曾表現徬徨及悲傷，幸得我們員工的悉心照料及義工的關愛， 這些曾被棄養的公關犬大使，當重新感受到愛的温暖，牠們放下了從前被遺棄的傷痛，用“愛”為市民帶來相聚的歡樂，用“愛”提醒我們要學習珍惜生命。",
+          "公關犬大使”，從前都是被主人放棄飼養的家犬，牠們剛進入動物收容中心的時候，都曾表現徬徨及悲傷，幸得我們員工的悉心照料及義工的關愛， 這些曾被棄養的公關犬大使，當重新感受到愛的關愛，牠們放下了從前被遺棄的傷痛，用“愛”為市民帶來相聚的歡樂，用“愛”提醒我們要學習珍惜生命。",
         date: new Date("2023/03/04"),
         start_time: new Date("2023/03/04 11:00"),
         end_time: new Date("2023/03/04 14:00"),

@@ -24,11 +24,33 @@ export default function EditActivities() {
 
     const [date, setDate] = useState<Date | any>(new Date())
 
+    let year = date.getFullYear();
+
+    let extractMonth = date.getMonth() + 1;
+    let month;
+    if (extractMonth < 10) {
+        month = "0" + extractMonth;
+    } else { month = extractMonth; }
+
+
+
+    let extractDateOfActivity = date.getDate();
+    let dateOfActivity;
+    if (extractDateOfActivity < 10) {
+        dateOfActivity = "0" + extractDateOfActivity
+    } else {
+        dateOfActivity = extractDateOfActivity
+    }
+
+    let stringOfDate = year + "/" + month + "/" + dateOfActivity
+
+
+
     const [fee, setFee] = useState<number | any>(0.00)
     const { register, watch, handleSubmit } = useForm(
 
     )
-    const [file, setFile] = useState<File | any>(null);
+    const [file, setFile] = useState<File |null>(null);
     const resetRef = useRef<() => void>(null);
 
     const clearFile = () => {
@@ -37,7 +59,7 @@ export default function EditActivities() {
     };
 
 
-    const activitiyName = watch("activitiyName")
+    const activityName = watch("activitiyName")
     const activityDetails = watch("activityDetails")
     const activityStartTime = watch("activityStartTime")
     const activityEndTime = watch("activityEndTime")
@@ -45,10 +67,14 @@ export default function EditActivities() {
     const district = watch("district")
     const address = watch("address")
     const count = watch("count")
-
+console.log(activityName)
     const [isLoading, setIsLoading] = useState(false);
+    
+    let activityStartTimeforFetch= year + "/" + month + "/" + dateOfActivity+" "+activityStartTime
 
+let activityEndTimeforFetch= year + "/" + month + "/" + dateOfActivity+" "+activityEndTime
 
+let notFillInActivityName=false;
     return (<>
 
         <div className={styles.upperPart}>
@@ -79,28 +105,52 @@ export default function EditActivities() {
             {choice == "addActivities" ?
 
                 <div>
-                    <form onSubmit={handleSubmit(async () => {
-                        const formData = {
-                            activityName: activitiyName,
-                            activityDetails: activityDetails,
-                            date: date,
-                            activityStartTime: activityStartTime,
-                            activityEndTime: activityEndTime,
-                            requirements: requirements,
-                            district: district,
-                            address: address,
-                            count: count,
-                            fee: fee,
-                            file: file.name
-                        };
-                        await fetch(`${process.env.REACT_APP_BACKEND_URL}/addActivities`,
-                        {method:'POST',
-                        headers: {
-                            "Content-Type": "application/json",
-                          },
-                          body: JSON.stringify(formData)})
-                        
-                        
+                    <form onSubmit={handleSubmit(async (e) => {
+                        e.preventDefault();
+                    // if(!activityName || activityName===""||!activityDetails ||activityDetails===""||activityStartTime.slice(0, 2) > 23 || (activityStartTime.slice(3, 5)) > 59 || (activityStartTime[0] === '_') || (activityStartTime[1] === '_') || (activityStartTime[3] === '_') || (activityStartTime[4] === '_')){
+                    //     alert("請填寫所需資料");
+                    //     return;}
+                    console.log(activityName)
+                    if(activityName===""){
+                       notFillInActivityName=true;
+                        return;
+                    }
+                   console.log(notFillInActivityName)
+
+
+
+
+                        const formData = new FormData()
+                        formData.append("activityName", activityName)
+                        formData.append("activityDetails",activityDetails)
+                        formData.append("date",stringOfDate)
+                        formData.append("activityStartTime",activityStartTimeforFetch)
+                        formData.append("activityEndTime",activityEndTimeforFetch)
+                        formData.append("requirements",requirements)
+                        formData.append("district",district)
+                        formData.append("address",address)
+                        formData.append("count",count)
+                        formData.append("remaining_place",count)
+                        formData.append("fee",fee)
+                        formData.append("organisation_id","1")
+                        formData.append("file",file||"")
+                        formData.append("type","editors_choice")
+                       
+                  console.log(file)
+                  console.log(file!.name)
+                        console.log(formData)
+                        await fetch(`${process.env.REACT_APP_BACKEND_URL}/editActivities/addActivities`,
+                            {
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                                },
+                                body: JSON.stringify(formData),
+
+                            })
+
+
                     })}>
                         <Input.Wrapper id="activitiyName" label="活動名稱" withAsterisk>
                             <Input id="activitiyName"
@@ -144,7 +194,7 @@ export default function EditActivities() {
                         />
 
                         <NativeSelect
-                            data={['中西區', '灣仔區', '東區', '南區', '油尖旺區', '深水埗區', '九龍城區', '黃大仙區', ' 觀塘區', '西貢區', '沙田區', ' 大埔區', '北區', '葵青區', ' 荃灣區', '屯門區', '元朗區', '離島區']}
+                            data={['kowloon', 'hong_kong_island', 'new_territories']}
                             label="舉辦地區"
                             radius="md"
                             size="md"
@@ -176,7 +226,7 @@ export default function EditActivities() {
 
 
                         <div className={styles.uploadImagePart}> <Group position="center">
-                            <FileButton resetRef={resetRef} onChange={setFile} accept="image/png,image/jpeg">
+                            <FileButton resetRef={resetRef} onChange={ (file) =>setFile(file)} accept="image/png,image/jpeg">
                                 {(props) => <Button {...props} color="violet">Upload image</Button>}
                             </FileButton>
                             <Button disabled={!file} color="red" onClick={clearFile}>Reset</Button>

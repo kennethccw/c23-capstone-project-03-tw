@@ -37,11 +37,11 @@ export default function Home2() {
     retry: 1,
   });
 
-  useEffect(() => {
-    if (!authLoading) {
-      setUsername(localStorage.getItem("username"));
-    }
-  }, [authLoading]);
+  // useEffect(() => {
+  //   if (!authLoading) {
+  //     setUsername(localStorage.getItem("username"));
+  //   }
+  // }, [authLoading]);
 
   return (
     <div className={styles.containerForAll}>
@@ -58,7 +58,7 @@ export default function Home2() {
 
       <div className={styles.lowerPart}>
         <div className={styles.userName}>
-          <div className={styles.greeting}>&nbsp;你好，{username}！</div>
+          <div className={styles.greeting}>&nbsp;你好，{localStorage.getItem("username")}！</div>
         </div>
 
         <div className={styles.carouselPart}>
