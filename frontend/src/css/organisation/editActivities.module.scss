@@ -8,7 +8,7 @@
     position: fixed;
     left:0;
     top:0;
-    // background-color: red;
+    // background-color: green;
 }
 
 .leftArrow {
@@ -68,26 +68,34 @@
     position: fixed;
     left: 0;
     top:10vh;
+    height: 5vh;
     // border-bottom: 1px solid #cccccc;
-    width: 100vw;
+    width: 100%;
     padding-left: 10vw;
     // padding-bottom: 1vh;
     // background-color: yellowgreen;
+    
 }
 
 .choices {
     display: flex;
     justify-content: space-around;
+    // position:fixed;
+    // background-color: yellow;
+    margin-top: 0px;
    
 }
 
 .tabList {
     width: 100vw;
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 100px;
     position: fixed;
     top:15vh;
     left: 0;
+    // background-color: red;   
+    height:5vh;
+
   }
   .tabList div {
     font-size: 18px;
@@ -96,11 +104,15 @@
   .lowerPart {
     // background-color: palegoldenrod;
     margin-top:20vh;
-    width: calc(100% - 30px);
+    // position: fixed;
+    // top:40vh;
+    width: calc(100% - 25px);
     overflow-y: auto;
-    height: 85vh;
-    padding:10px;
+    height: calc(100vh - 20vh);
+    // padding:10px;
 }
+
+
 
 
 .uploadImagePart{
