@@ -40,16 +40,33 @@ export async function seed(knex: Knex): Promise<void> {
         address: "新界屯門屏山鄉后海灣濱",
       },
       {
-        logo: "organisation4.png",
-        name: "香港關愛庇護動物之家",
-        email: "volunteer.lovepet04@gmail.com",
+        logo: "organisation5.png",
+        name: "貓貓狗狗保護園",
+        email: "HongKongAnimalLover@gmail.com",
         password: await hashPassword("12345678"),
-        mobile: "28426812",
-        address: "新界屯門屏山鄉后海灣濱",
+        mobile: "28424234",
+        address: "屯門青山公路藍地段",
+      },
+      {
+        logo: "organisation6.png",
+        name: "動物救援之家",
+        email: "AnimalShelter@gmail.com",
+        password: await hashPassword("12345678"),
+        mobile: "67125234",
+        address: "荃灣荃運工業大廈2期",
+      },
+      {
+        logo: "organisation7.png",
+        name: "流浪動物之家",
+        email: "PetShelter@gmail.com",
+        password: await hashPassword("12345678"),
+        mobile: "35375234",
+        address: "灣仔晏頓街1號安定大廈1樓",
       },
     ]);
     await trx.commit();
   } catch (e) {
+    console.log(e)
     await trx.rollback();
   }
 }
