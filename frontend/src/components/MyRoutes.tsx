@@ -59,6 +59,7 @@ import ActivityApplication from "../pages/ActivityApplication";
 import AdoptionShowDetails from "../pages/AdoptionSlideShow";
 import PetDetails from "../pages/AdoptionPet";
 import ApplicationCancelled from "../pages/ApplicationCancelled";
+import CategorisedActivities from "../pages/CategorisedActivities";
 
 export default function MyRoutes() {
   return (
@@ -88,6 +89,8 @@ export default function MyRoutes() {
       <Route path="editorsChoice" element={<EditorsChoice />}></Route>
       <Route path="urgent" element={<Urgent />}></Route>
       <Route path="popular" element={<Popular />}></Route>
+      <Route path="activity" element={<CategorisedActivities />}></Route>
+      <Route path="search" element={<CategorisedActivities />}></Route>
 
       <Route path="adoption" element={<Adoption />}></Route>
       <Route path="result" element={<AdoptionApplicationResult />}></Route>

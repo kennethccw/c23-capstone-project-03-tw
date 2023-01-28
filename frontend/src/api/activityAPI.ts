@@ -10,9 +10,9 @@ export enum District {
 }
 
 export interface ActivityDetail {
-  id: number;
+  activity_id: number;
   image: string;
-  name: string;
+  activity: string;
   location: string;
   start_time: Date;
   end_time: Date;
@@ -26,6 +26,18 @@ export interface ActivityDetail {
   mobile: string;
   email: string;
 }
+export interface ActivityPreview {
+  activity_id: number;
+  image: string;
+  organisation: string;
+  activity: string;
+  location: string;
+  start_time: Date;
+  end_time: Date;
+  date: Date;
+}
+
+// const activityCategoryArr = ["editors_choice", "urgent", "popular"];
 
 export const getActivityDetail = async (id: string) => {
   const data = await fetchJson<ActivityDetail>(`${ACTIVITY_API_PATH}/detail?id=${id}`, {
@@ -56,6 +68,27 @@ export const putActivityApplication = async (activityId: string) => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({ activityId }),
+  });
+  return data;
+};
+
+export const getActivitiesByCategory = async (category: string) => {
+  const data = await fetchJson<ActivityPreview[]>(`${ACTIVITY_API_PATH}/category?type=${category}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return data;
+};
+export const getAllActivities = async () => {
+  const data = await fetchJson<ActivityPreview[]>(`${ACTIVITY_API_PATH}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
   return data;
 };

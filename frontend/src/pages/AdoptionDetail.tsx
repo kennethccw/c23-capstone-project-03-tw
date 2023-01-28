@@ -1,9 +1,14 @@
 import styles from "../css/adoptionDetail.module.scss";
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function AdoptionDetail() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className={styles.containerForAll}>
       <IoIosArrowBack className={styles.navigateBackButton} onClick={() => navigate(-1)} />

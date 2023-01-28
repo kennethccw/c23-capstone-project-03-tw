@@ -3,18 +3,36 @@
 }
 .applicationContainer {
   margin-bottom: 112px;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .header {
   width: 312px;
-  margin: 62px auto 12px 35px;
+  margin: 62px auto 0px 35px;
+  background-color: #ffffff;
+  z-index: 99;
+  position: sticky;
 }
 .scheduleTabContainer {
+  margin-top: -40px;
   width: 100vw;
+  height: 92px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+}
+
+.scheduleTabContainer button {
+  width: 50vw;
 }
 
 .scheduleTabContainer div {
   font-weight: bold;
+  font-size: 16px;
 }
 
 .noApplicationsAppliedContainer {

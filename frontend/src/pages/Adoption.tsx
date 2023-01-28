@@ -5,6 +5,7 @@ import styles from "../css/adoption.module.scss";
 import { IconArrowNarrowRight } from "@tabler/icons";
 import { useNavigate } from "react-router-dom";
 import { getPetAdoption } from "../api/adoptionAPI";
+import { useEffect } from "react";
 
 export default function Adoption() {
   const { register, watch } = useForm({
@@ -26,6 +27,10 @@ export default function Adoption() {
     retry: 1,
   });
   
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <MantineProvider
       inherit

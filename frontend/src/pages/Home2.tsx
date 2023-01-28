@@ -26,7 +26,11 @@ export default function Home2() {
   //   dispatch(homeActivityThunk());
   // }, [dispatch]);
 
-  const { isLoading, isError, data, error } = useQuery({ // react query - customised hook 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
+    const { isLoading, isError, data, error } = useQuery({ // react query - customised hook 
     queryKey: ["home/activities"],
     queryFn: getHomeActivities, // API
     refetchInterval: 5_000,
@@ -47,7 +51,7 @@ export default function Home2() {
 
       <div className={styles.upperLayer}>
         <div className={styles.logoIconContainer}>
-          <img src="photos/logo_pic-09-09.png" className={styles.logoIcon}></img>
+          <img src="/photos/logo_pic-09-09.png" className={styles.logoIcon}></img>
         </div>
         <div className={styles.bellIconContainer}>
           <CiBellOn className={styles.bellIcon} />
@@ -82,7 +86,7 @@ export default function Home2() {
         </div>
 
         <div className={styles.socialWorkRecommendContainer}>
-          <div className={styles.socialRecommendBar}>
+          <div className={styles.socialRecommendBar} onClick={() => navigate("/activity?category=editors_choice")}>
             <div className={styles.categoryTitle}>&nbsp;&nbsp; Petscue 推介</div>
             <div className={styles.chevronBarIcon}>
               <HiChevronRight />
@@ -151,7 +155,7 @@ export default function Home2() {
         </div>
 
         <div className={styles.needHelpContainer}>
-          <div className={styles.needHelpBar}>
+          <div className={styles.needHelpBar} onClick={() => navigate("/activity?category=urgent")}>
             <div className={styles.categoryTitle}>&nbsp;&nbsp; 急需支援</div>
             <div className={styles.chevronBarIcon}>
               <HiChevronRight />
@@ -220,7 +224,7 @@ export default function Home2() {
         </div>
 
         <div className={styles.hotContainer}>
-          <div className={styles.needHelpBar}>
+          <div className={styles.needHelpBar} onClick={() => navigate("/activity?category=popular")}>
             <div className={styles.categoryTitle}>&nbsp;&nbsp; 熱門活動</div>
             <div className={styles.chevronBarIcon}>
               <HiChevronRight />
