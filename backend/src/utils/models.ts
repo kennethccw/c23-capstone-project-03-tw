@@ -146,3 +146,12 @@ export enum LoginRole {
   organisation = "organisation",
   user = "user",
 }
+export interface PetDetail {
+  image: string;
+  name: string;
+  age: number;
+  weight: number;
+  gender?: Gender;
+  breed: string;
+  illness_record: string;
+}

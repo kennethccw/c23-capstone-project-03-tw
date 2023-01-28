@@ -39,6 +39,14 @@ export async function seed(knex: Knex): Promise<void> {
         mobile: "28426812",
         address: "新界屯門屏山鄉后海灣濱",
       },
+      {
+        logo: "organisation4.png",
+        name: "香港關愛庇護動物之家",
+        email: "volunteer.lovepet04@gmail.com",
+        password: await hashPassword("12345678"),
+        mobile: "28426812",
+        address: "新界屯門屏山鄉后海灣濱",
+      },
     ]);
     await trx.commit();
   } catch (e) {
