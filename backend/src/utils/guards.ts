@@ -17,7 +17,7 @@ export async function isLoggedInAPI(
 ) {
   try {
     const token = permit.check(req);
-    console.log(token, "here is token");
+    console.log(token, "here is token, gurads.ts L20");
     if (!token) {
       console.log("byebye");
       return res.status(401).json({ msg: "Permission Denied" });
@@ -26,8 +26,9 @@ export async function isLoggedInAPI(
     const payload: { id: number; username: string } = jwtSimple.decode(token, jwt.jwtSecret);
     // Querying Database is not compulsory
     const user: Auth = await userService.verifyUser(payload.id);
-    if (user) {
+    if (user) { 
       req.user = user;
+      console.log(req.user, 'guards.ts L31')
       return next();
     } else {
       return res.status(401).json({ msg: "Permission Denied" });

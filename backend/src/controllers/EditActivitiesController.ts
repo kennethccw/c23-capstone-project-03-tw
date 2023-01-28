@@ -1,35 +1,38 @@
 import { EditActivitiesService } from "../services/EditActivitiesService";
 import { Request, Response } from "express";
-
+import formidable from "formidable";
 
 export class EditActivitiesController {
 
-    constructor(private editActivitiesService: EditActivitiesService) {
-        this.editActivitiesService = editActivitiesService;
-    }
+  //@ts-ignore
+  constructor(private editActivitiesService: EditActivitiesService) { }
 
-    addActivities = async (req: Request, res: Response) => {
-        const { activityName, activityDetails, date, activityStartTime, activityEndTime, requirements, district, address, count,remaining_place, fee, file, type, organisation_id } = req.body;
+  addActivities = async (req: Request, res: Response) => {
+
+    try {
+      const activityName = req.form.fields.activityName
+      const activityDetails = req.form.fields.activityDetails
+      const date = req.form.fields.date
+      const activityStartTime = req.form.fields.activityStartTime
+      const activityEndTime = req.form.fields.activityEndTime
+      const requirements = req.form.fields.requirements
+      const district = req.form.fields.district
+      const address = req.form.fields.address
+      const count = req.form.fields.count
+      const remaining_place = req.form.fields.remaining_place
+      const fee = req.form.fields.fee
+      const file = req.form.files['file'] as formidable.File
+      const newFile = file.newFilename
+      const type = req.form.fields.type
+      const organisation_id = req.form.fields.organisation_id
+
+      await this.editActivitiesService.addActivities(activityName, activityDetails, date, activityStartTime, activityEndTime, requirements, district, address, parseInt(count), parseInt(remaining_place), parseInt(fee),
+        newFile,
+        type, parseInt(organisation_id));
+
+        res.status(200).json({message:"新增成功!"})
+    } catch (e) { res.status(400).json({ message: "Internal Server Error" }); }
 
 
-
-
-
-        console.log(activityName, "EditActivitiesController.ts L13")
-        console.log(activityDetails,"EditActivitiesController.ts L14")
-        console.log(date,"EditActivitiesController.ts L15")
-        console.log(activityStartTime, "EditActivitiesController.ts L16")
-        console.log(activityEndTime, "EditActivitiesController.ts L17")
-        console.log(requirements, "EditActivitiesController.ts L18")
-        console.log(district, "EditActivitiesController.ts L19")
-        console.log(address, "EditActivitiesController.ts L20")
-        console.log(count, "EditActivitiesController.ts L21")
-        console.log(remaining_place, "EditActivitiesController.ts L21")
-        console.log(fee, "EditActivitiesController.ts L22")
-        console.log(file, "EditActivitiesController.ts L23")
-        console.log(type, "EditActivitiesController.ts L24")
-        console.log(organisation_id, "EditActivitiesController.ts L25")
-        await this.editActivitiesService.addActivities(activityName, activityDetails, date, activityStartTime, activityEndTime, requirements, district, address, count,remaining_place, fee, file, type, organisation_id);
-
-    }
+  }
 }
