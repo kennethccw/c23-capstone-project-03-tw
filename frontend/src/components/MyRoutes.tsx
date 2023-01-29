@@ -60,6 +60,7 @@ import AdoptionShowDetails from "../pages/AdoptionSlideShow";
 import PetDetails from "../pages/AdoptionPet";
 import ApplicationCancelled from "../pages/ApplicationCancelled";
 import CategorisedActivities from "../pages/CategorisedActivities";
+import { Payment } from "../pages/Payment";
 
 export default function MyRoutes() {
   return (
@@ -78,6 +79,7 @@ export default function MyRoutes() {
       <Route path="adoption/detail" element={<AdoptionDetail />}></Route>
       <Route path="allActivities" element={<AllActivities />}></Route>
       <Route path="donation" element={<Donation />}></Route>
+      <Route path="donation/payment" element={<Payment />}></Route>
       <Route path="advertiser" element={<Advertising />}></Route>
       <Route path="schedule" element={<Schedule />}></Route>
       <Route path="register" element={<Register />}></Route>

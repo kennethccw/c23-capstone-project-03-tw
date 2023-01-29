@@ -33,14 +33,12 @@ export class UserService {
         .select("id", "username", "password")
         .where("email", email)
         .first();
-      // console.log(result);
-      const oldOrganisationResult: Auth = await this.knex(TABLES.ORGANISATIONS)
-        .select("id", "name", "password")
+      console.log(userResult);
+      const organisationResult: Auth = await this.knex(TABLES.ORGANISATIONS)
+        .select("id", "name as username", "password")
         .where("email", email)
         .first();
-
-      const { id, name: username, password } = oldOrganisationResult;
-      const organisationResult = { id, username, password };
+      console.log(organisationResult);
       return { userResult, organisationResult };
     } catch (e) {
       console.log("there is error");

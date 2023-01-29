@@ -24,6 +24,10 @@ import { ScheduleService } from "./services/ScheduleService";
 export const scheduleService = new ScheduleService(knex);
 import { ScheduleController } from "./controllers/ScheduleController";
 export const scheduleController = new ScheduleController(scheduleService);
+import { DonationService } from "./services/DonationService";
+export const donationService = new DonationService(knex);
+import { DonationController } from "./controllers/DonationController";
+export const donationController = new DonationController(donationService);
 
 import { Router } from "express";
 import { userRoutes } from "./routers/userRoutes";
@@ -32,6 +36,7 @@ import { organisationRoutes } from "./routers/organisationRoutes";
 import { activityRoutes } from "./routers/activityRoutes";
 import { badgeRoutes } from "./routers/badgeRoutes";
 import { scheduleRoutes } from "./routers/scheduleRoutes";
+import { donationRoutes } from "./routers/donationRoutes";
 
 export const routes = Router();
 
@@ -41,3 +46,4 @@ routes.use("/organisation", organisationRoutes);
 routes.use("/activity", activityRoutes);
 routes.use("/badge", badgeRoutes);
 routes.use("/schedule", scheduleRoutes);
+routes.use("/donation", donationRoutes);

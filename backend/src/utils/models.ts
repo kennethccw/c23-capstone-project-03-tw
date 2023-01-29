@@ -19,7 +19,6 @@ export interface User {
 
 export interface Auth {
   id: number;
-  name?: string;
   username: string;
   password: string;
 }
@@ -156,4 +155,13 @@ export interface ActivityPreview {
   start_time: Date;
   end_time: Date;
   date: Date;
+}
+
+export interface Donation {
+  receipt_name: string;
+  receipt_email: string;
+  receipt_mobile: string;
+  payment_method: string;
+  donation_amount: number;
+  user_id: number;
 }

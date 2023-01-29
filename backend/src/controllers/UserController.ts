@@ -67,23 +67,29 @@ export class UserController {
               payload.id = user.userResult.id;
               payload.username = user.userResult.username;
               payload.role = LoginRole.user;
+            } else {
+              res.status(401).json({ message: "Unauthorised" });
+              return;
             }
-          }
-          if (user.organisationResult) {
+          } else if (user.organisationResult) {
+            console.log(user.organisationResult);
             if (await checkPassword(password, user.organisationResult.password)) {
+              console.log("sir this way");
               payload.id = user.organisationResult.id;
               payload.username = user.organisationResult.username!;
               payload.role = LoginRole.organisation;
+            } else {
+              res.status(401).json({ message: "Unauthorised" });
+              return;
             }
           }
 
           const token = jwtSimple.encode(payload, jwt.jwtSecret);
           // req.session.user = { id: user.id, username: user.username };
           res.status(200).json({ token });
-        } else {
-          res.status(401).json({ message: "Unauthorised" });
         }
       } catch (e) {
+        console.log(e);
         res.status(400).json({ message: "User not found" });
       }
     } else {
