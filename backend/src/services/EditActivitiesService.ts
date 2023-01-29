@@ -1,5 +1,15 @@
 import type { Knex } from "knex";
 
+interface getActivitiesResult{
+  id: number,
+  name:string,
+  description:string,
+  date: string,
+  location: string,
+  remaining_place: number,
+  organisation_id:number,
+  organisation_name: string
+}
 
 export class EditActivitiesService {
   constructor(private knex: Knex) { }
@@ -36,6 +46,11 @@ export class EditActivitiesService {
 
   }
 
+async getActivities(organisationId:number){
+  let getActivitiesResult= await this.knex.select<getActivitiesResult[]>('activities.id','activities.name','activities.description','activities.date','activities.location','activities.remaining_place','activities.organisation_id','organisations.name as organisation_name' ).from('activities').join('organisations','organisations.id','activities.organisation_id').where('organisation_id',organisationId)//select activities.id,activities.name,activities.description,activities.date,activities.location,activities.remaining_place,activities.organisation_id,organisations.name from activities join organisations on organisations.id=activities.organisation_id;
+  // console.log(getActivitiesResult,'EditActivitiesService.ts L43')
+  return getActivitiesResult
+}
 
 
 

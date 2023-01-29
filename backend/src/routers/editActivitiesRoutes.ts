@@ -7,3 +7,4 @@ export const editActivitiesRoutes = Router();
 
 editActivitiesRoutes.post("/addActivities",isLoggedInAPI, uploadMiddleware,editActivitiesController.addActivities);
 // editActivitiesRoutes.post("/deleteActivities",  EditActivitiesController.deleteActivities);
+editActivitiesRoutes.post("/getActivities",isLoggedInAPI,editActivitiesController.getActivities);

@@ -35,4 +35,13 @@ export class EditActivitiesController {
 
 
   }
+
+  getActivities = async (req: Request, res: Response) =>{
+    const {organisationId}=req.body;
+    console.log(organisationId, 'EditActivitiesController.ts L41')
+    let getActivitiesResult= await this.editActivitiesService.getActivities(organisationId)
+
+    console.log(getActivitiesResult,'EditActivitiesController.ts L44')
+    
+  }
 }
