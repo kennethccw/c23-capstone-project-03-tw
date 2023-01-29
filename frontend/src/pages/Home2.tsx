@@ -29,10 +29,10 @@ export default function Home2() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const { isLoading, isError, data, error } = useQuery({
+  
+    const { isLoading, isError, data, error } = useQuery({ // react query - customised hook 
     queryKey: ["home/activities"],
-    queryFn: getHomeActivities,
+    queryFn: getHomeActivities, // API
     refetchInterval: 5_000,
     staleTime: 10_000,
     retry: 1,

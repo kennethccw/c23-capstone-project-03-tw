@@ -12,6 +12,7 @@ export async function seed(knex: Knex): Promise<void> {
     ]);
     await trx.commit();
   } catch (e) {
+    console.log(e)
     await trx.rollback();
   }
 }

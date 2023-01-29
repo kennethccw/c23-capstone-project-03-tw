@@ -4,6 +4,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import styles from "../css/adoption.module.scss";
 import { IconArrowNarrowRight } from "@tabler/icons";
 import { useNavigate } from "react-router-dom";
+import { getPetAdoption } from "../api/adoptionAPI";
 import { useEffect } from "react";
 
 export default function Adoption() {
@@ -18,6 +19,14 @@ export default function Adoption() {
 
   const navigate = useNavigate();
 
+  const { isLoading, isError, data, error } = useQuery({ // react query - customised hook 
+    queryKey: ["home/activities"],
+    queryFn: getPetAdoption, // API
+    refetchInterval: 5_000,
+    staleTime: 10_000,
+    retry: 1,
+  });
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -75,3 +84,10 @@ export default function Adoption() {
     </MantineProvider>
   );
 }
+function useQuery(arg0: { // react query - customised hook 
+  queryKey: string[]; queryFn: any; // API
+  refetchInterval: number; staleTime: number; retry: number;
+}): { isLoading: any; isError: any; data: any; error: any; } {
+  throw new Error("Function not implemented.");
+}
+

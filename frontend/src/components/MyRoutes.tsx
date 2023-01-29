@@ -87,7 +87,6 @@ export default function MyRoutes() {
       <Route path="password/reset" element={<ChangePassword />}></Route>
 
       <Route path="activity/detail" element={<ActivitiesDetailPage />}></Route>
-      <Route path="activity/application" element={<ActivityApplication />}></Route>
       <Route path="allActivitiesFilter" element={<AllActivitiesFilter />}></Route>
       <Route path="editorsChoice" element={<EditorsChoice />}></Route>
       <Route path="urgent" element={<Urgent />}></Route>
