@@ -155,7 +155,7 @@ const role= localStorage.getItem('role')
             <div className={detailStyles.basicInfo}>
               <div className={detailStyles.chanceInstances}>
                 <div className={detailStyles.box}>
-                  <img src={`/${data?.data.image}`} className={detailStyles.chancePhoto}></img>
+                  <img src={`/photos/activities/${data?.data.image}`} className={detailStyles.chancePhoto}></img>
                 </div>
                 <div className={detailStyles.organisationName}>{data?.data.organisation}</div>
                 <div className={detailStyles.taskName}>{data?.data.activity}</div>
