@@ -26,6 +26,7 @@ export class EditActivitiesController {
       const type = req.form.fields.type
       const organisation_id = req.form.fields.organisation_id
 
+
       await this.editActivitiesService.addActivities(activityName, activityDetails, date, activityStartTime, activityEndTime, requirements, district, address, parseInt(count), parseInt(remaining_place), parseInt(fee),
         newFile,
         type, parseInt(organisation_id));
@@ -37,11 +38,14 @@ export class EditActivitiesController {
   }
 
   getActivities = async (req: Request, res: Response) =>{
-    const {organisationId}=req.body;
-    console.log(organisationId, 'EditActivitiesController.ts L41')
+    try{ const {organisationId}=req.body;
+    // console.log(organisationId, 'EditActivitiesController.ts L41')
     let getActivitiesResult= await this.editActivitiesService.getActivities(organisationId)
 
     console.log(getActivitiesResult,'EditActivitiesController.ts L44')
+    res.status(200).json({result:getActivitiesResult})}catch(e){res.status(400).json({ message: "Internal Server Error" });}
     
+    
+   
   }
 }

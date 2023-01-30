@@ -3,6 +3,7 @@ import type { Knex } from "knex";
 interface getActivitiesResult{
   id: number,
   name:string,
+  image:string,
   description:string,
   date: string,
   location: string,
@@ -35,7 +36,7 @@ export class EditActivitiesService {
           organisation_id: organisation_id
         })
         .into("activities").returning("id");
-      console.log(newlyCreatedActivityID, "EditAcitivitiesService.ts L24")
+      // console.log(newlyCreatedActivityID, "EditAcitivitiesService.ts L24")
       return newlyCreatedActivityID
     } catch (e) {
       console.log(e);
@@ -47,8 +48,8 @@ export class EditActivitiesService {
   }
 
 async getActivities(organisationId:number){
-  let getActivitiesResult= await this.knex.select<getActivitiesResult[]>('activities.id','activities.name','activities.description','activities.date','activities.location','activities.remaining_place','activities.organisation_id','organisations.name as organisation_name' ).from('activities').join('organisations','organisations.id','activities.organisation_id').where('organisation_id',organisationId)//select activities.id,activities.name,activities.description,activities.date,activities.location,activities.remaining_place,activities.organisation_id,organisations.name from activities join organisations on organisations.id=activities.organisation_id;
-  // console.log(getActivitiesResult,'EditActivitiesService.ts L43')
+  let getActivitiesResult= await this.knex.select<getActivitiesResult[]>('activities.id','activities.name','activities.image','activities.description','activities.date','activities.location','activities.remaining_place','activities.organisation_id','organisations.name as organisation_name' ).from('activities').join('organisations','organisations.id','activities.organisation_id').where('organisation_id',organisationId).where('is_deleted',false)//select activities.id,activities.name,activities.description,activities.date,activities.location,activities.remaining_place,activities.organisation_id,organisations.name from activities join organisations on organisations.id=activities.organisation_id;
+  console.log(getActivitiesResult,'EditActivitiesService.ts L43')
   return getActivitiesResult
 }
 
