@@ -7,12 +7,24 @@ import {
 import {
   MantineProvider,
   Input,
+  LoadingOverlay,
 } from "@mantine/core";
 import NewNavbar from "../components/NewNavbar";
 import { AnimalShow } from "../components/AnimationSlideShowComponent";
+import { getAllPetAdoption } from "../api/adoptionAPI";
+import {useQuery} from 'react-query'
 
-export default function AdoptionShowDetails() {
+
+export default function AllPetShowcase() {
   const navigate = useNavigate();
+  const { isLoading, isError, data, error } = useQuery({ // react query - customised hook 
+    queryKey: ["adoption"],
+    queryFn: getAllPetAdoption, // API
+    refetchInterval: 5_000,
+    // staleTime: 10_000,
+    retry: 1,
+  });
+  console.log(data)
   return (
     <MantineProvider
       theme={{
@@ -33,6 +45,7 @@ export default function AdoptionShowDetails() {
       }}
     >
       <div className={styles.containerForAll}>
+      <LoadingOverlay visible={isLoading} overlayBlur={2} />
         <div className={styles.headNavBar}>
           <div className={styles.chevronAndAdjustmntIcon}>
             <HiChevronLeft className={styles.chevronIcon} />
@@ -48,10 +61,7 @@ export default function AdoptionShowDetails() {
         </div>
         <hr className={styles.adoptionDetailHr} />
 
-        <AnimalShow />
-        <AnimalShow />
-        <AnimalShow />
-        <AnimalShow />
+        {data?.map((pet) => <AnimalShow key={pet.pet_id} pet={pet} clickHandler={() => navigate(`/adoption/detail?id=${pet.pet_id}`)}/>)}
     
       </div>
 

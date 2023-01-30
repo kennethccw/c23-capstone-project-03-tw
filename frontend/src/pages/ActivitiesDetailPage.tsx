@@ -115,7 +115,7 @@ export default function ActivitiesDetailPage() {
       }}
     >
       <div>
-        <LoadingOverlay visible={isLoading} overlayBlur={2} />
+      <LoadingOverlay visible={isLoading} overlayBlur={2} />
 
         <div className={styles.upperPart}>
           <div className={styles.chevronAndAdjustmntIcon}>

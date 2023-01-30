@@ -146,13 +146,26 @@ export enum LoginRole {
   user = "user",
 }
 export interface PetDetail {
+  pet_id: number;
+  organisation: string;
   image: string;
   name: string;
-  age: number;
+  age: string;
   weight: number;
-  gender?: Gender;
+  gender?: PetGender;
   breed: string;
-  illness_record: string;
+  remark: string;
+}
+
+export enum PetGender {
+  male = 'male',
+  female = 'female'
+}
+export interface PetPreview {
+  pet_id: number
+  image: string;
+  name: string;
+  age: string;
 }
 
 export interface ActivityPreview {
