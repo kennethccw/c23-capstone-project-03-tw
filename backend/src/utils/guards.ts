@@ -18,8 +18,9 @@ export async function isLoggedInAPI(
   try {
     const token = permit.check(req);
     console.log(token, "here is token, gurads.ts L20");
+    // console.log(token, "here is token");
     if (!token) {
-      console.log("byebye");
+      // console.log("byebye");
       return res.status(401).json({ msg: "Permission Denied" });
     }
 

@@ -19,7 +19,6 @@ export interface User {
 
 export interface Auth {
   id: number;
-  name?: string;
   username: string;
   password: string;
 }
@@ -66,9 +65,9 @@ export interface OrganisationDetail {
   address: string;
 }
 export interface ActivityDetail {
-  id: number;
+  activity_id: number;
   image: string;
-  name: string;
+  activity: string;
   location: string;
   start_time: Date;
   end_time: Date;
@@ -135,7 +134,7 @@ export interface ScheduleActivity {
   activity_id: number;
   image: string;
   organisation: string;
-  name: string;
+  activity: string;
   location: string;
   start_time: Date;
   end_time: Date;
@@ -145,4 +144,33 @@ export interface ScheduleActivity {
 export enum LoginRole {
   organisation = "organisation",
   user = "user",
+}
+export interface PetDetail {
+  image: string;
+  name: string;
+  age: number;
+  weight: number;
+  gender?: Gender;
+  breed: string;
+  illness_record: string;
+}
+
+export interface ActivityPreview {
+  activity_id: number;
+  image: string;
+  organisation: string;
+  activity: string;
+  location: string;
+  start_time: Date;
+  end_time: Date;
+  date: Date;
+}
+
+export interface Donation {
+  receipt_name: string;
+  receipt_email: string;
+  receipt_mobile: string;
+  payment_method: string;
+  donation_amount: number;
+  user_id: number;
 }

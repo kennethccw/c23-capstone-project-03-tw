@@ -1,0 +1,63 @@
+.stripeContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.navigateBackButton {
+  color: #cccccc;
+  margin-left: 36px;
+  font-size: 32px;
+  margin-top: 32px;
+  cursor: pointer;
+}
+
+.donationHeaderContainer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.donationHr {
+  // margin: 4px -80px 32px -80px;
+  width: 100vw;
+  border: 1px solid #e5e6ee;
+  border-left: 0;
+  border-right: 0;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
+}
+
+.stripeFormContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.stripeForm {
+  width: 80%;
+}
+
+.amountHeader {
+  margin-bottom: -16px;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+.button {
+  height: 56px;
+  width: 312px;
+  margin-top: 24px;
+  font-size: 20px;
+  background-color: #585ce5;
+  box-shadow: 0 24px 16px -19px #a1a3f6;
+  position: relative;
+}
+.stripeMessage {
+  color: #ff0000;
+}

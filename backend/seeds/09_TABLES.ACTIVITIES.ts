@@ -186,9 +186,59 @@ export async function seed(knex: Knex): Promise<void> {
         fee: 0,
         organisation_id: 2,
       },
+      {
+        name: "馴化貓舍貓咪義工",
+        type: "popular",
+        image: "photos/activities/popular/image-popular3.png",
+        description: "馴化驚靑、怕人或有攻擊性的貓咪，希望她們能夠早日入屋",
+        date: new Date("2023/03/19"),
+        start_time: new Date("2023/03/19 10:00"),
+        end_time: new Date("2023/03/19 15:00"),
+        requirement: "必須有耐心及熱誠",
+        district: "kowloon",
+        location: "香港旺角駱克道三號",
+        total_place: 7,
+        remaining_place: 7,
+        fee: 0,
+        organisation_id: 5,
+      },
+      {
+        name: "搬運義工 / 義載",
+        type: "urgent",
+        image: "photos/activities/urgent/image-urgent8.png",
+        description: "協助本會既活動(例如︰領養日/義賣日)搬運或義載由本會到活動場地/地點",
+        date: new Date("2023/03/05"),
+        start_time: new Date("2023/03/05 13:00"),
+        end_time: new Date("2023/03/05 18:00"),
+        requirement: "必須有耐心及熱誠",
+        district: "kowloon",
+        location: "香港旺角駱克道三號",
+        total_place: 8,
+        remaining_place: 8,
+        fee: 0,
+        organisation_id: 6,
+      },
+      {
+        name: "清潔及常務義工(pm)",
+        type: "urgent",
+        image: "photos/activities/urgent/image-urgent9.png",
+        description: "照顧小動物、清潔、打掃、餵奶、餵藥，你也可以從中學習如何照顧家中寵物",
+        date: new Date("2023/03/10"),
+        start_time: new Date("2023/03/10 12:00"),
+        end_time: new Date("2023/03/10 16:00"),
+        requirement: "無需經驗，有愛心就事成 (家庭主婦及退休人仕更加合適)",
+        district: "new_territories",
+        location: "新界元朗僑興路白沙村第一段",
+        total_place: 5,
+        remaining_place: 5  ,
+        fee: 0,
+        organisation_id: 7,
+      },
     ]);
     await trx.commit();
   } catch (e) {
+    console.log(e);
+    
     await trx.rollback();
   }
 }

@@ -45,7 +45,7 @@ export function ApplicationContainer(props: { activity: ScheduleActivity; clickH
       <img className={styles.applicationsAppliedImg} src={`${props.activity.image}`} alt="" />
       <div className={styles.applicationsAppliedTextContent}>
         <div className={styles.organisationName}>{props.activity.organisation}</div>
-        <div className={styles.activityName}>{props.activity.name}</div>
+        <div className={styles.activityName}>{props.activity.activity}</div>
         <div className={styles.detailContainer}>
           <HiOutlineLocationMarker className={styles.detailIcon} />
           <div>{props.activity.location}</div>

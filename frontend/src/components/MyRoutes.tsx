@@ -61,6 +61,8 @@ import ActivityApplication from "../pages/ActivityApplication";
 import AdoptionShowDetails from "../pages/AdoptionSlideShow";
 import PetDetails from "../pages/AdoptionPet";
 import ApplicationCancelled from "../pages/ApplicationCancelled";
+import CategorisedActivities from "../pages/CategorisedActivities";
+import { Payment } from "../pages/Payment";
 
 export default function MyRoutes() {
   return (
@@ -79,6 +81,7 @@ export default function MyRoutes() {
       <Route path="adoption/detail" element={<AdoptionDetail />}></Route>
       <Route path="allActivities" element={<AllActivities />}></Route>
       <Route path="donation" element={<Donation />}></Route>
+      <Route path="donation/payment" element={<Payment />}></Route>
       <Route path="advertiser" element={<Advertising />}></Route>
       <Route path="schedule" element={<Schedule />}></Route>
       <Route path="register" element={<Register />}></Route>
@@ -86,11 +89,12 @@ export default function MyRoutes() {
       <Route path="password/reset" element={<ChangePassword />}></Route>
 
       <Route path="activity/detail" element={<ActivitiesDetailPage />}></Route>
-      <Route path="activity/application" element={<ActivityApplication />}></Route>
       <Route path="allActivitiesFilter" element={<AllActivitiesFilter />}></Route>
       <Route path="editorsChoice" element={<EditorsChoice />}></Route>
       <Route path="urgent" element={<Urgent />}></Route>
       <Route path="popular" element={<Popular />}></Route>
+      <Route path="activity" element={<CategorisedActivities />}></Route>
+      <Route path="search" element={<CategorisedActivities />}></Route>
 
       <Route path="adoption" element={<Adoption />}></Route>
       <Route path="result" element={<AdoptionApplicationResult />}></Route>

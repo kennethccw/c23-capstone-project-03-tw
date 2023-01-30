@@ -122,7 +122,7 @@ export default function ActivitiesDetailPage() {
             <HiChevronLeft
               className={styles.chevronIcon}
               onClick={() => {
-                navigate("/home");
+                navigate(-1);
               }}
             />
             <HiOutlineShare className={styles.outlineShare} />
@@ -154,7 +154,7 @@ export default function ActivitiesDetailPage() {
                   <img src={`/${data?.data.image}`} className={detailStyles.chancePhoto}></img>
                 </div>
                 <div className={detailStyles.organisationName}>{data?.data.organisation}</div>
-                <div className={detailStyles.taskName}>{data?.data.name}</div>
+                <div className={detailStyles.taskName}>{data?.data.activity}</div>
                 <div className={detailStyles.address}>
                   <GeoAlt />
                   &nbsp;&nbsp; {convertEnumToDistrict(data?.data.district!)}

@@ -7,7 +7,7 @@ export interface ScheduleActivity {
   activity_id: number;
   image: string;
   organisation: string;
-  name: string;
+  activity: string;
   location: string;
   start_time: Date;
   end_time: Date;
