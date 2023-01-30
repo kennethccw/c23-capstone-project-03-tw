@@ -9,7 +9,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string("receipt_name");
     table.string("receipt_email");
     table.string("receipt_mobile").checkRegex("[0-9]{8}");
-    table.enum("payment_method", ["credit_card"]).notNullable();
+    table.enum("payment_method", ["credit_card"]);
     table.decimal("donation_amount");
     table.boolean("accept_recieve_edm").defaultTo(false);
     table.integer("user_id").unsigned();

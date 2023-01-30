@@ -25,7 +25,7 @@ export class DonationService {
           .returning("*");
       } else {
         totalDonationThisYear = await trx(TABLES.USER_TOTAL_DONATIONS)
-          .insert({ total_donation: donation_amount, year: new Date().getFullYear() })
+          .insert({ user_id: uid, total_donation: donation_amount, year: new Date().getFullYear() })
           .returning("*");
       }
       const onetimeDonation = await trx<Donation>(TABLES.ONETIME_PAYMENT_DONATIONS)

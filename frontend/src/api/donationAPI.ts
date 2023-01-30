@@ -24,6 +24,7 @@ export const postDonationRender = async (donationAmount: number) => {
   return resp;
 };
 export const putDonationSubmition = async (donation: Donation) => {
+  console.log("donation api");
   const resp = await fetch(`${DONATION_API_PATH}`, {
     method: "PUT",
     headers: {

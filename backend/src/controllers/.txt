@@ -1,65 +1,4 @@
-import { DonationService } from "../services/DonationService";
-import { Request, Response } from "express";
-import Stripe from "stripe";
-import { Donation } from "../utils/models";
-import nodemailer from "nodemailer";
-export class DonationController {
-  constructor(private donationService: DonationService) {}
-
-  postDonationRender = async (req: Request, res: Response) => {
-    try {
-      const donationAmount = req.body.donationAmount;
-      console.log(typeof donationAmount);
-      console.log(donationAmount);
-
-      const stripe = new Stripe(
-        "sk_test_51MVXIdIk8NmJ0izdxbJkXam2pBJzE8X4FDoYpsyjg1RAmw1lijVHNQglAlvcYgH395BqKLGQbryuaEZw5wgpjKtI00bta7EnJl",
-        {
-          apiVersion: "2022-11-15",
-        }
-      );
-      const paymentIntent = await stripe.paymentIntents.create({
-        amount: parseInt(donationAmount + "00"),
-        // payment_method_types: ["card"],
-        currency: "HKD",
-        automatic_payment_methods: {
-          enabled: true,
-        },
-      });
-
-      res.status(200).json({
-        clientSecret: paymentIntent.client_secret,
-      });
-    } catch (e) {
-      console.log(e);
-      res.status(400).json({ message: "Internal Server Error" });
-    }
-  };
-  putDonationSubmition = async (req: Request, res: Response) => {
-    try {
-      console.log("putDonationSubmition");
-      const user_id = req.user?.id!;
-      const donationWithNoUserId = req.body.donation;
-
-      const donation: Donation = { ...donationWithNoUserId, user_id };
-
-      const result = await this.donationService.putDonationSubmition(user_id, donation);
-
-      const transport = nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
-        port: 2525,
-        auth: {
-          user: "cd0f7df039350a",
-          pass: "9df9e452c86b8f",
-        },
-      });
-
-      await transport.sendMail({
-        from: '"Fred Foo 👻" <foo@example.com>', // sender address
-        to: donation.receipt_email, // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Hello world?", // plain text body
-        html: /* html */ `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -498,7 +437,7 @@ export class DonationController {
   <![endif]-->
   </head>
   <body>
-    <span class="preheader">This is a receipt for your recent purchase on {{ purchase_date }}. No payment is due with this receipt.</span>
+    <span class="preheader">We received a request to reset your password with this email address. ({{email_address}})</span>
     <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
       <tr>
         <td align="center">
@@ -518,66 +457,8 @@ export class DonationController {
                   <tr>
                     <td class="content-cell">
                       <div class="f-fallback">
-                        <h1>Hi {{name}},</h1>
-                        <p>Thanks for using [Product Name]. This email is the receipt for your purchase. No payment is due.</p>
-                        <p>This purchase will appear as “[Credit Card Statement Name]” on your credit card statement for your {{credit_card_brand}} ending in {{credit_card_last_four}}. Need to <a href="{{billing_url}}">update your payment information</a>?</p>
-                        <!-- Discount -->
-                        <table class="discount" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-                          <tr>
-                            <td align="center">
-                              <h1 class="f-fallback discount_heading">10% off your next purchase!</h1>
-                              <p class="f-fallback discount_body">Thanks for your support! Here's a coupon for 10% off your next purchase if used by {{expiration_date}}.</p>
-                              <!-- Border based button
-           https://litmus.com/blog/a-guide-to-bulletproof-buttons-in-email-design -->
-                              <table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
-                                <tr>
-                                  <td align="center">
-                                    <a href="http://example.com" class="f-fallback button button--green" target="_blank">Use this discount now...</a>
-                                  </td>
-                                </tr>
-                              </table>
-                            </td>
-                          </tr>
-                        </table>
-                        <table class="purchase" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-                          <tr>
-                            <td>
-                              <h3>{{receipt_id}}</h3></td>
-                            <td>
-                              <h3 class="align-right">{{date}}</h3></td>
-                          </tr>
-                          <tr>
-                            <td colspan="2">
-                              <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
-                                <tr>
-                                  <th class="purchase_heading" align="left">
-                                    <p class="f-fallback">Description</p>
-                                  </th>
-                                  <th class="purchase_heading" align="right">
-                                    <p class="f-fallback">Amount</p>
-                                  </th>
-                                </tr>
-                                {{#each receipt_details}}
-                                <tr>
-                                  <td width="80%" class="purchase_item"><span class="f-fallback">{{description}}</span></td>
-                                  <td class="align-right" width="20%" class="purchase_item"><span class="f-fallback">{{amount}}</span></td>
-                                </tr>
-                                {{/each}}
-                                <tr>
-                                  <td width="80%" class="purchase_footer" valign="middle">
-                                    <p class="f-fallback purchase_total purchase_total--label">Total</p>
-                                  </td>
-                                  <td width="20%" class="purchase_footer" valign="middle">
-                                    <p class="f-fallback purchase_total">{{total}}</p>
-                                  </td>
-                                </tr>
-                              </table>
-                            </td>
-                          </tr>
-                        </table>
-                        <p>If you have any questions about this receipt, simply reply to this email or reach out to our <a href="{{support_url}}">support team</a> for help.</p>
-                        <p>Cheers,
-                          <br>The [Product Name] team</p>
+                        <p>We received a request to reset the password to access [Product Name] with your email address ({{email_address}}) from a {{operating_system}} device using {{browser_name}}, but we were unable to find an account associated with this address.</p>
+                        <p>If you use [Product Name] and were expecting this email, consider trying to request a password reset using the email address associated with your account.</p>
                         <!-- Action -->
                         <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                           <tr>
@@ -587,19 +468,22 @@ export class DonationController {
                               <table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
                                 <tr>
                                   <td align="center">
-                                    <a href="{{action_url}}" class="f-fallback button button--blue" target="_blank">Download as PDF</a>
+                                    <a href="{{action_url}}" class="f-fallback button button--blue" target="_blank">Try a different email</a>
                                   </td>
                                 </tr>
                               </table>
                             </td>
                           </tr>
                         </table>
+                        <p>If you do not use [Product Name] or did not request a password reset, please ignore this email or <a href="{{support_url}}">contact support</a> if you have questions.</p>
+                        <p>Thanks,
+                          <br>The [Product Name] team</p>
                         <!-- Sub copy -->
                         <table class="body-sub" role="presentation">
                           <tr>
                             <td>
-                              <p class="f-fallback sub"><strong>Need a printable copy for your records?</strong> You can <a href="{{action_url}}">download a PDF version</a>.</p>
-                              <p class="f-fallback sub">Moved recently? Have a new credit card? You can easily <a href="{{billing_url}}">update your billing information</a>.</p>
+                              <p class="f-fallback sub">If you’re having trouble with the button above, copy and paste the URL below into your web browser.</p>
+                              <p class="f-fallback sub">{{action_url}}</p>
                             </td>
                           </tr>
                         </table>
@@ -629,13 +513,4 @@ export class DonationController {
       </tr>
     </table>
   </body>
-</html>`, // html body
-      });
-
-      res.status(200).json(result);
-    } catch (e) {
-      console.log(e);
-      res.status(400).json({ message: "Internal Server Error" });
-    }
-  };
-}
+</html>
