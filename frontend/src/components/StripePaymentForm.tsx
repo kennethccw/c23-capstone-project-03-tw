@@ -65,11 +65,11 @@ export default function StripePaymentForm() {
 
     const { error } = await stripe.confirmPayment({
       elements,
-      // confirmParams: {
-      //   // Make sure to change this to your payment completion page
-      //   return_url: "http://localhost:3000/application/success",
-      //   receipt_email,
-      // },
+      confirmParams: {
+        // Make sure to change this to your payment completion page
+        return_url: "http://localhost:3000/donation/payment/success",
+        receipt_email,
+      },
       redirect: "if_required",
     });
 
@@ -87,7 +87,7 @@ export default function StripePaymentForm() {
     const result = await resp.json();
     if (resp.status === 200) {
       setIsLoading(false);
-      navigate("/application/success");
+      navigate("/donation/payment/success");
     } else {
       if (result.message) {
         alert(result.message);

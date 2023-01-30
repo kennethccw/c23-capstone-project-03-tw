@@ -4,8 +4,9 @@ import { HiOutlineX } from "react-icons/hi";
 
 import { UnstyledButton, Checkbox, Text, createStyles, MantineProvider, Button } from "@mantine/core";
 import { useUncontrolled } from "@mantine/hooks";
+import { PetPreview } from "../api/adoptionAPI";
 
-export function AnimalShow() {
+export function AnimalShow(props: {pet: PetPreview, clickHandler: () => void}) {
   return (
     <>
       <MantineProvider
@@ -19,16 +20,15 @@ export function AnimalShow() {
 
 <div className={styles.petContainer}>
           <div className={styles.imgContainer}>
-            <div></div>
-          <img className={styles.imgContent} src="/photos/pet/pet-blue.jpeg">
+          <img className={styles.imgContent} src={`/photos/pet/${props.pet.image}`}>
           </img>
           <div className={styles.nameContainer}>
             <div className={styles.nameContentContainer}>
-            <div className={styles.nameTab}>Boss </div>
-            <div className={styles.nameTab}>2.5 months </div>
+            <div className={styles.nameTab}>{props.pet.name}</div>
+            <div className={styles.nameTab}>{props.pet.age}</div>
 
             </div>
-          <Button className={styles.button} color="violet" radius="xl">
+          <Button className={styles.button} color="violet" radius="xl" onClick={props.clickHandler}>
           詳細資料
           </Button>
           </div>
