@@ -158,11 +158,11 @@ export interface PetDetail {
 }
 
 export enum PetGender {
-  male = 'male',
-  female = 'female'
+  male = "male",
+  female = "female",
 }
 export interface PetPreview {
-  pet_id: number
+  pet_id: number;
   image: string;
   name: string;
   age: string;
@@ -186,4 +186,13 @@ export interface Donation {
   payment_method: string;
   donation_amount: number;
   user_id: number;
+}
+
+export interface AdoptionApplication {
+  name: string;
+  email: string;
+  mobile: string;
+  remark?: string;
+  pet_id: number;
+  user_id?: number;
 }

@@ -29,8 +29,9 @@ export default function Home2() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
-    const { isLoading, isError, data, error } = useQuery({ // react query - customised hook 
+
+  const { isLoading, isError, data, error } = useQuery({
+    // react query - customised hook
     queryKey: ["home/activities"],
     queryFn: getHomeActivities, // API
     refetchInterval: 5_000,
@@ -295,7 +296,7 @@ export default function Home2() {
           <img src="photos/advertising-04.png" className={styles.banner}></img>
         </div>
 
-        <div onClick={() => navigate("/adoption/detail")}>
+        <div onClick={() => navigate("/adoption/application/detail")}>
           <img src="photos/adoption-03.png" className={styles.banner}></img>
         </div>
 

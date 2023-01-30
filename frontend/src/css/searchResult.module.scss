@@ -1,11 +1,68 @@
+.upperPart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: row;
+  width: 100vw;
+  // height: 10vh;
+  height: 100px;
+  position: fixed;
+  z-index: 99;
+  background-color: #ffffff;
+}
 .chevronAndAdjustmntIcon {
   color: #b0b2c3;
   justify-content: space-between;
   align-items: center;
+  width: 100vw;
   display: flex;
-  width: 430px;
+  //   width: 430px;
   height: 85px;
-  margin-top: 30px;
+  //   margin-top: 30px;
+}
+
+.backIcon {
+  margin-left: 16px;
+  //   margin-left: 30px;
+  font-size: 44px;
+}
+.searchContainer {
+  width: 68vw;
+}
+
+.searchContainer input {
+  background: #ffffff;
+  box-shadow: 0px 1px 9px -1px rgba(88, 92, 229, 0.5);
+  border-radius: 30px;
+  height: 57px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-left: 40px;
+  font-size: 18px;
+  margin-right: 0;
+}
+.searchIcon {
+  //   width: 160px;
+  font-size: 24px;
+  left: 14px;
+  position: absolute;
+}
+.adjustmentFilterIconContainer {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin-right: 16px;
+}
+
+.adjustmentFilterIcon {
+  transform: rotate(90deg);
+  margin-top: 2px;
+  font-size: 34px;
 }
 
 .chevronIcon {
@@ -17,85 +74,59 @@
   margin-top: 40px;
 }
 
-.searchContainer{
-  width: 80vw;
-}
-
-.searchContainer input{
-  background: #ffffff;
-  box-shadow: 0px 1px 9px -1px rgba(88, 92, 229, 0.5);
-  border-radius: 30px;
-  height: 57px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 280px;
-  padding-left: 75px;
-  font-size: 18px;
-}
-
-.searchBigContainer {
-  margin-right: 12px;
-  font-size: 20px;
-}
-
-.searchMargin {
-  margin-left: 20px;
-}
-
-// .searchIcon div {
+// .volunterOpportunity {
+//   font-weight: 400;
+//   font-size: 15px;
 //   margin-left: 40px;
-//   width: 400px;
+//   font-size: 19px;
+//   margin-top: 10px;
 // }
 
-.searchIcon  {
-  width: 160px;
-  font-size: 18px;
-  margin-left: 20px;
-}
+// .activityContaner {
+//   margin-top: 20px;
+//   flex-direction: column;
+//   margin-left: 40px;
+//   width: fit-content;
+// }
 
-.volunterOpportunity {
-  font-weight: 400;
-  font-size: 15px;
-  margin-left: 40px;
-  font-size: 19px;
-  margin-top: 10px;
-}
+// .lineTab {
+//   border: 1px solid #e5e6ee;
+//   transform: matrix(1, 0, 0, 1, 0, 0);
+//   width: 365px;
+//   margin-top: 20px;
+// }
 
+// .activityTab {
+//   font-weight: 400;
+//   margin-bottom: 5px;
+// }
 
-.activityContaner {
-  margin-top: 20px;
-  flex-direction: column;
-  margin-left: 40px;
-  width: fit-content;
-}
+// .activitycontent {
+//   color: #898d9e;
+//   font-weight: 400;
+// }
 
-.lineTab {
-  border: 1px solid #E5E6EE;
-  transform: matrix(1, 0, 0, 1, 0, 0);
-  width: 365px;
-  margin-top: 20px;
-}
+// .adoptionTab {
+//   font-weight: 700;
+//   letter-spacing: 0.002em;
+//   font-size: 30px;
+//   margin-left: 40px;
+//   margin-top: 10px;
+// }
 
-.activityTab {
-  font-weight: 400;
-  margin-bottom: 5px;
-}
-
-.activitycontent{
-  color: #898D9E;
-  font-weight: 400;
-}
-
-.adoptionTab {
-  font-weight: 700;
-  letter-spacing: 0.002em;
-  font-size: 30px;
-  margin-left: 40px;
-  margin-top: 10px;
+.imgContainer {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 }
 
 .imgContent {
+  width: 80vw;
+  border-radius: 32px;
+  margin: 20px 0;
+}
+
+.imgPreview {
   width: 320px;
   height: 231px;
   border-radius: 32px;
@@ -108,8 +139,7 @@
   align-items: center;
   display: flex;
   position: relative;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 16px;
 }
 
 .nameTab {
@@ -132,7 +162,7 @@
   position: absolute;
   bottom: 3px;
 }
-.nameContentContainer{
+.nameContentContainer {
   justify-content: center;
   flex-direction: column;
 }
@@ -153,42 +183,66 @@
   box-shadow: 0 24px 16px -19px #a1a3f6;
 }
 
+.bottomPart {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  width: 100vw;
+}
 .containerForAll {
-  margin-bottom: 112px;
+  margin-bottom: 124px;
+  width: 100vw;
 }
 
 .headerContainer {
-  margin-bottom: 10px;
-  margin-top: 20px;
+  // margin-bottom: 10px;
+  margin-top: 10px;
+  display: flex;
+  width: 100vw;
+  justify-content: center;
 }
 
 .organisationTab {
-  font-weight: 700;
-  font-size: 30px;
-  letter-spacing: 0.002em;
-  margin-left: 40px;
-  width: 390px;
+  // font-weight: 700;
+  // font-size: 30px;
+  // letter-spacing: 0.002em;
+  width: 74vw;
+  margin: 0;
 }
 
-.adoptionDetailHr {
-  margin: 4px -80px 32px -80px;
-  // width: 100vw;
-  border: 1px solid #e5e6ee;
-  filter: blur(0.5px);
-  transform: rotate(0.15deg);
-}
+// .adoptionDetailHr {
+//   margin: 4px -80px 32px -80px;
+//   // width: 100vw;
+//   border: 1px solid #e5e6ee;
+//   filter: blur(0.5px);
+//   transform: rotate(0.15deg);
+// }
 
-.detailsContainer{
+.detailsBigContainer {
+  display: flex;
   justify-content: center;
+  width: 100vw;
+}
+
+.detailsContainer {
+  display: flex;
   flex-direction: column;
-  margin-bottom: 5px;
+  justify-content: center;
+  width: 80vw;
+  box-sizing: border-box;
 }
 
-.illnessRecordContainer {
-  width: 65vw;
-  margin-bottom: 5px;
+.detailLabelAndContent {
+  display: flex;
+  justify-content: flex-start;
 }
 
-.detailsforAll {
-  margin-left: 15vw;
+.detailLabel {
+  margin-right: 2vw;
+  width: 30vw;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.detailContent {
+  width: 60vw;
+  margin-bottom: 5px;
 }

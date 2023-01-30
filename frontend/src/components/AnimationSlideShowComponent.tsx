@@ -6,7 +6,7 @@ import { UnstyledButton, Checkbox, Text, createStyles, MantineProvider, Button }
 import { useUncontrolled } from "@mantine/hooks";
 import { PetPreview } from "../api/adoptionAPI";
 
-export function AnimalShow(props: {pet: PetPreview, clickHandler: () => void}) {
+export function AnimalShow(props: { pet: PetPreview; clickHandler: () => void }) {
   return (
     <>
       <MantineProvider
@@ -17,23 +17,19 @@ export function AnimalShow(props: {pet: PetPreview, clickHandler: () => void}) {
           },
         }}
       >
-
-<div className={styles.petContainer}>
-          <div className={styles.imgContainer}>
-          <img className={styles.imgContent} src={`/photos/pet/${props.pet.image}`}>
-          </img>
-          <div className={styles.nameContainer}>
-            <div className={styles.nameContentContainer}>
-            <div className={styles.nameTab}>{props.pet.name}</div>
-            <div className={styles.nameTab}>{props.pet.age}</div>
-
+        <div className={styles.petContainer}>
+          <div className={styles.imgPreviewContainer}>
+            <img className={styles.imgPreview} src={`/photos/pet/${props.pet.image}`}></img>
+            <div className={styles.nameContainer}>
+              <div className={styles.nameContentContainer}>
+                <div className={styles.nameTab}>{props.pet.name}</div>
+                <div className={styles.nameTab}>{props.pet.age}</div>
+              </div>
+              <Button className={styles.button} color="violet" radius="xl" onClick={props.clickHandler}>
+                詳細資料
+              </Button>
             </div>
-          <Button className={styles.button} color="violet" radius="xl" onClick={props.clickHandler}>
-          詳細資料
-          </Button>
           </div>
-          </div>
-
         </div>
       </MantineProvider>
     </>

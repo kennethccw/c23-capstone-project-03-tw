@@ -3,9 +3,10 @@ import logger from "redux-logger";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { authReducer } from "./auth";
 import { homeReducer } from "./home";
+import { adoptionReducer } from "./adoption";
 
 export const store = configureStore({
-  reducer: { auth: authReducer, home: homeReducer },
+  reducer: { auth: authReducer, home: homeReducer, adoption: adoptionReducer },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   devTools: process.env.NODE_ENV !== "production",
 });

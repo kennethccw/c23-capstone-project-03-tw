@@ -10,7 +10,7 @@ export async function seed(knex: Knex): Promise<void> {
         email: "lovepetuser01@gmail.com",
         mobile: 12345678,
         remark: "",
-        is_approved: true,
+
         status: "success",
         fail_reason: "not_applicable",
         other_fail_reason: "",
@@ -22,7 +22,7 @@ export async function seed(knex: Knex): Promise<void> {
         email: "lovepetuser02@gmail.com",
         mobile: 12345678,
         remark: "",
-        is_approved: false,
+
         status: "fail",
         fail_reason: "other",
         other_fail_reason: "申請者曾虐待動物，被判社會服務令",
@@ -34,7 +34,7 @@ export async function seed(knex: Knex): Promise<void> {
         email: "lovepetuser01@gmail.com",
         mobile: 12345678,
         remark: "",
-        is_approved: true,
+
         status: "fail",
         fail_reason: "other",
         other_fail_reason: "已成功在此平台領養了另一隻流浪貓",
@@ -44,7 +44,7 @@ export async function seed(knex: Knex): Promise<void> {
     ]);
     await trx.commit();
   } catch (e) {
-    console.log(e)
+    console.log(e);
     await trx.rollback();
   }
 }

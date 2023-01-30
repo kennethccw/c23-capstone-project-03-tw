@@ -136,22 +136,19 @@ export default function AdoptionApplicationResult() {
 
         <div className={styles.petPaperBigContainer}>
           <Paper shadow="xl" radius="xl" p="xl" className={styles.paperContainer}>
-            <img className={styles.petImg} src="photos/pet/pet-sleepy.png" alt="" />
+            <img className={styles.petImg} src="/photos/pet/pet-sleepy.png" alt="" />
             <div className={styles.petDetailContainer}>
-              <div className={styles.petLabelContainer}>
+              <div className={styles.petLabelContentContainer}>
                 <div className={styles.petLabelText}>動物名稱：</div>
-                <div className={styles.petLabelText}>申請領養結果：</div>
-                <div className={styles.petLabelText}>不通過原因：</div>
-              </div>
-              <div className={styles.petContentContainer}>
                 <div className={styles.petContentText}>東東</div>
+              </div>
+              <div className={styles.petLabelContentContainer}>
+                <div className={styles.petLabelText}>申請結果：</div>
                 <div className={styles.petContentText}>不通過</div>
-                <div className={styles.petContentText}>
-                  其他原因：{" "}
-                  {/* </div>
-                <div> */}
-                  (主人曾經虐待動物)
-                </div>
+              </div>
+              <div className={styles.petLabelContentContainer}>
+                <div className={styles.petLabelText}>不通過原因：</div>
+                <div className={styles.petContentText}>其他原因 - 主人曾經虐待動物</div>
               </div>
             </div>
           </Paper>
@@ -163,14 +160,14 @@ export default function AdoptionApplicationResult() {
 
         <div className={styles.petPaperBigContainer}>
           <Paper shadow="xl" radius="xl" p="xl" className={styles.paperContainer}>
-            <img className={styles.petImg} src="photos/pet/pet-sleepy.png" alt="" />
+            <img className={styles.petImg} src="/photos/pet/pet-sleepy.png" alt="" />
             <div className={styles.petDetailContainer}>
-              <div className={styles.petLabelContainer}>
+              <div className={styles.petLabelContentContainer}>
                 <div className={styles.petLabelText}>動物名稱：</div>
-                <div className={styles.petLabelText}>申請領養結果：</div>
-              </div>
-              <div className={styles.petContentContainer}>
                 <div className={styles.petContentText}>東東</div>
+              </div>
+              <div className={styles.petLabelContentContainer}>
+                <div className={styles.petLabelText}>申請結果：</div>
                 <div className={styles.petContentText}>通過</div>
               </div>
             </div>
@@ -182,14 +179,14 @@ export default function AdoptionApplicationResult() {
 
         <div className={styles.petPaperBigContainer}>
           <Paper shadow="xl" radius="xl" p="xl" className={styles.paperContainer}>
-            <img className={styles.petImg} src="photos/pet/pet-sleepy.png" alt="" />
+            <img className={styles.petImg} src="/photos/pet/pet-sleepy.png" alt="" />
             <div className={styles.petDetailContainer}>
-              <div className={styles.petLabelContainer}>
+              <div className={styles.petLabelContentContainer}>
                 <div className={styles.petLabelText}>動物名稱：</div>
-                <div className={styles.petLabelText}>申請領養結果：</div>
-              </div>
-              <div className={styles.petContentContainer}>
                 <div className={styles.petContentText}>東東</div>
+              </div>
+              <div className={styles.petLabelContentContainer}>
+                <div className={styles.petLabelText}>申請結果：</div>
                 <div className={styles.petContentText}>處理中</div>
               </div>
             </div>

@@ -6,3 +6,4 @@ export const adoptionRoutes = Router();
 
 adoptionRoutes.get("/", isLoggedInAPI, adoptionController.getAllPetAdoption);
 adoptionRoutes.get("/detail", isLoggedInAPI, adoptionController.getPetAdoption);
+adoptionRoutes.post("/application", isLoggedInAPI, adoptionController.postPetAdoptionApplication);

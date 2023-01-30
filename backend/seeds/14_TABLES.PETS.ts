@@ -8,7 +8,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         image: "pet-boss.jpeg",
         name: "Boss",
-        age: "2-3 months",
+        age: "2-3 個月",
         weight: 1.8,
         gender: "male",
         breed: "英短",
@@ -18,7 +18,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         image: "pet-moggie.png",
         name: "Moggie",
-        age: "2-4 year old",
+        age: "2-4 歲",
         weight: 3,
         gender: "male",
         breed: "英國短毛",
@@ -28,7 +28,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         image: "pet-momo.png",
         name: "Momo",
-        age: "2-4 year old",
+        age: "2-4 歲",
         weight: 5,
         gender: "male",
         breed: "唐狗",
@@ -38,7 +38,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         image: "pet-sleepy.png",
         name: "Sleepy",
-        age: "3 months",
+        age: "3 個月",
         weight: 10,
         gender: "female",
         breed: "唐狗",
@@ -48,7 +48,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         image: "pet-kelly.png",
         name: "Kelly",
-        age: "13 year old",
+        age: "13 歲",
         weight: 4.5,
         gender: "female",
         breed: "土耳其安哥拉貓)",
@@ -58,7 +58,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         image: "pet-meme.png",
         name: "MeMe",
-        age: "14 year old",
+        age: "14 歲",
         weight: 4.5,
         gender: "female",
         breed: "英國短毛貓 & 蘇格蘭摺耳貓",
@@ -68,17 +68,18 @@ export async function seed(knex: Knex): Promise<void> {
       {
         image: "pet-為食仔.png",
         name: "為食仔",
-        age: "8-9 year old",
+        age: "8-9 歲",
         weight: 5,
         gender: "male",
         breed: "蘇格蘭摺耳貓",
-        remark: "為食仔係摺耳貓，養前要了解佢有基因缺陷既問題，同埋需要特別留意同護理既事項！佢依家需要食腎糧同腎臟既supplements，要定期清潔耳仔。",
+        remark:
+          "為食仔係摺耳貓，養前要了解佢有基因缺陷既問題，同埋需要特別留意同護理既事項！佢依家需要食腎糧同腎臟既supplements，要定期清潔耳仔。",
         organisation_id: 3,
       },
       {
         image: "pet-himhim.png",
         name: "Him Him",
-        age: "1-2 year old",
+        age: "1-2 歲",
         weight: 5,
         gender: "female",
         breed: "唐貓",
@@ -88,7 +89,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         image: "pet-coco.png",
         name: "Co Co",
-        age: "2 months",
+        age: "2 個月",
         weight: 2,
         gender: "female",
         breed: "唐貓",
@@ -98,18 +99,17 @@ export async function seed(knex: Knex): Promise<void> {
       {
         image: "pet-blue.jpeg",
         name: "Blue",
-        age: "1 year old",
+        age: "1 歲",
         weight: 4,
         gender: "male",
         breed: "唐貓",
         remark: "溫馴 / 乖巧 / 喜歡觀察 / 穩定。",
         organisation_id: 4,
       },
-
     ]);
     await trx.commit();
   } catch (e) {
-    console.log(e)
+    console.log(e);
     await trx.rollback();
   }
 }

@@ -79,7 +79,7 @@ export default function MyRoutes() {
       <Route path="password/reset/notice" element={<NoticePasswordChanged />}></Route>
       <Route path="home" element={<Home2 />}></Route>
       {/* <Route path="home" element={<Home />}></Route> */}
-      <Route path="adoption/detail" element={<AdoptionDetail />}></Route>
+      <Route path="adoption/application/detail" element={<AdoptionDetail />}></Route>
       <Route path="allActivities" element={<AllActivities />}></Route>
       <Route path="donation" element={<Donation />}></Route>
       <Route path="donation/payment" element={<Payment />}></Route>
@@ -140,8 +140,8 @@ export default function MyRoutes() {
 
       {/* Organisation  */}
       <Route path="organisationHomePage" element={<OrganisationHomePageContainer />}></Route>
-      <Route path="/" element={<AdoptionApplicationResult />}></Route>
       <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
+      <Route path="/" element={<AdoptionApplicationResult />}></Route>
       <Route path="/" element={<AnimalHelpToDoListfrom />}></Route>
       <Route path="/" element={<ApprovalFunction />}></Route>
       <Route path="/" element={<DashboardPicture />}></Route>

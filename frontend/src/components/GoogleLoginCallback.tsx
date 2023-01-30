@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import Home from "../pages/Home";
+import { useEffect, useState } from "react";
 import { JWTPayload } from "../redux/auth";
 import jwt_decode from "jwt-decode";
 import { useRootDispatch, useRootSelector } from "../redux/store";
+import Home2 from "../pages/Home2";
 
 export default function GoogleLoginCallback() {
-  const dispatch = useRootDispatch();
-  const loading = useRootSelector((state) => state.auth.loading);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     const search = new URLSearchParams(window.location.search);
     const token = search.get("token");
     if (token) {
@@ -15,8 +15,10 @@ export default function GoogleLoginCallback() {
       localStorage.setItem("token", token);
       localStorage.setItem("userId", payload.id.toString());
       localStorage.setItem("username", payload.username);
+      localStorage.setItem("role", payload.role);
     }
+    setIsLoading(false);
     // dispatch(googleLoginThunk());
-  }, [dispatch]);
-  return loading ? <h3>Redirecting to main page...</h3> : <Home />;
+  }, []);
+  return isLoading ? <h3>Redirecting to main page...</h3> : <Home2 />;
 }

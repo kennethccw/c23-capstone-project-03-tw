@@ -35,7 +35,7 @@ export default function Account() {
           <div>徽章</div>
           <RiArrowRightSLine size={24} />
         </Button>
-        <Button variant="subtle" color="dark" className={styles.titleContainer} onClick={() => navigate("/result")}>
+        <Button variant="subtle" color="dark" className={styles.titleContainer} onClick={() => navigate("/adoption/application/result")}>
           <div>申請領養紀錄</div>
           <RiArrowRightSLine size={24} />
         </Button>

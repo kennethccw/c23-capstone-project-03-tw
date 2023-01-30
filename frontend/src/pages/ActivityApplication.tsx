@@ -100,6 +100,7 @@ export default function ActivityApplication() {
       !isCorrectFormatEmail ||
       isMobileInvalid ||
       isBirthdayInvalid ||
+      getValues().fullname === "" ||
       watchUsername === "" ||
       watchEmail === "" ||
       watchMobile === "" ||

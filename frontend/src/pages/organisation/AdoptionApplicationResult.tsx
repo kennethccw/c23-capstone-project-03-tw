@@ -142,13 +142,14 @@ export default function OrganisationAdoptionApplicationResult() {
           <Paper shadow="xl" radius="xl" p="xl" className={styles.paperContainer}>
             <img className={styles.petImg} src="photos/pet/pet-sleepy.png" alt="" />
             <div className={styles.petDetailContainer}>
-              <div className={styles.petLabelContainer}>
+              <div className={styles.petLabelContentContainer}>
                 <div className={styles.petLabelText}>動物名稱：</div>
-                <div className={styles.petLabelText}>不通過原因：</div>
-              </div>
-              <div className={styles.petContentContainer}>
                 <div className={styles.petContentText}>東東</div>
               </div>
+              <div className={styles.petLabelContentContainer}>
+                <div className={styles.petLabelText}>不通過原因：</div>
+              </div>
+              <div className={styles.petContentContainer}></div>
             </div>
             <form>
               <Select
@@ -173,9 +174,7 @@ export default function OrganisationAdoptionApplicationResult() {
               {rejectedReason === "其他原因" && (
                 <Input.Wrapper className={styles.otherReasonContainer}>
                   <span className={styles.inputLabelText}>其他原因：</span>
-                  <Input radius="md" size="md">
-                    {/*  */}
-                  </Input>
+                  <Input className={styles.otherReasonInputBox} radius="md" size="md"></Input>
                 </Input.Wrapper>
               )}
               <div className={styles.bottomContainer}>
@@ -215,12 +214,12 @@ export default function OrganisationAdoptionApplicationResult() {
           <Paper shadow="xl" radius="xl" p="xl" className={styles.paperContainer}>
             <img className={styles.petImg} src="photos/pet/pet-sleepy.png" alt="" />
             <div className={styles.petDetailContainer}>
-              <div className={styles.petLabelContainer}>
+              <div className={styles.petLabelContentContainer}>
                 <div className={styles.petLabelText}>動物名稱：</div>
-                <div className={styles.petLabelText}>申請結果：</div>
-              </div>
-              <div className={styles.petContentContainer}>
                 <div className={styles.petContentText}>東東</div>
+              </div>
+              <div className={styles.petLabelContentContainer}>
+                <div className={styles.petLabelText}>申請結果：</div>
                 <div className={styles.petContentText}>通過</div>
               </div>
             </div>
@@ -234,16 +233,20 @@ export default function OrganisationAdoptionApplicationResult() {
           <Paper shadow="xl" radius="xl" p="xl" className={styles.paperContainer}>
             <img className={styles.petImg} src="photos/pet/pet-sleepy.png" alt="" />
             <div className={styles.petDetailContainer}>
-              <div className={styles.petLabelContainer}>
+              <div className={styles.petLabelContentContainer}>
                 <div className={styles.petLabelText}>動物名稱：</div>
-                <div className={styles.petLabelText}>申請結果：</div>
-                <div className={styles.petLabelText}>不通過原因：</div>
-                <div className={styles.petLabelText}>其他原因：</div>
-              </div>
-              <div className={styles.petContentContainer}>
                 <div className={styles.petContentText}>東東</div>
+              </div>
+              <div className={styles.petLabelContentContainer}>
+                <div className={styles.petLabelText}>申請結果：</div>
                 <div className={styles.petContentText}>不通過</div>
+              </div>
+              <div className={styles.petLabelContentContainer}>
+                <div className={styles.petLabelText}>不通過原因：</div>
                 <div className={styles.petContentText}>其他原因</div>
+              </div>
+              <div className={styles.petLabelContentContainer}>
+                <div className={styles.petLabelText}>其他原因：</div>
                 <div className={styles.petContentText}>主人曾經虐待動物</div>
               </div>
             </div>
@@ -257,14 +260,16 @@ export default function OrganisationAdoptionApplicationResult() {
           <Paper shadow="xl" radius="xl" p="xl" className={styles.paperContainer}>
             <img className={styles.petImg} src="photos/pet/pet-sleepy.png" alt="" />
             <div className={styles.petDetailContainer}>
-              <div className={styles.petLabelContainer}>
+              <div className={styles.petLabelContentContainer}>
                 <div className={styles.petLabelText}>動物名稱：</div>
-                <div className={styles.petLabelText}>申請結果：</div>
-                <div className={styles.petLabelText}>不通過原因：</div>
-              </div>
-              <div className={styles.petContentContainer}>
                 <div className={styles.petContentText}>東東</div>
+              </div>
+              <div className={styles.petLabelContentContainer}>
+                <div className={styles.petLabelText}>申請結果：</div>
                 <div className={styles.petContentText}>不通過</div>
+              </div>
+              <div className={styles.petLabelContentContainer}>
+                <div className={styles.petLabelText}>不通過原因：</div>
                 <div className={styles.petContentText}>未滿二十一歲</div>
               </div>
             </div>

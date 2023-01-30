@@ -6,6 +6,7 @@ import NewNavbar from "../components/NewNavbar";
 import { PetDetailsComponent } from "../components/PetDetailsComponent";
 import { getPetAdoptionById } from "../api/adoptionAPI";
 import { useQuery } from "react-query";
+import { useEffect } from "react";
 
 export default function PetDetails() {
   const navigate = useNavigate();
@@ -19,26 +20,19 @@ export default function PetDetails() {
     queryKey: ["adoption/detail"],
     queryFn: getPetAdoptionByIdNoParam, // API
     refetchInterval: 5_000,
-    staleTime: 10_000,
+    // staleTime: 10_000,
     retry: 1,
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <MantineProvider
       theme={{
         colors: {
-          ocean: [
-            "#F7BB93",
-            "#F7BB93",
-            "#F7BB93",
-            "#F7BB93",
-            "#F7BB93",
-            "#F7BB93",
-            "#F7BB93",
-            "#F7BB93",
-            "#F7BB93",
-            "#F7BB93",
-          ],
+          ocean: ["#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93"],
         },
       }}
     >
@@ -47,27 +41,22 @@ export default function PetDetails() {
 
         <div className={styles.headNavBar}>
           <div className={styles.chevronAndAdjustmntIcon}>
-            <HiChevronLeft className={styles.chevronIcon} />
+            <HiChevronLeft className={styles.chevronIcon} onClick={() => navigate(-1)} />
 
-            <Input.Wrapper>
-              <Input
-                type="search"
-                className={styles.searchContainer}
-                icon={<HiSearch className={styles.searchIcon} />}
-                placeholder="搜尋關鍵字"
-              />
-            </Input.Wrapper>
+            {/* <Input.Wrapper>
+              <Input type="search" className={styles.searchContainer} icon={<HiSearch className={styles.searchIcon} />} placeholder="搜尋關鍵字" />
+            </Input.Wrapper> */}
           </div>
         </div>
         <div className={styles.headerContainer}>
-          <span className={styles.organisationTab}>動物領養</span>
+          <h1 className={styles.organisationTab}>動物領養</h1>
         </div>
         {/* <hr className={styles.adoptionDetailHr} /> */}
 
-       {data && <PetDetailsComponent pet={data!} clickHandler={() => navigate(`/adoption/application?id=${data?.pet_id}`)} />}
+        {data && <PetDetailsComponent pet={data!} clickHandler={() => navigate(`/adoption/application?id=${data?.pet_id}`)} />}
       </div>
 
-      <NewNavbar activeBtn="search" />
+      <NewNavbar activeBtn="home" />
     </MantineProvider>
   );
 }

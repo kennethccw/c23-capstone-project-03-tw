@@ -15,16 +15,26 @@ export interface PetDetail {
 }
 
 export enum PetGender {
-  male = 'male',
-  female = 'female'
+  male = "male",
+  female = "female",
 }
 
 export interface PetPreview {
-  pet_id: number
+  pet_id: number;
   image: string;
   name: string;
   age: number;
 }
+
+export interface AdoptionApplication {
+  name: string;
+  email: string;
+  mobile: string;
+  remark?: string;
+  pet_id: number;
+  user_id?: number;
+}
+
 export const getAllPetAdoption = async () => {
   const data = await fetchJson<PetPreview[]>(`${ADOPTION_API_PATH}`, {
     method: "GET",
@@ -43,6 +53,17 @@ export const getPetAdoptionById = async (id: string) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
+  });
+  return data;
+};
+export const postPetAdoptionApplication = async (adoptionApplication: AdoptionApplication) => {
+  const data = await fetch(`${ADOPTION_API_PATH}/application`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({ adoptionApplication }),
   });
   return data;
 };

@@ -10,11 +10,9 @@ export async function up(knex: Knex): Promise<void> {
     table.string("email");
     table.integer("mobile");
     table.text("remark");
-    table.boolean("is_approved").defaultTo(false);
-    table.enum("status", ["pending", "success", "fail"]).notNullable();
-    table
-      .enum("fail_reason", ["not_applicable", "age_under_21", "no_window_screen", "other"])
-      .notNullable();
+    table.enum("status", ["pending", "success", "fail"]).notNullable().defaultTo("pending");
+    table.enum("fail_reason", ["not_applicable", "age_under_21", "no_window_screen", "other"]);
+
     table.text("other_fail_reason");
     table.integer("user_id").unsigned();
     table.foreign("user_id").references("users.id").onDelete("CASCADE");

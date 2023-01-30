@@ -1,0 +1,85 @@
+.upperPart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: row;
+  width: 100vw;
+  // height: 10vh;
+  height: 100px;
+  position: fixed;
+  background-color: #ffffff;
+}
+.chevronAndAdjustmntIcon {
+  color: #b0b2c3;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  display: flex;
+  //   width: 430px;
+  height: 85px;
+  //   margin-top: 30px;
+}
+
+.backIcon {
+  margin-left: 16px;
+  //   margin-left: 30px;
+  font-size: 44px;
+}
+.searchContainer {
+  width: 68vw;
+}
+
+.searchContainer input {
+  background: #ffffff;
+  box-shadow: 0px 1px 9px -1px rgba(88, 92, 229, 0.5);
+  border-radius: 30px;
+  height: 57px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-left: 40px;
+  font-size: 18px;
+  margin-right: 0;
+}
+.searchIcon {
+  //   width: 160px;
+  font-size: 24px;
+  left: 14px;
+  position: absolute;
+}
+.adjustmentFilterIconContainer {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin-right: 16px;
+}
+
+.adjustmentFilterIcon {
+  transform: rotate(90deg);
+  margin-top: 2px;
+  font-size: 34px;
+}
+.bottomPart {
+  margin-top: 110px;
+  margin-bottom: 120px;
+  width: 100vw;
+}
+
+.headerContainer {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+.header {
+  color: #0f2851;
+  font-weight: bold;
+  font-size: xx-large;
+  width: 74%;
+  //   position: sticky;
+  top: 10vh;
+  // background-color: yellowgreen;
+}

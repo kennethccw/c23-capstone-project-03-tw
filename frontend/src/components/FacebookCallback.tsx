@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Home from "../pages/Home";
+import Home2 from "../pages/Home2";
 import { facebookLoginThunk } from "../redux/auth/thunk";
 import { useRootDispatch, useRootSelector } from "../redux/store";
 
@@ -14,5 +14,5 @@ export default function FacebookCallback() {
     }
   }, [dispatch]);
   console.log(loading);
-  return loading ? <h3>Redirecting to main page...</h3> : <Home />;
+  return loading ? <h3>Redirecting to main page...</h3> : <Home2 />;
 }

@@ -1,4 +1,4 @@
-import styles from "../css/allActivitiesPage.module.scss";
+import styles from "../css/categorisedActivities.module.scss";
 import { ChevronLeft, Filter } from "react-bootstrap-icons";
 import { Input, LoadingOverlay, TextInput } from "@mantine/core"; //https://ui.mantine.dev/category/inputs
 import { IconSearch } from "@tabler/icons";
@@ -51,7 +51,7 @@ export default function CategorisedActivities() {
   console.log(data);
 
   return (
-    <div>
+    <>
       <LoadingOverlay visible={isLoading} overlayBlur={2} />
 
       <div className={styles.upperPart}>
@@ -72,16 +72,18 @@ export default function CategorisedActivities() {
         </div> */}
       </div>
       <div className={styles.bottomPart}>
-        {pageCategory.current === PageCategory.all && <div className={styles.searchChance}>探索義工機會</div>}
-        {params.get("category") === PageCategory.editorsChoice && <div className={styles.searchChance}>Petscue 推介</div>}
-        {params.get("category") === PageCategory.urgent && <div className={styles.searchChance}>急需支援</div>}
-        {params.get("category") === PageCategory.popular && <div className={styles.searchChance}>熱門活動</div>}
+        <div className={styles.headerContainer}>
+          {pageCategory.current === PageCategory.all && <div className={styles.header}>探索義工機會</div>}
+          {params.get("category") === PageCategory.editorsChoice && <div className={styles.header}>Petscue 推介</div>}
+          {params.get("category") === PageCategory.urgent && <div className={styles.header}>急需支援</div>}
+          {params.get("category") === PageCategory.popular && <div className={styles.header}>熱門活動</div>}
+        </div>
 
         {data?.map((activity) => (
           <Activity key={activity.activity_id} activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}`)} />
         ))}
       </div>
       {<NewNavbar activeBtn={pageCategory.current === PageCategory.all ? "search" : "home"} />}
-    </div>
+    </>
   );
 }

@@ -11,9 +11,7 @@ export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () =>
     male = "男",
     female = "女",
   }
-  enum ChineseAge {
-    months = "月",
-  }
+
   return (
     <>
       <MantineProvider
@@ -28,54 +26,41 @@ export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () =>
           <div className={styles.imgContainer}>
             <img className={styles.imgContent} src={`/photos/pet/${props.pet.image}`}></img>
           </div>
-        </div>
 
-        <div className={styles.detailsforAll}>
-          <div className={styles.detailsContainer}>
-            <div>
-              名字：<span>{props.pet.name}</span>
-            </div>
-          </div>
-
-          <div className={styles.detailsContainer}>
-            <div>
-              性別：<span>{ChineseGender[props.pet.gender!]}</span>
-            </div>
-          </div>
-
-          <div className={styles.detailsContainer}>
-            <div>
-              年齡：<span></span>
-            </div>
-          </div>
-
-          <div className={styles.detailsContainer}>
-            <div>
-              重量：<span>{`${props.pet.weight} kg`}</span>
-            </div>
-          </div>
-
-          <div className={styles.detailsContainer}>
-            <div>
-              品種：<span>{props.pet.breed}</span>
-            </div>
-          </div>
-
-          <div className={styles.illnessRecordContainer}>
-            <div>
-              病歷：
-              <span>{props.pet.remark}</span>
-            </div>
-          </div>
-
-          <div className={styles.detailsContainer}>
-            <div>
-              所屬機構：<span>{props.pet.organisation}</span>
+          <div className={styles.detailsBigContainer}>
+            <div className={styles.detailsContainer}>
+              <div className={styles.detailLabelAndContent}>
+                <div className={styles.detailLabel}>名字：</div>
+                <div className={styles.detailContent}>{props.pet.name}</div>
+              </div>
+              <div className={styles.detailLabelAndContent}>
+                <div className={styles.detailLabel}>性別：</div>
+                <div className={styles.detailContent}>{ChineseGender[props.pet.gender!]}</div>
+              </div>
+              <div className={styles.detailLabelAndContent}>
+                <div className={styles.detailLabel}>年齡：</div>
+                <div className={styles.detailContent}>{props.pet.age}</div>
+              </div>
+              <div className={styles.detailLabelAndContent}>
+                <div className={styles.detailLabel}>重量：</div>
+                <div className={styles.detailContent}>{`${props.pet.weight} kg`}</div>
+              </div>
+              <div className={styles.detailLabelAndContent}>
+                <div className={styles.detailLabel}>品種：</div>
+                <div className={styles.detailContent}>{props.pet.breed}</div>
+              </div>
+              <div className={styles.detailLabelAndContent}>
+                <div className={styles.detailLabel}>備注：</div>
+                <div className={styles.detailContent}>{props.pet.remark}</div>
+              </div>
+              <div className={styles.detailLabelAndContent}>
+                <div className={styles.detailLabel}>所屬機構：</div>
+                <div className={styles.detailContent}>{props.pet.organisation}</div>
+              </div>
             </div>
           </div>
         </div>
-
-        <Button className={styles.buttonsecond} radius="xl">
+        <Button className={styles.buttonsecond} color="violet" radius="xl" onClick={props.clickHandler}>
           申請領養
         </Button>
       </MantineProvider>
