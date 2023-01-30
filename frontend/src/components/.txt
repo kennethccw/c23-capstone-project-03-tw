@@ -1,0 +1,1 @@
+{ChineseAge[props.pet.age.slice(-6)]}
