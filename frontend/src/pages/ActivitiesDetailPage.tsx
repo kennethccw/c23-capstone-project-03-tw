@@ -53,6 +53,10 @@ export default function ActivitiesDetailPage() {
     // retry: 1,
   });
 
+
+const role= localStorage.getItem('role')
+
+
   console.log(params.get("pending"));
   const [opened, setOpened] = useState(false);
 
@@ -151,7 +155,7 @@ export default function ActivitiesDetailPage() {
             <div className={detailStyles.basicInfo}>
               <div className={detailStyles.chanceInstances}>
                 <div className={detailStyles.box}>
-                  <img src={`/${data?.data.image}`} className={detailStyles.chancePhoto}></img>
+                  <img src={`/photos/activities/${data?.data.image}`} className={detailStyles.chancePhoto}></img>
                 </div>
                 <div className={detailStyles.organisationName}>{data?.data.organisation}</div>
                 <div className={detailStyles.taskName}>{data?.data.activity}</div>
@@ -238,7 +242,7 @@ export default function ActivitiesDetailPage() {
             </div>
           </div>
           <div className={detailStyles.right}>
-            {pageStatusRef.current === PageStatus.beforeApplication && (
+            {pageStatusRef.current === PageStatus.beforeApplication &&  role!=='organisation' && (
               <Button disabled={!data?.data.remaining_place} color="pink" className={detailStyles.joinButton} onClick={() => navigate(`/activity/application?id=${params.get("id")!}`)}>
                 <div>參加</div>
               </Button>

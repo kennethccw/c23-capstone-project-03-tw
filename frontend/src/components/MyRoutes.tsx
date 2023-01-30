@@ -55,6 +55,8 @@ import AdminsDashboardPicture from "../pages/Admins/AdminsDashboard";
 import AdminsHelpToDoListfrom from "../pages/Admins/AdminControlUserPanel";
 import ItHelpFunction from "../pages/Admins/AdminItSupportChat";
 import OrganisationAdoptionApplicationResult from "../pages/Organisation/AdoptionApplicationResult";
+import EditActivities from "../pages/Organisation/EditActivities";
+
 import ActivityApplication from "../pages/ActivityApplication";
 import AllPetShowcase from "../pages/AllPetShowcase";
 import PetDetails from "../pages/AdoptionPet";
@@ -137,12 +139,14 @@ export default function MyRoutes() {
       {/* Admin */}
 
       {/* Organisation  */}
-      <Route path="/" element={<OrganisationHomePageContainer />}></Route>
+      <Route path="organisationHomePage" element={<OrganisationHomePageContainer />}></Route>
       <Route path="/" element={<AdoptionApplicationResult />}></Route>
       <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
       <Route path="/" element={<AnimalHelpToDoListfrom />}></Route>
       <Route path="/" element={<ApprovalFunction />}></Route>
       <Route path="/" element={<DashboardPicture />}></Route>
+      <Route path="editActivities" element={<EditActivities />}></Route>
+
       {/* Organisation  */}
 
       <Route path="/" element={<RequireAuth />}>

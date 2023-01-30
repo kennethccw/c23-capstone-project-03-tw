@@ -15,7 +15,7 @@ export function HomeActivityComponent(props: { activity: HomeActivity }) {
   return (
     <Carousel.Slide className={styles.carouselSlide}>
       <div className={styles.box} onClick={() => navigate(`/activity/detail?id=${props.activity.id}`)}>
-        <img src={props.activity.image} className={styles.recommendInstancePhoto}></img>
+        <img src={`/photos/activities/${props.activity.image}`} className={styles.recommendInstancePhoto}></img>
         <div className={styles.remainingPlace}>
           <Person /> 剩餘名額 <span>{props.activity.remaining_place}</span>
         </div>

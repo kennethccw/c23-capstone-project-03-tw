@@ -1,0 +1,131 @@
+.upperPart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100vw;
+    height: 10vh;
+    position: fixed;
+    left:0;
+    top:0;
+    // background-color: green;
+}
+
+.leftArrow {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background-color: red;
+}
+
+.leftArrowIcon {
+    font-size: 10px;
+    height: 40px;
+    width: 40px;
+}
+.searchBarPart {
+    flex: 4;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBar {
+    width: 60vw;
+}
+
+.searchBar:hover {
+    border-color: 0 0 5pt 0.5pt #D3D3D3;
+}
+
+.searchBar:focus {
+    border-color: 0 0 5pt 0.5pt #D3D3D3;
+    outline-width: 0px;
+}
+
+.filter {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.filterIcon {
+    font-size: 10px;
+    height: 40px;
+    width: 40px;
+}
+
+.searchChance {
+    color: #0f2851;
+    font-weight: bold;
+    font-size: xx-large;
+    position: fixed;
+    left: 0;
+    top:10vh;
+    height: 5vh;
+    // border-bottom: 1px solid #cccccc;
+    width: 100%;
+    padding-left: 10vw;
+    // padding-bottom: 1vh;
+    // background-color: yellowgreen;
+    
+}
+
+.choices {
+    display: flex;
+    justify-content: space-around;
+    // position:fixed;
+    // background-color: yellow;
+    margin-top: 0px;
+   
+}
+
+.tabList {
+    width: 100vw;
+    font-size: 18px;
+    margin-bottom: 100px;
+    position: fixed;
+    top:15vh;
+    left: 0;
+    // background-color: red;   
+    height:5vh;
+
+  }
+  .tabList div {
+    font-size: 18px;
+  }
+
+  .lowerPart {
+    // background-color: palegoldenrod;
+    margin-top:20vh;
+    // position: fixed;
+    // top:40vh;
+    width: calc(100% - 25px);
+    overflow-y: auto;
+    height: calc(100vh - 20vh);
+    // padding:10px;
+}
+
+
+
+
+.uploadImagePart{
+    margin-top:20px;
+}
+
+.confirmation{
+    display: flex;
+    justify-content: center;
+    margin-top:10px;
+    margin-bottom:5px;
+}
+
+.reminder{
+    color: #585ce5;
+}

@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     console.log("did mount");
-    dispatch(validateTokenThunk(localStorage.getItem("token")));
+    // dispatch(validateTokenThunk(localStorage.getItem("token")));
     // .then(() => navigate("/home"));
   }, []);
 

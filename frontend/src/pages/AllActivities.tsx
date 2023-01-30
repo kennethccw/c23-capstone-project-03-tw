@@ -4,7 +4,7 @@ import { ChevronLeft, Filter } from "react-bootstrap-icons";
 import { TextInput } from "@mantine/core"; //https://ui.mantine.dev/category/inputs
 import { IconSearch } from "@tabler/icons";
 import { useNavigate } from "react-router-dom";
-import { Activity } from "../components/ActivitiesCategorisedUtilis";
+import { Activity } from "../components/ActivitiesUtilis";
 
 export default function AllActivities() {
   const NavBar = NavBarUtilis();
@@ -31,6 +31,8 @@ export default function AllActivities() {
 
       <div className={styles.searchChance}>探索義工機會</div>
 
+        {/* <Activity needDeleteButton={false}/> */}
+       
       {/* <Activity/> */}
 
       {NavBar}

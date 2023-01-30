@@ -3,7 +3,7 @@ import { ChevronLeft, Filter } from "react-bootstrap-icons";
 import { Input, LoadingOverlay, TextInput } from "@mantine/core"; //https://ui.mantine.dev/category/inputs
 import { IconSearch } from "@tabler/icons";
 import { useNavigate } from "react-router-dom";
-import { Activity } from "../components/ActivitiesCategorisedUtilis";
+import { Activity } from "../components/ActivitiesUtilis";
 import NewNavbar from "../components/NewNavbar";
 import { useQuery } from "react-query";
 import { getActivitiesByCategory, getAllActivities } from "../api/activityAPI";
