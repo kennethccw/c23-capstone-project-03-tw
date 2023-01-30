@@ -14,11 +14,13 @@ import { Activity } from "../../components/ActivitiesUtilis";
 // import { RiContactsBookLine } from "react-icons/ri";
 import { DatePicker } from "@mantine/dates";
 import { textSpanContainsPosition } from "typescript";
+import { ActivityPreview } from "../../api/activityAPI";
+import { act } from "react-dom/test-utils";
 // import { useQuery } from "react-query";
 // import { fetchJson } from "../../api/utilsAPI";
 
 
-interface activityType{
+interface activityType {
     id: number,
     name: string,
     image: string,
@@ -26,9 +28,9 @@ interface activityType{
     date: string,
     location: string,
     remaining_place: number,
-    organisation_id:number,
+    organisation_id: number,
     organisation_name: string
-    
+
 }
 
 
@@ -40,9 +42,9 @@ export default function EditActivities() {
 
     }
     console.log(choice)
-   const [activity, setActivity]=useState<activityType[]>([])
-console.log(activity[0]);
-console.log(typeof activity)
+    const [activity, setActivity] = useState<ActivityPreview[]>()
+    console.log(activity);
+    // console.log(typeof activity)
     const [date, setDate] = useState<Date | any>(new Date())
 
     let year = date.getFullYear();
@@ -80,6 +82,8 @@ console.log(typeof activity)
     };
 
 
+  
+
     const activityName: string = watch("activitiyName")
     const activityDetails: string = watch("activityDetails")
     const activityStartTime: string = watch("activityStartTime")
@@ -97,19 +101,19 @@ console.log(typeof activity)
     let activityEndTimeforFetch = year + "/" + month + "/" + dateOfActivity + " " + activityEndTime
 
 
-// const getOrganisationActivities=async ()=>{
-//     const data=await fetchJson( `${process.env.REACT_APP_BACKEND_URL}/editActivities/getActivities`,
-//     {
-//         method: 'POST',
-//         headers: {
-//             Authorization: `Bearer ${localStorage.getItem("token")}`,
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(formBody)
-//     });
-//     return data;
-//     console.log(data)
-// }
+    // const getOrganisationActivities=async ()=>{
+    //     const data=await fetchJson( `${process.env.REACT_APP_BACKEND_URL}/editActivities/getActivities`,
+    //     {
+    //         method: 'POST',
+    //         headers: {
+    //             Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(formBody)
+    //     });
+    //     return data;
+    //     console.log(data)
+    // }
 
 
 
@@ -123,10 +127,10 @@ console.log(typeof activity)
 
 
 
-    useEffect(()=>{
-        let formBody={'organisationId':organsationID!};
-        const fetchData= async()=>{
-            const resp= await fetch (
+    useEffect(() => {
+        let formBody = { 'organisationId': organsationID! };
+        const fetchData = async () => {
+            const resp = await fetch(
                 `${process.env.REACT_APP_BACKEND_URL}/editActivities/getActivities`,
                 {
                     method: 'POST',
@@ -137,18 +141,20 @@ console.log(typeof activity)
                     body: JSON.stringify(formBody)
                 }
             )
-    
-            const data=await resp.json();
+
+            const data = await resp.json();
             console.log(data.result)
             setActivity(data.result)
         }
-    
+
         fetchData();
-        
-    },[])
-    
+
+    }, [])
 
 
+    const deleteActivity = (activityToBeDeleted:ActivityPreview) => {
+        console.log(activityToBeDeleted)
+}
 
     const handleSubmitForm = async () => {
 
@@ -208,9 +214,7 @@ console.log(typeof activity)
 
             console.log(choice, "first");
             alert(result.message);
-            // await () => click('deleteActivities');
-            //    click('deleteActivities')
-            // async() => await click('deleteActivities')
+      
             setChoice("deleteActivities")
             console.log(choice, 'next', result);
 
@@ -359,17 +363,18 @@ console.log(typeof activity)
                             </div>
 
                         </form>
-                    </div> : <>
-                
-{activity.map((eachActivity)=>{
-    <Activity needDeleteButton={true} key={`activity_${eachActivity.id}`} name={eachActivity.name} image={eachActivity.image} description={eachActivity.description} date={eachActivity.date} location={eachActivity.location} remaining_place={eachActivity.remaining_place} organisation_name={eachActivity.organisation_name}/>
-console.log(eachActivity.id)
-})}
+                    </div> : 
+                    <div>
 
 
- {/* <Activity needDeleteButton={true} /> */}
-              
-                    </>
+                        {activity?.map((activity) => (
+                            <Activity key={activity.activity_id} activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}`)} displayDeleteButton={true} onRemove={() => deleteActivity(activity)}/>
+                        ))
+                        }
+
+
+
+                    </div>
                 }
             </div>
         </>

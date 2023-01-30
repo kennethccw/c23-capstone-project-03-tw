@@ -31,12 +31,7 @@ export default function Popular() {
 
       <div className={styles.searchChance}>熱門活動</div>
 
-<<<<<<< HEAD
-        
-        <Activity needDeleteButton={false}/>
-=======
       {/* <Activity/> */}
->>>>>>> user
 
       {NavBar}
     </div>

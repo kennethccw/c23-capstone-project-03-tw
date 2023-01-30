@@ -1,6 +1,7 @@
 .containerForAll {
   width: 100vw;
 }
+
 .applicationContainer {
   margin-bottom: 112px;
   display: flex;
@@ -14,6 +15,7 @@
   z-index: 99;
   position: sticky;
 }
+
 .scheduleTabContainer {
   margin-top: -40px;
   width: 100vw;
@@ -40,14 +42,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: green;
 }
 
 .noApplicationsAppliedHeader {
   margin-bottom: 48px;
 }
+
 .noApplicationsAppliedText {
   margin-bottom: 48px;
 }
+
 .button {
   height: 55px;
   width: 218px;
@@ -56,12 +61,14 @@
 
   box-shadow: 0 24px 16px -19px #a1a3f6;
 }
+
 .applicationsAppliedContainer {
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .applicationsAppliedImg {
   width: 312px;
   border-radius: 20px;
@@ -71,6 +78,7 @@
 
 .applicationsAppliedTextContent {
   width: 312px;
+  flex: 2;
 }
 
 .detailContainer {
@@ -93,4 +101,33 @@
   font-weight: bold;
 
   margin-bottom: 4px;
+}
+
+.detailPart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  width: 312px;
+}
+
+.deleteButton {
+  background-color: #585ce5;
+  width: 50px;
+  height: 50px;
+  flex: 1;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.deleteButton:hover{
+  background-color: #a7a0ed;
+}
+
+.deleteButton:active{
+  background-color: #585ce5;
 }
