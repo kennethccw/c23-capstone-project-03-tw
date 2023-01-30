@@ -82,7 +82,7 @@ export default function EditActivities() {
     };
 
 
-  
+
 
     const activityName: string = watch("activitiyName")
     const activityDetails: string = watch("activityDetails")
@@ -143,8 +143,11 @@ export default function EditActivities() {
             )
 
             const data = await resp.json();
-            console.log(data.result)
-            setActivity(data.result)
+            if (resp.status === 200) {
+                console.log(data.result)
+                setActivity(data.result)
+            }
+            else { alert(data.message) }
         }
 
         fetchData();
@@ -152,9 +155,35 @@ export default function EditActivities() {
     }, [])
 
 
-    const deleteActivity = (activityToBeDeleted:ActivityPreview) => {
+    const deleteActivity = async (activityToBeDeleted: ActivityPreview) => {
+
+
         console.log(activityToBeDeleted)
-}
+        let activityID = activityToBeDeleted.activity_id;
+        let organisationID = localStorage.getItem('userId')
+        let formBody = {
+            activityID: activityID, organisationID: organisationID
+        }
+        setActivity(activity!.filter(singleActivity =>  singleActivity.activity_id !== activityID ))
+
+        // console.log(formBody)
+        const resp = await fetch(
+            `${process.env.REACT_APP_BACKEND_URL}/editActivities/deleteActivities`,
+            {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formBody)
+            }
+        )
+
+        const data = await resp.json();
+        console.log(data.result)
+
+
+    }
 
     const handleSubmitForm = async () => {
 
@@ -214,7 +243,7 @@ export default function EditActivities() {
 
             console.log(choice, "first");
             alert(result.message);
-      
+
             setChoice("deleteActivities")
             console.log(choice, 'next', result);
 
@@ -363,12 +392,12 @@ export default function EditActivities() {
                             </div>
 
                         </form>
-                    </div> : 
+                    </div> :
                     <div>
 
 
                         {activity?.map((activity) => (
-                            <Activity key={activity.activity_id} activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}`)} displayDeleteButton={true} onRemove={() => deleteActivity(activity)}/>
+                            <Activity key={activity.activity_id} activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}`)} displayDeleteButton={true} onRemove={() => deleteActivity(activity)} activityToBeDeleted={activity.activity} />
                         ))
                         }
 

@@ -42,7 +42,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: green;
+
 }
 
 .noApplicationsAppliedHeader {
@@ -124,10 +124,86 @@
   color: white;
 }
 
-.deleteButton:hover{
+.deleteButton:hover {
   background-color: #a7a0ed;
 }
 
-.deleteButton:active{
+.deleteButton:active {
   background-color: #585ce5;
+}
+
+
+///////////////////// CSS of deleteActivityModal Box /////////////////
+
+
+
+.deleteModalContainer {
+  position: absolute;
+  background-color: #efece4;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  width: 55%;
+  transform: translate(-50%, -50%);
+  height: 33%;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+
+.details {
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  width: 100%;
+  padding-left:auto;
+  padding-right:auto;
+}
+
+
+.bodyPart{
+  margin-bottom: 20%;
+}
+
+.fontSize{
+  font-size: x-large;
+  
+}
+
+.buttonPart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  // background-color: red;
+  width: 100%;;
+}
+
+
+
+.confirmButton {
+  // flex: 1;
+  border: none;
+  color: #0f2851;
+  font-weight: lighter;
+  width: 40%;
+  border-radius: 10px;
+  height: 50px;
+  background-color: #b0b2c3;
+}
+
+.cancelButton {
+  background: #585ce5;
+  border: none;
+  color: white;
+  font-weight: lighter;
+  width: 40%;
+  border-radius: 10px;
+  // flex: 1;
+
 }
