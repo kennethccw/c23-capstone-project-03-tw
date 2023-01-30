@@ -6,7 +6,7 @@ export async function seed(knex: Knex): Promise<void> {
   try {
     await trx("pets").insert([
       {
-        image: "frontend/public/photos/pet/pet-boss.png",
+        image: "pet-boss.jpeg",
         name: "Boss",
         age: "2-3 months",
         weight: 1.8,
@@ -16,7 +16,7 @@ export async function seed(knex: Knex): Promise<void> {
         organisation_id: 1,
       },
       {
-        image: "frontend/public/photos/pet/pet-moggie.png",
+        image: "pet-moggie.png",
         name: "Moggie",
         age: "2-4 year old",
         weight: 3,
@@ -26,7 +26,7 @@ export async function seed(knex: Knex): Promise<void> {
         organisation_id: 1,
       },
       {
-        image: "frontend/public/photos/pet/pet-momo.png",
+        image: "pet-momo.png",
         name: "Momo",
         age: "2-4 year old",
         weight: 5,
@@ -36,7 +36,7 @@ export async function seed(knex: Knex): Promise<void> {
         organisation_id: 1,
       },
       {
-        image: "frontend/public/photos/pet/pet-sleepy.png",
+        image: "pet-sleepy.png",
         name: "Sleepy",
         age: "3 months",
         weight: 10,
@@ -46,7 +46,7 @@ export async function seed(knex: Knex): Promise<void> {
         organisation_id: 2,
       },
       {
-        image: "frontend/public/photos/pet/pet-kelly.png",
+        image: "pet-kelly.png",
         name: "Kelly",
         age: "13 year old",
         weight: 4.5,
@@ -56,7 +56,7 @@ export async function seed(knex: Knex): Promise<void> {
         organisation_id: 2,
       },
       {
-        image: "frontend/public/photos/pet/pet-meme.png",
+        image: "pet-meme.png",
         name: "MeMe",
         age: "14 year old",
         weight: 4.5,
@@ -66,7 +66,7 @@ export async function seed(knex: Knex): Promise<void> {
         organisation_id: 2,
       },
       {
-        image: "frontend/public/photos/pet/pet-為食仔.png",
+        image: "pet-為食仔.png",
         name: "為食仔",
         age: "8-9 year old",
         weight: 5,
@@ -76,7 +76,7 @@ export async function seed(knex: Knex): Promise<void> {
         organisation_id: 3,
       },
       {
-        image: "frontend/public/photos/pet/pet-himhim.png",
+        image: "pet-himhim.png",
         name: "Him Him",
         age: "1-2 year old",
         weight: 5,
@@ -86,7 +86,7 @@ export async function seed(knex: Knex): Promise<void> {
         organisation_id: 3,
       },
       {
-        image: "frontend/public/photos/pet/pet-coco.png",
+        image: "pet-coco.png",
         name: "Co Co",
         age: "2 months",
         weight: 2,
@@ -96,7 +96,7 @@ export async function seed(knex: Knex): Promise<void> {
         organisation_id: 4,
       },
       {
-        image: "frontend/public/photos/pet/pet-blue.png",
+        image: "pet-blue.jpeg",
         name: "Blue",
         age: "1 year old",
         weight: 4,
