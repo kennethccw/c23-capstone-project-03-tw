@@ -31,7 +31,7 @@ export default function AllActivities() {
         </div>
 
 
-        <Activity/>
+        {/* <Activity needDeleteButton={false}/> */}
        
 
 

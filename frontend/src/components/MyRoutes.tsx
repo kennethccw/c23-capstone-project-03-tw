@@ -132,7 +132,7 @@ export default function MyRoutes() {
       {/* Admin */}
 
       {/* Organisation  */}
-      <Route path="/" element={<OrganisationHomePageContainer />}></Route>
+      <Route path="organisationHomePage" element={<OrganisationHomePageContainer />}></Route>
       <Route path="/" element={<AdoptionApplicationResult />}></Route>
       <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
       <Route path="/" element={<AnimalHelpToDoListfrom />}></Route>

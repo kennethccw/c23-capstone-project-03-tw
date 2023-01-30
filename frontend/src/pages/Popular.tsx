@@ -33,7 +33,7 @@ export default function Popular() {
 
 
         
-        <Activity/>
+        <Activity needDeleteButton={false}/>
 
 
 

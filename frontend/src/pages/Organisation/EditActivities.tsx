@@ -4,7 +4,7 @@ import { IconSearch } from '@tabler/icons';
 import { useNavigate } from "react-router-dom";
 import styles from "../../css/organisation/editActivities.module.scss";
 import { Tabs, Button } from "@mantine/core";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Input } from '@mantine/core';
 import { useForm } from "react-hook-form";
@@ -13,6 +13,24 @@ import InputMask from 'react-input-mask';
 import { Activity } from "../../components/ActivitiesUtilis";
 // import { RiContactsBookLine } from "react-icons/ri";
 import { DatePicker } from "@mantine/dates";
+import { textSpanContainsPosition } from "typescript";
+// import { useQuery } from "react-query";
+// import { fetchJson } from "../../api/utilsAPI";
+
+
+interface activityType{
+    id: number,
+    name: string,
+    image: string,
+    description: string,
+    date: string,
+    location: string,
+    remaining_place: number,
+    organisation_id:number,
+    organisation_name: string
+    
+}
+
 
 export default function EditActivities() {
     const navigate = useNavigate();
@@ -22,7 +40,9 @@ export default function EditActivities() {
 
     }
     console.log(choice)
-
+   const [activity, setActivity]=useState<activityType[]>([])
+console.log(activity[0]);
+console.log(typeof activity)
     const [date, setDate] = useState<Date | any>(new Date())
 
     let year = date.getFullYear();
@@ -69,12 +89,66 @@ export default function EditActivities() {
     const address: string = watch("address")
     const count: number = watch("count")
     // console.log(district)
-
+    const organsationID: string | null = localStorage.getItem("userId")
 
 
     let activityStartTimeforFetch = year + "/" + month + "/" + dateOfActivity + " " + activityStartTime
 
     let activityEndTimeforFetch = year + "/" + month + "/" + dateOfActivity + " " + activityEndTime
+
+
+// const getOrganisationActivities=async ()=>{
+//     const data=await fetchJson( `${process.env.REACT_APP_BACKEND_URL}/editActivities/getActivities`,
+//     {
+//         method: 'POST',
+//         headers: {
+//             Authorization: `Bearer ${localStorage.getItem("token")}`,
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(formBody)
+//     });
+//     return data;
+//     console.log(data)
+// }
+
+
+
+    // const { isLoading, isError, data, error } = useQuery({
+    //     queryKey: ["editActivities/getActivities"],
+    //     queryFn: getOrganisationActivities,
+    //     refetchInterval: 5_000,
+    //     staleTime: 10_000,
+    //     retry: 1,
+    //   });
+
+
+
+    useEffect(()=>{
+        let formBody={'organisationId':organsationID!};
+        const fetchData= async()=>{
+            const resp= await fetch (
+                `${process.env.REACT_APP_BACKEND_URL}/editActivities/getActivities`,
+                {
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formBody)
+                }
+            )
+    
+            const data=await resp.json();
+            console.log(data.result)
+            setActivity(data.result)
+        }
+    
+        fetchData();
+        
+    },[])
+    
+
+
 
     const handleSubmitForm = async () => {
 
@@ -108,15 +182,15 @@ export default function EditActivities() {
         formData.append("activityStartTime", activityStartTimeforFetch)
         formData.append("activityEndTime", activityEndTimeforFetch)
         formData.append("requirements", requirements)
-        formData.append("district", district); console.log(district)
+        formData.append("district", district);
         formData.append("address", address)
         formData.append("count", count.toString())
         formData.append("remaining_place", count.toString())
         formData.append("fee", fee)
-        formData.append("organisation_id", "1")
-        formData.append("file", file || ""); 
+        formData.append("organisation_id", organsationID!)
+        formData.append("file", file || "");
         formData.append("type", "editors_choice")
-
+        console.log(organsationID)
 
         let resp = await fetch(`${process.env.REACT_APP_BACKEND_URL}/editActivities/addActivities`,
             {
@@ -144,12 +218,18 @@ export default function EditActivities() {
         }
     }
 
+
+
+
+
+
+
     return (
         <>
 
 
             <div className={styles.upperPart}>
-                <div className={styles.leftArrow}><ChevronLeft className={styles.leftArrowIcon} onClick={() => { navigate(-1) }} /></div>
+                <div className={styles.leftArrow}><ChevronLeft className={styles.leftArrowIcon} onClick={() => { navigate("/organisationHomePage") }} /></div>
                 <div className={styles.searchBarPart}>
                     <TextInput className={styles.searchBar}
                         icon={<IconSearch size={30} stroke={1.5} className={styles.iconSearch} />}
@@ -279,8 +359,18 @@ export default function EditActivities() {
                             </div>
 
                         </form>
-                    </div> : <Activity />
-                } 
+                    </div> : <>
+                
+{activity.map((eachActivity)=>{
+    <Activity needDeleteButton={true} key={`activity_${eachActivity.id}`} name={eachActivity.name} image={eachActivity.image} description={eachActivity.description} date={eachActivity.date} location={eachActivity.location} remaining_place={eachActivity.remaining_place} organisation_name={eachActivity.organisation_name}/>
+console.log(eachActivity.id)
+})}
+
+
+ {/* <Activity needDeleteButton={true} /> */}
+              
+                    </>
+                }
             </div>
         </>
 

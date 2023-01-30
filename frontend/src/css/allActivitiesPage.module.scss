@@ -97,8 +97,9 @@
 }
 
 .chanceInstances {
+    position:relative;
     margin-bottom: 20px;
-    background-color: red;
+    // background-color: yellow;
 }
 
 
@@ -152,6 +153,22 @@
   width: 100vw;
 }
 
+.cancelButton{
+    position:absolute;
+    bottom: 5px;
+    right: 10px;
+  margin-top:10px;
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    background-color:#585ce5 ;
+
+}
 
 
 ////////////////// ActivitiesDetailPage.tsx START ///////////////////////////

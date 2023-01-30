@@ -17,7 +17,14 @@ export default function Login() {
     e.preventDefault();
     dispatch(loginThunk({ userIdentity: watchUserIdentity, password: getValues().password }))
       .unwrap()
-      .then(() => navigate("/home"))
+      .then(
+        () => {
+          if (localStorage.getItem('role') === "user") { navigate("/home") }
+          else {
+            navigate("/organisationHomePage")
+          }
+        }
+      )
       .catch((err) => {
         alert(err.message);
       });

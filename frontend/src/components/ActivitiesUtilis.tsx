@@ -1,8 +1,18 @@
 import styles from "../css/allActivitiesPage.module.scss";
 import { Calendar4, ChevronLeft, Filter, Person, GeoAlt } from "react-bootstrap-icons";
 
+type ActivityProps={
+    needDeleteButton:boolean;
+    name: string,
+    image: string,
+    description: string,
+    date: string,
+    location: string,
+    remaining_place: number,
+    organisation_name: string;
+}
 
-export function Activity() {
+export function Activity(props: ActivityProps) {
 
     return (
         <>
@@ -18,7 +28,7 @@ export function Activity() {
                         <GeoAlt />&nbsp;&nbsp;&nbsp;12134
                     </div>
                     <div className={styles.dateDetail}><Calendar4 />&nbsp;&nbsp;&nbsp;<span>2013</span>年<span>2</span>月<span>18</span>日</div>
-                    <div className={styles.taskName}>刪除活動</div>
+                   {props.needDeleteButton && <div className={styles.cancelButton}>刪除活動</div>}
                 </div>
 
                

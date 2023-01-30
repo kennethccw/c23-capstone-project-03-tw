@@ -32,7 +32,7 @@ export default function Urgent() {
         </div>
 
 
-      <Activity/>
+      {/* <Activity needDeleteButton={false}/> */}
 
 
         {NavBar}
