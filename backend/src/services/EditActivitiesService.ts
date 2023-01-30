@@ -1,14 +1,14 @@
 import type { Knex } from "knex";
 
-interface getActivitiesResult{
+interface getActivitiesResult {
   id: number,
-  name:string,
-  image:string,
-  description:string,
+  name: string,
+  image: string,
+  description: string,
   date: string,
   location: string,
   remaining_place: number,
-  organisation_id:number,
+  organisation_id: number,
   organisation_name: string
 }
 
@@ -47,11 +47,21 @@ export class EditActivitiesService {
 
   }
 
-async getActivities(organisationId:number){
-  let getActivitiesResult= await this.knex.select<getActivitiesResult[]>('activities.id','activities.name','activities.image','activities.description','activities.date','activities.location','activities.remaining_place','activities.organisation_id','organisations.name as organisation_name' ).from('activities').join('organisations','organisations.id','activities.organisation_id').where('organisation_id',organisationId).where('is_deleted',false)//select activities.id,activities.name,activities.description,activities.date,activities.location,activities.remaining_place,activities.organisation_id,organisations.name from activities join organisations on organisations.id=activities.organisation_id;
-  console.log(getActivitiesResult,'EditActivitiesService.ts L43')
-  return getActivitiesResult
-}
+  async getActivities(organisationId: number) {
+
+    try {
+      let getActivitiesResult = await this.knex.select<getActivitiesResult[]>('*',
+        "organisations.name as organisation",
+        "activities.name as activity",
+        "activities.id as activity_id").from('activities').join('organisations', 'organisations.id', 'activities.organisation_id').where('organisation_id', organisationId).where('is_deleted', false)//select activities.id,activities.name,activities.description,activities.date,activities.location,activities.remaining_place,activities.organisation_id,organisations.name from activities join organisations on organisations.id=activities.organisation_id;
+      console.log(getActivitiesResult, 'EditActivitiesService.ts L43')
+      return getActivitiesResult
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+
+  }
 
 
 

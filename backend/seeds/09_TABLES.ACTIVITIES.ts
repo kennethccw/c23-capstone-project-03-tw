@@ -8,7 +8,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "平面設計師或攝影師義工",
         type: "editors_choice",
-        image: "photos/activities/editor_choice/image-marketing2.png",
+        image: "image-marketing2.png",
         description:
           "不定期設計活動或領養海報，天下貓狗一樣是可愛貓狗，展示出他們有趣一面為他們尋家",
         date: new Date("2023/03/05"),
@@ -25,7 +25,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "場內清潔義工 (大量)",
         type: "urgent",
-        image: "photos/activities/urgent/image-urgent7.jpeg",
+        image: "image-urgent7.jpeg",
         description:
           "每天都需要義工幫忙清潔，特別是平日，希望大家到場幫忙之餘，親親一班無家的毛孩，近距離接觸，讓牠們受到關懷。清潔狗舍 (清理大小便、更換清潔水兜、添加飲用水和狗糧)清理執拾場內物資 (搬狗糧、添糧筒、整理場內物品、清潔風扇、狗床)",
         date: new Date("2023/03/10"),
@@ -42,7 +42,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "梳毛及剪甲義工",
         type: "urgent",
-        image: "photos/activities/urgent/image3.png",
+        image: "image3.png",
         description: "為毛小孩扮靚靚，讓牠們快快找個好人家",
         date: new Date("2023/02/25"),
         start_time: new Date("2023/02/25 14:00"),
@@ -58,7 +58,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "活動義工",
         type: "popular",
-        image: "photos/activities/popular/image-popular1.jpeg",
+        image: "image-popular1.jpeg",
         description:
           "不定期成為Event Helper用行動為被遺棄、被虐待、被遺忘的一群找個家 (活動：領養日、義賣日、活動日、教育講座、慈善活動,領養人講座)",
         date: new Date("2023/02/12"),
@@ -75,7 +75,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "領養日",
         type: "popular",
-        image: "photos/activities/popular/image-popular2.jpeg",
+        image: "image-popular2.jpeg",
         description: "歡迎愛狗人士參與我們的領養日，請大家支持領養，代替購買。",
         date: new Date("2023/02/12"),
         start_time: new Date("2023/02/12 11:00"),
@@ -91,7 +91,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "義賣日",
         type: "popular",
-        image: "photos/activities/urgent/image-urgent1.png",
+        image: "image-urgent1.png",
         description:
           "義賣日活動所籌得之善款，將撥捐「流浪動物醫療基金」作為社區流浪動物福利之慈善用途。",
         date: new Date("2023/02/18"),
@@ -108,7 +108,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "領養人講座",
         type: "urgent",
-        image: "photos/activities/urgent/image-urgent2(1).jpeg",
+        image: "image-urgent2(1).jpeg",
         description: "過往 / 現在的領養人士分享關於領養寵物的心得以及領養寵物需要注意的事項。",
         date: new Date("2023/03/25"),
         start_time: new Date("2023/03/25 11:00"),
@@ -124,7 +124,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "公關犬大使",
         type: "editors_choice",
-        image: "photos/activities/urgent/image-urgent2.jpeg",
+        image: "image-urgent2.jpeg",
         description:
           "公關犬大使”，從前都是被主人放棄飼養的家犬，牠們剛進入動物收容中心的時候，都曾表現徬徨及悲傷，幸得我們員工的悉心照料及義工的關愛， 這些曾被棄養的公關犬大使，當重新感受到愛的關愛，牠們放下了從前被遺棄的傷痛，用“愛”為市民帶來相聚的歡樂，用“愛”提醒我們要學習珍惜生命。",
         date: new Date("2023/03/04"),
@@ -141,7 +141,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "捉貓義工 pm",
         type: "urgent",
-        image: "photos/activities/urgent/image-urgent4.png",
+        image: "image-urgent4.png",
         description: "捕捉、絕育、放回",
         date: new Date("2023/02/25"),
         start_time: new Date("2023/02/25 18:30"),
@@ -157,7 +157,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "捉狗義工 pm",
         type: "urgent",
-        image: "photos/activities/urgent/image-urgent3.jpeg",
+        image: "image-urgent3.jpeg",
         description: "捕捉、絕育、放回",
         date: new Date("2023/03/04"),
         start_time: new Date("2023/03/04 18:30"),
@@ -173,7 +173,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "Marketing義工",
         type: "editors_choice",
-        image: "photos/activities/editor_choice/image-marketing1.jpg",
+        image: "image-marketing1.jpg",
         description: "與其他義工一起策劃活動及推廣事宜，為毛小孩找個快樂的家",
         date: new Date("2023/02/12"),
         start_time: new Date("2023/02/12 11:00"),
@@ -189,7 +189,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "馴化貓舍貓咪義工",
         type: "popular",
-        image: "photos/activities/popular/image-popular3.png",
+        image: "image-popular3.png",
         description: "馴化驚靑、怕人或有攻擊性的貓咪，希望她們能夠早日入屋",
         date: new Date("2023/03/19"),
         start_time: new Date("2023/03/19 10:00"),
@@ -205,7 +205,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "搬運義工 / 義載",
         type: "urgent",
-        image: "photos/activities/urgent/image-urgent8.png",
+        image: "image-urgent8.png",
         description: "協助本會既活動(例如︰領養日/義賣日)搬運或義載由本會到活動場地/地點",
         date: new Date("2023/03/05"),
         start_time: new Date("2023/03/05 13:00"),
@@ -221,7 +221,7 @@ export async function seed(knex: Knex): Promise<void> {
       {
         name: "清潔及常務義工(pm)",
         type: "urgent",
-        image: "photos/activities/urgent/image-urgent9.png",
+        image: "image-urgent9.png",
         description: "照顧小動物、清潔、打掃、餵奶、餵藥，你也可以從中學習如何照顧家中寵物",
         date: new Date("2023/03/10"),
         start_time: new Date("2023/03/10 12:00"),

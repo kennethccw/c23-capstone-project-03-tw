@@ -27,9 +27,9 @@ export class EditActivitiesController {
       const organisation_id = req.form.fields.organisation_id
 
 
-      await this.editActivitiesService.addActivities(activityName, activityDetails, date, activityStartTime, activityEndTime, requirements, district, address, parseInt(count), parseInt(remaining_place), parseInt(fee),
-        newFile,
-        type, parseInt(organisation_id));
+      await this.editActivitiesService.addActivities(activityName as string, activityDetails as string, date as string, activityStartTime as string, activityEndTime as string, requirements as string, district as string, address as string, parseInt(count as string),parseInt(remaining_place as string), parseInt(fee as string),
+        newFile as string,
+        type as string, parseInt(organisation_id as string));
 
         res.status(200).json({message:"新增成功!"})
     } catch (e) { res.status(400).json({ message: "Internal Server Error" }); }
