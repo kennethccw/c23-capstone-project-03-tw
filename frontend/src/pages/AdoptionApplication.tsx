@@ -4,7 +4,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import styles from "../css/adoptionApplication.module.scss";
 import { IconArrowNarrowRight } from "@tabler/icons";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { postPetAdoptionApplication } from "../api/adoptionAPI";
 import { useRootDispatch, useRootSelector } from "../redux/store";
@@ -65,6 +65,7 @@ export default function AdoptionApplication() {
       alert(result.message);
       return;
     } else if (resp.status === 200) {
+      dispatch(adoptionApplicationReducer({ fullName: "", email: "", mobile: "", remark: "" }));
       navigate("/application/success");
     }
   };
@@ -117,10 +118,18 @@ export default function AdoptionApplication() {
             <Input id="mobile" radius="md" size="md" placeholder="輸入聯絡電話" type="text" {...register("mobile", { required: true })} invalid={isMobileInvalid ? true : undefined} />
           </Input.Wrapper>
 
-          <Textarea label="留言內容" className={styles.input} autosize minRows={3} maxRows={7} {...register("remark", { required: false })} />
+          <Textarea label="留言內容" placeholder="輸入留言內容" className={styles.input} autosize minRows={3} maxRows={7} {...register("remark", { required: false })} />
           <Checkbox className={`${styles.input} ${styles.checkbox}`} label="我已閱讀並了解申請領養動物程序。" color="petscue-purple" {...register("checkbox", { required: true })} />
           <div className={styles.btnContainer}>
-            <Button className={styles.button} color="violet" variant="outline" radius="xl" onClick={() => navigate("/adoption/application/detail")}>
+            <Button
+              className={styles.button}
+              color="violet"
+              variant="outline"
+              radius="xl"
+              onClick={() => {
+                navigate("/adoption/application/detail");
+              }}
+            >
               <div>閱讀領養程序</div>
             </Button>
             <Button className={`${styles.button} ${styles.adoptionConfirmBtn}`} color="violet" radius="xl" type="submit">

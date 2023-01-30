@@ -7,9 +7,12 @@ import { PetDetailsComponent } from "../components/PetDetailsComponent";
 import { getPetAdoptionById } from "../api/adoptionAPI";
 import { useQuery } from "react-query";
 import { useEffect } from "react";
+import { useRootDispatch } from "../redux/store";
+import { adoptionApplicationReducer } from "../redux/adoption";
 
 export default function PetDetails() {
   const navigate = useNavigate();
+  const dispatch = useRootDispatch();
   const params = new URLSearchParams(document.location.search);
   const getPetAdoptionByIdNoParam = async () => {
     const data = await getPetAdoptionById(params.get("id")!);
@@ -26,6 +29,7 @@ export default function PetDetails() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    dispatch(adoptionApplicationReducer({ fullName: "", email: "", mobile: "", remark: "" }));
   }, []);
 
   return (
