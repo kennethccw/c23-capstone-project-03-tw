@@ -4,8 +4,16 @@ import { HiOutlineX } from "react-icons/hi";
 
 import { UnstyledButton, Checkbox, Text, createStyles, MantineProvider, Button } from "@mantine/core";
 import { useUncontrolled } from "@mantine/hooks";
+import { PetDetail } from "../api/adoptionAPI";
 
-export function PetDetailsComponent() {
+export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () => void }) {
+  enum ChineseGender {
+    male = "男",
+    female = "女",
+  }
+  enum ChineseAge {
+    months = "月",
+  }
   return (
     <>
       <MantineProvider
@@ -16,46 +24,60 @@ export function PetDetailsComponent() {
           },
         }}
       >
-
         <div className={styles.petContainer}>
           <div className={styles.imgContainer}>
-            <img className={styles.imgContent} src="/photos/pet/pet-blue.jpeg"></img>
+            <img className={styles.imgContent} src={`/photos/pet/${props.pet.image}`}></img>
           </div>
         </div>
 
         <div className={styles.detailsforAll}>
           <div className={styles.detailsContainer}>
-            <div>名字：<span>Boss</span></div>
+            <div>
+              名字：<span>{props.pet.name}</span>
+            </div>
           </div>
 
           <div className={styles.detailsContainer}>
-            <div>性別：<span>男</span></div>
+            <div>
+              性別：<span>{ChineseGender[props.pet.gender!]}</span>
+            </div>
           </div>
 
           <div className={styles.detailsContainer}>
-            <div>年齡：<span>2 months</span></div>
+            <div>
+              年齡：<span></span>
+            </div>
           </div>
 
           <div className={styles.detailsContainer}>
-            <div>重量：<span>1.8 kg</span></div>
+            <div>
+              重量：<span>{`${props.pet.weight} kg`}</span>
+            </div>
           </div>
 
           <div className={styles.detailsContainer}>
-            <div>品種：<span>英短</span></div>
+            <div>
+              品種：<span>{props.pet.breed}</span>
+            </div>
           </div>
 
           <div className={styles.illnessRecordContainer}>
-            <div>病歷：<span>齊針 / 已絕育 / 非常乖 / 任摸任抱 / 識砂盆便便 / 但時會屙係地。</span></div>
+            <div>
+              病歷：
+              <span>{props.pet.remark}</span>
+            </div>
           </div>
 
           <div className={styles.detailsContainer}>
-            <div>所屬機構：<span>香港關愛庇護動物之家</span></div>
+            <div>
+              所屬機構：<span>{props.pet.organisation}</span>
+            </div>
           </div>
-          </div>
+        </div>
 
-          <Button className={styles.buttonsecond}  radius="xl">
+        <Button className={styles.buttonsecond} radius="xl">
           申請領養
-          </Button>
+        </Button>
       </MantineProvider>
     </>
   );

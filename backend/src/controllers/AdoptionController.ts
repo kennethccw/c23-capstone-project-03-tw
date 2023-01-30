@@ -13,4 +13,12 @@ export class AdoptionController {
       res.status(400).json({ message: "Please log in or sign up for an account first" });
     }
   };
+  getAllPetAdoption = async (req: Request, res: Response) => {
+    try {
+      const data = await this.adoptionService.getAllPetAdoption ();
+    res.status(200).json(data);
+    } catch (e) {
+      res.status(400).json({ message: "Please log in or sign up for an account first" });
+    }
+  };
 }

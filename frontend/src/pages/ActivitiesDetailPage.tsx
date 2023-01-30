@@ -119,7 +119,7 @@ const role= localStorage.getItem('role')
       }}
     >
       <div>
-        <LoadingOverlay visible={isLoading} overlayBlur={2} />
+      <LoadingOverlay visible={isLoading} overlayBlur={2} />
 
         <div className={styles.upperPart}>
           <div className={styles.chevronAndAdjustmntIcon}>
