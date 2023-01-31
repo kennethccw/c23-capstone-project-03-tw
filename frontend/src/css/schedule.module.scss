@@ -70,14 +70,17 @@
 }
 
 .applicationsAppliedImg {
-  width: 312px;
+  width: 80vw;
+  height: 240px;
+  object-fit: cover; /* Do not scale the image */
+  object-position: center;
   border-radius: 20px;
   box-shadow: 0 7px 7px 1px #cccccc;
   margin: 16px 0;
 }
 
 .applicationsAppliedTextContent {
-  width: 312px;
+  width: 80vw;
   flex: 2;
 }
 
@@ -109,7 +112,7 @@
   justify-content: space-around;
   align-items: center;
   padding: 10px;
-  width: 312px;
+  width: 80vw;
 }
 
 .deleteButton {

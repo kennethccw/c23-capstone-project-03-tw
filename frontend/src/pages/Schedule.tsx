@@ -61,7 +61,7 @@ export default function Schedule() {
               }}
               rightSection={
                 !!data?.confirmed.length && (
-                  <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
+                  <Badge sx={{ width: 20, height: 20, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
                     {data?.confirmed.length}
                   </Badge>
                 )

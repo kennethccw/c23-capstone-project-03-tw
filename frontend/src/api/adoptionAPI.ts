@@ -35,6 +35,40 @@ export interface AdoptionApplication {
   user_id?: number;
 }
 
+export interface AdoptionResult {
+  application_id: number;
+  pet_id: number;
+  name: string;
+  image: string;
+  status: AdoptionResultStatus;
+  fail_reason: AdoptionResultFailReason;
+  other_fail_reason: string;
+}
+
+export enum AdoptionResultStatus {
+  pending = "pending",
+  success = "success",
+  fail = "fail",
+  cancelled = "cancelled",
+}
+export enum AdoptionResultFailReason {
+  not_applicable = "not_applicable",
+  age_under_21 = "age_under_21",
+  no_window_screen = "no_window_screen",
+  other = "other",
+}
+export enum AdoptionResultChineseStatus {
+  pending = "處理中",
+  success = "通過",
+  fail = "不通過",
+}
+export enum AdoptionResultChineseFailReason {
+  not_applicable = "不適用",
+  age_under_21 = "未滿二十一歲",
+  no_window_screen = "沒有裝窗網",
+  other = "其他原因",
+}
+
 export const getAllPetAdoption = async () => {
   const data = await fetchJson<PetPreview[]>(`${ADOPTION_API_PATH}`, {
     method: "GET",
@@ -64,6 +98,27 @@ export const postPetAdoptionApplication = async (adoptionApplication: AdoptionAp
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({ adoptionApplication }),
+  });
+  return data;
+};
+export const putPetAdoptionApplication = async (petId: number) => {
+  const data = await fetch(`${ADOPTION_API_PATH}/application`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({ petId }),
+  });
+  return data;
+};
+export const getPetAdoptionResult = async () => {
+  const data = await fetchJson<AdoptionResult[]>(`${ADOPTION_API_PATH}/result`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
   return data;
 };

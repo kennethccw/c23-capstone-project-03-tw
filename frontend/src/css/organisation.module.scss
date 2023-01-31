@@ -66,5 +66,7 @@
 }
 
 .organisationLogo {
-  width: 94%;
+  width: 96%;
+  object-fit: cover; /* Do not scale the image */
+  object-position: center;
 }

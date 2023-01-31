@@ -32,9 +32,33 @@ export class AdoptionController {
       res.status(400).json({ message: "Internal Server Error" });
     }
   };
+  putPetAdoptionApplication = async (req: Request, res: Response) => {
+    try {
+      const user_id = req.user?.id!;
+      const pet_id: number = req.body.petId;
+      const data = await this.adoptionService.putPetAdoptionApplication(user_id, pet_id);
+      if (data === "Applied Before") {
+        res.status(200).json({ message: "Applied Before" });
+        return;
+      }
+      res.status(200).json(data);
+    } catch (e) {
+      res.status(400).json({ message: "Internal Server Error" });
+    }
+  };
   getAllPetAdoption = async (req: Request, res: Response) => {
     try {
       const data = await this.adoptionService.getAllPetAdoption();
+      res.status(200).json(data);
+    } catch (e) {
+      res.status(400).json({ message: "Internal Server Error" });
+    }
+  };
+
+  getPetAdoptionResult = async (req: Request, res: Response) => {
+    try {
+      const uid = req.user?.id!;
+      const data = await this.adoptionService.getPetAdoptionResult(uid);
       res.status(200).json(data);
     } catch (e) {
       res.status(400).json({ message: "Internal Server Error" });

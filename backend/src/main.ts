@@ -4,9 +4,13 @@ import { logger } from "./utils/logger";
 import dotenv from "dotenv";
 import cors from "cors";
 import Knex from "knex";
-
+import http from "http";
+import { Server as SocketIO } from "socket.io";
 
 const app = express();
+
+const server = new http.Server(app);
+export const io = new SocketIO(server);
 
 dotenv.config();
 import knexConfigs from "../knexfile";
@@ -56,7 +60,7 @@ import { routes } from "./routes";
 app.use(routes);
 
 const PORT = 8080;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   logger.info(`listening to port ${PORT}`);
   logger.info(`http://localhost:${PORT}`);
 });

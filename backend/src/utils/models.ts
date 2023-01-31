@@ -123,6 +123,7 @@ export interface AdvertiserWatchedTimes {
 export interface DonationAmount {
   total_donation: number;
   year: number;
+  updated_at?: Date;
 }
 export interface ActivityParticipatedTimes {
   total_activities_participated_times: number;
@@ -180,6 +181,7 @@ export interface ActivityPreview {
 }
 
 export interface Donation {
+  id: number;
   receipt_name: string;
   receipt_email: string;
   receipt_mobile: string;
@@ -195,4 +197,32 @@ export interface AdoptionApplication {
   remark?: string;
   pet_id: number;
   user_id?: number;
+}
+
+export interface AdoptionResult {
+  application_id: number;
+  pet_id: number;
+  name: string;
+  image: string;
+  status: AdoptionResultStatus;
+  fail_reason: AdoptionResultFailReason;
+  other_fail_reason: string;
+}
+
+export enum AdoptionResultStatus {
+  pending = "pending",
+  success = "success",
+  fail = "fail",
+  cancelled = "cancelled",
+}
+export enum AdoptionResultFailReason {
+  not_applicable = "not_applicable",
+  age_under_21 = "age_under_21",
+  no_window_screen = "no_window_screen",
+  other = "other",
+}
+
+export interface OrganisationChatroom {
+  name: string;
+  logo: string;
 }

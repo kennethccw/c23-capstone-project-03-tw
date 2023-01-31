@@ -127,8 +127,10 @@
 }
 
 .imgPreview {
-  width: 320px;
+  width: 80vw;
   height: 231px;
+  object-fit: cover; /* Do not scale the image */
+  object-position: center;
   border-radius: 32px;
   margin-top: 20px;
 }
@@ -157,7 +159,7 @@
   display: flex;
   background: rgba(244, 243, 243, 0.8);
   border-radius: 0px 0px 32px 32px;
-  width: 320px;
+  width: 80vw;
   height: 62px;
   position: absolute;
   bottom: 3px;
@@ -245,4 +247,27 @@
 .detailContent {
   width: 60vw;
   margin-bottom: 5px;
+}
+
+.modalConfirmCancelContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.modalConfirmCancelTitle {
+  margin-top: -36px;
+}
+
+.joinButton {
+  background-color: #fdc9d2;
+  color: #0f2851;
+  width: 50%;
+  height: 5vh;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
 }

@@ -1,18 +1,41 @@
 .containerForAll {
   width: 100vw;
-  margin-bottom: 40px;
+  margin-bottom: 120px;
 }
+
+.scheduleTabContainer {
+  margin-top: -40px;
+  width: 100vw;
+  height: 92px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+}
+
+.scheduleTabContainer button {
+  width: 50vw;
+}
+
+.scheduleTabContainer div {
+  font-weight: bold;
+  font-size: 16px;
+}
+
 .header {
   width: 312px;
-  margin: 62px auto 12px 25px;
-  display: flex;
-  align-items: center;
-  font-size: 28px;
-  font-weight: bold;
+  margin: 62px auto 0px 35px;
+  background-color: #ffffff;
+  z-index: 99;
+  position: sticky;
 }
 
 .closingIcon {
+  top: 0;
   margin-right: 36px;
+  font-size: 40px;
   color: #cccccc;
 }
 

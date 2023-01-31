@@ -110,7 +110,7 @@ export default function MyRoutes() {
       <Route path="/" element={<AnimalHelpFunction />}></Route>
       <Route path="help" element={<AnimalNeedOurHelp />}></Route>
       <Route path="/" element={<HelpLocationFilter />}></Route>
-      <Route path="/" element={<AnimalHelpChatroom />}></Route>
+      <Route path="help/chatroom" element={<AnimalHelpChatroom />}></Route>
 
       <Route path="contact" element={<ContactUs />}></Route>
       <Route path="privacy-and-security" element={<PrivacyAndSecurity />}></Route>

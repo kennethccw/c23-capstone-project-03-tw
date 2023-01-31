@@ -118,7 +118,7 @@ export default function AdoptionApplication() {
             <Input id="mobile" radius="md" size="md" placeholder="輸入聯絡電話" type="text" {...register("mobile", { required: true })} invalid={isMobileInvalid ? true : undefined} />
           </Input.Wrapper>
 
-          <Textarea label="留言內容" placeholder="輸入留言內容" className={styles.input} autosize minRows={3} maxRows={7} {...register("remark", { required: false })} />
+          <Textarea radius="md" size="md" label="留言內容" placeholder="輸入留言內容" className={styles.input} autosize minRows={3} maxRows={7} {...register("remark", { required: false })} />
           <Checkbox className={`${styles.input} ${styles.checkbox}`} label="我已閱讀並了解申請領養動物程序。" color="petscue-purple" {...register("checkbox", { required: true })} />
           <div className={styles.btnContainer}>
             <Button

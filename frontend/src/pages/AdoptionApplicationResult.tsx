@@ -2,17 +2,35 @@ import { Badge, MantineProvider, Paper, Tabs } from "@mantine/core";
 import styles from "../css/adoptionApplicationResult.module.scss";
 import { HiXMark } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
+import AdoptionApplicationComponent from "../components/AdoptionResultComponents";
+import { useQuery } from "react-query";
+import { getPetAdoptionResult } from "../api/adoptionAPI";
+import { useState } from "react";
+import NewNavbar from "../components/NewNavbar";
 
 export default function AdoptionApplicationResult() {
   const navigate = useNavigate();
-  // enum ChosenResult {
-  //   BASICINFO = "basicInfo",
-  //   TIMETABLE = "timeTable",
-  //   BADGE = "badge",
-  //   CONTACT = "contact",
-  // }
+  enum ChosenBtn {
+    pending = "pending",
+    handled = "handled",
+  }
 
-  // const [chosenResult, setChosenResult] = useState<ChosenResult>(ChosenResult.BASICINFO);
+  const getPetAdoptionResultCategorised = async () => {
+    const result = await getPetAdoptionResult();
+    const pendingResult = result.filter((result) => result.status === "pending");
+    const handledResult = result.filter((result) => result.status !== "pending");
+    return { pendingResult, handledResult };
+  };
+
+  const { isError, error, data, isLoading } = useQuery({
+    queryKey: ["adoption/result"],
+    queryFn: getPetAdoptionResultCategorised,
+    refetchInterval: 5_000,
+    // staleTime: 10_000,
+    retry: 1,
+  });
+
+  const [chosenBtn, setChosenBtn] = useState<ChosenBtn>(ChosenBtn.pending);
 
   // console.log(chosenResult);
   return (
@@ -96,30 +114,35 @@ export default function AdoptionApplicationResult() {
       <div className={styles.containerForAll}>
         <div className={styles.header}>
           <HiXMark className={styles.closingIcon} onClick={() => navigate(-1)} />
-          <span>申請領養記錄</span>
+          <h1>申請領養記錄</h1>
         </div>
-        <Tabs className={styles.scheduleTabContainer} color="petscue-purple">
+        <Tabs className={styles.scheduleTabContainer} color="petscue-purple" defaultValue="處理中">
           <Tabs.List grow>
             <Tabs.Tab
+              onClick={() => setChosenBtn(ChosenBtn.pending)}
+              value="處理中"
               rightSection={
-                <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
-                  6
-                </Badge>
+                !!data?.pendingResult?.length && (
+                  <Badge sx={{ width: 20, height: 20, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
+                    {data?.pendingResult.length}
+                  </Badge>
+                )
+              }
+            >
+              處理中
+            </Tabs.Tab>
+            <Tabs.Tab
+              onClick={() => setChosenBtn(ChosenBtn.handled)}
+              rightSection={
+                !!data?.handledResult?.length && (
+                  <Badge sx={{ width: 20, height: 20, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
+                    {data?.handledResult.length}
+                  </Badge>
+                )
               }
               value="已確認"
             >
               已確認
-            </Tabs.Tab>
-
-            <Tabs.Tab
-              value="處理中"
-              rightSection={
-                <Badge sx={{ width: 16, height: 16, pointerEvents: "none" }} color="petscue-purple" variant="filled" size="xs" p={0}>
-                  6
-                </Badge>
-              }
-            >
-              處理中
             </Tabs.Tab>
           </Tabs.List>
         </Tabs>
@@ -134,7 +157,27 @@ export default function AdoptionApplicationResult() {
 
         {/* APPLICATION COMPONENT (NOT APPROVED)*/}
 
-        <div className={styles.petPaperBigContainer}>
+        {chosenBtn === ChosenBtn.pending &&
+          data?.pendingResult?.map((result) => (
+            <AdoptionApplicationComponent key={result.application_id} result={result} clickHandler={() => navigate(`/adoption/detail?id=${result.pet_id}&status=${result.status}`)} />
+          ))}
+        {chosenBtn === ChosenBtn.pending && data?.pendingResult?.length === 0 && (
+          <div className={styles.noApplicationsAppliedContainer}>
+            <h3 className={styles.noApplicationsAppliedHeader}>你暫時沒有處理中的申請</h3>
+          </div>
+        )}
+
+        {chosenBtn === ChosenBtn.handled &&
+          data?.handledResult?.map((result) => (
+            <AdoptionApplicationComponent key={result.application_id} result={result} clickHandler={() => navigate(`/adoption/detail?id=${result.pet_id}&status=${result.status}`)} />
+          ))}
+        {chosenBtn === ChosenBtn.handled && data?.handledResult?.length === 0 && (
+          <div className={styles.noApplicationsAppliedContainer}>
+            <h3 className={styles.noApplicationsAppliedHeader}>你暫時沒有已確認的申請</h3>
+          </div>
+        )}
+
+        {/* <div className={styles.petPaperBigContainer}>
           <Paper shadow="xl" radius="xl" p="xl" className={styles.paperContainer}>
             <img className={styles.petImg} src="/photos/pet/pet-sleepy.png" alt="" />
             <div className={styles.petDetailContainer}>
@@ -152,13 +195,13 @@ export default function AdoptionApplicationResult() {
               </div>
             </div>
           </Paper>
-        </div>
+        </div> */}
 
         {/* APPLICATION COMPONENT (NOT APPROVED)*/}
 
         {/* APPLICATION COMPONENT (APPROVED) */}
 
-        <div className={styles.petPaperBigContainer}>
+        {/* <div className={styles.petPaperBigContainer}>
           <Paper shadow="xl" radius="xl" p="xl" className={styles.paperContainer}>
             <img className={styles.petImg} src="/photos/pet/pet-sleepy.png" alt="" />
             <div className={styles.petDetailContainer}>
@@ -172,12 +215,12 @@ export default function AdoptionApplicationResult() {
               </div>
             </div>
           </Paper>
-        </div>
+        </div> */}
         {/* APPLICATION COMPONENT (APPROVED) */}
 
         {/* APPLICATION COMPONENT (NOT HANDLED) */}
 
-        <div className={styles.petPaperBigContainer}>
+        {/* <div className={styles.petPaperBigContainer}>
           <Paper shadow="xl" radius="xl" p="xl" className={styles.paperContainer}>
             <img className={styles.petImg} src="/photos/pet/pet-sleepy.png" alt="" />
             <div className={styles.petDetailContainer}>
@@ -191,10 +234,11 @@ export default function AdoptionApplicationResult() {
               </div>
             </div>
           </Paper>
-        </div>
+        </div> */}
 
         {/* APPLICATION COMPONENT (NOT HANDLED) */}
       </div>
+      <NewNavbar activeBtn="user" />
     </MantineProvider>
   );
 }

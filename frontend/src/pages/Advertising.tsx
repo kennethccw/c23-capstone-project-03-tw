@@ -8,7 +8,7 @@ import { useQuery } from "react-query";
 
 export default function Advertising() {
   const navigate = useNavigate();
-  const [count, setCount] = useState(15);
+  const [count, setCount] = useState(5);
   const intervalIdRef = useRef<NodeJS.Timer>();
   useEffect(() => {
     const intervalId = setInterval(() => {

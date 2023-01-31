@@ -53,17 +53,20 @@ export class HomeService {
           badgeResult = await trx(TABLES.BADGE_USER_JUNCTION)
             .update({
               rank: BadgeRank.gold,
+              updated_at: new Date(),
             })
             .where("badge_id", BadgeType.advertising_philanthropist)
             .andWhere("user_id", uid)
+            .andWhere("year", new Date().getFullYear())
             .returning("*");
-        }
-        if (userRecordResult[0]["total_advertising_watch_times"] > 10) {
+        } else if (userRecordResult[0]["total_advertising_watch_times"] > 10) {
           badgeResult = await trx(TABLES.BADGE_USER_JUNCTION)
             .update({
               rank: BadgeRank.silver,
+              updated_at: new Date(),
             })
             .where("badge_id", BadgeType.advertising_philanthropist)
+            .andWhere("year", new Date().getFullYear())
             .andWhere("user_id", uid)
             .returning("*");
         }

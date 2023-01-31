@@ -38,14 +38,16 @@ import { DonationService } from "./services/DonationService";
 export const donationService = new DonationService(knex);
 import { DonationController } from "./controllers/DonationController";
 export const donationController = new DonationController(donationService);
-
+import { HelpService } from "./services/HelpService";
+export const helpService = new HelpService(knex);
+import { HelpController } from "./controllers/HelpController";
+export const helpController = new HelpController(helpService);
 
 /////// for edit activities page ////////////////////
 import { EditActivitiesService } from "./services/EditActivitiesService";
-export const editActivitiesService= new EditActivitiesService(knex);
+export const editActivitiesService = new EditActivitiesService(knex);
 import { EditActivitiesController } from "./controllers/EditActivitiesController";
-export const editActivitiesController=new 
-EditActivitiesController(editActivitiesService)
+export const editActivitiesController = new EditActivitiesController(editActivitiesService);
 /////////////////////////////////////////////////////////
 
 import { Router } from "express";
@@ -58,6 +60,7 @@ import { scheduleRoutes } from "./routers/scheduleRoutes";
 import { editActivitiesRoutes } from "./routers/editActivitiesRoutes";
 import { donationRoutes } from "./routers/donationRoutes";
 import { adoptionRoutes } from "./routers/adoptionRoutes";
+import { helpRoutes } from "./routers/helpRoutes";
 
 export const routes = Router();
 
@@ -67,6 +70,7 @@ routes.use("/organisation", organisationRoutes);
 routes.use("/activity", activityRoutes);
 routes.use("/badge", badgeRoutes);
 routes.use("/schedule", scheduleRoutes);
-routes.use("/editActivities", editActivitiesRoutes)
+routes.use("/editActivities", editActivitiesRoutes);
 routes.use("/donation", donationRoutes);
 routes.use("/adoption", adoptionRoutes);
+routes.use("/help", helpRoutes);

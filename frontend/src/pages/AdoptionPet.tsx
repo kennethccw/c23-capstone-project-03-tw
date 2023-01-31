@@ -4,7 +4,7 @@ import { HiChevronLeft, HiSearch } from "react-icons/hi";
 import { MantineProvider, Input, LoadingOverlay } from "@mantine/core";
 import NewNavbar from "../components/NewNavbar";
 import { PetDetailsComponent } from "../components/PetDetailsComponent";
-import { getPetAdoptionById } from "../api/adoptionAPI";
+import { AdoptionResultStatus, getPetAdoptionById } from "../api/adoptionAPI";
 import { useQuery } from "react-query";
 import { useEffect } from "react";
 import { useRootDispatch } from "../redux/store";
@@ -57,7 +57,7 @@ export default function PetDetails() {
         </div>
         {/* <hr className={styles.adoptionDetailHr} /> */}
 
-        {data && <PetDetailsComponent pet={data!} clickHandler={() => navigate(`/adoption/application?id=${data?.pet_id}`)} />}
+        {data && <PetDetailsComponent pet={data!} clickHandler={() => navigate(`/adoption/application?id=${data?.pet_id}`)} status={(params.get("status") as AdoptionResultStatus) || undefined} />}
       </div>
 
       <NewNavbar activeBtn="home" />

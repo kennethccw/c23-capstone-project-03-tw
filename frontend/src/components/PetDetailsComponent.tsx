@@ -2,15 +2,30 @@ import { ClassNames } from "@emotion/react";
 import styles from "../css/searchResult.module.scss";
 import { HiOutlineX } from "react-icons/hi";
 
-import { UnstyledButton, Checkbox, Text, createStyles, MantineProvider, Button } from "@mantine/core";
+import { UnstyledButton, Checkbox, Text, createStyles, MantineProvider, Button, Modal } from "@mantine/core";
 import { useUncontrolled } from "@mantine/hooks";
-import { PetDetail } from "../api/adoptionAPI";
+import { AdoptionResultStatus, PetDetail, putPetAdoptionApplication } from "../api/adoptionAPI";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () => void }) {
+export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () => void; status?: AdoptionResultStatus }) {
   enum ChineseGender {
     male = "男",
     female = "女",
   }
+
+  const [opened, setOpened] = useState(false);
+  const navigate = useNavigate();
+
+  const cancelAdoptionApplication = async () => {
+    const resp = await putPetAdoptionApplication(props.pet.pet_id);
+    const result = await resp.json();
+    if (resp.status === 200) {
+      navigate("/application/cancellation");
+    } else {
+      alert(result.message);
+    }
+  };
 
   return (
     <>
@@ -60,9 +75,24 @@ export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () =>
             </div>
           </div>
         </div>
-        <Button className={styles.buttonsecond} color="violet" radius="xl" onClick={props.clickHandler}>
-          申請領養
-        </Button>
+        {!props.status && (
+          <Button className={styles.buttonsecond} color="violet" radius="xl" onClick={props.clickHandler}>
+            申請領養
+          </Button>
+        )}
+        {props.status === AdoptionResultStatus.pending && (
+          <Button className={styles.buttonsecond} color="violet" radius="xl" onClick={() => setOpened(true)}>
+            取消申請
+          </Button>
+        )}
+        <Modal radius="lg" size="80%" centered overlayOpacity={0.55} overlayBlur={3} opened={opened} onClose={() => setOpened(false)} className={styles.modalConfirmCancelModal}>
+          <div className={styles.modalConfirmCancelContainer}>
+            <h2 className={styles.modalConfirmCancelTitle}>確定取消申請？</h2>
+            <Button color="pink" className={styles.joinButton} onClick={cancelAdoptionApplication}>
+              <div>確定</div>
+            </Button>
+          </div>
+        </Modal>
       </MantineProvider>
     </>
   );

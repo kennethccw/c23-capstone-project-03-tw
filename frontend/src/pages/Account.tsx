@@ -23,7 +23,7 @@ export default function Account() {
       </div>
       <hr className={styles.headerHr90vw} />
       <div className={styles.forFlexColumn}>
-        <Button variant="subtle" color="dark" className={styles.titleContainer} onClick={() => navigate("/profile")}>
+        <Button variant="subtle" color="dark" className={styles.titleContainer} onClick={() => navigate("/schedule")}>
           <div>報名紀錄</div>
           <RiArrowRightSLine size={24} />
         </Button>

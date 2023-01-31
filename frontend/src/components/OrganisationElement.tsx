@@ -10,7 +10,10 @@ export function OrganisationContainer(props: { organisation: OrganisationList; p
 
   return (
     <>
-      <div className={styles.organisationContainer} onClick={props.page === "organisationList" ? () => navigate(`/organisation/detail?id=${props.organisation.id}`) : () => navigate(-1)}>
+      <div
+        className={styles.organisationContainer}
+        onClick={props.page === "organisationList" ? () => navigate(`/organisation/detail?id=${props.organisation.id}`) : () => navigate(`/help/chatroom?id=${props.organisation.id}`)}
+      >
         <div className={styles.square}>
           <img src={imgPath + "/" + props.organisation.logo} className={styles.organisationLogo}></img>
         </div>
