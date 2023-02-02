@@ -13,13 +13,14 @@ interface OrganisationFilterProps{
   onCheckHKI?: ()=>void,
   onCheckKowloon?:()=>void,
   onCheckNT?:()=>void,
-  onCheckWeekDay?:()=>void,
-  onCheckWeekend?:()=>void,
-  onConfirm?:()=> void
-  numberOfAvailableActivities?: number;
+  // onCheckWeekDay?:()=>void,
+  // onCheckWeekend?:()=>void,
+  onConfirm?:()=> void,
+  numberOfAvailableActivities?: number,
   onClearAll?:()=> void,
-  colorOfWeekday?:boolean,
-  colorOfWeekend?: boolean
+//   colorOfWeekday?:boolean,
+//   colorOfWeekend?: boolean
+// }
 }
 
 
@@ -51,12 +52,12 @@ export function OrganisationFilter(props:OrganisationFilterProps) {
             <Checkbox className={styles.addressList} label="新界" color="ocean" checked={props.isNTChecked} onClick={props.onCheckNT}/>
           </div>
 
-          <div className={styles.timeslotTab}>出席日子</div>
+          {/* <div className={styles.timeslotTab}>出席日子</div> */}
 
-          <div className={styles.timeslotContainer}>
+          {/* <div className={styles.timeslotContainer}>
             <label className={`${styles.weekDay}`} style={{background:props.colorOfWeekday===true?"#d0d1ff":"none"}} onClick={props.onCheckWeekDay}  >平日 （週一至週五） </label>
             <label className={`${styles.weekend}`} style={{background:props.colorOfWeekend===true?"#d0d1ff":"none"}} onClick={props.onCheckWeekend} >週末 （週六至週日）</label>
-          </div>
+          </div> */}
 
 
           <div className={styles.countAndConfirmContainer}>

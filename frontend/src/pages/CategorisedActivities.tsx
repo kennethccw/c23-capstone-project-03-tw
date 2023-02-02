@@ -24,8 +24,7 @@ export default function CategorisedActivities() {
   const [isHKIslandChecked, setIsHKIslandChecked] = useState<boolean>(false)
   const [isKowloonChecked, setIsKowloonChecked] = useState<boolean>(false)
   const [isNTChecked, setIsNTChecked] = useState<boolean>(false)
-  const [isWeekDayChecked, setIsWeekDayChecked] = useState<boolean>(false)
-  const [isWeekendChecked, setIsWeekend] = useState<boolean>(false)
+
   const [numberOfAvailableActivities, setNumberOfAvailableActivities] = useState<number>(0)
 
   const [clearAll, setClearAll] = useState<boolean>(false)
@@ -38,8 +37,8 @@ export default function CategorisedActivities() {
   console.log(isHKIslandChecked, 'HK Island')
   console.log(isKowloonChecked, 'kowloon')
   console.log(isNTChecked, '新界')
-  console.log(isWeekDayChecked, 'week day')
-  console.log(isWeekendChecked, 'weekend')
+
+
   console.log(numberOfAvailableActivities, 'numberOfAvailableActivitie')
   console.log('searching?', isSearching)
   console.log('what are you searching for?', search)
@@ -63,6 +62,8 @@ export default function CategorisedActivities() {
     setIsFilterTriggered(true);
     setSearch("");
     setIsSearching(false)
+    setNumberOfAvailableActivities(0)
+    setActivityDataForSearch([])
     // setCheckedWeekdayState(false);
     // setCheckedWeekendState(false);
   }
@@ -73,36 +74,110 @@ export default function CategorisedActivities() {
     setIsHKIslandChecked(false)
     setIsKowloonChecked(false)
     setIsNTChecked(false)
-    setIsWeekDayChecked(false)
-    setIsWeekend(false)
+    setNumberOfAvailableActivities(0)
+    setSearch("");
+    setIsSearching(false)
+  }
+
+  const goBackButtonOnTop = () => {
+    setIsFilterTriggered(false)
+    setIsHKIslandChecked(false)
+    setIsKowloonChecked(false)
+    setIsNTChecked(false)
+    setSearch("")
+    navigate(-1)
+    setIsSearching(false)
+    setNumberOfAvailableActivities(0)
   }
 
   const handleClickHKIslandChecked = () => {
     setIsHKIslandChecked(!isHKIslandChecked)
+    setIsSearching(!isSearching)
   }
 
   const handleClickKowloonChecked = () => {
     setIsKowloonChecked(!isKowloonChecked)
+    setIsSearching(!isSearching)
   }
 
   const handleClickNTChecked = () => {
     setIsNTChecked(!isNTChecked)
+    setIsSearching(!isSearching)
   }
 
-  const handleClickWeekDayChecked = () => {
-    setIsWeekDayChecked(!isWeekDayChecked);
-
-  }
-
-  const handleClickWeekend = () => {
-    setIsWeekend(!isWeekendChecked)
 
 
-
-  }
 
   const handleClickConfirmButton = () => {
-    console.log('confirm')
+    let currentStoredActivity = [...ActivityData];
+    if (isHKIslandChecked) {
+      setActivityDataForSearch(currentStoredActivity.filter((eachActivity) => eachActivity.district === "hong_kong_island"))
+      setIsFilterTriggered(false);
+      setIsHKIslandChecked(false)
+      setIsKowloonChecked(false)
+      setIsNTChecked(false)
+      setIsSearching(false)
+      setNumberOfAvailableActivities(0)
+    }
+    else if(isKowloonChecked){
+      setActivityDataForSearch(currentStoredActivity.filter((eachActivity) => eachActivity.district === "kowloon"))
+      setIsFilterTriggered(false);
+      setIsHKIslandChecked(false)
+      setIsKowloonChecked(false)
+      setIsNTChecked(false)
+      setIsSearching(false)
+      setNumberOfAvailableActivities(0)
+    }
+    else if(isNTChecked){
+      setActivityDataForSearch(currentStoredActivity.filter((eachActivity) => eachActivity.district === "new_territories"))
+      setIsFilterTriggered(false);
+      setIsHKIslandChecked(false)
+      setIsKowloonChecked(false)
+      setIsNTChecked(false)
+      setIsSearching(false)
+      setNumberOfAvailableActivities(0)
+    }
+   else if(isHKIslandChecked && isKowloonChecked ){
+    setActivityDataForSearch(currentStoredActivity.filter((eachActivity) => eachActivity.district === "hong_kong_island" || "kowloon"))
+    setIsFilterTriggered(false);
+    setIsHKIslandChecked(false)
+    setIsKowloonChecked(false)
+    setIsNTChecked(false)
+    setIsSearching(false)
+    setNumberOfAvailableActivities(0)
+
+   }
+   else if(isHKIslandChecked &&isNTChecked){
+    setActivityDataForSearch(currentStoredActivity.filter((eachActivity) => eachActivity.district === "hong_kong_island" || "new_territories"))
+    setIsFilterTriggered(false);
+    setIsHKIslandChecked(false)
+    setIsKowloonChecked(false)
+    setIsNTChecked(false)
+    setIsSearching(false)
+    setNumberOfAvailableActivities(0)
+   }
+   else{
+    setActivityDataForSearch(currentStoredActivity.filter((eachActivity) => eachActivity.district === "kowloon" || "new_territories"))
+    setIsFilterTriggered(false);
+    setIsHKIslandChecked(false)
+    setIsKowloonChecked(false)
+    setIsNTChecked(false)
+    setIsSearching(false)
+    setNumberOfAvailableActivities(0)
+
+   }
+
+
+
+
+
+
+
+
+
+
+
+
   }
 
   const handleClickClearAll = () => {
@@ -110,8 +185,7 @@ export default function CategorisedActivities() {
     setIsHKIslandChecked(false)
     setIsKowloonChecked(false)
     setIsNTChecked(false)
-    setIsWeekDayChecked(false);
-    setIsWeekend(false)
+
   }
 
 
@@ -149,17 +223,22 @@ export default function CategorisedActivities() {
   ////////////篩選功能部分//////////
   useEffect(() => {
     let numberOfActivityToBeChosen = numberOfAvailableActivities;
-    let HKIslandActivity = ActivityData.filter((eachActivity) =>  eachActivity.district === "hong_kong_island" ).length;
-    if (isHKIslandChecked === true && isWeekDayChecked ===false && isWeekendChecked===false) {let updateActivityNum=numberOfActivityToBeChosen+HKIslandActivity
-      setNumberOfAvailableActivities(updateActivityNum)
-    }
-    
-    if(isHKIslandChecked === false && isWeekDayChecked ===false && numberOfAvailableActivities===0 && isWeekendChecked===false){setNumberOfAvailableActivities(0)}
-    if(isHKIslandChecked === false && isWeekDayChecked ===false && isWeekendChecked===false){
-      let updateActivityNum=numberOfActivityToBeChosen-HKIslandActivity
+    let HKIslandActivity = ActivityData.filter((eachActivity) => eachActivity.district === "hong_kong_island").length;
+    if (isHKIslandChecked === true) {
+      let updateActivityNum = numberOfActivityToBeChosen + HKIslandActivity
       setNumberOfAvailableActivities(updateActivityNum)
     }
 
+    if (isHKIslandChecked === false && numberOfAvailableActivities === 0) { setNumberOfAvailableActivities(0) }
+    if (isHKIslandChecked === false) {
+      let updateActivityNum = numberOfActivityToBeChosen - HKIslandActivity
+      setNumberOfAvailableActivities(updateActivityNum)
+    }
+
+    if (clearAll) {
+      setNumberOfAvailableActivities(0)
+      setClearAll(false)
+    }
 
 
 
@@ -168,33 +247,50 @@ export default function CategorisedActivities() {
 
   useEffect(() => {
     let numberOfActivityToBeChosen = numberOfAvailableActivities;
-    let KowloonActivity = ActivityData.filter((eachActivity) =>  eachActivity.district === "kowloon" ).length;
-    if (isKowloonChecked === true && isWeekDayChecked ===false && isWeekendChecked===false) {let updateActivityNum=numberOfActivityToBeChosen+KowloonActivity
+    let KowloonActivity = ActivityData.filter((eachActivity) => eachActivity.district === "kowloon").length;
+    if (isKowloonChecked === true) {
+      let updateActivityNum = numberOfActivityToBeChosen + KowloonActivity
       setNumberOfAvailableActivities(updateActivityNum)
     }
-    if(isHKIslandChecked === false && numberOfAvailableActivities===0 && isWeekDayChecked ===false && isWeekendChecked===false){setNumberOfAvailableActivities(0)} 
-    if(isKowloonChecked === false && isWeekDayChecked ===false && isWeekendChecked===false){
-      let updateActivityNum=numberOfActivityToBeChosen-KowloonActivity
+    if (isKowloonChecked === false && numberOfAvailableActivities === 0) { setNumberOfAvailableActivities(0) }
+    if (isKowloonChecked === false) {
+      let updateActivityNum = numberOfActivityToBeChosen - KowloonActivity
       setNumberOfAvailableActivities(updateActivityNum)
     }
 
-
+    if (clearAll) {
+      setNumberOfAvailableActivities(0)
+      setClearAll(false)
+    }
 
   }, [isKowloonChecked])
 
 
   useEffect(() => {
     let numberOfActivityToBeChosen = numberOfAvailableActivities;
-    let NTActivity = ActivityData.filter((eachActivity) =>  eachActivity.district === "new_territories" ).length;
-    if (isNTChecked === true && isWeekDayChecked ===false && isWeekendChecked===false) {let updateActivityNum=numberOfActivityToBeChosen+NTActivity
+    let NTActivity = ActivityData.filter((eachActivity) => eachActivity.district === "new_territories").length;
+    if (isNTChecked === true) {
+      let updateActivityNum = numberOfActivityToBeChosen + NTActivity
       setNumberOfAvailableActivities(updateActivityNum)
     }
-    if(isHKIslandChecked === false && numberOfAvailableActivities===0 && isWeekDayChecked ===false && isWeekendChecked===false){setNumberOfAvailableActivities(0)} 
-    if(isNTChecked === false && isWeekDayChecked ===false && isWeekendChecked===false){
-      let updateActivityNum=numberOfActivityToBeChosen-NTActivity
+    if (isNTChecked === false && numberOfAvailableActivities === 0) { setNumberOfAvailableActivities(0) }
+    if (isNTChecked === false) {
+      let updateActivityNum = numberOfActivityToBeChosen - NTActivity
       setNumberOfAvailableActivities(updateActivityNum)
+    }
+
+    if (clearAll) {
+      setNumberOfAvailableActivities(0)
+      setClearAll(false)
     }
   }, [isNTChecked])
+
+
+
+
+
+
+
 
   ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -242,7 +338,7 @@ export default function CategorisedActivities() {
 
       <div className={styles.upperPart}>
         <div className={styles.chevronAndAdjustmntIcon}>
-          <HiChevronLeft className={styles.backIcon} onClick={() => navigate(-1)} />
+          <HiChevronLeft className={styles.backIcon} onClick={() => goBackButtonOnTop()} />
 
           {!isFilterTriggered && <Input.Wrapper>
             <Input type="search" onChange={(e) => { searching(e.target.value) }} className={styles.searchContainer} icon={<HiSearch className={styles.searchIcon} />} placeholder="搜尋關鍵字" />
@@ -267,7 +363,7 @@ export default function CategorisedActivities() {
       <div className={styles.bottomPart}>
 
         {isFilterTriggered ?
-          <OrganisationFilter onBack={() => { handleGoback() }} isHKIslandChecked={isHKIslandChecked} onCheckHKI={() => handleClickHKIslandChecked()} isKowloonChecked={isKowloonChecked} onCheckKowloon={() => handleClickKowloonChecked()} isNTChecked={isNTChecked} onCheckNT={() => handleClickNTChecked()} onCheckWeekDay={() => handleClickWeekDayChecked()} onCheckWeekend={() => handleClickWeekend()} onConfirm={() => { handleClickConfirmButton() }} numberOfAvailableActivities={numberOfAvailableActivities} onClearAll={() => handleClickClearAll()} colorOfWeekday={isWeekDayChecked} colorOfWeekend={isWeekendChecked} /> :
+          <OrganisationFilter onBack={() => { handleGoback() }} isHKIslandChecked={isHKIslandChecked} onCheckHKI={() => handleClickHKIslandChecked()} isKowloonChecked={isKowloonChecked} onCheckKowloon={() => handleClickKowloonChecked()} isNTChecked={isNTChecked} onCheckNT={() => handleClickNTChecked()} onConfirm={() => { handleClickConfirmButton() }} numberOfAvailableActivities={numberOfAvailableActivities} onClearAll={() => handleClickClearAll()} /> :
 
           <div>
             {pageCategory.current === PageCategory.all && <div className={styles.searchChance}>探索義工機會</div>}
