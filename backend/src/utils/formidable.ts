@@ -5,7 +5,7 @@ import type { Request, Response, NextFunction } from "express";
 
 declare global {
   namespace Express {
-     interface Request {
+    interface Request {
       form: {
         fields: formidable.Fields;
         files: formidable.Files;
@@ -14,10 +14,17 @@ declare global {
   }
 }
 
-
-
 // create folder if does not exists
-const uploadDir = path.join(__dirname, "..", "..", '..','frontend','public','photos', "activities");
+const uploadDir = path.join(
+  __dirname,
+  "..",
+  "..",
+  "..",
+  "frontend",
+  "public",
+  "photos",
+  "activities"
+);
 // const uploadDir = path.join(__dirname);
 fs.mkdirSync(uploadDir, { recursive: true });
 
@@ -37,21 +44,20 @@ const form = formidable({
 });
 
 export const uploadMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  console.log("uploadDir", uploadDir , 'formaidable.ts L38');
+  // console.log("uploadDir", uploadDir , 'formaidable.ts L38');
   form.parse(req, async (err, fields, files) => {
     if (err) {
-      console.log(err, 'formidable.ts L41');
+      console.log(err, "formidable.ts L41");
       res.status(400).json({ message: "cannot upload file" });
       return;
     }
-    console.log(req, 'formidable.ts L44')
-  
+    // console.log(req, 'formidable.ts L44')
 
     req.form = { fields, files };
     // console.log(req.form.fields, 'succeed in formidable.ts L45')
     // console.log(req.form, ", req form", 'succeed in formidable.ts L46');
     // console.log(req.form.fields.audio[0], ', req form fields')
-    console.log(req.form.files, ", req form files", 'succeed in formidable.ts L48');
+    console.log(req.form.files, ", req form files", "succeed in formidable.ts L48");
     next();
   });
 };

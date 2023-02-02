@@ -22,11 +22,17 @@ export interface Auth {
   username: string;
   password: string;
 }
+export interface UserInfo {
+  id: number;
+  username: string;
+  email: string;
+  role: string;
+}
 
 declare global {
   namespace Express {
     interface Request {
-      user?: Auth;
+      user?: UserInfo;
     }
   }
 }
@@ -222,7 +228,19 @@ export enum AdoptionResultFailReason {
   other = "other",
 }
 
+export interface Chatroom {
+  organisation: OrganisationChatroom;
+  message: ChatroomMessage[];
+}
 export interface OrganisationChatroom {
   name: string;
   logo: string;
+}
+
+export interface ChatroomMessage {
+  id: number;
+  conversation?: string;
+  image?: string;
+  role: string;
+  created_at?: Date;
 }

@@ -1,24 +1,27 @@
 .chevronAndAdjustmntIcon {
   color: #b0b2c3;
   justify-content: start;
-  align-items: center;
   display: flex;
-  width: 430px;
+  width: 100vw;
   height: 105px;
   top: 0;
   // margin-top: 20px;
   background-color: #ffffff;
   position: fixed;
+  align-items: flex-end;
+  z-index: 99;
+  border-bottom: 1px solid rgba(237, 238, 251, 0.8);
 }
 
 .conversationContainer {
-  margin-top: 105px;
-  margin-bottom: 112px;
+  margin-top: 120px;
+  margin-bottom: 124px;
 }
 
 .chevronIcon {
   margin-left: 30px;
   font-size: 38px;
+  margin-bottom: 16px;
 }
 .chevronIconTab {
   // margin-right: -130px;
@@ -26,19 +29,20 @@
   font-size: 38px;
 }
 
-.chevronIconContainer {
-  color: #b0b2c3;
-  justify-content: start;
-  align-items: center;
-  display: flex;
-  width: 100vw;
-  height: 105px;
-  top: 0;
-  left: 0;
-  // margin-top: 20px;
-  background-color: #ffffff;
-  position: fixed;
-}
+// .chevronIconContainer {
+//   color: #b0b2c3;
+//   justify-content: start;
+//   display: flex;
+//   width: 100vw;
+//   height: 105px;
+//   top: 0;
+//   left: 0;
+//   // margin-top: 20px;
+//   background-color: #ffffff;
+//   position: fixed;
+//   border: 1px solid black;
+//   // z-index: 99;
+// }
 
 .dateTab {
   background: #f5f5f6;
@@ -58,6 +62,8 @@
 }
 
 .supportSideContainer {
+  position: relative;
+  // z-index: -1;
   width: fit-content;
   margin-top: 20px;
   background: #f6f6f6;
@@ -69,18 +75,25 @@
   // align-items: center;
   // justify-content: center;
   margin-left: 35px;
-  padding: 12px 20px;
-  max-width: 240px;
+  padding: 10px 20px 20px 20px;
+  max-width: 60vw;
+  min-width: 12vw;
+  word-wrap: break-word;
 }
 
 .clientSideContainer {
+  max-width: 60vw;
+  min-width: 12vw;
+  position: relative;
+  // z-index: -1;
   width: fit-content;
-  max-width: 240px;
+  // max-width: 240px;
   margin-top: 20px;
+  word-wrap: break-word;
   background: #a7a0ed;
   border-radius: 10px;
   margin-right: 20px;
-  padding: 12px 20px;
+  padding: 10px 20px 20px 20px;
 }
 
 .clientSideBigContainer {
@@ -91,7 +104,7 @@
 //// chat ////
 
 .imgContainer {
-  margin-top: 10px;
+  // margin-top: 10px;
   border-radius: 10px;
   width: 218px;
   height: 133px;
@@ -131,13 +144,6 @@
   height: 50px;
 }
 
-.textInputIconLeft {
-  margin-right: 10px;
-}
-.textInputIconRight {
-  margin-left: 10px;
-}
-
 .taskContanier {
   margin-top: 130px;
   display: flex;
@@ -171,6 +177,7 @@
 
 .organisationContainer {
   width: 100%;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -178,10 +185,37 @@
 
 .organisationName {
   font-size: 24px;
+  color: #0f2851;
 }
 
 .organisationLogo {
   width: 60px;
   margin-left: 24px;
   margin-right: 24px;
+}
+
+.time {
+  position: absolute;
+  right: 12px;
+  bottom: 4px;
+  font-size: 12px;
+}
+.textInputIconRightBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+  margin-left: 10px;
+  border: 0;
+}
+.textInputIconLeftBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+  margin-right: 10px;
 }

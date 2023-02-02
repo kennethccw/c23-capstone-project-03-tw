@@ -10,7 +10,14 @@ import { Server as SocketIO } from "socket.io";
 const app = express();
 
 const server = new http.Server(app);
-export const io = new SocketIO(server);
+export const io = new SocketIO(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true,
+  },
+});
 
 dotenv.config();
 import knexConfigs from "../knexfile";
@@ -23,6 +30,10 @@ app.use(
     origin: [process.env.FRONTEND_URL ?? ""],
   })
 );
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 import bodyParser from "body-parser";
 app.use(bodyParser.json({ limit: "50mb" }));
@@ -52,6 +63,14 @@ const grantExpress = grant.express({
     scope: ["profile", "email"],
     callback: "/user/login/google",
   },
+});
+
+io.on("connection", function (socket) {
+  // console.log(socket.id);
+  socket.on("send-message", (data) => {
+    // console.log(data);
+    socket.emit("new-message", `received your msg: ${data}`);
+  });
 });
 
 app.use(grantExpress as express.RequestHandler);
