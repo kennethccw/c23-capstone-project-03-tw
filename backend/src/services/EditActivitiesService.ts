@@ -48,7 +48,7 @@ export class EditActivitiesService {
   }
 
   async getActivities(organisationId: number) {
-
+    
     try {
       let getActivitiesResult = await this.knex.select<getActivitiesResult[]>('*',
         "organisations.name as organisation",
@@ -63,6 +63,12 @@ export class EditActivitiesService {
 
   }
 
+  async deleteActivities(activityID: string, organisationID: number) {
+    let deleteActivitiesResult = await this.knex.update('is_deleted', true).from('activities').where('organisation_id', organisationID).where('id', activityID).returning('is_deleted')
+
+    // console.log(deleteActivitiesResult, 'EditAcitivitiesService.ts L69')
+    return deleteActivitiesResult
+  }
 
 
 
