@@ -15,7 +15,8 @@ export default function DeleteActivityModal(
 ) {
 
     return (<>
-        <Modal show={props.isShow} onHide={props.onHide} className={styles.deleteModalContainer} >
+        <Modal show={props.isShow} onHide={props.onHide}  backdrop="static"
+        keyboard={false} className={styles.deleteModalContainer} >
 
             <div className={styles.details}>
                 <div className={styles.bodyPart}>

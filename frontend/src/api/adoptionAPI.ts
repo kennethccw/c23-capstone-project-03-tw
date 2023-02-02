@@ -25,6 +25,12 @@ export interface PetPreview {
   name: string;
   age: number;
 }
+
+
+
+
+
+
 export const getAllPetAdoption = async () => {
   const data = await fetchJson<PetPreview[]>(`${ADOPTION_API_PATH}`, {
     method: "GET",

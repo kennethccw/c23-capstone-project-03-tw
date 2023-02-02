@@ -35,6 +35,7 @@ export interface ActivityPreview {
   start_time: Date;
   end_time: Date;
   date: Date;
+  district: string;
 }
 
 // const activityCategoryArr = ["editors_choice", "urgent", "popular"];

@@ -18,9 +18,9 @@ export default function PetDetails() {
     // react query - customised hook
     queryKey: ["adoption/detail"],
     queryFn: getPetAdoptionByIdNoParam, // API
-    refetchInterval: 5_000,
-    staleTime: 10_000,
-    retry: 1,
+    // refetchInterval: 5_000,
+    // staleTime: 10_000,
+    // retry: 1,
   });
 
   return (
@@ -47,16 +47,18 @@ export default function PetDetails() {
 
         <div className={styles.headNavBar}>
           <div className={styles.chevronAndAdjustmntIcon}>
-            <HiChevronLeft className={styles.chevronIcon} />
+            <HiChevronLeft className={styles.chevronIcon} onClick={() => {
+              navigate(-1);
+            }}/>
 
-            <Input.Wrapper>
+            {/* <Input.Wrapper>
               <Input
                 type="search"
                 className={styles.searchContainer}
                 icon={<HiSearch className={styles.searchIcon} />}
                 placeholder="搜尋關鍵字"
               />
-            </Input.Wrapper>
+            </Input.Wrapper> */}
           </div>
         </div>
         <div className={styles.headerContainer}>

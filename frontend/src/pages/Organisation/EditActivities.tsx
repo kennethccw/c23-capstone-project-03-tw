@@ -164,7 +164,7 @@ export default function EditActivities() {
         let formBody = {
             activityID: activityID, organisationID: organisationID
         }
-        setActivity(activity!.filter(singleActivity =>  singleActivity.activity_id !== activityID ))
+        
 
         // console.log(formBody)
         const resp = await fetch(
@@ -181,6 +181,13 @@ export default function EditActivities() {
 
         const data = await resp.json();
         console.log(data.result)
+        if (resp.status===200){
+         setActivity(activity!.filter(singleActivity =>  singleActivity.activity_id !== activityID )); //this is to ensure the data to be deleted is successfully to be "deleted" in the database before it "disappears" in the UI view         
+         alert(data.result)   
+        }
+        else{
+            alert(data.message)
+        }
 
 
     }
@@ -264,15 +271,15 @@ export default function EditActivities() {
             <div className={styles.upperPart}>
                 <div className={styles.leftArrow}><ChevronLeft className={styles.leftArrowIcon} onClick={() => { navigate("/organisationHomePage") }} /></div>
                 <div className={styles.searchBarPart}>
-                    <TextInput className={styles.searchBar}
+                    {/* <TextInput className={styles.searchBar}
                         icon={<IconSearch size={30} stroke={1.5} className={styles.iconSearch} />}
                         radius="xl"
                         size="xl"
                         placeholder="尋找關鍵字"
                         rightSectionWidth={42}
-                    />
+                    /> */}
                 </div>
-                <div className={styles.filter}><Filter className={styles.filterIcon} /></div>
+                {/* <div className={styles.filter}><Filter className={styles.filterIcon} /></div> */}
             </div>
 
             <div className={styles.searchChance}>
@@ -281,8 +288,8 @@ export default function EditActivities() {
             <div className={styles.tabList}>
                 <Tabs defaultValue="基本資料" color="ocean" >
                     <Tabs.List className={styles.choices}>
-                        <Tabs.Tab value="新增活動" onClick={() => click('addActivities')}>新增活動</Tabs.Tab>
-                        <Tabs.Tab value="刪除活動" onClick={() => click('deleteActivities')}>刪除活動</Tabs.Tab>
+                        <Tabs.Tab className={styles.choiceFontSize}value="新增活動" onClick={() => click('addActivities')}>新增活動</Tabs.Tab>
+                        <Tabs.Tab className={styles.choiceFontSize} value="刪除活動" onClick={() => click('deleteActivities')}>刪除活動</Tabs.Tab>
                     </Tabs.List>
                 </Tabs>
             </div>

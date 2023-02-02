@@ -93,9 +93,9 @@ export default function MyRoutes() {
       <Route path="activity/detail" element={<ActivitiesDetailPage />}></Route>
       <Route path="activity/application" element={<ActivityApplication />}></Route>
       <Route path="allActivitiesFilter" element={<AllActivitiesFilter />}></Route>
-      <Route path="editorsChoice" element={<EditorsChoice />}></Route>
-      <Route path="urgent" element={<Urgent />}></Route>
-      <Route path="popular" element={<Popular />}></Route>
+      {/* <Route path="editorsChoice" element={<EditorsChoice />}></Route> */}
+      {/* <Route path="urgent" element={<Urgent />}></Route> */}
+      {/* <Route path="popular" element={<Popular />}></Route> */}
       <Route path="activity" element={<CategorisedActivities />}></Route>
       <Route path="search" element={<CategorisedActivities />}></Route>
 
@@ -125,7 +125,7 @@ export default function MyRoutes() {
         <Route path="detail" element={<OrganisationMoreDetails />}></Route>
       </Route>
       {/* <Route path="organisation" element={<Organisation />}></Route> */}
-      <Route path="/" element={<OrganisationFilterContainer />}></Route>
+      <Route path="/organfilter" element={<OrganisationFilterContainer />}></Route>
       <Route path="record" element={<VolunteerRecord />}></Route>
       {/* User */}
 
