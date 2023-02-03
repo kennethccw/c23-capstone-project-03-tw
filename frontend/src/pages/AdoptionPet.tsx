@@ -22,9 +22,9 @@ export default function PetDetails() {
     // react query - customised hook
     queryKey: ["adoption/detail"],
     queryFn: getPetAdoptionByIdNoParam, // API
-    refetchInterval: 5_000,
+    // refetchInterval: 5_000,
     // staleTime: 10_000,
-    retry: 1,
+    // retry: 1,
   });
 
   useEffect(() => {

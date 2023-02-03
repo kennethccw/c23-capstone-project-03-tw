@@ -4,7 +4,7 @@ import { HiCalendar, HiOutlineLocationMarker } from "react-icons/hi";
 import DeleteActivityModal from "./DeleteActivityModal";
 import React, { useState } from 'react';
 
-export function Activity(props: { activity: ActivityPreview; clickHandler: () => void; displayDeleteButton?: boolean; onRemove?: () => void }) {
+export function Activity(props: { activity: ActivityPreview; clickHandler: () => void; displayDeleteButton?: boolean; onRemove?: () => void; activityToBeDeleted?: string }) {
     const startTime = new Date(props.activity.start_time);
     const startMonth = startTime.getMonth() + 1;
     const startDate = startTime.getDate();
@@ -48,16 +48,19 @@ export function Activity(props: { activity: ActivityPreview; clickHandler: () =>
 
 
                 {props.displayDeleteButton && <div className={styles.deleteButton} onClick={(e) => { showModal(); e.stopPropagation() }}>刪除活動</div>}
-                <DeleteActivityModal
-                isShow={shouldShowModal}
-                onDelete={() => props.onRemove!()}
-                onHide={() => hideModal()}
-                 />
+
             </div>
 
 
 
         </div>
+
+        <DeleteActivityModal
+            isShow={shouldShowModal}
+            onDelete={() => { props.onRemove!(); hideModal() }}
+            onHide={() => hideModal()}
+            activityNameToBeDeleted={props.activityToBeDeleted}
+        />
 
     </>
     );

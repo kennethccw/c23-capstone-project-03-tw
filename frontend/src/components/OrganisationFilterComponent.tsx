@@ -5,7 +5,27 @@ import { HiOutlineX } from "react-icons/hi";
 import { UnstyledButton, Checkbox, Text, createStyles, MantineProvider } from "@mantine/core";
 import { useUncontrolled } from "@mantine/hooks";
 
-export function OrganisationFilter() {
+interface OrganisationFilterProps{
+  onBack?:()=>void,
+  isHKIslandChecked?:boolean,
+  isKowloonChecked?:boolean,
+  isNTChecked?:boolean,
+  onCheckHKI?: ()=>void,
+  onCheckKowloon?:()=>void,
+  onCheckNT?:()=>void,
+  // onCheckWeekDay?:()=>void,
+  // onCheckWeekend?:()=>void,
+  onConfirm?:()=> void
+  numberOfAvailableActivities?: number;
+  onClearAll?:()=> void,
+  // colorOfWeekday?:boolean,
+  // colorOfWeekend?: boolean
+}
+
+
+
+
+export function OrganisationFilter(props:OrganisationFilterProps) {
   return (
     <>
       <MantineProvider
@@ -17,19 +37,38 @@ export function OrganisationFilter() {
         }}
       >
         <div className={styles.filterHeader}>
-          <HiOutlineX className={styles.closeTab} />
+          <HiOutlineX className={styles.closeTab} onClick={props.onBack}/>
           <span className={styles.filterTab}>篩選</span>
-          <span className={styles.deleteAllTab}>全部清除</span>
+          <span className={styles.deleteAllTab} onClick={props.onClearAll}>全部清除</span>
         </div>
 
         <div className={styles.filterContentContainer}>
           <div className={styles.addressTab}>地點</div>
-          <div>
-            <Checkbox className={styles.addressList} label="香港島" color="ocean" />
-            <Checkbox className={styles.addressList} label="九龍" color="ocean" />
-            <Checkbox className={styles.addressList} label="新界" color="ocean" />
+
+          <div className={styles.addressContainer}>
+            <Checkbox className={styles.addressList} label="香港島" color="ocean" checked={props.isHKIslandChecked} onClick={props.onCheckHKI} />
+            <Checkbox className={styles.addressList} label="九龍" color="ocean" checked={props.isKowloonChecked} onClick={props.onCheckKowloon}/>
+            <Checkbox className={styles.addressList} label="新界" color="ocean" checked={props.isNTChecked} onClick={props.onCheckNT}/>
+          </div>
+
+          {/* <div className={styles.timeslotTab}>出席日子</div>
+
+          <div className={styles.timeslotContainer}>
+            <label className={`${styles.weekDay}`} style={{background:props.colorOfWeekday===true?"#d0d1ff":"none"}} onClick={props.onCheckWeekDay}  >平日 （週一至週五） </label>
+            <label className={`${styles.weekend}`} style={{background:props.colorOfWeekend===true?"#d0d1ff":"none"}} onClick={props.onCheckWeekend} >週末 （週六至週日）</label>
+          </div> */}
+
+
+          <div className={styles.countAndConfirmContainer}>
+            <div className={styles.available} > 可選擇義工數目： {props.numberOfAvailableActivities}</div>
+            <div className={styles.confirmButton} onClick={props.onConfirm}>確定</div>
           </div>
         </div>
+
+
+
+
+
       </MantineProvider>
     </>
   );

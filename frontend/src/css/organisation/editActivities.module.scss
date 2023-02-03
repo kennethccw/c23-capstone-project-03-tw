@@ -64,7 +64,7 @@
 .searchChance {
     color: #0f2851;
     font-weight: bold;
-    font-size: xx-large;
+    font-size: 40px;
     position: fixed;
     left: 0;
     top:10vh;
@@ -84,11 +84,21 @@
     // background-color: yellow;
     margin-top: 0px;
    
+   
+
+}
+
+
+// .formPart{
+//     font-size: 30px;
+// }
+.choiceFontSize label{
+    font-size: 30px !important ;
 }
 
 .tabList {
     width: 100vw;
-    font-size: 18px;
+    font-size: 30px;
     margin-bottom: 100px;
     position: fixed;
     top:15vh;

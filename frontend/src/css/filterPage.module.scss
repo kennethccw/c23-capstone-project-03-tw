@@ -10,46 +10,136 @@
   height: 85px;
   margin-top: 50px;
 }
+
 .closeTab {
   margin-left: 40px;
-  font-size: 25px;
+  font-size: 40px;
   color: #b0b2c3;
 }
+
 .filterTab {
-  font-size: 28px;
+  font-size: 40px;
   font-weight: 700;
 }
+
 .deleteAllTab {
   margin-right: 40px;
   color: #b0b2c3;
   font-style: normal;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 25px;
   text-decoration-line: underline;
 }
 
 .filterContentContainer {
-  margin-left: 60px;
-  height: 70vh;
+  // margin-left: 60px;
+  // height: 70vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  // justify-content: space-between;
+  // background-color: palegoldenrod
 }
 
-.addressTab {
+.addressTab,
+.timeslotTab {
   font-weight: 700;
-  font-size: 28px;
+  font-size: 30px;
   margin-top: 40px;
+  // background-color: #585ce5;
+  padding-left: 50px;
+}
+
+.addressContainer {
+  // background-color: yellow;
+  padding-left: 50px;
+  margin-top: 0px;
 }
 
 .addressList label {
   font-weight: 400;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .addressList {
   margin-top: 35px;
 }
+
+
+.timeslotContainer {
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.weekDay,
+.weekend{
+  border: 1px solid black;
+  margin-top: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  width: 70%;
+  border-radius: 10px;
+}
+
+.active.weekDay:before,
+.active.weekend:before{
+  background-color: #7d7fe0 !important;
+}
+
+.weekDay:active,
+.weekend:active {
+  background-color: #a1a3f6;
+}
+
+
+.weekDay:checked,
+.weekend:checked {
+  background-color: #7d7fe0;
+}
+
+.countAndConfirmContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  // background-color: palegreen;
+}
+
+.available,
+.confirmButton {
+  margin-top: 40px;
+  // padding-left: 60px;
+  font-size: 25px;
+}
+
+.confirmButton {
+  // border: 1px solid black;
+  // flex:2;
+  // height: 40px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #585ce5;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.confirmButton:hover {
+  background-color: #d0d1ff;
+  color: #585ce5;
+}
+
+
 
 /////////////////////  allActivitiesFilter Page START  //////////////////////////////////////
 .dateContainer {
@@ -74,7 +164,7 @@
   width: 312px;
   margin-top: 12px;
   font-size: 20px;
-  background-color: #585ce5;
+  // background-color: #585ce5;
   box-shadow: 0 24px 16px -19px #a1a3f6;
   position: relative;
 }

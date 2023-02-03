@@ -66,6 +66,7 @@ import PaymentSuccess from "../pages/PaymentSuccess";
 import Dashboard from "../pages/Organisation/OrganisationDashboard";
 import AnimalSupportChat from "../pages/Organisation/AnimalSupportChat";
 import AnimalSupportPanel from "../pages/Organisation/AnimalSupportPanel";
+import EditAnimals from "../pages/Organisation/EditAnimals";
 
 export default function MyRoutes() {
   return (
@@ -97,9 +98,9 @@ export default function MyRoutes() {
       <Route path="activity/detail" element={<ActivitiesDetailPage />}></Route>
       <Route path="activity/application" element={<ActivityApplication />}></Route>
       <Route path="allActivitiesFilter" element={<AllActivitiesFilter />}></Route>
-      <Route path="editorsChoice" element={<EditorsChoice />}></Route>
-      <Route path="urgent" element={<Urgent />}></Route>
-      <Route path="popular" element={<Popular />}></Route>
+      {/* <Route path="editorsChoice" element={<EditorsChoice />}></Route> */}
+      {/* <Route path="urgent" element={<Urgent />}></Route> */}
+      {/* <Route path="popular" element={<Popular />}></Route> */}
       <Route path="activity" element={<CategorisedActivities />}></Route>
       <Route path="search" element={<CategorisedActivities />}></Route>
 
@@ -129,7 +130,7 @@ export default function MyRoutes() {
         <Route path="detail" element={<OrganisationMoreDetails />}></Route>
       </Route>
       {/* <Route path="organisation" element={<Organisation />}></Route> */}
-    
+      <Route path="/organfilter" element={<OrganisationFilterContainer />}></Route>
       <Route path="record" element={<VolunteerRecord />}></Route>
       {/* User */}
 
@@ -149,13 +150,14 @@ export default function MyRoutes() {
       <Route path="/" element={<AdoptionApplicationResult />}></Route>
       <Route path="/" element={<AnimalHelpToDoListfrom />}></Route>
       <Route path="/" element={<ApprovalFunction />}></Route>
-    
+
       <Route path="editActivities" element={<EditActivities />}></Route>
       <Route path="support/panel" element={<AnimalSupportPanel />}></Route>
       <Route path="support/chatroom" element={<AnimalSupportChat />}></Route>
+      <Route path="editAnimals" element={<EditAnimals />}></Route>
 
       {/* Organisation  */}
-      
+
       <Route path="/" element={<RequireAuth />}>
         <Route path="home1" element={<Home />}></Route>
       </Route>
