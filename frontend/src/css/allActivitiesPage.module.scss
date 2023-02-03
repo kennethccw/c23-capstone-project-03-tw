@@ -11,7 +11,7 @@
 }
 
 .leftArrow {
-  flex: 1;
+  // flex: 1;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -94,14 +94,12 @@
   align-items: center;
   width: 100vw;
   display: flex;
-  //   width: 430px;
   height: 85px;
-  //   margin-top: 30px;
+  font-size: 35px;
 }
 .backIcon {
   margin-left: 16px;
-  //   margin-left: 30px;
-  font-size: 44px;
+  font-size: 60px;
 }
 
 .adjustmentFilterIconContainer {
@@ -137,6 +135,12 @@
 .bottomPart {
   margin-top: 110px;
   margin-bottom: 120px;
+}
+
+.chevronIcon {
+  margin-left: 30px;
+  height: 40px;
+  width: 40px;
 }
 
 .searchChance {
@@ -215,4 +219,34 @@
 
 .controlPanelContainer {
   width: 100vw;
+}
+
+.navigateBackButton {
+  color: #cccccc;
+  margin-left: 36px;
+  font-size: 32px;
+  margin-top: 32px;
+  cursor: pointer;
+}
+
+.searchChance {
+  color: #0f2851;
+  font-weight: bold;
+  font-size: xx-large;
+  margin-left: 40px;
+  //   position: sticky;
+  top: 10vh;
+  // background-color: yellowgreen;
+}
+
+.hrStyle {
+  border: 1px solid #E5E6EE;
+  margin-bottom: 30px;
+}
+
+.monthlyParticipants {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
 }

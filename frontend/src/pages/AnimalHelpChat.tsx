@@ -4,14 +4,14 @@ import { HiChevronLeft } from "react-icons/hi";
 import { MantineProvider, Button, TextInput } from "@mantine/core";
 import { IconCamera, IconSend } from "@tabler/icons";
 import { useQuery } from "react-query";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 import { useEffect, useState } from "react";
 import { getOrganisationChatroom } from "../api/helpAPI";
 
 export default function AnimalHelpChatroom() {
   const navigate = useNavigate();
 
-  const socket = io();
+  // const socket = io();
 
   const params = new URLSearchParams(document.location.search);
 

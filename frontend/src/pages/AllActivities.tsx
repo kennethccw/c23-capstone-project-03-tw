@@ -32,7 +32,7 @@ export default function AllActivities() {
       <div className={styles.searchChance}>探索義工機會</div>
 
         {/* <Activity needDeleteButton={false}/> */}
-       
+      
       {/* <Activity/> */}
 
       {NavBar}

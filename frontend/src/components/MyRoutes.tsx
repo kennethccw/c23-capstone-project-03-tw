@@ -30,7 +30,6 @@ import Account from "../pages/Account";
 import EditProfile from "../pages/EditProfile";
 import SearchResultFuction from "../pages/SearchResult";
 import SearchShowResultFunction from "../pages/SearchShowResultPage";
-import DashboardPicture from "../pages/Organisation/OrganisationDashboard";
 import ApprovalFunction from "../pages/Organisation/ControlUserPanel";
 import ActivitiesDetailPage from "../pages/ActivitiesDetailPage";
 import AllActivitiesFilter from "../pages/AllActivitiesFilter";
@@ -64,11 +63,13 @@ import ApplicationCancelled from "../pages/ApplicationCancelled";
 import CategorisedActivities from "../pages/CategorisedActivities";
 import { Payment } from "../pages/Payment";
 import PaymentSuccess from "../pages/PaymentSuccess";
+import Dashboard from "../pages/Organisation/OrganisationDashboard";
 
 export default function MyRoutes() {
   return (
     <Routes>
       {/* User */}
+      <Route path="/" element={<Dashboard />}></Route>
       <Route path="adoption" element={<AllPetShowcase />}></Route>
       <Route path="adoption/detail" element={<PetDetails />}></Route>
       <Route path="/" element={<Welcome />}></Route>
@@ -125,7 +126,7 @@ export default function MyRoutes() {
         <Route path="detail" element={<OrganisationMoreDetails />}></Route>
       </Route>
       {/* <Route path="organisation" element={<Organisation />}></Route> */}
-      <Route path="/" element={<OrganisationFilterContainer />}></Route>
+    
       <Route path="record" element={<VolunteerRecord />}></Route>
       {/* User */}
 
@@ -139,16 +140,17 @@ export default function MyRoutes() {
       {/* Admin */}
 
       {/* Organisation  */}
+      <Route path="/" element={<OrganisationFilterContainer />}></Route>
       <Route path="organisationHomePage" element={<OrganisationHomePageContainer />}></Route>
       <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
       <Route path="/" element={<AdoptionApplicationResult />}></Route>
       <Route path="/" element={<AnimalHelpToDoListfrom />}></Route>
       <Route path="/" element={<ApprovalFunction />}></Route>
-      <Route path="/" element={<DashboardPicture />}></Route>
+    
       <Route path="editActivities" element={<EditActivities />}></Route>
 
       {/* Organisation  */}
-
+      
       <Route path="/" element={<RequireAuth />}>
         <Route path="home1" element={<Home />}></Route>
       </Route>
