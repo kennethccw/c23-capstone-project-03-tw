@@ -64,6 +64,7 @@ import ApplicationCancelled from "../pages/ApplicationCancelled";
 import CategorisedActivities from "../pages/CategorisedActivities";
 import { Payment } from "../pages/Payment";
 import PaymentSuccess from "../pages/PaymentSuccess";
+import EditAnimals from "../pages/Organisation/EditAnimals";
 
 export default function MyRoutes() {
   return (
@@ -146,6 +147,7 @@ export default function MyRoutes() {
       <Route path="/" element={<ApprovalFunction />}></Route>
       <Route path="/" element={<DashboardPicture />}></Route>
       <Route path="editActivities" element={<EditActivities />}></Route>
+      <Route path="editAnimals" element={<EditAnimals />}></Route>
 
       {/* Organisation  */}
 

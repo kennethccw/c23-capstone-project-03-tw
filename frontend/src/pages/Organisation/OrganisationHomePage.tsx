@@ -33,7 +33,9 @@ export default function OrganisationHomePageContainer() {
         <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="ocean">
           領養申請
         </Button>
-
+        <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="blue" onClick={() => { navigate("/editAnimals") }}>
+          更新流浪動物
+        </Button>
 
       </div>
       <div className={styles.containerForAll}>

@@ -7,7 +7,7 @@ import { useUncontrolled } from "@mantine/hooks";
 import { PetPreview } from "../api/adoptionAPI";
 import { memo } from 'react';
 
-export function AnimalShow(props: { pet: PetPreview, clickHandler: () => void }) {
+export function AnimalShow(props: { pet: PetPreview, clickHandler: () => void; displayDeleteButton?: boolean; onRemove?: () => void; animalToBeDeleted?:string }) {
   return (
     <>
   
@@ -31,7 +31,7 @@ export function AnimalShow(props: { pet: PetPreview, clickHandler: () => void })
 
                   </div>
                   <Button className={styles.button} color="violet" radius="xl" onClick={props.clickHandler}>
-                    詳細資料
+                    {props.displayDeleteButton?<div className={styles.deleteButton} >刪除活動</div>:<>詳細資料</> }
                   </Button>
                 </div>
               </div>
