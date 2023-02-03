@@ -40,12 +40,15 @@ import { DonationController } from "./controllers/DonationController";
 export const donationController = new DonationController(donationService);
 
 
-/////// for edit activities page ////////////////////
+/////// for edit activities and animals page ////////////////////
 import { EditActivitiesService } from "./services/EditActivitiesService";
 export const editActivitiesService= new EditActivitiesService(knex);
 import { EditActivitiesController } from "./controllers/EditActivitiesController";
-export const editActivitiesController=new 
-EditActivitiesController(editActivitiesService)
+export const editActivitiesController=new EditActivitiesController(editActivitiesService)
+// import { EditAnimalsService } from "./services/EditAnimalsService";
+// export const editAnimalsService = new EditAnimalsService(knex);
+import { EditAnimalsController } from "./controllers/EditAnimalsController";
+export const editAnimalsController = new EditAnimalsController(EditAnimalsController);
 /////////////////////////////////////////////////////////
 
 import { Router } from "express";
@@ -58,6 +61,7 @@ import { scheduleRoutes } from "./routers/scheduleRoutes";
 import { editActivitiesRoutes } from "./routers/editActivitiesRoutes";
 import { donationRoutes } from "./routers/donationRoutes";
 import { adoptionRoutes } from "./routers/adoptionRoutes";
+import { editAnimalsRoutes } from "./routers/editAnimalsRoutes";
 
 export const routes = Router();
 
@@ -70,3 +74,4 @@ routes.use("/schedule", scheduleRoutes);
 routes.use("/editActivities", editActivitiesRoutes)
 routes.use("/donation", donationRoutes);
 routes.use("/adoption", adoptionRoutes);
+routes.use("/editAnimals", editAnimalsRoutes)
