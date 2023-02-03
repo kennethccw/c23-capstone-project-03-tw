@@ -16,145 +16,129 @@ import { RiContactsBookLine } from "react-icons/ri";
 export default function CategorisedActivities() {
   const navigate = useNavigate();
   const params = new URLSearchParams(document.location.search);
-  const [ActivityData, setActivityData] = useState<ActivityPreview[]>([])
-  const [ActivityDataForSearch, setActivityDataForSearch] = useState<ActivityPreview[]>([])
-  const [isSearching, setIsSearching] = useState<boolean>(false)
-  const [search, setSearch] = useState<string | null>("")
-  const [isFilterTriggered, setIsFilterTriggered] = useState<boolean>(false)
-  const [isHKIslandChecked, setIsHKIslandChecked] = useState<boolean>(false)
-  const [isKowloonChecked, setIsKowloonChecked] = useState<boolean>(false)
-  const [isNTChecked, setIsNTChecked] = useState<boolean>(false)
+  const [ActivityData, setActivityData] = useState<ActivityPreview[]>([]);
+  const [ActivityDataForSearch, setActivityDataForSearch] = useState<ActivityPreview[]>([]);
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [search, setSearch] = useState<string | null>("");
+  const [isFilterTriggered, setIsFilterTriggered] = useState<boolean>(false);
+  const [isHKIslandChecked, setIsHKIslandChecked] = useState<boolean>(false);
+  const [isKowloonChecked, setIsKowloonChecked] = useState<boolean>(false);
+  const [isNTChecked, setIsNTChecked] = useState<boolean>(false);
 
-  const [numberOfAvailableActivities, setNumberOfAvailableActivities] = useState<number>(0)
+  const [numberOfAvailableActivities, setNumberOfAvailableActivities] = useState<number>(0);
 
-  const [clearAll, setClearAll] = useState<boolean>(false)
+  const [clearAll, setClearAll] = useState<boolean>(false);
 
+  console.log(isHKIslandChecked, "HK Island");
+  console.log(isKowloonChecked, "kowloon");
+  console.log(isNTChecked, "新界");
 
-
-
-
-
-  console.log(isHKIslandChecked, 'HK Island')
-  console.log(isKowloonChecked, 'kowloon')
-  console.log(isNTChecked, '新界')
-
-
-  console.log(numberOfAvailableActivities, 'numberOfAvailableActivitie')
-  console.log('searching?', isSearching)
-  console.log('what are you searching for?', search)
+  console.log(numberOfAvailableActivities, "numberOfAvailableActivitie");
+  console.log("searching?", isSearching);
+  console.log("what are you searching for?", search);
   //////////////////////////  探索義工機會部分  ///////////////////////////////////////////////
   const searching = (searchValue: string) => {
     if (searchValue.trim() === "") {
       setIsSearching(false);
-      setSearch("")
-      setActivityData([...ActivityData])
-      console.log('searchState: ', search)
+      setSearch("");
+      setActivityData([...ActivityData]);
+      console.log("searchState: ", search);
     }
 
-    if (searchValue.trim() !== "") { setIsSearching(true); setSearch(searchValue.toLowerCase().trim()); }
-  }
-
-
-
+    if (searchValue.trim() !== "") {
+      setIsSearching(true);
+      setSearch(searchValue.toLowerCase().trim());
+    }
+  };
 
   /////////////////////////  篩選功能部分/////////////////////////////////////////////////////
   const handleGoToFilter = () => {
     setIsFilterTriggered(true);
     setSearch("");
-    setIsSearching(false)
-    setNumberOfAvailableActivities(0)
-    setActivityDataForSearch([])
+    setIsSearching(false);
+    setNumberOfAvailableActivities(0);
+    setActivityDataForSearch([]);
     // setCheckedWeekdayState(false);
     // setCheckedWeekendState(false);
-  }
+  };
 
-
-  const handleGoback = () => {   // click the cross button to go back to 探索義工 page
-    setIsFilterTriggered(false)
-    setIsHKIslandChecked(false)
-    setIsKowloonChecked(false)
-    setIsNTChecked(false)
-    setNumberOfAvailableActivities(0)
+  const handleGoback = () => {
+    // click the cross button to go back to 探索義工 page
+    setIsFilterTriggered(false);
+    setIsHKIslandChecked(false);
+    setIsKowloonChecked(false);
+    setIsNTChecked(false);
+    setNumberOfAvailableActivities(0);
     setSearch("");
-    setIsSearching(false)
-  }
+    setIsSearching(false);
+  };
 
   const goBackButtonOnTop = () => {
-    setIsFilterTriggered(false)
-    setIsHKIslandChecked(false)
-    setIsKowloonChecked(false)
-    setIsNTChecked(false)
-    setSearch("")
-    navigate(-1)
-    setIsSearching(false)
-    setNumberOfAvailableActivities(0)
-  }
+    setIsFilterTriggered(false);
+    setIsHKIslandChecked(false);
+    setIsKowloonChecked(false);
+    setIsNTChecked(false);
+    setSearch("");
+    navigate(-1);
+    setIsSearching(false);
+    setNumberOfAvailableActivities(0);
+  };
 
   const handleClickHKIslandChecked = () => {
     if (isHKIslandChecked === false) {
-      setIsHKIslandChecked(!isHKIslandChecked)
-      setIsSearching(!isSearching)
-      setIsKowloonChecked(false)
-      setIsNTChecked(false)
+      setIsHKIslandChecked(!isHKIslandChecked);
+      setIsSearching(!isSearching);
+      setIsKowloonChecked(false);
+      setIsNTChecked(false);
     }
     // else {
     //   setIsHKIslandChecked(!isHKIslandChecked)
     //   setIsSearching(!isSearching)
     // }
-
-
-  }
+  };
 
   const handleClickKowloonChecked = () => {
     if (isKowloonChecked === false) {
-      setIsKowloonChecked(!isKowloonChecked)
-      setIsSearching(!isSearching)
-      setIsHKIslandChecked(false)
-      setIsNTChecked(false)
+      setIsKowloonChecked(!isKowloonChecked);
+      setIsSearching(!isSearching);
+      setIsHKIslandChecked(false);
+      setIsNTChecked(false);
     }
     // else {
     //   setIsKowloonChecked(!isKowloonChecked)
     //   setIsSearching(!isSearching)
     // }
-  }
+  };
 
   const handleClickNTChecked = () => {
     if (isNTChecked === false) {
-      setIsNTChecked(!isNTChecked)
-      setIsSearching(!isSearching)
-      setIsHKIslandChecked(false)
-      setIsKowloonChecked(false)
+      setIsNTChecked(!isNTChecked);
+      setIsSearching(!isSearching);
+      setIsHKIslandChecked(false);
+      setIsKowloonChecked(false);
     }
-
-
-  }
+  };
 
   const handleClickConfirmButton = () => {
-
     setIsFilterTriggered(false);
-    setIsHKIslandChecked(false)
-    setIsKowloonChecked(false)
-    setIsNTChecked(false)
-    setIsSearching(false)
-    if(numberOfAvailableActivities===0){
-      setActivityDataForSearch([])
+    setIsHKIslandChecked(false);
+    setIsKowloonChecked(false);
+    setIsNTChecked(false);
+    setIsSearching(false);
+    if (numberOfAvailableActivities === 0) {
+      setActivityDataForSearch([]);
     }
-  }
-
+  };
 
   const handleClickClearAll = () => {
-    setClearAll(true)
-    setIsHKIslandChecked(false)
-    setIsKowloonChecked(false)
-    setIsNTChecked(false)
-    setNumberOfAvailableActivities(0)
-
-  }
-
-
+    setClearAll(true);
+    setIsHKIslandChecked(false);
+    setIsKowloonChecked(false);
+    setIsNTChecked(false);
+    setNumberOfAvailableActivities(0);
+  };
 
   //////////////////////////////////////////////////////////////////////////////////////////
-
 
   enum PageCategory {
     all = "all",
@@ -174,76 +158,59 @@ export default function CategorisedActivities() {
     // setNumberOfAvailableActivities(numberOfInitialActivity.toString())
   }, []);
 
-
   ///////////////////////////////// 探索義工機會部分 search bar function ////////////////////
   useEffect(() => {
-    let clonedActivityData = [...ActivityData]
-    let filterActivityData = clonedActivityData.filter((eachActivityData) => eachActivityData.organisation.toLowerCase().slice(0, search!.length) === search || eachActivityData.organisation.toLowerCase().includes(search!) || eachActivityData.organisation.toLowerCase()[0] === search![0] || eachActivityData.activity.toLowerCase().slice(0, search!.length) === search || eachActivityData.activity.toLowerCase().includes(search!) || eachActivityData.activity.toLowerCase().includes(search!) || eachActivityData.activity.toLowerCase()[0] === search![0] || eachActivityData.location.toLowerCase().includes(search!))
-    setActivityDataForSearch(filterActivityData)
-
-  }, [search])
+    let clonedActivityData = [...ActivityData];
+    let filterActivityData = clonedActivityData.filter(
+      (eachActivityData) =>
+        eachActivityData.organisation.toLowerCase().slice(0, search!.length) === search ||
+        eachActivityData.organisation.toLowerCase().includes(search!) ||
+        eachActivityData.organisation.toLowerCase()[0] === search![0] ||
+        eachActivityData.activity.toLowerCase().slice(0, search!.length) === search ||
+        eachActivityData.activity.toLowerCase().includes(search!) ||
+        eachActivityData.activity.toLowerCase().includes(search!) ||
+        eachActivityData.activity.toLowerCase()[0] === search![0] ||
+        eachActivityData.location.toLowerCase().includes(search!)
+    );
+    setActivityDataForSearch(filterActivityData);
+  }, [search]);
 
   ////////////篩選功能部分//////////
   useEffect(() => {
-
     let HKIslandActivityNumber = ActivityData.filter((eachActivity) => eachActivity.district === "hong_kong_island").length;
-    let HKIslandActivity = ActivityData.filter((eachActivity) =>
-    eachActivity.district === "hong_kong_island"
-  )
+    let HKIslandActivity = ActivityData.filter((eachActivity) => eachActivity.district === "hong_kong_island");
     if (isHKIslandChecked) {
-      setNumberOfAvailableActivities(HKIslandActivityNumber)
-      setActivityDataForSearch(HKIslandActivity)
+      setNumberOfAvailableActivities(HKIslandActivityNumber);
+      setActivityDataForSearch(HKIslandActivity);
+    } else {
+      setNumberOfAvailableActivities(0);
+      setActivityDataForSearch(ActivityDataForSearch);
     }
-    else {
-      setNumberOfAvailableActivities(0)
-      setActivityDataForSearch(ActivityDataForSearch)
-    }
-
-
-  }, [isHKIslandChecked])
-
+  }, [isHKIslandChecked]);
 
   useEffect(() => {
-
     let KowloonActivityNumber = ActivityData.filter((eachActivity) => eachActivity.district === "kowloon").length;
-    let KowloonActivity = ActivityData.filter((eachActivity) =>
-      eachActivity.district === "kowloon"
-    )
+    let KowloonActivity = ActivityData.filter((eachActivity) => eachActivity.district === "kowloon");
     if (isKowloonChecked) {
-      setNumberOfAvailableActivities(KowloonActivityNumber)
-      setActivityDataForSearch(KowloonActivity)
+      setNumberOfAvailableActivities(KowloonActivityNumber);
+      setActivityDataForSearch(KowloonActivity);
+    } else {
+      setNumberOfAvailableActivities(0);
+      setActivityDataForSearch(ActivityDataForSearch);
     }
-
-    else {
-      setNumberOfAvailableActivities(0)
-      setActivityDataForSearch(ActivityDataForSearch)
-    }
-
-  }, [isKowloonChecked])
-
+  }, [isKowloonChecked]);
 
   useEffect(() => {
-
     let NTActivityNumber = ActivityData.filter((eachActivity) => eachActivity.district === "new_territories").length;
-    let NTActivity = ActivityData.filter((eachActivity) =>
-      eachActivity.district === "new_territories"
-    )
+    let NTActivity = ActivityData.filter((eachActivity) => eachActivity.district === "new_territories");
     if (isNTChecked) {
-      setNumberOfAvailableActivities(NTActivityNumber)
-      setActivityDataForSearch(NTActivity)
+      setNumberOfAvailableActivities(NTActivityNumber);
+      setActivityDataForSearch(NTActivity);
+    } else {
+      setNumberOfAvailableActivities(0);
+      setActivityDataForSearch(ActivityDataForSearch);
     }
-    else {
-      setNumberOfAvailableActivities(0)
-      setActivityDataForSearch(ActivityDataForSearch)
-    }
-  }, [isNTChecked])
-
-
-
-
-
-
-
+  }, [isNTChecked]);
 
   ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -272,18 +239,12 @@ export default function CategorisedActivities() {
 
   console.log(data);
 
-
   if (data && data !== ActivityData && !isSearching) {
-    setActivityData(data!)
-    setActivityDataForSearch(data!)
+    setActivityData(data!);
+    setActivityDataForSearch(data!);
     // setNumberOfAvailableActivities(data!.length.toString())
-    console.log("new data stored into Activity Data")
+    console.log("new data stored into Activity Data");
   }
-
-
-
-
-
 
   return (
     <div>
@@ -293,16 +254,26 @@ export default function CategorisedActivities() {
         <div className={styles.chevronAndAdjustmntIcon}>
           <HiChevronLeft className={styles.backIcon} onClick={() => goBackButtonOnTop()} />
 
-          {!isFilterTriggered && <Input.Wrapper>
-            <Input type="search" onChange={(e) => { searching(e.target.value) }} className={styles.searchContainer} icon={<HiSearch className={styles.searchIcon} />} placeholder="搜尋關鍵字" />
-          </Input.Wrapper>}
+          {!isFilterTriggered && (
+            <Input.Wrapper>
+              <Input
+                type="search"
+                onChange={(e) => {
+                  searching(e.target.value);
+                }}
+                className={styles.searchContainer}
+                icon={<HiSearch className={styles.searchIcon} />}
+                placeholder="搜尋關鍵字"
+              />
+            </Input.Wrapper>
+          )}
 
-          {!isFilterTriggered &&
+          {!isFilterTriggered && (
             <div className={styles.adjustmentFilterIconContainer}>
               <HiOutlineAdjustments className={styles.adjustmentFilterIcon} onClick={() => handleGoToFilter()} />
-            </div>}
+            </div>
+          )}
         </div>
-
 
         {/* <div className={styles.searchBarPart}>
           <TextInput className={styles.searchBar} icon={<IconSearch size={30} stroke={1.5} className={styles.iconSearch} />} radius="xl" size="xl" placeholder="尋找關鍵字" rightSectionWidth={42} />
@@ -312,12 +283,25 @@ export default function CategorisedActivities() {
         </div> */}
       </div>
 
-
       <div className={styles.bottomPart}>
-
-        {isFilterTriggered ?
-          <OrganisationFilter onBack={() => { handleGoback() }} isHKIslandChecked={isHKIslandChecked} onCheckHKI={() => handleClickHKIslandChecked()} isKowloonChecked={isKowloonChecked} onCheckKowloon={() => handleClickKowloonChecked()} isNTChecked={isNTChecked} onCheckNT={() => handleClickNTChecked()} onConfirm={() => { handleClickConfirmButton() }} numberOfAvailableActivities={numberOfAvailableActivities} onClearAll={() => handleClickClearAll()} /> :
-
+        {isFilterTriggered ? (
+          <OrganisationFilter
+            onBack={() => {
+              handleGoback();
+            }}
+            isHKIslandChecked={isHKIslandChecked}
+            onCheckHKI={() => handleClickHKIslandChecked()}
+            isKowloonChecked={isKowloonChecked}
+            onCheckKowloon={() => handleClickKowloonChecked()}
+            isNTChecked={isNTChecked}
+            onCheckNT={() => handleClickNTChecked()}
+            onConfirm={() => {
+              handleClickConfirmButton();
+            }}
+            numberOfAvailableActivities={numberOfAvailableActivities}
+            onClearAll={() => handleClickClearAll()}
+          />
+        ) : (
           <div>
             {pageCategory.current === PageCategory.all && <div className={styles.searchChance}>探索義工機會</div>}
             {params.get("category") === PageCategory.editorsChoice && <div className={styles.searchChance}>Petscue 推介</div>}
@@ -328,10 +312,8 @@ export default function CategorisedActivities() {
               <Activity key={activity.activity_id} activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}`)} />
             ))}
           </div>
-        }
-
+        )}
       </div>
-
 
       {<NewNavbar activeBtn={pageCategory.current === PageCategory.all ? "search" : "home"} />}
     </div>
