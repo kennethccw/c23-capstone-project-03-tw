@@ -269,7 +269,7 @@ export async function seed(knex: Knex): Promise<void> {
       },
       {
         username: "lovepetuser30",
-        email: "lovepetuser21@gmail.com",
+        email: "lovepetuser30@gmail.com",
         password: await hashPassword("123456"),
         mobile: "12345678",
         birthday: "01-02-1891",
@@ -278,7 +278,7 @@ export async function seed(knex: Knex): Promise<void> {
       },
       {
         username: "lovepetuser31",
-        email: "lovepetuser21@gmail.com",
+        email: "lovepetuser31@gmail.com",
         password: await hashPassword("123456"),
         mobile: "12345678",
         birthday: "01-02-1891",
@@ -405,7 +405,7 @@ export async function seed(knex: Knex): Promise<void> {
     ]);
     await trx.commit();
   } catch (e) {
-    console.log(e)
+    console.log(e);
     await trx.rollback();
   }
 }
