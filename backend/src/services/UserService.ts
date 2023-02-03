@@ -59,12 +59,20 @@ export class UserService {
       throw e;
     }
   };
-  verifyUser = async (uid: number) => {
+  verifyUser = async (id: number, role: string) => {
     try {
-      const result: Auth = await this.knex(TABLES.USERS)
-        .select("id", "username", "email")
-        .where("id", uid)
-        .first();
+      let result;
+      if (role === "user") {
+        result = await this.knex(TABLES.USERS)
+          .select("id", "username", "email")
+          .where("id", id)
+          .first();
+      } else {
+        result = await this.knex(TABLES.ORGANISATIONS)
+          .select("id", "name as username", "email")
+          .where("id", id)
+          .first();
+      }
       return result;
     } catch (e) {
       console.log(e);

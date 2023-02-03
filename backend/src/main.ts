@@ -7,22 +7,37 @@ import Knex from "knex";
 import http from "http";
 import { Server as SocketIO } from "socket.io";
 
+dotenv.config();
+
+console.log("-----main.ts: ", process.env.NODE_ENV);
+import knexConfigs from "../knexfile";
+const configMode = process.env.NODE_ENV || "development";
+
+const knexConfig = knexConfigs[configMode];
+console.log("HIHIHI", configMode, knexConfig);
+export const knex = Knex(knexConfig);
+
 const app = express();
 
 const server = new http.Server(app);
-export const io = new SocketIO(server);
-
-dotenv.config();
-import knexConfigs from "../knexfile";
-const configMode = process.env.NODE_ENV || "development";
-const knexConfig = knexConfigs[configMode];
-export const knex = Knex(knexConfig);
+export const io = new SocketIO(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true,
+  },
+});
 
 app.use(
   cors({
     origin: [process.env.FRONTEND_URL ?? ""],
   })
 );
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 import bodyParser from "body-parser";
 app.use(bodyParser.json({ limit: "50mb" }));
@@ -52,6 +67,14 @@ const grantExpress = grant.express({
     scope: ["profile", "email"],
     callback: "/user/login/google",
   },
+});
+
+io.on("connection", function (socket) {
+  // console.log(socket.id);
+  socket.on("send-message", (data) => {
+    // console.log(data);
+    socket.emit("new-message", `received your msg: ${data}`);
+  });
 });
 
 app.use(grantExpress as express.RequestHandler);

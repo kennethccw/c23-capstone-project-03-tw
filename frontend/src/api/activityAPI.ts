@@ -83,6 +83,7 @@ export const getActivitiesByCategory = async (category: string) => {
   return data;
 };
 export const getAllActivities = async () => {
+  console.log("getAllActivities");
   const data = await fetchJson<ActivityPreview[]>(`${ACTIVITY_API_PATH}`, {
     method: "GET",
     headers: {

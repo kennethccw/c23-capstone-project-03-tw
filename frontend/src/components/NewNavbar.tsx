@@ -1,9 +1,10 @@
 import { useMemo, useRef, useState } from "react";
 import { HiClipboardList, HiHome, HiLightningBolt, HiSearchCircle, HiUserCircle } from "react-icons/hi";
+import { useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/newNavBar.module.scss";
 
-export default function NewNavbar(props: { activeBtn: string }) {
+export default function NewNavbar(props: { activeBtn: string; isSearchClicked?: boolean }) {
   enum ChosenBtn {
     SEARCH = "search",
     BOLT = "bolt",
@@ -12,6 +13,7 @@ export default function NewNavbar(props: { activeBtn: string }) {
     USER = "user",
   }
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   // const [chosenBtn, setChosenBtn] = useState(sessionStorage.getItem("navIcon") || ChosenBtn.HOME);
   // const chosenBtn = useRef(ChosenBtn.HOME);
   const chosenBtn = props.activeBtn;
@@ -27,9 +29,7 @@ export default function NewNavbar(props: { activeBtn: string }) {
           <div
             className={styles.navbarIconBackground}
             onClick={() => {
-              // chosenBtn.current = ChosenBtn.SEARCH;
-              // sessionStorage.setItem("navIcon", ChosenBtn.SEARCH);
-              // setChosenBtn(ChosenBtn.SEARCH);
+              // queryClient.invalidateQueries().then(() => navigate("/search"));
               navigate("/search");
             }}
           >
