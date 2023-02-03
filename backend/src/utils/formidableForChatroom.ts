@@ -23,7 +23,7 @@ const uploadDir = path.join(
   "frontend",
   "public",
   "photos",
-  "activities"
+  "animalNeedHelp"
 );
 // const uploadDir = path.join(__dirname);
 fs.mkdirSync(uploadDir, { recursive: true });
@@ -43,7 +43,7 @@ const form = formidable({
   },
 });
 
-export const uploadMiddleware = (req: Request, res: Response, next: NextFunction) => {
+export const uploadMiddlewareForChatroom = (req: Request, res: Response, next: NextFunction) => {
   // console.log("uploadDir", uploadDir , 'formaidable.ts L38');
   form.parse(req, async (err, fields, files) => {
     if (err) {

@@ -244,3 +244,8 @@ export interface ChatroomMessage {
   role: string;
   created_at?: Date;
 }
+
+export interface SupportPanel {
+  user_id: number;
+  username: string;
+}

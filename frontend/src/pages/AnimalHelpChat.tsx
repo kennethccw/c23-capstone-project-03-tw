@@ -1,17 +1,20 @@
 import styles from "../css/animalHelpChat.module.scss";
 import { useNavigate } from "react-router-dom";
 import { HiChevronLeft } from "react-icons/hi";
-import { MantineProvider, Button, TextInput, FileButton } from "@mantine/core";
-import { IconCamera, IconSend } from "@tabler/icons";
+import { MantineProvider, Button, TextInput, FileButton, LoadingOverlay } from "@mantine/core";
+import { IconCamera, IconChevronsDownLeft, IconSend } from "@tabler/icons";
 import { useQuery } from "react-query";
 import io from "socket.io-client";
-import { useEffect, useRef, useState } from "react";
-import { getOrganisationChatroom, postImageChatroom, postTextChatroom } from "../api/helpAPI";
-import { AnimalHelpClient, AnimalHelpSupport } from "../components/AnimalHelpComponent";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { getOrganisationChatroom, postImageChatroomClient, postTextChatroomClient } from "../api/helpAPI";
+import { AnimalHelpPurple, AnimalHelpWhite } from "../components/AnimalHelpComponent";
 import { useForm } from "react-hook-form";
 
 export default function AnimalHelpChatroom() {
   const navigate = useNavigate();
+  const uid = localStorage.getItem("userId");
+  const params = new URLSearchParams(document.location.search);
+  const organisationId = params.get("id")!;
 
   const socket = io("http://localhost:8080", {
     withCredentials: true,
@@ -20,16 +23,16 @@ export default function AnimalHelpChatroom() {
     },
   });
   enum Role {
-    client,
     support,
+    client,
   }
   interface Message {
     text?: string;
     image?: string;
-    isClient: boolean;
+    role: Role;
   }
 
-  const params = new URLSearchParams(document.location.search);
+  const [socketData, setSocketData] = useState<{ conversation: string; image: string }>();
 
   const [messagesArr, setMessagesArr] = useState<Message[]>([]);
   useEffect(() => {
@@ -37,31 +40,58 @@ export default function AnimalHelpChatroom() {
     socket.on("connect", () => {
       console.log(socket.id);
     });
-    return;
+    socket.on(`supportId${organisationId}-to-clientId${uid}`, (data) => {
+      setSocketData(data);
+    });
+    // window.scrollTo(0, document.body.scrollHeight);
+    return () => {
+      socket.off("connect");
+      socket.off(`supportId${organisationId}-to-clientId${uid}`);
+    };
   }, []);
+
   useEffect(() => {
-    window.scrollTo(0, document.body.scrollHeight);
-  }, [messagesArr]);
+    if (socketData) {
+      setMessagesArr([...messagesArr, { text: socketData.conversation, image: socketData.image, role: Role.support }]);
+    }
+  }, [socketData]);
+  const getOrganisationChatroomNoParam = async () => {
+    const result = await getOrganisationChatroom(organisationId);
+    // result.message.
+    return result;
+  };
 
-  const getOrganisationChatroomNoParam = async () => await getOrganisationChatroom(params.get("id")!);
-
+  // socket.on(`to-supportId${organisationId}`, (data) => {
+  //   console.log("hihihi");
+  //   console.log(data);
+  // });
   const { isLoading, isError, data, error } = useQuery({
-    queryKey: ["organisation/chatroom"],
+    queryKey: ["chatroom/client"],
     queryFn: getOrganisationChatroomNoParam,
     // refetchInterval: 5_000,
-    // staleTime: 10_000,
+    // staleTime: Infinity,
+    refetchOnWindowFocus: false,
     retry: 1,
   });
+  const [isScrolling, setIsScrolling] = useState(false);
+  useEffect(() => {
+    setIsScrolling(true);
+    window.scrollTo(0, 99999999999999);
+    setIsScrolling(false);
+  }, [messagesArr, data]);
 
   const imageSubmitHandler = async (file: File | null) => {
     const formData = new FormData();
-    formData.append("id", params.get("id")!);
+    formData.append("id", organisationId);
     formData.append("chatroomImage", file as File);
     console.log("try image");
-    const resp = await postImageChatroom(formData);
+    const resp = await postImageChatroomClient(formData);
     const result = await resp.json();
     if (resp.status === 200) {
-      setMessagesArr([...messagesArr, { image: result.image, isClient: true }]);
+      setMessagesArr([...messagesArr, { image: result.message.image, role: Role.client }]);
+      file = null;
+      resetRef.current?.();
+      console.log(file);
       // setMessagesArr((messagesArr) => {
       //   messagesArr.push({ image: result.image, isClient: true });
       //   return messagesArr;
@@ -71,12 +101,12 @@ export default function AnimalHelpChatroom() {
     }
   };
 
-  const textSubmitHandler = async (e: React.FormEvent<HTMLDivElement>) => {
+  const textSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!getValues().message) {
       return;
     }
-    setMessagesArr([...messagesArr, { text: getValues().message, isClient: true }]);
+    setMessagesArr([...messagesArr, { text: getValues().message, role: Role.client }]);
     // setMessagesArr((messagesArr) => {
     //   messagesArr.push({ text: getValues().message, isClient: true });
     //   return messagesArr;
@@ -84,7 +114,7 @@ export default function AnimalHelpChatroom() {
     // console.log(getValues().message);
     console.log(getValues().message);
     socket.emit("send-message", getValues().message);
-    const resp = await postTextChatroom(params.get("id")!, getValues().message);
+    const resp = await postTextChatroomClient(organisationId, getValues().message);
     const result = await resp.json();
     if (resp.status === 200) {
       setValue("message", "");
@@ -102,13 +132,7 @@ export default function AnimalHelpChatroom() {
     },
   });
 
-  socket.on("new-message", (data) => {
-    console.log(data);
-  });
   const newMessageRef = useRef<string>();
-  socket.on("message", (data) => {
-    setMessagesArr([...messagesArr, { text: data.conversation, image: data.image, isClient: false }]);
-  });
 
   // const intervalIdRef = useRef<NodeJS.Timer>();
 
@@ -123,7 +147,7 @@ export default function AnimalHelpChatroom() {
   // }, [newMessageRef.current]);
 
   console.log(messagesArr);
-
+  const resetRef = useRef<() => void>(null);
   return (
     <MantineProvider
       theme={{
@@ -133,6 +157,8 @@ export default function AnimalHelpChatroom() {
       }}
     >
       <div>
+        <LoadingOverlay visible={isLoading} overlayBlur={2} />
+
         <div>
           <div className={styles.chevronAndAdjustmntIcon}>
             <HiChevronLeft className={styles.chevronIcon} onClick={() => navigate(-1)} />
@@ -149,27 +175,27 @@ export default function AnimalHelpChatroom() {
             {/* <div className={styles.supportSideContainer}>
               <div className={styles.supportSide}>有咩可以幫到你？</div>
             </div> */}
-            <AnimalHelpClient text="SOS" />
-            <AnimalHelpSupport text="有咩可以幫到你？" />
-            <AnimalHelpClient image="needHelp.png" />
-            <AnimalHelpClient text="我係城門水塘見到有隻狗媽媽生左好多小狗狗，狗媽媽受傷，呼吸困難。" />
-            <AnimalHelpSupport text="請問對上一次見到佢地係幾時？" />
-            <AnimalHelpClient text="10:00am" />
-            <AnimalHelpSupport text="ok" />
+            {/* <AnimalHelpPurple text="SOS" />
+            <AnimalHelpWhite text="有咩可以幫到你？" />
+            <AnimalHelpPurple image="needHelp.png" />
+            <AnimalHelpPurple text="我係城門水塘見到有隻狗媽媽生左好多小狗狗，狗媽媽受傷，呼吸困難。" />
+            <AnimalHelpWhite text="請問對上一次見到佢地係幾時？" />
+            <AnimalHelpPurple text="10:00am" />
+            <AnimalHelpWhite text="ok" /> */}
 
             {data?.message.map((message) =>
               message.role === "user" ? (
-                <AnimalHelpClient key={`message-${message.id}`} text={message.conversation} image={message.image} time={message.created_at} />
+                <AnimalHelpPurple key={`message-${message.id}`} text={message.conversation} image={message.image} time={message.created_at} />
               ) : (
-                <AnimalHelpSupport key={`message-${message.id}`} text={message.conversation} image={message.image} time={message.created_at} />
+                <AnimalHelpWhite key={`message-${message.id}`} text={message.conversation} image={message.image} time={message.created_at} />
               )
             )}
 
             {messagesArr.map((message, idx) =>
-              message.isClient ? (
-                <AnimalHelpClient key={`message-${idx}`} text={message.text} image={message.image} />
+              message.role ? (
+                <AnimalHelpPurple key={`message-${idx}`} text={message.text} image={message.image} />
               ) : (
-                <AnimalHelpSupport key={`message-${idx}`} text={message.text} image={message.image} />
+                <AnimalHelpWhite key={`message-${idx}`} text={message.text} image={message.image} />
               )
             )}
 
@@ -194,14 +220,14 @@ export default function AnimalHelpChatroom() {
             <div className={styles.supportSideContainer}>
               <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
             </div> */}
-            <Button style={{ width: 230, height: 34, color: "black", fontSize: 14, marginLeft: 100, marginTop: 20, borderRadius: 10 }} color="ocean">
+            {/* <Button style={{ width: 230, height: 34, color: "black", fontSize: 14, marginLeft: 100, marginTop: 20, borderRadius: 10 }} color="ocean">
               動物已經得到幫助，結束對話。
-            </Button>
+            </Button> */}
           </div>
 
-          <div className={styles.textBigContainer} onSubmit={textSubmitHandler}>
-            <form className={styles.textContainer}>
-              <FileButton onChange={imageSubmitHandler} accept="image/png,image/jpeg">
+          <div className={styles.textBigContainer}>
+            <form className={styles.textContainer} onSubmit={textSubmitHandler}>
+              <FileButton resetRef={resetRef} onChange={imageSubmitHandler} accept="image/png,image/jpeg">
                 {(props) => <IconCamera {...props} className={styles.textInputIconLeftBtn} size={27} />}
               </FileButton>
               {/* <button className={styles.textInputIconLeftBtn}>

@@ -1,89 +1,245 @@
-import { useNavigate } from "react-router-dom";
 import styles from "../../css/animalHelpChat.module.scss";
-import {
-  HiChevronLeft,
-} from "react-icons/hi";
-import { MantineProvider, Button, TextInput } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
+import { HiChevronLeft, HiOutlineUserCircle } from "react-icons/hi";
+import { MantineProvider, Button, TextInput, FileButton, LoadingOverlay } from "@mantine/core";
 import { IconCamera, IconSend } from "@tabler/icons";
+import { useQuery } from "react-query";
+import io from "socket.io-client";
+import { useEffect, useRef, useState } from "react";
+import { getOrganisationChatroom, postTextChatroomSupport, postImageChatroomSupport, getUserChatroom } from "../../api/helpAPI";
+import { AnimalHelpPurple, AnimalHelpWhite } from "../../components/AnimalHelpComponent";
+import { useForm } from "react-hook-form";
 
-export default function AnimalHelpFunction() {
+export default function AnimalHelpChatroom() {
   const navigate = useNavigate();
+  const organisationId = localStorage.getItem("userId");
+  const params = new URLSearchParams(document.location.search);
+  const uid = params.get("id")!;
+
+  const socket = io("http://localhost:8080", {
+    withCredentials: true,
+    extraHeaders: {
+      "my-custom-header": "abcd",
+    },
+  });
+  enum Role {
+    client,
+    support,
+  }
+  interface Message {
+    text?: string;
+    image?: string;
+    role: Role;
+  }
+  const [socketData, setSocketData] = useState<{ conversation: string; image: string }>();
+  const [messagesArr, setMessagesArr] = useState<Message[]>([]);
+  useEffect(() => {
+    // console.log("hi");
+    socket.on("connect", () => {
+      console.log(socket.id);
+    });
+    socket.on(`clientId${uid}-to-supportId${organisationId}`, (data) => {
+      setSocketData(data);
+    });
+    // window.scrollTo(0, document.body.scrollHeight);
+    return () => {
+      socket.off("connect");
+      socket.off(`clientId${uid}-to-supportId${organisationId}`);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (socketData) {
+      setMessagesArr([...messagesArr, { text: socketData.conversation, image: socketData.image, role: Role.client }]);
+    }
+  }, [socketData]);
+
+  const getUserChatroomNoParam = async () => {
+    const result = await getUserChatroom(uid);
+    // result.message.
+    return result;
+  };
+
+  const { isLoading, isError, data, error } = useQuery({
+    queryKey: ["chatroom/support"],
+    queryFn: getUserChatroomNoParam,
+    // refetchInterval: 5_000,
+    refetchOnWindowFocus: false,
+    retry: 1,
+  });
+  const [isScrolling, setIsScrolling] = useState(false);
+  useEffect(() => {
+    setIsScrolling(true);
+    window.scrollTo(0, 99999999999999);
+    setIsScrolling(false);
+  }, [messagesArr, data]);
+
+  const imageSubmitHandler = async (file: File | null) => {
+    const formData = new FormData();
+    formData.append("id", uid);
+    formData.append("chatroomImage", file as File);
+    console.log("try image");
+    const resp = await postImageChatroomSupport(formData);
+    const result = await resp.json();
+    if (resp.status === 200) {
+      setMessagesArr([...messagesArr, { image: result.image, role: Role.support }]);
+      file = null;
+      resetRef.current?.();
+
+      console.log(file);
+
+      // setMessagesArr((messagesArr) => {
+      //   messagesArr.push({ image: result.image, isClient: true });
+      //   return messagesArr;
+      // });
+    } else {
+      alert("message cannot send");
+    }
+  };
+
+  const textSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!getValues().message) {
+      return;
+    }
+    setMessagesArr([...messagesArr, { text: getValues().message, role: Role.support }]);
+    // setMessagesArr((messagesArr) => {
+    //   messagesArr.push({ text: getValues().message, isClient: true });
+    //   return messagesArr;
+    // });
+    // console.log(getValues().message);
+    console.log(getValues().message);
+    socket.emit("send-message", getValues().message);
+    const resp = await postTextChatroomSupport(uid, getValues().message);
+    const result = await resp.json();
+    if (resp.status === 200) {
+      setValue("message", "");
+    } else {
+      alert("message cannot send");
+    }
+  };
+
+  const [file, setFile] = useState<File | null>(null);
+  // console.log(file);
+
+  const { register, watch, getValues, setValue } = useForm({
+    defaultValues: {
+      message: "",
+    },
+  });
+
+  const newMessageRef = useRef<string>();
+
+  // const intervalIdRef = useRef<NodeJS.Timer>();
+
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     setMessagesArr([...messagesArr, { text: newMessageRef.current, isClient: false }]);
+  //   }, 1_000);
+  //   if (intervalIdRef.current) {
+  //     clearInterval(intervalIdRef.current);
+  //   }
+  //   intervalIdRef.current = intervalId;
+  // }, [newMessageRef.current]);
+
+  console.log(messagesArr);
+  const resetRef = useRef<() => void>(null);
+
   return (
     <MantineProvider
-    theme={{
-      colors: {
-        ocean: [
-          "#F7BB93",
-          "#F7BB93",
-          "#F7BB93",
-          "#F7BB93",
-          "#F7BB93",
-          "#F7BB93",
-          "#F7BB93",
-          "#F7BB93",
-          "#F7BB93",
-          "#F7BB93",
-        ],
-      },
-    }}
-  >
-
-    <div>
-
+      theme={{
+        colors: {
+          ocean: ["#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93"],
+        },
+      }}
+    >
       <div>
-        <div className={styles.chevronAndAdjustmntIcon}>
-          <HiChevronLeft className={styles.chevronIcon} />
-        </div>
+        <LoadingOverlay visible={isLoading} overlayBlur={2} />
 
-        <div className={styles.conversationContainer}>
-
-          <div className={styles.dateTab}>今天</div>
-
-          <div className={styles.clientSideBigContainer}>
-            <div className={styles.clientSideContainer}>
-              <div className={styles.clientSide}>我係城門水塘見到有隻狗媽媽生左好多小狗狗，狗媽媽受傷，呼吸困難。</div>
-              <img className={styles.imgContainer} src="../photos/animalNeedHelp/needHelp.png"></img>
+        <div>
+          <div className={styles.chevronAndAdjustmntIcon}>
+            <HiChevronLeft className={styles.chevronIcon} onClick={() => navigate(-1)} />
+            <div className={styles.organisationContainer}>
+              <div className={styles.organisationLogoContainer}>
+                <HiOutlineUserCircle size={48} className={styles.organisationLogo} />
+              </div>
+              <div className={styles.organisationName}>{data?.user}</div>
             </div>
           </div>
-          <div className={styles.supportSideContainer}>
-            <div className={styles.supportSide}>有咩可以幫到你？</div>
+
+          <div className={styles.conversationContainer}>
+            <div className={styles.dateTab}>{new Date() && "今天"}</div>
+            {/* <div className={styles.supportSideContainer}>
+              <div className={styles.supportSide}>有咩可以幫到你？</div>
+            </div> */}
+            {/* <AnimalHelpWhite text="SOS" />
+            <AnimalHelpPurple text="有咩可以幫到你？" />
+            <AnimalHelpWhite image="needHelp.png" />
+            <AnimalHelpWhite text="我係城門水塘見到有隻狗媽媽生左好多小狗狗，狗媽媽受傷，呼吸困難。" />
+            <AnimalHelpPurple text="請問對上一次見到佢地係幾時？" />
+            <AnimalHelpWhite text="10:00am" />
+            <AnimalHelpPurple text="ok" /> */}
+
+            {data?.message.map((message) =>
+              message.role === "organisation" ? (
+                <AnimalHelpPurple key={`message-${message.id}`} text={message.conversation} image={message.image} time={message.created_at} />
+              ) : (
+                <AnimalHelpWhite key={`message-${message.id}`} text={message.conversation} image={message.image} time={message.created_at} />
+              )
+            )}
+
+            {messagesArr.map((message, idx) =>
+              message.role ? (
+                <AnimalHelpPurple key={`message-${idx}`} text={message.text} image={message.image} />
+              ) : (
+                <AnimalHelpWhite key={`message-${idx}`} text={message.text} image={message.image} />
+              )
+            )}
+
+            {/* <div className={styles.supportSideContainer}>
+              <div className={styles.supportSide}>請問對上一次見到佢地係幾時？gjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjj</div>
+            </div>{" "}
+            <div className={styles.supportSideContainer}>
+              <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
+            </div>{" "}
+            <div className={styles.supportSideContainer}>
+              <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
+            </div>{" "}
+            <div className={styles.supportSideContainer}>
+              <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
+            </div>{" "}
+            <div className={styles.supportSideContainer}>
+              <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
+            </div>{" "}
+            <div className={styles.supportSideContainer}>
+              <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
+            </div>{" "}
+            <div className={styles.supportSideContainer}>
+              <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
+            </div> */}
+            {/* <Button style={{ width: 230, height: 34, color: "black", fontSize: 14, marginLeft: 100, marginTop: 20, borderRadius: 10 }} color="ocean">
+              動物已經得到幫助，結束對話。
+            </Button> */}
           </div>
 
-          <div className={styles.supportSideContainer}>
-            <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
-          </div>  <div className={styles.supportSideContainer}>
-            <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
-          </div>  <div className={styles.supportSideContainer}>
-            <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
-          </div>  <div className={styles.supportSideContainer}>
-            <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
-          </div>  <div className={styles.supportSideContainer}>
-            <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
-          </div>  <div className={styles.supportSideContainer}>
-            <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
-          </div>  <div className={styles.supportSideContainer}>
-            <div className={styles.supportSide}>請問對上一次見到佢地係幾時？</div>
-          </div>
+          <div className={styles.textBigContainer}>
+            <form className={styles.textContainer} onSubmit={textSubmitHandler}>
+              <FileButton resetRef={resetRef} onChange={imageSubmitHandler} accept="image/png,image/jpeg">
+                {(props) => <IconCamera {...props} className={styles.textInputIconLeftBtn} size={27} />}
+              </FileButton>
+              {/* <button className={styles.textInputIconLeftBtn}>
+                <IconCamera className={styles.textInputIconLeft} size={27} />
+              </button> */}
 
-          <Button style={{ width: 230, height: 34, color: "black", fontSize: 14, marginLeft: 100, marginTop: 130, borderRadius: 10, marginBottom: 80 }} color="ocean" >動物已經得到幫助，結束對話。</Button>
+              <TextInput className={styles.textInputClass} placeholder="輸入文字" style={{ width: 290 }} {...register("message", { required: true })} />
+
+              <button className={styles.textInputIconRightBtn} type="submit">
+                <IconSend className={styles.textInputIconRight} size={25} />
+              </button>
+            </form>
+          </div>
         </div>
-
-        <div className={styles.textBigContainer}>
-          <div className={styles.textContainer}>
-            <IconCamera className={styles.textInputIconLeft} size={27} />
-
-            <TextInput
-              className={styles.textInputClass}
-              placeholder="輸入文字"
-              style={{ width: 290 }}
-            />
-
-            <IconSend className={styles.textInputIconRight} size={25} />
-          </div>
-        </div>
-
       </div>
-    </div>
-  </MantineProvider>
+    </MantineProvider>
   );
 }

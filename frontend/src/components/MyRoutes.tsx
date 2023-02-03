@@ -64,11 +64,14 @@ import ApplicationCancelled from "../pages/ApplicationCancelled";
 import CategorisedActivities from "../pages/CategorisedActivities";
 import { Payment } from "../pages/Payment";
 import PaymentSuccess from "../pages/PaymentSuccess";
+import AnimalSupportChat from "../pages/Organisation/AnimalSupportChat";
+import AnimalSupportPanel from "../pages/Organisation/AnimalSupportPanel";
 
 export default function MyRoutes() {
   return (
     <Routes>
       {/* User */}
+
       <Route path="adoption" element={<AllPetShowcase />}></Route>
       <Route path="adoption/detail" element={<PetDetails />}></Route>
       <Route path="/" element={<Welcome />}></Route>
@@ -146,6 +149,8 @@ export default function MyRoutes() {
       <Route path="/" element={<ApprovalFunction />}></Route>
       <Route path="/" element={<DashboardPicture />}></Route>
       <Route path="editActivities" element={<EditActivities />}></Route>
+      <Route path="support/panel" element={<AnimalSupportPanel />}></Route>
+      <Route path="support/chatroom" element={<AnimalSupportChat />}></Route>
 
       {/* Organisation  */}
 

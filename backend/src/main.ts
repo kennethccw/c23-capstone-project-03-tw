@@ -7,6 +7,16 @@ import Knex from "knex";
 import http from "http";
 import { Server as SocketIO } from "socket.io";
 
+dotenv.config();
+
+console.log("-----main.ts: ", process.env.NODE_ENV);
+import knexConfigs from "../knexfile";
+const configMode = process.env.NODE_ENV || "development";
+
+const knexConfig = knexConfigs[configMode];
+console.log("HIHIHI", configMode, knexConfig);
+export const knex = Knex(knexConfig);
+
 const app = express();
 
 const server = new http.Server(app);
@@ -18,12 +28,6 @@ export const io = new SocketIO(server, {
     credentials: true,
   },
 });
-
-dotenv.config();
-import knexConfigs from "../knexfile";
-const configMode = process.env.NODE_ENV || "development";
-const knexConfig = knexConfigs[configMode];
-export const knex = Knex(knexConfig);
 
 app.use(
   cors({

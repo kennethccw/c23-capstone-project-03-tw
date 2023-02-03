@@ -9,7 +9,7 @@ export async function up(knex: Knex): Promise<void> {
     table.text("conversation");
     table.string("image");
     table.enum("role", ["user", "organisation"]);
-    table.enum("status", ["completed", "pending", "cancelled"]);
+    table.enum("status", ["completed", "pending", "cancelled"]).defaultTo("pending");
     table.integer("user_id").unsigned();
     table.foreign("user_id").references("users.id").onDelete("CASCADE");
     table.integer("organisation_id").unsigned();
