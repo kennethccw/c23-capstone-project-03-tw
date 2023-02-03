@@ -91,100 +91,63 @@ export default function CategorisedActivities() {
   }
 
   const handleClickHKIslandChecked = () => {
-    setIsHKIslandChecked(!isHKIslandChecked)
-    setIsSearching(!isSearching)
+    if (isHKIslandChecked === false) {
+      setIsHKIslandChecked(!isHKIslandChecked)
+      setIsSearching(!isSearching)
+      setIsKowloonChecked(false)
+      setIsNTChecked(false)
+    }
+    // else {
+    //   setIsHKIslandChecked(!isHKIslandChecked)
+    //   setIsSearching(!isSearching)
+    // }
+
+
   }
 
   const handleClickKowloonChecked = () => {
-    setIsKowloonChecked(!isKowloonChecked)
-    setIsSearching(!isSearching)
+    if (isKowloonChecked === false) {
+      setIsKowloonChecked(!isKowloonChecked)
+      setIsSearching(!isSearching)
+      setIsHKIslandChecked(false)
+      setIsNTChecked(false)
+    }
+    // else {
+    //   setIsKowloonChecked(!isKowloonChecked)
+    //   setIsSearching(!isSearching)
+    // }
   }
 
   const handleClickNTChecked = () => {
-    setIsNTChecked(!isNTChecked)
-    setIsSearching(!isSearching)
+    if (isNTChecked === false) {
+      setIsNTChecked(!isNTChecked)
+      setIsSearching(!isSearching)
+      setIsHKIslandChecked(false)
+      setIsKowloonChecked(false)
+    }
+
+
   }
-
-
-
 
   const handleClickConfirmButton = () => {
-    let currentStoredActivity = [...ActivityData];
-    if (isHKIslandChecked) {
-      setActivityDataForSearch(currentStoredActivity.filter((eachActivity) => eachActivity.district === "hong_kong_island"))
-      setIsFilterTriggered(false);
-      setIsHKIslandChecked(false)
-      setIsKowloonChecked(false)
-      setIsNTChecked(false)
-      setIsSearching(false)
-      setNumberOfAvailableActivities(0)
-    }
-    else if(isKowloonChecked){
-      setActivityDataForSearch(currentStoredActivity.filter((eachActivity) => eachActivity.district === "kowloon"))
-      setIsFilterTriggered(false);
-      setIsHKIslandChecked(false)
-      setIsKowloonChecked(false)
-      setIsNTChecked(false)
-      setIsSearching(false)
-      setNumberOfAvailableActivities(0)
-    }
-    else if(isNTChecked){
-      setActivityDataForSearch(currentStoredActivity.filter((eachActivity) => eachActivity.district === "new_territories"))
-      setIsFilterTriggered(false);
-      setIsHKIslandChecked(false)
-      setIsKowloonChecked(false)
-      setIsNTChecked(false)
-      setIsSearching(false)
-      setNumberOfAvailableActivities(0)
-    }
-   else if(isHKIslandChecked && isKowloonChecked ){
-    setActivityDataForSearch(currentStoredActivity.filter((eachActivity) => eachActivity.district === "hong_kong_island" || "kowloon"))
+
     setIsFilterTriggered(false);
     setIsHKIslandChecked(false)
     setIsKowloonChecked(false)
     setIsNTChecked(false)
     setIsSearching(false)
-    setNumberOfAvailableActivities(0)
-
-   }
-   else if(isHKIslandChecked &&isNTChecked){
-    setActivityDataForSearch(currentStoredActivity.filter((eachActivity) => eachActivity.district === "hong_kong_island" || "new_territories"))
-    setIsFilterTriggered(false);
-    setIsHKIslandChecked(false)
-    setIsKowloonChecked(false)
-    setIsNTChecked(false)
-    setIsSearching(false)
-    setNumberOfAvailableActivities(0)
-   }
-   else{
-    setActivityDataForSearch(currentStoredActivity.filter((eachActivity) => eachActivity.district === "kowloon" || "new_territories"))
-    setIsFilterTriggered(false);
-    setIsHKIslandChecked(false)
-    setIsKowloonChecked(false)
-    setIsNTChecked(false)
-    setIsSearching(false)
-    setNumberOfAvailableActivities(0)
-
-   }
-
-
-
-
-
-
-
-
-
-
-
-
+    if(numberOfAvailableActivities===0){
+      setActivityDataForSearch([])
+    }
   }
+
 
   const handleClickClearAll = () => {
     setClearAll(true)
     setIsHKIslandChecked(false)
     setIsKowloonChecked(false)
     setIsNTChecked(false)
+    setNumberOfAvailableActivities(0)
 
   }
 
@@ -222,66 +185,56 @@ export default function CategorisedActivities() {
 
   ////////////篩選功能部分//////////
   useEffect(() => {
-    let numberOfActivityToBeChosen = numberOfAvailableActivities;
-    let HKIslandActivity = ActivityData.filter((eachActivity) => eachActivity.district === "hong_kong_island").length;
-    if (isHKIslandChecked === true) {
-      let updateActivityNum = numberOfActivityToBeChosen + HKIslandActivity
-      setNumberOfAvailableActivities(updateActivityNum)
-    }
 
-    if (isHKIslandChecked === false && numberOfAvailableActivities === 0) { setNumberOfAvailableActivities(0) }
-    if (isHKIslandChecked === false) {
-      let updateActivityNum = numberOfActivityToBeChosen - HKIslandActivity
-      setNumberOfAvailableActivities(updateActivityNum)
+    let HKIslandActivityNumber = ActivityData.filter((eachActivity) => eachActivity.district === "hong_kong_island").length;
+    let HKIslandActivity = ActivityData.filter((eachActivity) =>
+    eachActivity.district === "hong_kong_island"
+  )
+    if (isHKIslandChecked) {
+      setNumberOfAvailableActivities(HKIslandActivityNumber)
+      setActivityDataForSearch(HKIslandActivity)
     }
-
-    if (clearAll) {
+    else {
       setNumberOfAvailableActivities(0)
-      setClearAll(false)
+      setActivityDataForSearch(ActivityDataForSearch)
     }
-
 
 
   }, [isHKIslandChecked])
 
 
   useEffect(() => {
-    let numberOfActivityToBeChosen = numberOfAvailableActivities;
-    let KowloonActivity = ActivityData.filter((eachActivity) => eachActivity.district === "kowloon").length;
-    if (isKowloonChecked === true) {
-      let updateActivityNum = numberOfActivityToBeChosen + KowloonActivity
-      setNumberOfAvailableActivities(updateActivityNum)
-    }
-    if (isKowloonChecked === false && numberOfAvailableActivities === 0) { setNumberOfAvailableActivities(0) }
-    if (isKowloonChecked === false) {
-      let updateActivityNum = numberOfActivityToBeChosen - KowloonActivity
-      setNumberOfAvailableActivities(updateActivityNum)
+
+    let KowloonActivityNumber = ActivityData.filter((eachActivity) => eachActivity.district === "kowloon").length;
+    let KowloonActivity = ActivityData.filter((eachActivity) =>
+      eachActivity.district === "kowloon"
+    )
+    if (isKowloonChecked) {
+      setNumberOfAvailableActivities(KowloonActivityNumber)
+      setActivityDataForSearch(KowloonActivity)
     }
 
-    if (clearAll) {
+    else {
       setNumberOfAvailableActivities(0)
-      setClearAll(false)
+      setActivityDataForSearch(ActivityDataForSearch)
     }
 
   }, [isKowloonChecked])
 
 
   useEffect(() => {
-    let numberOfActivityToBeChosen = numberOfAvailableActivities;
-    let NTActivity = ActivityData.filter((eachActivity) => eachActivity.district === "new_territories").length;
-    if (isNTChecked === true) {
-      let updateActivityNum = numberOfActivityToBeChosen + NTActivity
-      setNumberOfAvailableActivities(updateActivityNum)
-    }
-    if (isNTChecked === false && numberOfAvailableActivities === 0) { setNumberOfAvailableActivities(0) }
-    if (isNTChecked === false) {
-      let updateActivityNum = numberOfActivityToBeChosen - NTActivity
-      setNumberOfAvailableActivities(updateActivityNum)
-    }
 
-    if (clearAll) {
+    let NTActivityNumber = ActivityData.filter((eachActivity) => eachActivity.district === "new_territories").length;
+    let NTActivity = ActivityData.filter((eachActivity) =>
+      eachActivity.district === "new_territories"
+    )
+    if (isNTChecked) {
+      setNumberOfAvailableActivities(NTActivityNumber)
+      setActivityDataForSearch(NTActivity)
+    }
+    else {
       setNumberOfAvailableActivities(0)
-      setClearAll(false)
+      setActivityDataForSearch(ActivityDataForSearch)
     }
   }, [isNTChecked])
 
