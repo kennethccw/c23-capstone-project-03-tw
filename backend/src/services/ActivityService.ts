@@ -14,6 +14,7 @@ export class ActivityService {
           "activities.name as activity",
           "activities.id as activity_id"
         )
+        .where("activities.date", ">", new Date())
         .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id");
       console.log(result);
       return result;
@@ -52,7 +53,8 @@ export class ActivityService {
           "activities.id as activity_id"
         )
         .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id")
-        .where("activities.type", type);
+        .where("activities.date", ">", new Date())
+        .andWhere("activities.type", type);
       console.log(result);
       return result;
     } catch (e) {

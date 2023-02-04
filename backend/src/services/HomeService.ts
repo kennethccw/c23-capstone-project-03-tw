@@ -7,7 +7,9 @@ export class HomeService {
 
   getHomeActivities = async () => {
     try {
-      const result = await this.knex<HomeActivity>(TABLES.ACTIVITIES).select();
+      const result = await this.knex<HomeActivity>(TABLES.ACTIVITIES)
+        .select()
+        .where("activities.date", ">", new Date());
       return result;
     } catch (e) {
       console.log(e);

@@ -12,6 +12,7 @@ RUN yarn install
 
 # RUN yarn knex seed:run
 
-CMD yarn knex migrate: latest && yarn knex seed:run && node index.js 
+CMD yarn knex migrate:latest && yarn knex seed:run && node index.js 
+# CMD node index.js 
 
 # CMD [ "yarn", "ts-node", "./src/main.ts" ]
