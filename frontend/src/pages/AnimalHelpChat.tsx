@@ -55,10 +55,37 @@ export default function AnimalHelpChatroom() {
       setMessagesArr([...messagesArr, { text: socketData.conversation, image: socketData.image, role: Role.support }]);
     }
   }, [socketData]);
+
+  const [isTodayAppeared, setIsTodayAppeared] = useState(false);
+
   const getOrganisationChatroomNoParam = async () => {
     const result = await getOrganisationChatroom(organisationId);
-    // result.message.
-    return result;
+    const dateStringArr = result.message.map((message) => `${new Date(message.created_at!).getFullYear()}-${new Date(message.created_at!).getMonth() + 1}-${new Date(message.created_at!).getDate()}`);
+    const dateSet = new Set<string>();
+    for (const dateString of dateStringArr) {
+      dateSet.add(dateString);
+    }
+    const dateArr = Array.from(dateSet);
+    const idxOfMessageArr: number[] = [];
+    for (const date of dateArr) {
+      const idxOfMessage = result.message.findIndex(
+        (message) => `${new Date(message.created_at!).getFullYear()}-${new Date(message.created_at!).getMonth() + 1}-${new Date(message.created_at!).getDate()}` === date
+      );
+      if (idxOfMessage === 0) {
+        idxOfMessageArr.push(-1);
+      } else {
+        idxOfMessageArr.push(idxOfMessage);
+      }
+    }
+    for (let i = 0; i < idxOfMessageArr.length; i++) {
+      result.message.splice(idxOfMessageArr[i] + 1, 0, dateArr[i] as any);
+      if (dateArr[i] === `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`) {
+        setIsTodayAppeared(true);
+      }
+    }
+    console.log(dateArr);
+    console.log(idxOfMessageArr);
+    return { result, dateArr, idxOfMessageArr };
   };
 
   // socket.on(`to-supportId${organisationId}`, (data) => {
@@ -123,7 +150,6 @@ export default function AnimalHelpChatroom() {
     }
   };
 
-  const [file, setFile] = useState<File | null>(null);
   // console.log(file);
 
   const { register, watch, getValues, setValue } = useForm({
@@ -131,8 +157,6 @@ export default function AnimalHelpChatroom() {
       message: "",
     },
   });
-
-  const newMessageRef = useRef<string>();
 
   // const intervalIdRef = useRef<NodeJS.Timer>();
 
@@ -156,7 +180,7 @@ export default function AnimalHelpChatroom() {
         },
       }}
     >
-      <div>
+      <div className={styles.containerForAll}>
         <LoadingOverlay visible={isLoading} overlayBlur={2} />
 
         <div>
@@ -164,14 +188,14 @@ export default function AnimalHelpChatroom() {
             <HiChevronLeft className={styles.chevronIcon} onClick={() => navigate(-1)} />
             <div className={styles.organisationContainer}>
               <div className={styles.organisationLogoContainer}>
-                <img className={styles.organisationLogo} src={`/photos/organisation/${data?.organisation.logo}`}></img>
+                <img className={styles.organisationLogo} src={`/photos/organisation/${data?.result.organisation.logo}`}></img>
               </div>
-              <div className={styles.organisationName}>{data?.organisation.name}</div>
+              <div className={styles.organisationName}>{data?.result.organisation.name}</div>
             </div>
           </div>
 
           <div className={styles.conversationContainer}>
-            <div className={styles.dateTab}>{new Date() && "今天"}</div>
+            {/* <div className={styles.dateTab}>{new Date() && "今天"}</div> */}
             {/* <div className={styles.supportSideContainer}>
               <div className={styles.supportSide}>有咩可以幫到你？</div>
             </div> */}
@@ -183,12 +207,34 @@ export default function AnimalHelpChatroom() {
             <AnimalHelpPurple text="10:00am" />
             <AnimalHelpWhite text="ok" /> */}
 
-            {data?.message.map((message) =>
-              message.role === "user" ? (
+            {data?.result.message.map((message, idx) =>
+              new Date(message as any).toString() !== "Invalid Date" ? (
+                `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}` === (message as any) ? (
+                  <div className={styles.dateContainer}>
+                    <div className={styles.dateTab} key={`message-${idx}`}>
+                      <div>今天</div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className={styles.dateContainer}>
+                    <div className={styles.dateTab} key={`message-${idx}`}>
+                      <div>{message as any}</div>
+                    </div>
+                  </div>
+                )
+              ) : message.role === "user" ? (
                 <AnimalHelpPurple key={`message-${message.id}`} text={message.conversation} image={message.image} time={message.created_at} />
               ) : (
                 <AnimalHelpWhite key={`message-${message.id}`} text={message.conversation} image={message.image} time={message.created_at} />
               )
+            )}
+
+            {!!messagesArr.length && !isTodayAppeared && (
+              <div className={styles.dateContainer}>
+                <div className={styles.dateTab}>
+                  <div>今天</div>
+                </div>
+              </div>
             )}
 
             {messagesArr.map((message, idx) =>

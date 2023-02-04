@@ -55,11 +55,15 @@ export default function VolunteerRecord() {
       }}
     >
       <div className={styles.containerForAll}>
-        <div className={styles.header}>
-          <HiXMark className={styles.closingIcon} onClick={() => navigate(-1)} />
-          <span>社職紀錄</span>
+        <div className={styles.headerContainer}>
+          <div>
+            <div className={styles.header}>
+              <HiXMark className={styles.closingIcon} onClick={() => navigate(-1)} />
+              <span>社職紀錄</span>
+            </div>
+            <hr className={styles.headerHr} />
+          </div>
         </div>
-        <hr className={styles.headerHr} />
 
         <div className={styles.forFlex100vw}>
           <div className={styles.forFlexColumn312px}>
@@ -68,38 +72,40 @@ export default function VolunteerRecord() {
           </div>
         </div>
         <hr className={styles.headerHr90vw} />
-        <Timeline className={styles.forFlexColumn100vw} color="petscue-purple" active={3}>
-          <Timeline.Item className={styles.timeLineItem} title="加入Petscue">
-            <div className={styles.timeLineDate}>
-              <span className={styles.timeLineYear}>2022</span>-01-19
-            </div>
-          </Timeline.Item>
-          <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
-            <div className={styles.timeLineDate}>
-              <span className={styles.timeLineYear}>2022</span>-03-19
-            </div>
-          </Timeline.Item>
-          <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
-            <div className={styles.timeLineDate}>
-              <span className={styles.timeLineYear}>2022</span>-03-19
-            </div>
-          </Timeline.Item>
-          <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
-            <div className={styles.timeLineDate}>
-              <span className={styles.timeLineYear}>2022</span>-03-19
-            </div>
-          </Timeline.Item>
-          <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
-            <div className={styles.timeLineDate}>
-              <span className={styles.timeLineYear}>2022</span>-03-19
-            </div>
-          </Timeline.Item>
-          <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
-            <div className={styles.timeLineDate}>
-              <span className={styles.timeLineYear}>2022</span>-03-19
-            </div>
-          </Timeline.Item>
-        </Timeline>
+        <div className={styles.timelineContainer}>
+          <Timeline className={styles.forFlexColumn100vw} color="petscue-purple" active={3}>
+            <Timeline.Item className={styles.timeLineItem} title="加入Petscue">
+              <div className={styles.timeLineDate}>
+                <span className={styles.timeLineYear}>2022</span>-01-19
+              </div>
+            </Timeline.Item>
+            <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
+              <div className={styles.timeLineDate}>
+                <span className={styles.timeLineYear}>2022</span>-03-19
+              </div>
+            </Timeline.Item>
+            <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
+              <div className={styles.timeLineDate}>
+                <span className={styles.timeLineYear}>2022</span>-03-19
+              </div>
+            </Timeline.Item>
+            <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
+              <div className={styles.timeLineDate}>
+                <span className={styles.timeLineYear}>2022</span>-03-19
+              </div>
+            </Timeline.Item>
+            <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
+              <div className={styles.timeLineDate}>
+                <span className={styles.timeLineYear}>2022</span>-03-19
+              </div>
+            </Timeline.Item>
+            <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
+              <div className={styles.timeLineDate}>
+                <span className={styles.timeLineYear}>2022</span>-03-19
+              </div>
+            </Timeline.Item>
+          </Timeline>
+        </div>
         <NewNavbar activeBtn="user" />
       </div>
     </MantineProvider>

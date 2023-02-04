@@ -36,6 +36,7 @@ export default function Organisation() {
             {data?.map((organisation) => (
               <OrganisationContainer key={organisation.id} organisation={organisation} page="organisationList" />
             ))}
+            {data && data.length % 2 === 1 && <div className={styles.emptyBox}></div>}
           </div>
         </div>
       ) : (
