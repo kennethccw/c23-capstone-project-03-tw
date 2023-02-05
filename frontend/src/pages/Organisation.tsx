@@ -47,7 +47,9 @@ export default function Organisation() {
       setIsKowloonChecked(false);
     }
     else {
-      setIsHKIslandChecked(true)
+      setIsHKIslandChecked(true);
+      setIsKowloonChecked(false);
+      setIsNTChecked(false);
     }
   };
 
@@ -57,7 +59,9 @@ export default function Organisation() {
       setIsHKIslandChecked(false)
       setIsNTChecked(false)
 
-    } else { setIsKowloonChecked(true); }
+    } else { setIsKowloonChecked(true);
+      setIsHKIslandChecked(false);
+      setIsNTChecked(false);  }
   };
 
   const handleClickNTChecked = () => {
@@ -65,7 +69,9 @@ export default function Organisation() {
       setIsNTChecked(!isNTChecked);
       setIsHKIslandChecked(false)
       setIsKowloonChecked(false)
-    } else { setIsNTChecked(true) }
+    } else { setIsNTChecked(true);
+      setIsHKIslandChecked(false);
+      setIsKowloonChecked(false); }
   };
 
 
@@ -75,41 +81,50 @@ export default function Organisation() {
     setIsSearching(true);
 
     if (isHKIslandChecked) {
-      let availableOrganisationNumber = [...organisationData].filter((eachOrganisation) => eachOrganisation.district === "hong_kong_island").length;
+      let availableOrganisationNumber = [...organisationData].filter((eachOrganisation) => eachOrganisation.district_org === "hong_kong_island").length;
       setNumberOfAvailableOrganisations(availableOrganisationNumber)
     }
     else if (isKowloonChecked) {
-      let availableOrganisationNumber = [...organisationData].filter((eachOrganisation) => eachOrganisation.district === "kowloon").length;
+      let availableOrganisationNumber = [...organisationData].filter((eachOrganisation) => eachOrganisation.district_org === "kowloon").length;
       setNumberOfAvailableOrganisations(availableOrganisationNumber)
     }
-    else {
-      let availableOrganisationNumber = [...organisationData].filter((eachOrganisation) => eachOrganisation.district === "new_territories").length;
+    else if(isNTChecked) {
+      let availableOrganisationNumber = [...organisationData].filter((eachOrganisation) => eachOrganisation.district_org === "new_territories").length;
       setNumberOfAvailableOrganisations(availableOrganisationNumber)
     }
+    
 
   }, [isHKIslandChecked, isKowloonChecked, isNTChecked])
 
 
 
   const handleClickConfirmButton = () => {
-    setIsFilterTriggered(false);
+   
     setIsHKIslandChecked(false);
     setIsKowloonChecked(false);
-    if (numberOfAvailableOrganisations === 0) {
-      alert("請選擇地點")
+    setIsNTChecked(false);
+    setIsSearching(true);
+    if (!isHKIslandChecked && !isKowloonChecked && !isNTChecked) {
+      alert("請選擇地點");
+
+      return;
     }
     else if (isHKIslandChecked) {
-      let organisationToBeRendered = [...organisationData].filter((eachOrganisation) => eachOrganisation.district === "hong_kong_island");
-      setOrganisationDataForSearch(organisationToBeRendered)
+      let organisationToBeRendered = [...organisationData].filter((eachOrganisation) => eachOrganisation.district_org === "hong_kong_island");
+      setOrganisationDataForSearch(organisationToBeRendered);
+      setIsFilterTriggered(false);
+     
     }
     else if (isKowloonChecked) {
-      let organisationToBeRendered = [...organisationData].filter((eachOrganisation) => eachOrganisation.district === "kowloon");
-      setOrganisationDataForSearch(organisationToBeRendered)
+      let organisationToBeRendered = [...organisationData].filter((eachOrganisation) => eachOrganisation.district_org === "kowloon");
+      setIsFilterTriggered(false);
+    
     }
     else if (isNTChecked) {
-      let organisationToBeRendered = [...organisationData].filter((eachOrganisation) => eachOrganisation.district === "new_territories");
+      let organisationToBeRendered = [...organisationData].filter((eachOrganisation) => eachOrganisation.district_org === "new_territories");
       setOrganisationDataForSearch(organisationToBeRendered)}
-  
+      setIsFilterTriggered(false);
+   
 }
 
 
@@ -175,7 +190,7 @@ return (
               numberOfAvailableActivities={numberOfAvailableOrganisations}
               onClearAll={() => handleClickClearAll()}
             />
-          ) : data?.map((organisation) => (
+          ) : organisationDataForSearch?.map((organisation) => (
             <OrganisationContainer key={organisation.id} organisation={organisation} page="organisationList" />
           ))}
         </div>

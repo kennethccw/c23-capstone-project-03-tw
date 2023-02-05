@@ -201,37 +201,44 @@ console.log('check =================================',availableActivityNumber)
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   const handleClickConfirmButton = () => {
-    setIsFilterTriggered(false);
+    
     setIsHKIslandChecked(false);
     setIsKowloonChecked(false);
     setIsNTChecked(false);
     setIsSearching(true);
-    if (numberOfAvailableActivities === 0) {
-      alert("請選擇地點及出席日子")
+    if (!isHKIslandChecked &&!isKowloonChecked && !isNTChecked) {
+      alert("請選擇地點及出席日子");
+      return;
     }
     else if (isHKIslandChecked && isWeekDayChecked) {
       let activityToBeRendered = [...activityData].filter((eachActivity) => eachActivity.district === "hong_kong_island" && new Date(eachActivity.date).getDay() !== 0 && new Date(eachActivity.date).getDay() !== 6);
       setActivityDataForSearch(activityToBeRendered)
+      setIsFilterTriggered(false);
     }
     else if (isHKIslandChecked && isWeekendChecked) {
       let activityToBeRendered = [...activityData].filter((eachActivity) => eachActivity.district === "hong_kong_island" && new Date(eachActivity.date).getDay() !== 1 && new Date(eachActivity.date).getDay() !== 2 && new Date(eachActivity.date).getDay() !== 3 && new Date(eachActivity.date).getDay() !== 4 && new Date(eachActivity.date).getDay() !== 5);
       setActivityDataForSearch(activityToBeRendered)
+      setIsFilterTriggered(false);
     }
     else if (isKowloonChecked && isWeekDayChecked) {
       let activityToBeRendered = [...activityData].filter((eachActivity) => eachActivity.district === "kowloon" && new Date(eachActivity.date).getDay() !== 0 && new Date(eachActivity.date).getDay() !== 6);
       setActivityDataForSearch(activityToBeRendered)
+      setIsFilterTriggered(false);
     }
     else if (isKowloonChecked && isWeekendChecked) {
       let activityToBeRendered = [...activityData].filter((eachActivity) => eachActivity.district === "kowloon" && new Date(eachActivity.date).getDay() !== 1 && new Date(eachActivity.date).getDay() !== 2 && new Date(eachActivity.date).getDay() !== 3 && new Date(eachActivity.date).getDay() !== 4 && new Date(eachActivity.date).getDay() !== 5);
       setActivityDataForSearch(activityToBeRendered)
+      setIsFilterTriggered(false);
     }
     else if (isNTChecked && isWeekDayChecked) {
       let activityToBeRendered = [...activityData].filter((eachActivity) => eachActivity.district === "new_territories" && new Date(eachActivity.date).getDay() !== 0 && new Date(eachActivity.date).getDay() !== 6);
       setActivityDataForSearch(activityToBeRendered)
+      setIsFilterTriggered(false);
     }
     else if(isNTChecked && isWeekendChecked) {
       let activityToBeRendered = [...activityData].filter((eachActivity) => eachActivity.district === "new_territories" && new Date(eachActivity.date).getDay() !== 1 && new Date(eachActivity.date).getDay() !== 2 && new Date(eachActivity.date).getDay() !== 3 && new Date(eachActivity.date).getDay() !== 4 && new Date(eachActivity.date).getDay() !== 5);
       setActivityDataForSearch(activityToBeRendered)
+      setIsFilterTriggered(false);
     }
 
   };

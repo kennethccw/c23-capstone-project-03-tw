@@ -6,7 +6,7 @@ export interface OrganisationList {
   id: number;
   name: string;
   logo: string;
-  district: string;
+  district_org: string;
 }
 export interface OrganisationDetail {
   id: number;
