@@ -48,11 +48,24 @@ export async function seed(knex: Knex): Promise<void> {
         remark: "",
 
         status: "pending",
-        fail_reason: "",
+        fail_reason: "not_applicable",
+        other_fail_reason: "",
+        user_id: 1,
+        pet_id: 3,
+      },
+      {
+        name: "lovepetuser01",
+        email: "lovepetuser01@gmail.com",
+        mobile: 12345678,
+        remark: "",
+
+        status: "pending",
+        fail_reason: "not_applicable",
         other_fail_reason: "",
         user_id: 1,
         pet_id: 2,
       },
+     
       {
         name: "lovepetuser01",
         email: "lovepetuser01@gmail.com",
@@ -60,22 +73,10 @@ export async function seed(knex: Knex): Promise<void> {
         remark: "",
 
         status: "pending",
-        fail_reason: "",
+        fail_reason: "not_applicable",
         other_fail_reason: "",
         user_id: 1,
-        pet_id: 3,
-      },
-      {
-        name: "lovepetuser01",
-        email: "lovepetuser01@gmail.com",
-        mobile: 12345678,
-        remark: "",
-
-        status: "pending",
-        fail_reason: "",
-        other_fail_reason: "",
-        user_id: 1,
-        pet_id: 11,
+        pet_id: 4,
       },
       {
         name: "lovepetuser02",
@@ -84,7 +85,7 @@ export async function seed(knex: Knex): Promise<void> {
         remark: "",
 
         status: "pending",
-        fail_reason: "",
+        fail_reason: "not_applicable",
         other_fail_reason: "",
         user_id: 2,
         pet_id: 3,
@@ -96,34 +97,83 @@ export async function seed(knex: Knex): Promise<void> {
         remark: "",
 
         status: "pending",
-        fail_reason: "",
-        other_fail_reason: "",
-        user_id: 2,
-        pet_id: 11,
-      },
-
-      {
-        name: "lovepetuser02",
-        email: "lovepetuser02@gmail.com",
-        mobile: 12345678,
-        remark: "",
-
-        status: "pending",
-        fail_reason: "",
+        fail_reason: "not_applicable",
         other_fail_reason: "",
         user_id: 2,
         pet_id: 4,
       },
+      {
+        name: "lovepetuser02",
+        email: "lovepetuser02@gmail.com",
+        mobile: 12345678,
+        remark: "",
 
+        status: "fail",
+        fail_reason: "other",
+        other_fail_reason: "申請者曾虐待動物，被判社會服務令",
+        user_id: 2,
+        pet_id: 1,
+      },
+      {
+        name: "lovepetuser03",
+        email: "lovepetuser03@gmail.com",
+        mobile: 12345678,
+        remark: "",
 
+        status: "pending",
+        fail_reason: "not_applicable",
+        other_fail_reason: "",
+        user_id: 3,
+        pet_id: 3,
+      },
+      {
+        name: "lovepetuser04",
+        email: "lovepetuser04@gmail.com",
+        mobile: 12345678,
+        remark: "",
 
+        status: "pending",
+        fail_reason: "not_applicable",
+        other_fail_reason: "",
+        user_id: 4,
+        pet_id: 3,
+      },
+      {
+        name: "lovepetuser05",
+        email: "lovepetuser05@gmail.com",
+        mobile: 12345678,
+        remark: "",
 
+        status: "pending",
+        fail_reason: "not_applicable",
+        other_fail_reason: "",
+        user_id: 5,
+        pet_id: 3,
+      },
+      {
+        name: "lovepetuser04",
+        email: "lovepetuser04@gmail.com",
+        mobile: 12345678,
+        remark: "",
 
+        status: "pending",
+        fail_reason: "not_applicable",
+        other_fail_reason: "",
+        user_id: 4,
+        pet_id: 2,
+      },
+      {
+        name: "lovepetuser05",
+        email: "lovepetuser05@gmail.com",
+        mobile: 12345678,
+        remark: "",
 
-
-
-
-
+        status: "pending",
+        fail_reason: "not_applicable",
+        other_fail_reason: "",
+        user_id: 5,
+        pet_id: 2,
+      },
     ]);
     await trx.commit();
   } catch (e) {
