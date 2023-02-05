@@ -53,7 +53,8 @@ export class EditActivitiesService {
       let getActivitiesResult = await this.knex.select<getActivitiesResult[]>('*',
         "organisations.name as organisation",
         "activities.name as activity",
-        "activities.id as activity_id").from('activities').join('organisations', 'organisations.id', 'activities.organisation_id').where('organisation_id', organisationId).where('is_deleted', false)//select activities.id,activities.name,activities.description,activities.date,activities.location,activities.remaining_place,activities.organisation_id,organisations.name from activities join organisations on organisations.id=activities.organisation_id;
+        "activities.id as activity_id").from('activities').join('organisations', 'organisations.id', 'activities.organisation_id').where('organisation_id', organisationId).where('is_deleted', false).orderBy(['date',{column:'start_time', order:'asc'}])
+        //select activities.id,activities.name,activities.description,activities.date,activities.location,activities.remaining_place,activities.organisation_id,organisations.name from activities join organisations on organisations.id=activities.organisation_id;
       // console.log(getActivitiesResult, 'EditActivitiesService.ts L43')
       return getActivitiesResult
     } catch (e) {

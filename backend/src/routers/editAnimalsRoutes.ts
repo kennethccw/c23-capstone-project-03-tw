@@ -13,7 +13,7 @@ editAnimalsRoutes.post(
 );
 editAnimalsRoutes.post("/deleteAnimals", isLoggedInAPI, editAnimalsController.deleteAnimals);
 editAnimalsRoutes.get(
-  "/getAniamls/:organisationID",
+  "/getAnimals/:organisationID",
   isLoggedInAPI,
   editAnimalsController.getAnimals
 );

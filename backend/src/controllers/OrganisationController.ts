@@ -7,6 +7,7 @@ export class OrganisationController {
   getOrganisationList = async (req: Request, res: Response) => {
     try {
       const data = await this.organisationService.getOrganisationList();
+      console.log(data, "OrganisationController.ts L10")
       res.status(200).json(data);
     } catch (e) {
       res.status(400).json({ message: "Internal Server Error" });
