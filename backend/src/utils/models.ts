@@ -204,6 +204,10 @@ export interface AdoptionApplication {
   remark?: string;
   pet_id: number;
   user_id?: number;
+  image?: string;
+  pet_name: string;
+  pet_image: string;
+  applicant_name: string;
 }
 
 export interface AdoptionResult {

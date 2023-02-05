@@ -41,6 +41,89 @@ export async function seed(knex: Knex): Promise<void> {
         user_id: 1,
         pet_id: 4,
       },
+      {
+        name: "lovepetuser01",
+        email: "lovepetuser01@gmail.com",
+        mobile: 12345678,
+        remark: "",
+
+        status: "pending",
+        fail_reason: "",
+        other_fail_reason: "",
+        user_id: 1,
+        pet_id: 2,
+      },
+      {
+        name: "lovepetuser01",
+        email: "lovepetuser01@gmail.com",
+        mobile: 12345678,
+        remark: "",
+
+        status: "pending",
+        fail_reason: "",
+        other_fail_reason: "",
+        user_id: 1,
+        pet_id: 3,
+      },
+      {
+        name: "lovepetuser01",
+        email: "lovepetuser01@gmail.com",
+        mobile: 12345678,
+        remark: "",
+
+        status: "pending",
+        fail_reason: "",
+        other_fail_reason: "",
+        user_id: 1,
+        pet_id: 11,
+      },
+      {
+        name: "lovepetuser02",
+        email: "lovepetuser02@gmail.com",
+        mobile: 12345678,
+        remark: "",
+
+        status: "pending",
+        fail_reason: "",
+        other_fail_reason: "",
+        user_id: 2,
+        pet_id: 3,
+      },
+      {
+        name: "lovepetuser02",
+        email: "lovepetuser02@gmail.com",
+        mobile: 12345678,
+        remark: "",
+
+        status: "pending",
+        fail_reason: "",
+        other_fail_reason: "",
+        user_id: 2,
+        pet_id: 11,
+      },
+
+      {
+        name: "lovepetuser02",
+        email: "lovepetuser02@gmail.com",
+        mobile: 12345678,
+        remark: "",
+
+        status: "pending",
+        fail_reason: "",
+        other_fail_reason: "",
+        user_id: 2,
+        pet_id: 4,
+      },
+
+
+
+
+
+
+
+
+
+
     ]);
     await trx.commit();
   } catch (e) {

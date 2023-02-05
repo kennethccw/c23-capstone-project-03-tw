@@ -64,4 +64,19 @@ export class AdoptionController {
       res.status(400).json({ message: "Internal Server Error" });
     }
   };
+
+
+  getAdoptionApplication = async  (req: Request, res: Response)=>{
+    try {
+      const organisationId= parseInt(req.params.organisationID);
+console.log("AdoptionController.ts L72: " ,organisationId )
+let getAdoptionApplicationResult = await this.adoptionService.getAdoptionApplication(organisationId)
+res.status(200).json(getAdoptionApplicationResult)
+    } 
+    catch(e){
+      res.status(400).json({ message: "Internal Server Error" });
+    }
+  }
+
+
 }

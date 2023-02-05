@@ -96,4 +96,29 @@ export class AdoptionService {
       throw e;
     }
   };
+
+
+  getAdoptionApplication=async (organisationId: number) =>{
+    
+    try {
+      let getAdoptionApplicationResult = await this.knex.select<AdoptionApplication[]>('name' 
+      // ,'pets.name as pet_name', 'pets.image as pet_image'
+      )
+      .from('adoption_applications')
+      // .join('pets','adoption_applications.pet_id', 'pets.id').join('organisations','organisations.id', 'pets.organisation_id')
+      // // .join('pets', 'pets.id', 'adoption_applications.pet_id')
+      // .where('organisation_id', organisationId)
+      // .where('status','pending' )
+       
+      
+      //select * from adoption_applications join pets on pets.is=adoption_applications.pet_id;
+      // console.log(getActivitiesResult, 'EditActivitiesService.ts L43')
+      console.log(getAdoptionApplicationResult,'AdoptionService.ts L107')
+      return getAdoptionApplicationResult
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+
+  }
 }

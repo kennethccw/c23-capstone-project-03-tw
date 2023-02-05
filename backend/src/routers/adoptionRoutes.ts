@@ -9,3 +9,4 @@ adoptionRoutes.get("/detail", isLoggedInAPI, adoptionController.getPetAdoption);
 adoptionRoutes.get("/result", isLoggedInAPI, adoptionController.getPetAdoptionResult);
 adoptionRoutes.post("/application", isLoggedInAPI, adoptionController.postPetAdoptionApplication);
 adoptionRoutes.put("/application", isLoggedInAPI, adoptionController.putPetAdoptionApplication);
+adoptionRoutes.get("/handleAdoptionApplication/getAdoptionApplciation/:organisationID", isLoggedInAPI, adoptionController.getAdoptionApplication);
