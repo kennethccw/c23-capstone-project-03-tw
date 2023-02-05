@@ -249,3 +249,11 @@ export interface SupportPanel {
   user_id: number;
   username: string;
 }
+
+export interface VolunteerRecord {
+  on_board_date: Date;
+  activity_name: string;
+  activity_date: Date;
+  activity_start_time: Date;
+  activity_end_time: Date;
+}

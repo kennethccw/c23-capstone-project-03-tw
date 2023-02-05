@@ -73,6 +73,12 @@
   padding-left: 80px;
   font-size: 20px;
 }
+.timeLineItem::before {
+  left: -4px;
+}
+.timeLineItem div {
+  left: -12px;
+}
 .timeLineDate {
   margin-top: 8px;
   font-size: 14px;

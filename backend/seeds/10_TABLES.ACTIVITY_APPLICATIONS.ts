@@ -19,10 +19,31 @@ export async function seed(knex: Knex): Promise<void> {
         user_id: 2,
         activity_id: 2,
       },
+      {
+        is_approved: true,
+        is_participated: true,
+        is_cancelled: false,
+        user_id: 45,
+        activity_id: 4,
+      },
+      {
+        is_approved: true,
+        is_participated: true,
+        is_cancelled: false,
+        user_id: 45,
+        activity_id: 7,
+      },
+      {
+        is_approved: true,
+        is_participated: true,
+        is_cancelled: false,
+        user_id: 45,
+        activity_id: 10,
+      },
     ]);
     await trx.commit();
   } catch (e) {
-    console.log(e)
+    console.log(e);
     await trx.rollback();
   }
 }

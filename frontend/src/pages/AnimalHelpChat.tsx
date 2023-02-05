@@ -71,14 +71,14 @@ export default function AnimalHelpChatroom() {
       const idxOfMessage = result.message.findIndex(
         (message) => `${new Date(message.created_at!).getFullYear()}-${new Date(message.created_at!).getMonth() + 1}-${new Date(message.created_at!).getDate()}` === date
       );
-      if (idxOfMessage === 0) {
-        idxOfMessageArr.push(-1);
-      } else {
-        idxOfMessageArr.push(idxOfMessage);
-      }
+      // if (idxOfMessage === 0) {
+      //   idxOfMessageArr.push(-1);
+      // } else {
+      idxOfMessageArr.push(idxOfMessage);
+      // }
     }
     for (let i = 0; i < idxOfMessageArr.length; i++) {
-      result.message.splice(idxOfMessageArr[i] + 1, 0, dateArr[i] as any);
+      result.message.splice(idxOfMessageArr[i] + i, 0, dateArr[i] as any);
       if (dateArr[i] === `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`) {
         setIsTodayAppeared(true);
       }
@@ -181,7 +181,7 @@ export default function AnimalHelpChatroom() {
       }}
     >
       <div className={styles.containerForAll}>
-        <LoadingOverlay visible={isLoading} overlayBlur={2} />
+        <LoadingOverlay visible={isLoading || isScrolling} overlayBlur={2} />
 
         <div>
           <div className={styles.chevronAndAdjustmntIcon}>
