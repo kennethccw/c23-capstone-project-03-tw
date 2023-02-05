@@ -16,7 +16,7 @@ export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () =>
 
   const [opened, setOpened] = useState(false);
   const navigate = useNavigate();
-
+  let role=localStorage.getItem('role')
   const cancelAdoptionApplication = async () => {
     const resp = await putPetAdoptionApplication(props.pet.pet_id);
     const result = await resp.json();
@@ -75,7 +75,7 @@ export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () =>
             </div>
           </div>
         </div>
-        {!props.status && (
+        {!props.status && role!=="organisation" && (
           <Button className={styles.buttonsecond} color="violet" radius="xl" onClick={props.clickHandler}>
             申請領養
           </Button>

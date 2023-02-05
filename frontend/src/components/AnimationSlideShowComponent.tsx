@@ -27,11 +27,12 @@ export function AnimalShow(props: { pet: PetPreview; clickHandler: () => void; d
                 <div className={styles.nameTab}>{props.pet.age}</div>
               </div>
               <Button className={styles.button} color="violet" radius="xl" onClick={props.clickHandler}>
-                {props.displayDeleteButton ? <div className={styles.deleteButton}>刪除活動</div> : <>詳細資料</>}
+                {props.displayDeleteButton ? <div className={styles.deleteButton} onClick={props.onRemove}>刪除活動</div> : <>詳細資料</>}
               </Button>
             </div>
           </div>
         </div>
+       
       </MantineProvider>
     </>
   );

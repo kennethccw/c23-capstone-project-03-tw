@@ -17,32 +17,40 @@ export default function CategorisedActivities() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   // const params = new URLSearchParams(document.location.search);
-  const [ActivityData, setActivityData] = useState<ActivityPreview[]>([]);
-  const [ActivityDataForSearch, setActivityDataForSearch] = useState<ActivityPreview[]>([]);
+  const [activityData, setActivityData] = useState<ActivityPreview[]>([]);
+  const [activityDataForSearch, setActivityDataForSearch] = useState<ActivityPreview[]>([]);
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [search, setSearch] = useState<string | null>("");
+
+
+  /////////////////////// 篩選功能部分 //////////////////////////////////////
   const [isFilterTriggered, setIsFilterTriggered] = useState<boolean>(false);
   const [isHKIslandChecked, setIsHKIslandChecked] = useState<boolean>(false);
   const [isKowloonChecked, setIsKowloonChecked] = useState<boolean>(false);
   const [isNTChecked, setIsNTChecked] = useState<boolean>(false);
-
   const [numberOfAvailableActivities, setNumberOfAvailableActivities] = useState<number>(0);
 
-  const [clearAll, setClearAll] = useState<boolean>(false);
+  const [isWeekendChecked, setIsWeekendChecked] = useState<boolean>(false);
+  const [isWeekDayChecked, setIsWeekDayChecked] = useState<boolean>(false);
+  //////////////////////////////////////////////////////////////////////////////////////
 
-  console.log(isHKIslandChecked, "HK Island");
-  console.log(isKowloonChecked, "kowloon");
-  console.log(isNTChecked, "新界");
+  console.log("check HK Island? : ", isHKIslandChecked);
+  console.log("check kowloon? : ", isKowloonChecked);
+  console.log("check新界? :", isNTChecked);
+  console.log("numberOfAvailableActivitie:", numberOfAvailableActivities);
+  console.log("what are you searching for? : ", search);
+  console.log("activity data:", activityData)
+  console.log("isWeekendCheced: ", isWeekendChecked)
+  console.log("isWeekDayChecked: ", isWeekDayChecked)
+console.log("activity to be rendered: ", activityDataForSearch)
+  console.log("clicked filter page", isFilterTriggered)
 
-  console.log(numberOfAvailableActivities, "numberOfAvailableActivitie");
-  console.log("searching?", isSearching);
-  console.log("what are you searching for?", search);
   //////////////////////////  探索義工機會部分  ///////////////////////////////////////////////
   const searching = (searchValue: string) => {
     if (searchValue.trim() === "") {
       setIsSearching(false);
       setSearch("");
-      setActivityData([...ActivityData]);
+      setActivityData([...activityData]);
       console.log("searchState: ", search);
     }
 
@@ -58,9 +66,11 @@ export default function CategorisedActivities() {
     setSearch("");
     setIsSearching(false);
     setNumberOfAvailableActivities(0);
-    setActivityDataForSearch([]);
-    // setCheckedWeekdayState(false);
-    // setCheckedWeekendState(false);
+    setIsHKIslandChecked(false)
+    setIsKowloonChecked(false);
+    setIsNTChecked(false)
+    setIsWeekendChecked(false);
+    setIsWeekDayChecked(false);
   };
 
   const handleGoback = () => {
@@ -74,68 +84,164 @@ export default function CategorisedActivities() {
     setIsSearching(false);
   };
 
-  const goBackButtonOnTop = () => {
-    setIsFilterTriggered(false);
-    setIsHKIslandChecked(false);
+
+  //////////////////// filter condition ////////////////////////////////////////////////////////
+  const handleClickHKIslandChecked = () => {
+
+    if (!isHKIslandChecked) {    // when hk island is false
+      setIsHKIslandChecked(!isHKIslandChecked); //turn it hkIsland to be true
+      setIsNTChecked(false);   // turn NT false
+      setIsKowloonChecked(false);
+    }  // turn kowloon to be false
+    else {
+      setIsHKIslandChecked(true)
     setIsKowloonChecked(false);
     setIsNTChecked(false);
-    setSearch("");
-    navigate(-1);
-    setIsSearching(false);
-    setNumberOfAvailableActivities(0);
-  };
-
-  const handleClickHKIslandChecked = () => {
-    if (isHKIslandChecked === false) {
-      setIsHKIslandChecked(!isHKIslandChecked);
-      setIsSearching(!isSearching);
-      setIsKowloonChecked(false);
-      setIsNTChecked(false);
+        // keep hk island to be true
     }
-    // else {
-    //   setIsHKIslandChecked(!isHKIslandChecked)
-    //   setIsSearching(!isSearching)
-    // }
   };
-
+  // ___________________________________________________________________________________________________________//
   const handleClickKowloonChecked = () => {
-    if (isKowloonChecked === false) {
-      setIsKowloonChecked(!isKowloonChecked);
-      setIsSearching(!isSearching);
-      setIsHKIslandChecked(false);
-      setIsNTChecked(false);
-    }
-    // else {
-    //   setIsKowloonChecked(!isKowloonChecked)
-    //   setIsSearching(!isSearching)
-    // }
-  };
+    if (!isKowloonChecked) {       //when kowloon is false
+      setIsKowloonChecked(!isKowloonChecked);  //turn kowloon to be true
+      setIsHKIslandChecked(false)     //turn hk island to be false
+      setIsNTChecked(false)   //turn nt to be false
 
+    } else { setIsKowloonChecked(true);
+      setIsHKIslandChecked(false);
+      setIsNTChecked(false); }    // if true when click,keep kowloon true
+  };
+  // ___________________________________________________________________________________________________________//
   const handleClickNTChecked = () => {
-    if (isNTChecked === false) {
-      setIsNTChecked(!isNTChecked);
-      setIsSearching(!isSearching);
+    if (!isNTChecked) {         //when NT is false 
+      setIsNTChecked(!isNTChecked);     //  turn NT to true case
+      setIsHKIslandChecked(false)   // turn hk island to be false
+      setIsKowloonChecked(false)     // turn kowloon to be false
+    } else { setIsNTChecked(true);
       setIsHKIslandChecked(false);
       setIsKowloonChecked(false);
-    }
+      }    // if true when click,keep NT true
   };
 
+
+  const handleClickWeekDay = () => {
+    if (!isWeekDayChecked) {   // when weekday is false
+      setIsWeekDayChecked(!isWeekDayChecked); // turn weekday to be true
+      setIsWeekendChecked(false) //turn weekend to be false
+    }
+    else {
+      setIsWeekDayChecked(true); // if weekday is true when click, keep it true
+      setIsWeekendChecked(false)  // // turn weekend false
+    }
+  }
+
+  const handleClickWeekend = () => {
+    if (!isWeekendChecked) { setIsWeekendChecked(!isWeekendChecked); setIsWeekDayChecked(false) } else { setIsWeekendChecked(true); setIsWeekDayChecked(false) }
+  }
+
+
+
+  useEffect(() => {
+
+    setIsSearching(true);
+
+    if (isHKIslandChecked && isWeekDayChecked) {
+      let availableActivityNumber = [...activityData].filter((eachActivity) => eachActivity.district === "hong_kong_island" && new Date(eachActivity.date).getDay() !== 0 && new Date(eachActivity.date).getDay() !== 6).length;
+      let availableActivity = [...activityData].filter((eachActivity) => eachActivity.district === "hong_kong_island" && new Date(eachActivity.date).getDay() !== 0 && new Date(eachActivity.date).getDay() !== 6)
+      setNumberOfAvailableActivities(availableActivityNumber)
+      console.log("--------------",availableActivityNumber)
+      console.log("--------------",availableActivity)
+    }
+
+    else if (isHKIslandChecked && isWeekendChecked) {
+      let availableActivityNumber = [...activityData].filter((eachActivity) => eachActivity.district === "hong_kong_island" && new Date(eachActivity.date).getDay() !== 1 && new Date(eachActivity.date).getDay() !== 2 && new Date(eachActivity.date).getDay() !== 3 && new Date(eachActivity.date).getDay() !== 4 && new Date(eachActivity.date).getDay() !== 5).length;
+      let availableActivity = [...activityData].filter((eachActivity) => eachActivity.district === "hong_kong_island" && new Date(eachActivity.date).getDay() !== 1 && new Date(eachActivity.date).getDay() !== 2 && new Date(eachActivity.date).getDay() !== 3 && new Date(eachActivity.date).getDay() !== 4 && new Date(eachActivity.date).getDay() !== 5);
+      setNumberOfAvailableActivities(availableActivityNumber)
+      console.log("--------------",availableActivityNumber)
+      console.log("--------------",availableActivity)
+    }
+    else if (isKowloonChecked && isWeekDayChecked) {
+      let availableActivityNumber = [...activityData].filter((eachActivity) => eachActivity.district === "kowloon" && new Date(eachActivity.date).getDay() !== 0 && new Date(eachActivity.date).getDay() !== 6).length;
+      let availableActivity = [...activityData].filter((eachActivity) => eachActivity.district === "kowloon" && new Date(eachActivity.date).getDay() !== 0 && new Date(eachActivity.date).getDay() !== 6);
+      setNumberOfAvailableActivities(availableActivityNumber)
+      console.log("--------------",availableActivityNumber)
+      console.log("--------------",availableActivity)
+    }
+    else if (isKowloonChecked && isWeekendChecked) {
+      let availableActivityNumber = [...activityData].filter((eachActivity) => eachActivity.district === "kowloon" && new Date(eachActivity.date).getDay() !== 1 && new Date(eachActivity.date).getDay() !== 2 && new Date(eachActivity.date).getDay() !== 3 && new Date(eachActivity.date).getDay() !== 4 && new Date(eachActivity.date).getDay() !== 5).length;
+      let availableActivity = [...activityData].filter((eachActivity) => eachActivity.district === "kowloon" && new Date(eachActivity.date).getDay() !== 1 && new Date(eachActivity.date).getDay() !== 2 && new Date(eachActivity.date).getDay() !== 3 && new Date(eachActivity.date).getDay() !== 4 && new Date(eachActivity.date).getDay() !== 5);
+      setNumberOfAvailableActivities(availableActivityNumber)
+      console.log("--------------",availableActivityNumber)
+      console.log("--------------",availableActivity)
+    }
+    else if (isNTChecked && isWeekDayChecked) {
+      let availableActivityNumber = [...activityData].filter((eachActivity) => eachActivity.district === "new_territories" && new Date(eachActivity.date).getDay() !== 0 && new Date(eachActivity.date).getDay() !== 6).length;
+      let availableActivity = [...activityData].filter((eachActivity) => eachActivity.district === "new_territories" && new Date(eachActivity.date).getDay() !== 0 && new Date(eachActivity.date).getDay() !== 6);
+      setNumberOfAvailableActivities(availableActivityNumber)
+      console.log("--------------",availableActivity)
+    }
+    else if (isNTChecked && isWeekendChecked) {
+      let availableActivityNumber = [...activityData].filter((eachActivity) => eachActivity.district === "new_territories" && new Date(eachActivity.date).getDay() !== 1 && new Date(eachActivity.date).getDay() !== 2 && new Date(eachActivity.date).getDay() !== 3 && new Date(eachActivity.date).getDay() !== 4 && new Date(eachActivity.date).getDay() !== 5).length;
+      let availableActivity = [...activityData].filter((eachActivity) => eachActivity.district === "new_territories" && new Date(eachActivity.date).getDay() !== 1 && new Date(eachActivity.date).getDay() !== 2 && new Date(eachActivity.date).getDay() !== 3 && new Date(eachActivity.date).getDay() !== 4 && new Date(eachActivity.date).getDay() !== 5);
+      setNumberOfAvailableActivities(availableActivityNumber)
+      console.log("--------------",availableActivityNumber)
+      console.log("--------------",availableActivity)
+    }
+
+  }, [isHKIslandChecked, isKowloonChecked, isNTChecked, isWeekDayChecked, isWeekendChecked])
+
+/////////////////////////////// debug space ////////////////////////////////
+
+let availableActivityNumber = [...activityData].filter((eachActivity) => eachActivity.district === "new_territories" && new Date(eachActivity.date).getDay() !== 1 && new Date(eachActivity.date).getDay() !== 2 && new Date(eachActivity.date).getDay() !== 3 && new Date(eachActivity.date).getDay() !== 4 && new Date(eachActivity.date).getDay() !== 5).length;
+
+console.log('check =================================',availableActivityNumber)
+
+
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
   const handleClickConfirmButton = () => {
     setIsFilterTriggered(false);
     setIsHKIslandChecked(false);
     setIsKowloonChecked(false);
     setIsNTChecked(false);
-    setIsSearching(false);
+    setIsSearching(true);
     if (numberOfAvailableActivities === 0) {
-      setActivityDataForSearch([]);
+      alert("請選擇地點及出席日子")
     }
+    else if (isHKIslandChecked && isWeekDayChecked) {
+      let activityToBeRendered = [...activityData].filter((eachActivity) => eachActivity.district === "hong_kong_island" && new Date(eachActivity.date).getDay() !== 0 && new Date(eachActivity.date).getDay() !== 6);
+      setActivityDataForSearch(activityToBeRendered)
+    }
+    else if (isHKIslandChecked && isWeekendChecked) {
+      let activityToBeRendered = [...activityData].filter((eachActivity) => eachActivity.district === "hong_kong_island" && new Date(eachActivity.date).getDay() !== 1 && new Date(eachActivity.date).getDay() !== 2 && new Date(eachActivity.date).getDay() !== 3 && new Date(eachActivity.date).getDay() !== 4 && new Date(eachActivity.date).getDay() !== 5);
+      setActivityDataForSearch(activityToBeRendered)
+    }
+    else if (isKowloonChecked && isWeekDayChecked) {
+      let activityToBeRendered = [...activityData].filter((eachActivity) => eachActivity.district === "kowloon" && new Date(eachActivity.date).getDay() !== 0 && new Date(eachActivity.date).getDay() !== 6);
+      setActivityDataForSearch(activityToBeRendered)
+    }
+    else if (isKowloonChecked && isWeekendChecked) {
+      let activityToBeRendered = [...activityData].filter((eachActivity) => eachActivity.district === "kowloon" && new Date(eachActivity.date).getDay() !== 1 && new Date(eachActivity.date).getDay() !== 2 && new Date(eachActivity.date).getDay() !== 3 && new Date(eachActivity.date).getDay() !== 4 && new Date(eachActivity.date).getDay() !== 5);
+      setActivityDataForSearch(activityToBeRendered)
+    }
+    else if (isNTChecked && isWeekDayChecked) {
+      let activityToBeRendered = [...activityData].filter((eachActivity) => eachActivity.district === "new_territories" && new Date(eachActivity.date).getDay() !== 0 && new Date(eachActivity.date).getDay() !== 6);
+      setActivityDataForSearch(activityToBeRendered)
+    }
+    else if(isNTChecked && isWeekendChecked) {
+      let activityToBeRendered = [...activityData].filter((eachActivity) => eachActivity.district === "new_territories" && new Date(eachActivity.date).getDay() !== 1 && new Date(eachActivity.date).getDay() !== 2 && new Date(eachActivity.date).getDay() !== 3 && new Date(eachActivity.date).getDay() !== 4 && new Date(eachActivity.date).getDay() !== 5);
+      setActivityDataForSearch(activityToBeRendered)
+    }
+
   };
 
   const handleClickClearAll = () => {
-    setClearAll(true);
     setIsHKIslandChecked(false);
     setIsKowloonChecked(false);
     setIsNTChecked(false);
+    setIsWeekDayChecked(false);
+    setIsWeekendChecked(false);
     setNumberOfAvailableActivities(0);
   };
 
@@ -154,15 +260,13 @@ export default function CategorisedActivities() {
       navigate("/activity");
     }
 
-    // let numberOfInitialActivity= ActivityDataForSearch.length
-    // console.log(numberOfInitialActivity.toString(), '<-number of initial activity')
-    // setNumberOfAvailableActivities(numberOfInitialActivity.toString())
   }, []);
   const [pageCategory, setPageCategory] = useState(PageCategory.all);
 
   ///////////////////////////////// 探索義工機會部分 search bar function ////////////////////
   useEffect(() => {
-    let clonedActivityData = [...ActivityData];
+    // console.log("what is the activity now? : ",activityDataForSearch)
+    let clonedActivityData = [...activityData];
     let filterActivityData = clonedActivityData.filter(
       (eachActivityData) =>
         eachActivityData.organisation.toLowerCase().slice(0, search!.length) === search ||
@@ -177,42 +281,7 @@ export default function CategorisedActivities() {
     setActivityDataForSearch(filterActivityData);
   }, [search]);
 
-  ////////////篩選功能部分//////////
-  useEffect(() => {
-    let HKIslandActivityNumber = ActivityData.filter((eachActivity) => eachActivity.district === "hong_kong_island").length;
-    let HKIslandActivity = ActivityData.filter((eachActivity) => eachActivity.district === "hong_kong_island");
-    if (isHKIslandChecked) {
-      setNumberOfAvailableActivities(HKIslandActivityNumber);
-      setActivityDataForSearch(HKIslandActivity);
-    } else {
-      setNumberOfAvailableActivities(0);
-      setActivityDataForSearch(ActivityDataForSearch);
-    }
-  }, [isHKIslandChecked]);
 
-  useEffect(() => {
-    let KowloonActivityNumber = ActivityData.filter((eachActivity) => eachActivity.district === "kowloon").length;
-    let KowloonActivity = ActivityData.filter((eachActivity) => eachActivity.district === "kowloon");
-    if (isKowloonChecked) {
-      setNumberOfAvailableActivities(KowloonActivityNumber);
-      setActivityDataForSearch(KowloonActivity);
-    } else {
-      setNumberOfAvailableActivities(0);
-      setActivityDataForSearch(ActivityDataForSearch);
-    }
-  }, [isKowloonChecked]);
-
-  useEffect(() => {
-    let NTActivityNumber = ActivityData.filter((eachActivity) => eachActivity.district === "new_territories").length;
-    let NTActivity = ActivityData.filter((eachActivity) => eachActivity.district === "new_territories");
-    if (isNTChecked) {
-      setNumberOfAvailableActivities(NTActivityNumber);
-      setActivityDataForSearch(NTActivity);
-    } else {
-      setNumberOfAvailableActivities(0);
-      setActivityDataForSearch(ActivityDataForSearch);
-    }
-  }, [isNTChecked]);
 
   ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -255,15 +324,20 @@ export default function CategorisedActivities() {
   //   setPageCategory(params.get("category") as PageCategory);
   // }
 
-  console.log(data);
 
-  if (data && data !== ActivityData && !isSearching) {
+
+  if (data && data !== activityData
+    && !isSearching
+  ) {
+    console.log("fetched data from DB:", data);
     setActivityData(data!);
     setActivityDataForSearch(data!);
-    // setNumberOfAvailableActivities(data!.length.toString())
-    console.log("new data stored into Activity Data");
+    // console.log("new data stored into Activity Data");
   }
 
+
+
+  // console.log("activity to be render: ", activityDataForSearch)
   return (
     <>
       <LoadingOverlay visible={isLoading} overlayBlur={2} />
@@ -319,6 +393,12 @@ export default function CategorisedActivities() {
             onCheckKowloon={() => handleClickKowloonChecked()}
             isNTChecked={isNTChecked}
             onCheckNT={() => handleClickNTChecked()}
+            onCheckWeekDay={() => handleClickWeekDay()}
+            onCheckWeekend={() => handleClickWeekend()}
+            isWeekDayChecked={isWeekDayChecked}
+            isWeekendChecked={isWeekendChecked}
+
+
             onConfirm={() => {
               handleClickConfirmButton();
             }}
@@ -334,7 +414,7 @@ export default function CategorisedActivities() {
               {params.get("category") === PageCategory.popular && <div className={styles.header}>熱門活動</div>}
             </div>
 
-            {ActivityDataForSearch?.map((activity) => (
+            {activityDataForSearch?.map((activity) => (
               <Activity key={activity.activity_id} activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}`)} />
             ))}
           </>

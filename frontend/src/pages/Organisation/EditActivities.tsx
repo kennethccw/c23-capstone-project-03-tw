@@ -155,7 +155,10 @@ export default function EditActivities() {
         const data = await resp.json();
         console.log(data.result)
         if (resp.status === 200) {
-            setActivity(activityToBeDisplay!.filter(singleActivity => singleActivity.activity_id !== activityID)); //this is to ensure the data to be deleted is successfully to be "deleted" in the database before it "disappears" in the UI view         
+            // setActivity(activityToBeDisplay!.filter(singleActivity => singleActivity.activity_id !== activityID));
+            
+            activityToBeDisplay?.filter(singleActivity => singleActivity.activity_id !== activityID)
+            //this is to ensure the data to be deleted is successfully to be "deleted" in the database before it "disappears" in the UI view         
             alert(data.result)
         }
         else {
