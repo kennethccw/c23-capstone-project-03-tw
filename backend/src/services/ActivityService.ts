@@ -15,7 +15,7 @@ export class ActivityService {
           "activities.id as activity_id"
         )
         .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id");
-      console.log(result);
+      // console.log(result, 'ActivityService.ts L18');
       return result;
     } catch (e) {
       console.log(e);
@@ -34,7 +34,7 @@ export class ActivityService {
         .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id")
         .first()
         .where("activities.id", id);
-      console.log(result);
+      // console.log(result, "ActivityService.ts L37");
       return result;
     } catch (e) {
       console.log(e);
@@ -53,7 +53,7 @@ export class ActivityService {
         )
         .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id")
         .where("activities.type", type);
-      console.log(result);
+      // console.log(result, "ActivityService.ts L56");
       return result;
     } catch (e) {
       console.log(e);
@@ -62,7 +62,7 @@ export class ActivityService {
   };
 
   postActivityApplication = async (uid: number, activityId: number, user: Profile) => {
-    console.log("sir this way 1");
+    // console.log("sir this way 1 ActivityService.ts L65");
     const trx = await this.knex.transaction();
     try {
       const isAppliedBefore = await this.knex(TABLES.ACTIVITY_APPLICATIONS)
@@ -70,20 +70,20 @@ export class ActivityService {
         .where("user_id", uid)
         .andWhere("activity_id", activityId)
         .first();
-      console.log(isAppliedBefore, "isApplied");
-      console.log(isAppliedBefore?.is_cancelled, "isCancelled");
+      // console.log(isAppliedBefore, "isApplied", "ActivityService.ts L73");
+      // console.log(isAppliedBefore?.is_cancelled, "isCancelled", "ActivityService.ts L74");
       if (isAppliedBefore && !isAppliedBefore.is_cancelled) {
-        console.log("sir this way 2");
+        // console.log("sir this way 2 ActivityService.ts L76");
         await trx.commit();
         return { message: "Applied before" };
       } else if (isAppliedBefore && isAppliedBefore.is_cancelled) {
-        console.log("sir this way 4");
+        // console.log("sir this way 4");
         const userResult = await trx<User>(TABLES.USERS)
           .update(user)
           .update("updated_at", this.knex.fn.now())
           .where("id", uid)
           .returning("*");
-        console.log(userResult[0]);
+        // console.log(userResult[0], "ActivityService.ts L86");
         const applicationResult = await trx(TABLES.ACTIVITY_APPLICATIONS)
           .update({
             is_cancelled: false,
@@ -92,24 +92,24 @@ export class ActivityService {
           .where("user_id", uid)
           .andWhere("activity_id", activityId)
           .returning("*");
-        console.log(applicationResult[0]);
+        // console.log(applicationResult[0], "ActivityService.ts L95");
         await trx.commit();
         return { userResult: userResult[0], applicationResult: applicationResult[0] };
       } else {
-        console.log(user, "here");
+        // console.log(user, "here  ActivityService.ts L99");
         const userResult = await trx<User>(TABLES.USERS)
           .update(user)
           .update("updated_at", this.knex.fn.now())
           .where("id", uid)
           .returning("*");
-        console.log(userResult[0]);
+        // console.log(userResult[0], "ActivityService.ts L105");
         const applicationResult = await trx(TABLES.ACTIVITY_APPLICATIONS)
           .insert({
             user_id: uid,
             activity_id: activityId,
           })
           .returning("*");
-        console.log(applicationResult[0]);
+        // console.log(applicationResult[0], "ActivityService.ts L112");
         await trx.commit();
         return { userResult: userResult[0], applicationResult: applicationResult[0] };
       }
@@ -131,7 +131,7 @@ export class ActivityService {
         .where("user_id", uid)
         .andWhere("activity_id", activityId)
         .returning("*");
-      console.log(result[0]);
+      // console.log(result[0], "ActivityService.ts L134");
       return result[0];
     } catch (e) {
       console.log(e);
