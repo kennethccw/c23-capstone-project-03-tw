@@ -112,7 +112,7 @@ export default function Schedule() {
                   key={activity.application_id}
                   activity={activity}
                   clickHandler={() => {
-                    navigate(`/activity/detail?id=${activity.activity_id}&?confirmed=true`);
+                    navigate(`/activity/detail?id=${activity.activity_id}&status=${ScheduleButton.confirmed}`);
                   }}
                 />
               ))}

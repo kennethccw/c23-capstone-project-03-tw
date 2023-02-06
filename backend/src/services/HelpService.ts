@@ -120,9 +120,13 @@ export class HelpService {
           conversation,
           role: "organisation",
         })
-        .returning("*");
 
-      return messageResult[0];
+        .returning("*");
+      const organisation = await this.knex(TABLES.ORGANISATIONS)
+        .select("name")
+        .where("id", messageResult[0].organisation_id)
+        .first();
+      return { message: messageResult[0], organisation };
     } catch (e) {
       console.log(e);
       throw e;
@@ -138,7 +142,38 @@ export class HelpService {
           role: "organisation",
         })
         .returning("*");
-      return messageResult[0];
+      const organisation = await this.knex(TABLES.ORGANISATIONS)
+        .select("name")
+        .where("id", messageResult[0].organisation_id)
+        .first();
+      return { message: messageResult[0], organisation };
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  };
+
+  notification = async (uid: number, name: string, organisationId: number) => {
+    try {
+      const isAppeared = await this.knex(TABLES.NOTIFICATION)
+        .where("type", "message")
+        .andWhere("user_id", uid)
+        .andWhere("any_id", organisationId)
+        .first();
+      if (isAppeared) {
+        const result = await this.knex(TABLES.NOTIFICATION)
+          .update("updated_at", new Date())
+          .increment("count", 1)
+          .where("type", "message")
+          .andWhere("user_id", uid)
+          .andWhere("any_id", organisationId)
+          .returning("*");
+        return result[0];
+      }
+      const result = await this.knex(TABLES.NOTIFICATION)
+        .insert({ type: "message", user_id: uid, content: name, count: 1, any_id: organisationId })
+        .returning("*");
+      return result[0];
     } catch (e) {
       console.log(e);
       throw e;

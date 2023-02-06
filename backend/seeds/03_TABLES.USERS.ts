@@ -410,6 +410,7 @@ export async function seed(knex: Knex): Promise<void> {
         birthday: "10-17-1998",
         gender: "male",
         is_experienced: true,
+        created_at: new Date("2023-01-01"),
       },
     ]);
     await trx.commit();

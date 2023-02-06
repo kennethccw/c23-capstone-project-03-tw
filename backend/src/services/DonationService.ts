@@ -1,5 +1,5 @@
 import type { Knex } from "knex";
-import { BadgeRank, BadgeType, Donation } from "../utils/models";
+import { BadgeRank, BadgeType, Donation, NotificationType } from "../utils/models";
 import { TABLES } from "../utils/tables";
 
 export class DonationService {
@@ -34,6 +34,11 @@ export class DonationService {
             .andWhere("badge_id", BadgeType.donation_philanthropist)
             .andWhere("year", new Date().getFullYear())
             .returning("*");
+          await trx(TABLES.NOTIFICATION).insert({
+            type: NotificationType.badge,
+            content: "恭喜！剛剛捐款慈善家徽章升級成金徽章了！",
+            user_id: uid,
+          });
         } else if (totalDonationThisYear[0].total_donation > 500) {
           badgeThisYear = await trx(TABLES.BADGE_USER_JUNCTION)
             .update({
@@ -44,6 +49,11 @@ export class DonationService {
             .andWhere("badge_id", BadgeType.donation_philanthropist)
             .andWhere("year", new Date().getFullYear())
             .returning("*");
+          await trx(TABLES.NOTIFICATION).insert({
+            type: NotificationType.badge,
+            content: "恭喜！剛剛捐款慈善家徽章升級成銀徽章了！",
+            user_id: uid,
+          });
         } else {
           badgeThisYear = await this.knex(TABLES.BADGE_USER_JUNCTION)
             .select()
@@ -62,6 +72,11 @@ export class DonationService {
             year: new Date().getFullYear(),
           })
           .returning("*");
+        await trx(TABLES.NOTIFICATION).insert({
+          type: NotificationType.badge,
+          content: "恭喜！剛剛獲得了捐款慈善家銅徽章！",
+          user_id: uid,
+        });
       }
       const onetimeDonation = await trx<Donation>(TABLES.ONETIME_PAYMENT_DONATIONS)
         .insert(donation)

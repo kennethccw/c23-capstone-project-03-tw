@@ -10,7 +10,9 @@ import { HiChevronRight } from "react-icons/hi";
 import { useQuery } from "react-query";
 import { HomeActivityComponent } from "../components/HomeActivityCompoent";
 import { LoadingOverlay } from "@mantine/core";
-import { getHomeActivities } from "../api/homeAPI";
+import { getHomeActivities, getHomeNotification, NotificationType } from "../api/homeAPI";
+import { io } from "socket.io-client";
+import Notification from "../components/Notification";
 
 export default function Home2() {
   const authLoading = useRootSelector((state) => state.auth.loading);
@@ -20,20 +22,94 @@ export default function Home2() {
   // const dispatch = useRootDispatch();
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState(localStorage.getItem("username"));
-
   // useEffect(() => {
   //   dispatch(homeActivityThunk());
   // }, [dispatch]);
 
+  const socket = io("http://localhost:8080", {
+    withCredentials: true,
+    extraHeaders: {
+      "my-custom-header": "abcd",
+    },
+  });
+  interface SocketMessageData {
+    converation?: string;
+    image?: string;
+    organisation: { id: number; name: string };
+  }
+
+  interface Message {
+    organisation: string;
+    count: number;
+  }
+
+  const [socketMessageData, setSocketMessageData] = useState<SocketMessageData>();
+  const [socketMessageDataArr, setSocketMessageDataArr] = useState<SocketMessageData[]>([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    socket.on("connect", () => {
+      console.log(socket.id);
+    });
+    socket.on(`to-clientId${localStorage.getItem("userId")}`, (data) => {
+      setSocketMessageData(data);
+    });
+    return () => {
+      socket.off("connect");
+      socket.off(`to-clientId${localStorage.getItem("userId")}`);
+    };
   }, []);
+
+  const [isChangedState, setIsChangedState] = useState(false);
+
+  useEffect(() => {
+    if (socketMessageData) {
+      setSocketMessageDataArr((socketMessageDataArr) => {
+        socketMessageDataArr.push(socketMessageData);
+        return socketMessageDataArr;
+      });
+      setIsChangedState(!isChangedState);
+    }
+  }, [socketMessageData, socketMessageDataArr]);
+
+  console.log(socketMessageDataArr);
+
+  const getHomeActivitiesAndNotification = async () => {
+    const activityArr = await getHomeActivities();
+    const notificationArr = await getHomeNotification();
+    // const messageArr: { content: string; organisationId: number }[] = [];
+    // console.log(notificationArr);
+    // const allMessageArr = notificationArr.filter((notification) => notification.type === NotificationType.message);
+    const messageArr = notificationArr.filter((notification) => notification.type === NotificationType.message);
+    const badgeArr = notificationArr.filter((notification) => notification.type === NotificationType.badge);
+    // console.log(badgeArr);
+    const activityApprovedArr = notificationArr.filter((notification) => notification.type === NotificationType.activity);
+    const adoptionApprovedArr = notificationArr.filter((notification) => notification.type === NotificationType.adoption);
+    // const organisationSet = new Set<string>();
+    // for (const message of allMessageArr) {
+    //   organisationSet.add(message.content);
+    // }
+    // const organisationOfMessageArr = Array.from(organisationSet);
+    // console.log(organisationOfMessageArr);
+    // for (const organisation of organisationOfMessageArr) {
+    //   let count = 0;
+    //   let organisationId: number = 0;
+    //   for (const message of allMessageArr) {
+    //     if (message.content === organisation) {
+    //       count++;
+    //       organisationId = message.any_id!;
+    //     }
+    //   }
+    //   messageArr.push({ content: `你收到${count}個來自${organisation}的新信息`, organisationId });
+    // }
+    // console.log(messageArr);
+    return { activityArr, messageArr, badgeArr, activityApprovedArr, adoptionApprovedArr };
+  };
 
   const { isLoading, isError, data, error } = useQuery({
     // react query - customised hook
-    queryKey: ["home/activities"],
-    queryFn: getHomeActivities, // API
+    queryKey: ["home"],
+    queryFn: getHomeActivitiesAndNotification, // API
     refetchInterval: 5_000,
     staleTime: 10_000,
     retry: 1,
@@ -46,7 +122,15 @@ export default function Home2() {
   // }, [authLoading]);
 
   // data?.map((activity) => {console.log("check id", activity.id)})
-  return (
+
+  const [isNotificationBtnClicked, setIsNotificationBtnClicked] = useState(false);
+
+  return isNotificationBtnClicked ? (
+    <Notification
+      clickHandler={() => setIsNotificationBtnClicked(false)}
+      data={{ messageArr: data?.messageArr, badgeArr: data?.badgeArr, activityApprovedArr: data?.activityApprovedArr, adoptionApprovedArr: data?.adoptionApprovedArr }}
+    />
+  ) : (
     <div className={styles.containerForAll}>
       <LoadingOverlay visible={isLoading} overlayBlur={2} />
 
@@ -54,8 +138,15 @@ export default function Home2() {
         <div className={styles.logoIconContainer}>
           <img src="/photos/logo_pic-09-09.png" className={styles.logoIcon}></img>
         </div>
-        <div className={styles.bellIconContainer}>
+        <div className={styles.bellIconContainer} onClick={() => setIsNotificationBtnClicked(true)}>
           <CiBellOn className={styles.bellIcon} />
+          {!!(socketMessageDataArr.length + (data?.messageArr.length || 0) + (data?.badgeArr.length || 0) + (data?.activityApprovedArr.length || 0) + (data?.adoptionApprovedArr.length || 0)) && (
+            <div className={styles.bellCount}>
+              <div>
+                {socketMessageDataArr.length + (data?.messageArr.length || 0) + (data?.badgeArr.length || 0) + (data?.activityApprovedArr.length || 0) + (data?.adoptionApprovedArr.length || 0)}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -78,10 +169,10 @@ export default function Home2() {
             }}
           >
             <Carousel.Slide>
-              <img src="photos/carousel-02.png" className={styles.carouselPhoto}></img>
+              <img src="/photos/carousel-02.png" className={styles.carouselPhoto}></img>
             </Carousel.Slide>
             <Carousel.Slide>
-              <img src="photos/carousel-01.png" className={styles.carouselPhoto}></img>
+              <img src="/photos/carousel-01.png" className={styles.carouselPhoto}></img>
             </Carousel.Slide>
           </Carousel>
         </div>
@@ -146,7 +237,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {data?.map((activity) => activity.type === "editors_choice" && <HomeActivityComponent key={activity.id} activity={activity} />)}
+                  {data?.activityArr.map((activity) => activity.type === "editors_choice" && <HomeActivityComponent key={activity.id} activity={activity} />)}
 
                   {/* props */}
                 </Carousel>
@@ -215,7 +306,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {data?.map((activity) => activity.type === "urgent" && <HomeActivityComponent key={`urgent-${activity.id}`} activity={activity} />)}
+                  {data?.activityArr.map((activity) => activity.type === "urgent" && <HomeActivityComponent key={`urgent-${activity.id}`} activity={activity} />)}
 
                   {/* props */}
                 </Carousel>
@@ -283,7 +374,7 @@ export default function Home2() {
                   </Carousel.Slide> */}
 
                   {/* props */}
-                  {data?.map((activity) => activity.type === "popular" && <HomeActivityComponent key={`popular-${activity.id}`} activity={activity} />)}
+                  {data?.activityArr.map((activity) => activity.type === "popular" && <HomeActivityComponent key={`popular-${activity.id}`} activity={activity} />)}
 
                   {/* props */}
                 </Carousel>
@@ -320,7 +411,6 @@ export default function Home2() {
       </div>
 
       <NewNavbar activeBtn="home" />
-      {/* {NavBar} */}
     </div>
   );
 }

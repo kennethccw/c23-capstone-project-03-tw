@@ -15,6 +15,8 @@ export class ActivityService {
           "activities.id as activity_id"
         )
         .where("activities.date", ">", new Date())
+        .orderBy(`${TABLES.ACTIVITIES}.date`, "asc")
+
         .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id");
       console.log(result);
       return result;
@@ -54,6 +56,7 @@ export class ActivityService {
         )
         .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id")
         .where("activities.date", ">", new Date())
+        .orderBy(`${TABLES.ACTIVITIES}.date`, "asc")
         .andWhere("activities.type", type);
       console.log(result);
       return result;

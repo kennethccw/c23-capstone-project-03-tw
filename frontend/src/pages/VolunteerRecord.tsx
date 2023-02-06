@@ -15,7 +15,16 @@ export default function VolunteerRecord() {
 
   const getVolunteerHistoryObj = async () => {
     const result = await getVolunteerHistory();
-    const activityArr = result.map((data) => {
+    const approvedActivityArr = result.approvedResult.map((data) => {
+      return {
+        activity_date: `${new Date(data.activity_date).getFullYear()}-${(new Date(data.activity_date).getMonth() + 1).toString().padStart(2, "0")}-${new Date(data.activity_date)
+          .getDate()
+          .toString()
+          .padStart(2, "0")}`,
+        activity_name: data.activity_name,
+      };
+    });
+    const participatedActivityArr = result.participatedResult.map((data) => {
       return {
         activity_date: `${new Date(data.activity_date).getFullYear()}-${(new Date(data.activity_date).getMonth() + 1).toString().padStart(2, "0")}-${new Date(data.activity_date)
           .getDate()
@@ -25,18 +34,18 @@ export default function VolunteerRecord() {
       };
     });
     let totalVolunteerHours = 0;
-    for (const data of result) {
+    for (const data of result.participatedResult) {
       console.log(new Date(data.activity_end_time).valueOf());
       totalVolunteerHours += (new Date(data.activity_end_time).valueOf() - new Date(data.activity_start_time).valueOf()) / 3_600_000;
       console.log(totalVolunteerHours);
     }
 
-    const onBoardDate = `${new Date(result[0].on_board_date).getFullYear()}-${(new Date(result[0].on_board_date).getMonth() + 1).toString().padStart(2, "0")}-${new Date(result[0].on_board_date)
+    const onBoardDate = `${new Date(result.onBoardDate).getFullYear()}-${(new Date(result.onBoardDate).getMonth() + 1).toString().padStart(2, "0")}-${new Date(result.onBoardDate)
       .getDate()
       .toString()
       .padStart(2, "0")}`;
 
-    return { onBoardDate, activityArr, totalVolunteerHours };
+    return { onBoardDate, approvedActivityArr, participatedActivityArr, totalVolunteerHours };
   };
 
   const { data, isLoading, error, isError } = useQuery({ queryKey: ["volunteer/record"], queryFn: getVolunteerHistoryObj, retry: 1, refetchInterval: 5_000 });
@@ -109,18 +118,21 @@ export default function VolunteerRecord() {
         </div>
         <hr className={styles.headerHr90vw} />
         <div className={styles.timelineContainer}>
-          <Timeline className={styles.forFlexColumn100vw} color="petscue-purple" active={3}>
+          <Timeline className={styles.forFlexColumn100vw} color="petscue-purple" active={data?.participatedActivityArr.length}>
             <Timeline.Item className={styles.timeLineItem} title="加入Petscue">
               <div className={styles.timeLineDate}>
                 <span className={styles.timeLineYear}>{data?.onBoardDate.split("-")[0]}</span>-{data?.onBoardDate.split("-")[1]}-{data?.onBoardDate.split("-")[2]}
               </div>
             </Timeline.Item>
-            {data?.activityArr.map((activity, idx) => (
-              <>
-                <Timeline.Item key={`container-${idx}`} className={styles.timeLineItem} title={activity.activity_name}>
-                  <VolunteerRecordComponent key={`activity-${idx}`} activity_date={activity.activity_date} />
-                </Timeline.Item>
-              </>
+            {data?.participatedActivityArr.map((activity, idx) => (
+              <Timeline.Item key={`container-${idx}`} className={styles.timeLineItem} title={activity.activity_name}>
+                <VolunteerRecordComponent key={`activity-${idx}`} activity_date={activity.activity_date} />
+              </Timeline.Item>
+            ))}
+            {data?.approvedActivityArr.map((activity, idx) => (
+              <Timeline.Item key={`container-${idx}`} className={styles.timeLineItem} title={activity.activity_name}>
+                <VolunteerRecordComponent key={`activity-${idx}`} activity_date={activity.activity_date} />
+              </Timeline.Item>
             ))}
             {/* <div className={styles.timeLineDate}>
               <span className={styles.timeLineYear}>2022</span>-03-19

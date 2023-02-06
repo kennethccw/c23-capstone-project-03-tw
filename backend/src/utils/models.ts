@@ -250,10 +250,30 @@ export interface SupportPanel {
   username: string;
 }
 
-export interface VolunteerRecord {
-  on_board_date: Date;
+export interface ActivityRecord {
   activity_name: string;
   activity_date: Date;
   activity_start_time: Date;
   activity_end_time: Date;
+}
+
+export interface VolunteerRecord {
+  onBoardDate: Date;
+  approvedResult: ActivityRecord[];
+  participatedResult: ActivityRecord[];
+}
+
+export interface HomeNotification {
+  id: number;
+  type: NotificationType;
+  content: string;
+  any_id?: number;
+  count?: number;
+}
+
+export enum NotificationType {
+  badge = "badge",
+  message = "message",
+  activity = "activity",
+  adoption = "adoption",
 }

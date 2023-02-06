@@ -10,6 +10,7 @@
   background-color: #ffffff;
   display: flex;
   align-items: flex-end;
+  z-index: 99;
 }
 
 .header {
@@ -33,6 +34,7 @@
   width: 100vw;
   filter: blur(0.5px);
   transform: rotate(0.15deg);
+  margin-bottom: 0;
 }
 .headerHr90vw {
   width: 90vw;
