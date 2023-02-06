@@ -1,21 +1,18 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import expressSession from "express-session";
 import { logger } from "./src/utils/logger";
-import dotenv from "dotenv";
 import cors from "cors";
 import Knex from "knex";
 import http from "http";
 import { Server as SocketIO } from "socket.io";
 import path from "path";
-
-dotenv.config();
-
-console.log("-----main.ts: ", process.env.NODE_ENV);
 import knexConfigs from "./knexfile";
-const configMode = process.env.NODE_ENV || "development";
 
+const configMode = process.env.NODE_ENV || "development";
 const knexConfig = knexConfigs[configMode];
-console.log("HIHIHI", configMode, knexConfig);
 export const knex = Knex(knexConfig);
 
 const app = express();
@@ -30,21 +27,14 @@ export const io = new SocketIO(server, {
   },
 });
 
-app.use(
-  cors({
-    origin: [process.env.FRONTEND_URL ?? ""],
-  })
-);
+app.use(cors({ origin: [process.env.FRONTEND_URL ?? ""] }));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
 
 app.use(express.static(path.join(__dirname, "uploads")));
-
-import bodyParser from "body-parser";
-app.use(bodyParser.json({ limit: "50mb" }));
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 app.use(
   expressSession({
     secret: Math.random().toString(32).slice(2), // 32 base number
@@ -74,9 +64,7 @@ const grantExpress = grant.express({
 });
 
 io.on("connection", function (socket) {
-  // console.log(socket.id);
   socket.on("send-message", (data) => {
-    // console.log(data);
     socket.emit("new-message", `received your msg: ${data}`);
   });
 });
@@ -89,5 +77,4 @@ app.use(routes);
 const PORT = 8080;
 server.listen(PORT, () => {
   logger.info(`listening to port ${PORT}`);
-  logger.info(`http://localhost:${PORT}`);
 });
