@@ -16,7 +16,7 @@ export default function AnimalSupportChat() {
   const params = new URLSearchParams(document.location.search);
   const uid = params.get("id")!;
 
-  const socket = io("http://localhost:8080", {
+  const socket = io(process.env.REACT_APP_BACKEND_URL!, {
     withCredentials: true,
     extraHeaders: {
       "my-custom-header": "abcd",

@@ -216,10 +216,16 @@
 .NameAndApprovalContainer {
   display: flex;
   justify-content: start;
+  margin-top: 12px;
   margin-left: 50px;
   margin-bottom: 20px;
 }
-
+.hr90vw {
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
+  width: 88vw;
+}
 .approveContainer {
   font-weight: 700;
   display: flex;

@@ -5,16 +5,16 @@ import { MantineProvider, Tabs, Button, Checkbox } from "@mantine/core";
 import { ApplicationContainer } from "../../components/ScheduleComponents";
 import { useQuery } from "react-query";
 import { getPendingApplication } from "../../api/approvalActivityAPI";
-import ActivitiesApplicantComponent from "../../components/ActivitiesApplicantComponent";
+// import ActivitiesApprovalComponent from "../../components/ActivitiesApprovalComponent";
 // import { ApplicationContainer } from "../../components/ScheduleComponents";
 
 export default function ApproveApplication() {
   const navigate = useNavigate();
-  // const { isError, data, error, isLoading } = useQuery({
-  //   queryKey: ["organisation/application"],
-  //   queryFn: getPendingApplication,
-  // });
-  // console.log(data);
+  const { isError, data, error, isLoading } = useQuery({
+    queryKey: ["organisation/application"],
+    queryFn: getPendingApplication,
+  });
+  console.log(data);
   return (
     <MantineProvider
       theme={{
@@ -33,23 +33,25 @@ export default function ApproveApplication() {
           <span className={styles.organisationTab}>義工報名批核</span>
         </div>
 
-        <Tabs defaultValue="基本資料" color="ocean" className={styles.tabList}>
+        <Tabs defaultValue="處理中" color="ocean" className={styles.tabList}>
           <Tabs.List grow>
-            <Tabs.Tab value="已批核">已批核</Tabs.Tab>
             <Tabs.Tab value="處理中">處理中</Tabs.Tab>
+            <Tabs.Tab value="已批核">已批核</Tabs.Tab>
           </Tabs.List>
         </Tabs>
-        {/* {!data?.length && (
+        {!data?.length && (
           <div className={styles.noApplicationContainer}>
             <h2>沒有未處理的申請</h2>
           </div>
         )}
-        {data?.map((activity) => (
+        {data?.map((activity, idx) => (
           <>
-            <ApplicationContainer activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}&status=approval`)} /> */}
-        {/* <ActivitiesApplicantComponent member={activity.user_id} /> */}
-        {/* </>
-        ))} */}
+            <ApplicationContainer activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}&status=approval`)} />
+            {/* <ActivitiesApprovalComponent member={activity.user_fullname!} /> */}
+
+            {idx !== data.length - 1 && <hr className={styles.hr90vw} />}
+          </>
+        ))}
 
         {/* <div className={styles.activtyContainer}>
           <div className={styles.OrganisationName}> 香港動物群益會 </div>
@@ -67,7 +69,7 @@ export default function ApproveApplication() {
         </div> */}
         {/* <hr className={styles.lineStyle}></hr> */}
 
-        <div className={styles.NameAndApprovalContainer}>
+        {/* <div className={styles.NameAndApprovalContainer}>
           <div className={styles.memberName}>
             會員：<span className={styles.nameTab}>嗶哩叭啦星球</span>
           </div>
@@ -104,14 +106,7 @@ export default function ApproveApplication() {
             <div className={styles.approveTab}>批核</div>
             <Checkbox className={styles.addressList} />
           </div>
-        </div>
-
-        <div>
-          <Button style={{ width: 130, height: 34, color: "black", fontSize: 14, marginLeft: 140, marginTop: 70, borderRadius: 10, marginBottom: 60 }} color="orange">
-            {" "}
-            確定
-          </Button>
-        </div>
+        </div> */}
       </div>
     </MantineProvider>
   );

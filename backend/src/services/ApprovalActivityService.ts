@@ -11,10 +11,12 @@ export class ApprovalActivityService {
         .select(
           "*",
           `${TABLES.ACTIVITIES}.id as activity_id`,
-          `${TABLES.ACTIVITIES}.image as image`
+          `${TABLES.ACTIVITIES}.image as image`,
+          `${TABLES.ACTIVITIES}.name as activity`,
+          `${TABLES.USERS}.fullname as user_fullname`
         )
         .where(`${TABLES.ACTIVITY_APPLICATIONS}.is_approved`, false)
-        .andWhere(`${TABLES.ACTIVITY_APPLICATIONS}.organisation_id`, organisationId)
+        .andWhere(`${TABLES.ACTIVITIES}.organisation_id`, organisationId)
         .innerJoin(
           TABLES.ACTIVITIES,
           `${TABLES.ACTIVITIES}.id`,

@@ -1,5 +1,5 @@
 import { fetchJson } from "./utilsAPI";
-const PROFILE_API_PATH = "http://localhost:8080/user/profile";
+const PROFILE_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/user/profile`;
 
 export interface Profile {
   fullname?: string;

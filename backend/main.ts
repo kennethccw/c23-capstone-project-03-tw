@@ -23,7 +23,7 @@ const app = express();
 const server = new http.Server(app);
 export const io = new SocketIO(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.FRONTEND_URL,
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
@@ -61,7 +61,7 @@ declare module "express-session" {
 import grant from "grant";
 const grantExpress = grant.express({
   defaults: {
-    origin: "http://localhost:8080",
+    origin: process.env.BACKEND_URL,
     transport: "session",
     state: true,
   },

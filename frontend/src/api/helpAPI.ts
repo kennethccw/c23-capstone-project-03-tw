@@ -1,6 +1,6 @@
 import { fetchJson } from "./utilsAPI";
 
-const HELP_API_PATH = "http://localhost:8080/help";
+const HELP_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/help`;
 
 export interface ClientChatroom {
   organisation: OrganisationChatroom;

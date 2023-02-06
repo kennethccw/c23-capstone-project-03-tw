@@ -1,6 +1,6 @@
 import { HomeActivity } from "../redux/home";
 import { fetchJson } from "./utilsAPI";
-const HOME_API_PATH = "http://localhost:8080/home";
+const HOME_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/home`;
 
 export interface HomeAdvertiser {
   id: number;

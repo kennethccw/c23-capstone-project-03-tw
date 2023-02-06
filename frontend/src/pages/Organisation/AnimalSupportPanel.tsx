@@ -12,7 +12,7 @@ export default function AnimalHelpToDoListfrom() {
   const navigate = useNavigate();
   const organisationId = localStorage.getItem("userId");
 
-  const socket = io("http://localhost:8080", {
+  const socket = io(process.env.REACT_APP_BACKEND_URL!, {
     withCredentials: true,
     extraHeaders: {
       "my-custom-header": "abcd",

@@ -16,7 +16,7 @@ export default function AnimalHelpChatroom() {
   const params = new URLSearchParams(document.location.search);
   const organisationId = params.get("id")!;
 
-  const socket = io("http://localhost:8080", {
+  const socket = io(process.env.REACT_APP_BACKEND_URL!, {
     withCredentials: true,
     extraHeaders: {
       "my-custom-header": "abcd",
