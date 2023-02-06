@@ -1,7 +1,7 @@
 import { HelpService } from "../services/HelpService";
 import { Request, Response } from "express";
 import formidable from "formidable";
-import { io } from "../main";
+import { io } from "../../main";
 export class HelpController {
   constructor(private helpService: HelpService) {}
 
@@ -97,7 +97,12 @@ export class HelpController {
       );
       setTimeout(() => {
         io.emit(`supportId${organisationId}-to-clientId${uid}`, { conversation });
+        io.emit(`to-clientId${uid}`, {
+          conversation,
+          organisation: { id: organisationId, name: result.organisation.name },
+        });
       }, 10);
+      await this.helpService.notification(uid, result.organisation.name, organisationId);
       res.status(200).json(result);
     } catch (e) {
       res.status(400).json({ message: "Internal Server Error" });
@@ -111,7 +116,12 @@ export class HelpController {
       const result = await this.helpService.postSupportImageChatroom(uid, organisationId, image);
       setTimeout(() => {
         io.emit(`supportId${organisationId}-to-clientId${uid}`, { image });
+        io.emit(`to-clientId${uid}`, {
+          image,
+          organisation: { id: organisationId, name: result.organisation.name },
+        });
       }, 100);
+      await this.helpService.notification(uid, result.organisation.name, organisationId);
       console.log(result);
       res.status(200).json(result);
     } catch (e) {

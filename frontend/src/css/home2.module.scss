@@ -54,6 +54,22 @@
   background: radial-gradient(circle, rgb(255, 255, 255) 40%, rgb(237, 238, 251));
   box-shadow: 0px 0px 40px #edeefb;
   box-sizing: border-box;
+  position: relative;
+}
+
+.bellCount {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  border-radius: 80%;
+  font-size: 12px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #585ce5;
 }
 
 .bellIcon {
@@ -72,15 +88,15 @@
   height: 60px;
 }
 
-.bellIcon:hover {
-  color: #585ce5;
-  background-color: #c9cafe;
-}
+// .bellIcon:hover {
+//   color: #585ce5;
+//   background-color: #c9cafe;
+// }
 
-.bellIcon:active {
-  color: #c9cafe;
-  background-color: #585ce5;
-}
+// .bellIcon:active {
+//   color: #c9cafe;
+//   background-color: #585ce5;
+// }
 
 .lowerPart {
   // position: fixed;

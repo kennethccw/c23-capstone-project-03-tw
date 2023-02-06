@@ -1,6 +1,6 @@
 import { fetchJson } from "./utilsAPI";
 
-const AUTH_API_PATH = `http://localhost:8080/user/login`;
+const AUTH_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/user`;
 
 export interface UserLoginInfo {
   userIdentity: string;
@@ -8,7 +8,7 @@ export interface UserLoginInfo {
 }
 
 export const login = async ({ userIdentity, password }: UserLoginInfo) => {
-  const data = await fetchJson<{ token: string }>(AUTH_API_PATH, {
+  const data = await fetchJson<{ token: string }>(`${AUTH_API_PATH}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export const login = async ({ userIdentity, password }: UserLoginInfo) => {
 };
 
 export const facebookLogin = async (code: string) => {
-  const data = await fetchJson<{ token: string }>(`${AUTH_API_PATH}/facebook`, {
+  const data = await fetchJson<{ token: string }>(`${AUTH_API_PATH}/login/facebook`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export const facebookLogin = async (code: string) => {
   return data;
 };
 export const validateToken = async (token: string | null) => {
-  const data = await fetchJson<{ token: string }>(`${AUTH_API_PATH}/validation`, {
+  const data = await fetchJson<{ token: string }>(`${AUTH_API_PATH}/login/validation`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -40,6 +40,17 @@ export const validateToken = async (token: string | null) => {
   return data;
 };
 export const googleLogin = async () => {
-  const data = await fetchJson<{ token: string }>(`${AUTH_API_PATH}/google`);
+  const data = await fetchJson<{ token: string }>(`${AUTH_API_PATH}/login/google`);
   return data;
+};
+
+export const registerUser = async (newUser: { username: string; email: string; password: string }) => {
+  const result = await fetch(`${AUTH_API_PATH}/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newUser),
+  });
+  return result;
 };

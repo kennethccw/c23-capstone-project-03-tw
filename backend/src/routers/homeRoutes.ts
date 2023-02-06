@@ -4,6 +4,8 @@ import { isLoggedInAPI } from "../utils/guards";
 
 export const homeRoutes = Router();
 
-homeRoutes.get("/activity", homeController.getHomeActivities);
-homeRoutes.get("/advertiser", homeController.getHomeAdvertisers);
+homeRoutes.get("/activity", isLoggedInAPI, homeController.getHomeActivities);
+homeRoutes.get("/notification", isLoggedInAPI, homeController.getNotification);
+homeRoutes.delete("/notification", isLoggedInAPI, homeController.deleteNotification);
+homeRoutes.get("/advertiser", isLoggedInAPI, homeController.getHomeAdvertisers);
 homeRoutes.post("/advertiser", isLoggedInAPI, homeController.postHomeAdvertiser);

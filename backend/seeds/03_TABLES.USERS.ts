@@ -402,6 +402,16 @@ export async function seed(knex: Knex): Promise<void> {
         gender: "female",
         is_experienced: true,
       },
+      {
+        username: "kennethccw",
+        email: "kennethccw@gmail.com",
+        password: await hashPassword("abc12345678!"),
+        mobile: "12345678",
+        birthday: "10-17-1998",
+        gender: "male",
+        is_experienced: true,
+        created_at: new Date("2023-01-01"),
+      },
     ]);
     await trx.commit();
   } catch (e) {

@@ -3,8 +3,53 @@ import styles from "../css/volunteerRecord.module.scss";
 import { HiXMark } from "react-icons/hi2";
 import NewNavbar from "../components/NewNavbar";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useQuery } from "react-query";
+import { getVolunteerHistory } from "../api/volunteerRecordAPI";
+import VolunteerRecordComponent from "../components/VolunteerRecordComponent";
 export default function VolunteerRecord() {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const getVolunteerHistoryObj = async () => {
+    const result = await getVolunteerHistory();
+    const approvedActivityArr = result.approvedResult.map((data) => {
+      return {
+        activity_date: `${new Date(data.activity_date).getFullYear()}-${(new Date(data.activity_date).getMonth() + 1).toString().padStart(2, "0")}-${new Date(data.activity_date)
+          .getDate()
+          .toString()
+          .padStart(2, "0")}`,
+        activity_name: data.activity_name,
+      };
+    });
+    const participatedActivityArr = result.participatedResult.map((data) => {
+      return {
+        activity_date: `${new Date(data.activity_date).getFullYear()}-${(new Date(data.activity_date).getMonth() + 1).toString().padStart(2, "0")}-${new Date(data.activity_date)
+          .getDate()
+          .toString()
+          .padStart(2, "0")}`,
+        activity_name: data.activity_name,
+      };
+    });
+    let totalVolunteerHours = 0;
+    for (const data of result.participatedResult) {
+      console.log(new Date(data.activity_end_time).valueOf());
+      totalVolunteerHours += (new Date(data.activity_end_time).valueOf() - new Date(data.activity_start_time).valueOf()) / 3_600_000;
+      console.log(totalVolunteerHours);
+    }
+
+    const onBoardDate = `${new Date(result.onBoardDate).getFullYear()}-${(new Date(result.onBoardDate).getMonth() + 1).toString().padStart(2, "0")}-${new Date(result.onBoardDate)
+      .getDate()
+      .toString()
+      .padStart(2, "0")}`;
+
+    return { onBoardDate, approvedActivityArr, participatedActivityArr, totalVolunteerHours };
+  };
+
+  const { data, isLoading, error, isError } = useQuery({ queryKey: ["volunteer/record"], queryFn: getVolunteerHistoryObj, retry: 1, refetchInterval: 5_000 });
+  console.log(data);
   return (
     <MantineProvider
       inherit
@@ -55,51 +100,65 @@ export default function VolunteerRecord() {
       }}
     >
       <div className={styles.containerForAll}>
-        <div className={styles.header}>
-          <HiXMark className={styles.closingIcon} onClick={() => navigate(-1)} />
-          <span>社職紀錄</span>
+        <div className={styles.headerContainer}>
+          <div>
+            <div className={styles.header}>
+              <HiXMark className={styles.closingIcon} onClick={() => navigate(-1)} />
+              <span>社職紀錄</span>
+            </div>
+            <hr className={styles.headerHr} />
+          </div>
         </div>
-        <hr className={styles.headerHr} />
 
         <div className={styles.forFlex100vw}>
           <div className={styles.forFlexColumn312px}>
-            <div className={styles.volunteerHourValue}>0.0</div>
+            <div className={styles.volunteerHourValue}>{data?.totalVolunteerHours.toFixed(1)}</div>
             <div className={styles.volunteerHourTitle}>義工時數</div>
           </div>
         </div>
         <hr className={styles.headerHr90vw} />
-        <Timeline className={styles.forFlexColumn100vw} color="petscue-purple" active={3}>
-          <Timeline.Item className={styles.timeLineItem} title="加入Petscue">
-            <div className={styles.timeLineDate}>
-              <span className={styles.timeLineYear}>2022</span>-01-19
-            </div>
-          </Timeline.Item>
-          <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
-            <div className={styles.timeLineDate}>
+        <div className={styles.timelineContainer}>
+          <Timeline className={styles.forFlexColumn100vw} color="petscue-purple" active={data?.participatedActivityArr.length}>
+            <Timeline.Item className={styles.timeLineItem} title="加入Petscue">
+              <div className={styles.timeLineDate}>
+                <span className={styles.timeLineYear}>{data?.onBoardDate.split("-")[0]}</span>-{data?.onBoardDate.split("-")[1]}-{data?.onBoardDate.split("-")[2]}
+              </div>
+            </Timeline.Item>
+            {data?.participatedActivityArr.map((activity, idx) => (
+              <Timeline.Item key={`container-${idx}`} className={styles.timeLineItem} title={activity.activity_name}>
+                <VolunteerRecordComponent key={`activity-${idx}`} activity_date={activity.activity_date} />
+              </Timeline.Item>
+            ))}
+            {data?.approvedActivityArr.map((activity, idx) => (
+              <Timeline.Item key={`container-${idx}`} className={styles.timeLineItem} title={activity.activity_name}>
+                <VolunteerRecordComponent key={`activity-${idx}`} activity_date={activity.activity_date} />
+              </Timeline.Item>
+            ))}
+            {/* <div className={styles.timeLineDate}>
               <span className={styles.timeLineYear}>2022</span>-03-19
-            </div>
-          </Timeline.Item>
-          <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
-            <div className={styles.timeLineDate}>
-              <span className={styles.timeLineYear}>2022</span>-03-19
-            </div>
-          </Timeline.Item>
-          <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
-            <div className={styles.timeLineDate}>
-              <span className={styles.timeLineYear}>2022</span>-03-19
-            </div>
-          </Timeline.Item>
-          <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
-            <div className={styles.timeLineDate}>
-              <span className={styles.timeLineYear}>2022</span>-03-19
-            </div>
-          </Timeline.Item>
-          <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
-            <div className={styles.timeLineDate}>
-              <span className={styles.timeLineYear}>2022</span>-03-19
-            </div>
-          </Timeline.Item>
-        </Timeline>
+            </div> */}
+            {/* <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
+              <div className={styles.timeLineDate}>
+                <span className={styles.timeLineYear}>2022</span>-03-19
+              </div>
+            </Timeline.Item>
+            <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
+              <div className={styles.timeLineDate}>
+                <span className={styles.timeLineYear}>2022</span>-03-19
+              </div>
+            </Timeline.Item>
+            <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
+              <div className={styles.timeLineDate}>
+                <span className={styles.timeLineYear}>2022</span>-03-19
+              </div>
+            </Timeline.Item>
+            <Timeline.Item className={styles.timeLineItem} title="參加寵物美容義工">
+              <div className={styles.timeLineDate}>
+                <span className={styles.timeLineYear}>2022</span>-03-19
+              </div>
+            </Timeline.Item> */}
+          </Timeline>
+        </div>
         <NewNavbar activeBtn="user" />
       </div>
     </MantineProvider>

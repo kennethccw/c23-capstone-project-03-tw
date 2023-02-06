@@ -1,3 +1,7 @@
+.containerForAll {
+  width: 100vw;
+}
+
 .chevronAndAdjustmntIcon {
   color: #b0b2c3;
   justify-content: start;
@@ -44,16 +48,28 @@
 //   // z-index: 99;
 // }
 
+.dateContainer {
+  margin-top: 12px;
+  margin-bottom: -8px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .dateTab {
   background: #f5f5f6;
   border-radius: 10px;
-  width: 79px;
+  // width: 79px;
   height: 26px;
-  margin-left: 151px;
+  // margin-left: 151px;
   padding: 4px 25px;
   color: #92919a;
   font-weight: 400;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 //// chat ////

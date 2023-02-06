@@ -7,6 +7,7 @@ import { useQueryClient } from "react-query";
 import styles from "../css/register.module.scss";
 import { FaFacebookF } from "react-icons/fa";
 import { useState } from "react";
+import { registerUser } from "../api/authAPI";
 export default function Register() {
   const { register, watch, getValues } = useForm({
     defaultValues: {
@@ -33,7 +34,7 @@ export default function Register() {
   const isCorrectFormatPassword = (!(watchPassword.length < 8) && regexBothCases.test(watchPassword) && regexNumberAndSymbol.test(watchPassword)) || watchPassword === "";
 
   const [isLoading, setIsLoading] = useState(false);
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isCorrectFormatUsername || !isCorrectFormatEmail || !isCorrectFormatPassword || watchUsername === "" || watchEmail === "" || watchPassword === "") {
       alert("請正確輸入再遞交註冊表格");
@@ -44,21 +45,14 @@ export default function Register() {
       return;
     }
     const newUser = { username: watchUsername, email: watchEmail, password: watchPassword };
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/user/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUser),
-    })
-      .then((res) => {
-        const result = res.json();
-        if (res.status === 200) {
-          navigate("/login");
-        }
-        return result;
-      })
-      .then((result) => result.message && alert(result.message));
+    const res = await registerUser(newUser);
+
+    const result = await res.json();
+    if (res.status === 200) {
+      navigate("/login");
+    } else {
+      result.message && alert(result.message);
+    }
   };
 
   const onFacebookLogin = (event: React.MouseEvent) => {

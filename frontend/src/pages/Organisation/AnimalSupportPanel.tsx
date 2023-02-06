@@ -12,7 +12,7 @@ export default function AnimalHelpToDoListfrom() {
   const navigate = useNavigate();
   const organisationId = localStorage.getItem("userId");
 
-  const socket = io("http://localhost:8080", {
+  const socket = io(process.env.REACT_APP_BACKEND_URL!, {
     withCredentials: true,
     extraHeaders: {
       "my-custom-header": "abcd",
@@ -24,7 +24,7 @@ export default function AnimalHelpToDoListfrom() {
   const [socketData, setSocketData] = useState<{ converation?: string; image?: string; user: { id: number; username: string } }>();
   // const [userArr, setUserArr] = useState<string[]>();
   const [containerArr, setContainerArr] = useState<{ id: number; username?: string; count?: number }[]>([]);
-  const [messageCountArr, setMessageCountArr] = useState<number[]>([]);
+  const messageCountArr: number[] = [];
 
   useEffect(() => {
     // console.log("hi");
@@ -38,6 +38,7 @@ export default function AnimalHelpToDoListfrom() {
     // window.scrollTo(0, document.body.scrollHeight);
     return () => {
       socket.off("connect");
+      socket.off(`to-supportId${organisationId}`);
     };
   }, []);
 

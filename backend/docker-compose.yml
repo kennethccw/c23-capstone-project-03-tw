@@ -2,17 +2,10 @@ version: '3'
 
 services:
   petscue-server:
-    environment:
-      NODE_ENV: production
-      PORT: 8080
-      POSTGRES_HOST: petscue-db
-      DB_NAME: petscue_app
-      DB_USER: postgres
-      DB_PASS: petscue2023hktw
-    # env_file:
-    #   - docker.env
+    env_file:
+      - docker.env
     depends_on:
-      database:
+      petscue-db:
         condition: service_healthy
     build:
       context: ./
@@ -23,16 +16,12 @@ services:
     image: 'petscue/petscue-server:latest'
     ports:
       - '8080:8080'
-  database:
+  petscue-db:
     image: 'postgres:13'
     env_file:
       - docker.env
     restart: always
-    environment:
-      - POSTGRES_PORT=5432
-      - POSTGRES_DB=petscue_app
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=petscue2023hktw
+    user: postgres
     ports:
       - '5432:5432'
     volumes:

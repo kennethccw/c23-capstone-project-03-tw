@@ -60,20 +60,18 @@ import ActivityApplication from "../pages/ActivityApplication";
 import AllPetShowcase from "../pages/AllPetShowcase";
 import PetDetails from "../pages/AdoptionPet";
 import ApplicationCancelled from "../pages/ApplicationCancelled";
-import CategorisedActivities from "../pages/CategorisedActivities";
+import CategorisedActivities from "../pages/CategorisedActivities2";
 import { Payment } from "../pages/Payment";
 import PaymentSuccess from "../pages/PaymentSuccess";
 import Dashboard from "../pages/Organisation/OrganisationDashboard";
 import AnimalSupportChat from "../pages/Organisation/AnimalSupportChat";
 import AnimalSupportPanel from "../pages/Organisation/AnimalSupportPanel";
 import EditAnimals from "../pages/Organisation/EditAnimals";
-
+import Notification from "./Notification";
 export default function MyRoutes() {
   return (
     <Routes>
       {/* User */}
-      <Route path="/" element={<Dashboard />}></Route>
-
       <Route path="adoption" element={<AllPetShowcase />}></Route>
       <Route path="adoption/detail" element={<PetDetails />}></Route>
       <Route path="/" element={<Welcome />}></Route>
@@ -139,7 +137,7 @@ export default function MyRoutes() {
       <Route path="/" element={<AdminsDashboardPicture />}></Route>
       <Route path="/" element={<AdminsHelpToDoListfrom />}></Route>
       <Route path="/" element={<ItHelpFunction />}></Route>
-      <Route path="/" element={<ApproveApplication />}></Route>
+      <Route path="application" element={<ApproveApplication />}></Route>
       <Route path="/" element={<ApprovedResult />}></Route>
       {/* Admin */}
 

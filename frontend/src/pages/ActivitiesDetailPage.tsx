@@ -53,9 +53,7 @@ export default function ActivitiesDetailPage() {
     // retry: 1,
   });
 
-
-const role= localStorage.getItem('role')
-
+  const role = localStorage.getItem("role");
 
   console.log(params.get("pending"));
   const [opened, setOpened] = useState(false);
@@ -119,7 +117,7 @@ const role= localStorage.getItem('role')
       }}
     >
       <div>
-      <LoadingOverlay visible={isLoading} overlayBlur={2} />
+        <LoadingOverlay visible={isLoading} overlayBlur={2} />
 
         <div className={styles.upperPart}>
           <div className={styles.chevronAndAdjustmntIcon}>
@@ -155,7 +153,7 @@ const role= localStorage.getItem('role')
             <div className={detailStyles.basicInfo}>
               <div className={detailStyles.chanceInstances}>
                 <div className={detailStyles.box}>
-                  <img src={`/photos/activities/${data?.data.image}`} className={detailStyles.chancePhoto}></img>
+                  <img src={`${process.env.REACT_APP_BACKEND_URL}/activities/${data?.data.image}`} className={detailStyles.chancePhoto}></img>
                 </div>
                 <div className={detailStyles.organisationName}>{data?.data.organisation}</div>
                 <div className={detailStyles.taskName}>{data?.data.activity}</div>
@@ -242,7 +240,7 @@ const role= localStorage.getItem('role')
             </div>
           </div>
           <div className={detailStyles.right}>
-            {pageStatusRef.current === PageStatus.beforeApplication &&  role!=='organisation' && (
+            {pageStatusRef.current === PageStatus.beforeApplication && role !== "organisation" && (
               <Button disabled={!data?.data.remaining_place} color="pink" className={detailStyles.joinButton} onClick={() => navigate(`/activity/application?id=${params.get("id")!}`)}>
                 <div>參加</div>
               </Button>

@@ -1,9 +1,14 @@
+.containerForAll {
+  width: 100vw;
+  margin-bottom: 96px;
+}
+
 .chevronAndAdjustmntIcon {
   color: #b0b2c3;
   justify-content: space-between;
   align-items: center;
   display: flex;
-  width: 430px;
+  width: 100vw;
   height: 85px;
   margin-top: 30px;
 }
@@ -24,7 +29,6 @@
   font-size: 30px;
   letter-spacing: 0.002em;
   margin-left: 40px;
-  width: 390px;
 }
 
 .lineTab {
@@ -37,10 +41,19 @@
 .boxContainer {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  margin-left: 24px;
+  justify-content: center;
+  margin-top: 20px;
+  // margin-left: 12vw;
   align-items: flex-start;
   flex-wrap: wrap;
-  padding: 20px;
-  color: #898D9E;
+  // padding: 20px;
+  color: #898d9e;
+}
+
+.emptyBox {
+  width: 40vw;
+  height: 40vw;
+  margin-bottom: 24px;
+  margin-right: 10px;
+  margin-left: 10px;
 }

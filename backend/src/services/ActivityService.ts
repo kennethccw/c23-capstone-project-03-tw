@@ -14,6 +14,9 @@ export class ActivityService {
           "activities.name as activity",
           "activities.id as activity_id"
         )
+        .where("activities.date", ">", new Date())
+        .orderBy(`${TABLES.ACTIVITIES}.date`, "asc")
+
         .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id");
       // console.log(result, 'ActivityService.ts L18');
       return result;
@@ -52,8 +55,10 @@ export class ActivityService {
           "activities.id as activity_id"
         )
         .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id")
-        .where("activities.type", type);
-      // console.log(result, "ActivityService.ts L56");
+        .where("activities.date", ">", new Date())
+        .orderBy(`${TABLES.ACTIVITIES}.date`, "asc")
+        .andWhere("activities.type", type);
+      console.log(result);
       return result;
     } catch (e) {
       console.log(e);

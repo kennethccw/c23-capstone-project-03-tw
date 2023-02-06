@@ -27,8 +27,8 @@ export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () =>
     }
   };
 
-
-
+  // const REACT_APP_FILE_BASE = "https://server.ericlcf.me/uploads"
+  // const REACT_APP_FILE_BASE = "http://localhost:8080";
 
   return (
     <>
@@ -42,7 +42,7 @@ export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () =>
       >
         <div className={styles.petContainer}>
           <div className={styles.imgContainer}>
-            <img className={styles.imgContent} src={`/photos/pet/${props.pet.image}`}></img>
+            <img className={styles.imgContent} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.pet.image}`}></img>
           </div>
 
           <div className={styles.detailsBigContainer}>

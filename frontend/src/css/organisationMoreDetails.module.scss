@@ -2,6 +2,14 @@
   margin-left: 50px;
 }
 
+.noApplicationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 60vh;
+}
+
 .chevronAndAdjustmntIcon {
   color: #b0b2c3;
   justify-content: space-between;
@@ -208,10 +216,16 @@
 .NameAndApprovalContainer {
   display: flex;
   justify-content: start;
+  margin-top: 12px;
   margin-left: 50px;
   margin-bottom: 20px;
 }
-
+.hr90vw {
+  border: 1px solid #e5e6ee;
+  filter: blur(0.5px);
+  transform: rotate(0.15deg);
+  width: 88vw;
+}
 .approveContainer {
   font-weight: 700;
   display: flex;
@@ -240,21 +254,21 @@
 }
 
 .searchChance {
-    color: #0f2851;
-    font-weight: bold;
-    font-size: xx-large;
-    margin-left: 40px;
-    position: fixed;
-    top:10vh;
-    // background-color: yellowgreen;
+  color: #0f2851;
+  font-weight: bold;
+  font-size: xx-large;
+  margin-left: 40px;
+  position: fixed;
+  top: 10vh;
+  // background-color: yellowgreen;
 }
 
 .searchBarPart {
-    flex: 4;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 4;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .organisationLogo {
   width: 94%;

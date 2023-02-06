@@ -19,6 +19,82 @@ export async function seed(knex: Knex): Promise<void> {
         user_id: 2,
         organisation_id: 1,
       },
+      {
+        conversation:
+          "昨天有人發現這小朋友, 於大埔某村內徘徊, 明顯地是一位年紀很大的小毛孩。在頸上亦發現1個，很大的傷口",
+        status: "completed",
+        user_id: 45,
+        organisation_id: 1,
+        created_at: new Date("2022-11-16"),
+      },
+      {
+        conversation: "SOS",
+        status: "pending",
+        user_id: 45,
+        organisation_id: 1,
+        created_at: new Date("2023-1-17"),
+      },
+      {
+        conversation: "SOS",
+        status: "pending",
+        user_id: 45,
+        organisation_id: 1,
+        created_at: new Date("2023-1-17"),
+      },
+      {
+        conversation: "SOS",
+        status: "pending",
+        user_id: 45,
+        organisation_id: 1,
+        created_at: new Date("2023-1-17"),
+      },
+      {
+        conversation: "SOS",
+        status: "pending",
+        user_id: 45,
+        organisation_id: 1,
+        created_at: new Date("2023-1-17"),
+      },
+      {
+        conversation:
+          "昨天有人發現這小朋友, 於大埔某村內徘徊, 明顯地是一位年紀很大的小毛孩。在頸上亦發現1個，很大的傷口",
+        status: "completed",
+        user_id: 45,
+        organisation_id: 1,
+        created_at: new Date("2023-2-1"),
+      },
+      {
+        conversation:
+          "昨天有人發現這小朋友, 於大埔某村內徘徊, 明顯地是一位年紀很大的小毛孩。在頸上亦發現1個，很大的傷口",
+        status: "completed",
+        user_id: 45,
+        organisation_id: 1,
+        created_at: new Date("2022-2-4"),
+      },
+      {
+        conversation:
+          "昨天有人發現這小朋友, 於大埔某村內徘徊, 明顯地是一位年紀很大的小毛孩。在頸上亦發現1個，很大的傷口",
+        status: "completed",
+        user_id: 45,
+        organisation_id: 1,
+        created_at: new Date("2022-2-4"),
+      },
+      {
+        conversation:
+          "昨天有人發現這小朋友, 於大埔某村內徘徊, 明顯地是一位年紀很大的小毛孩。在頸上亦發現1個，很大的傷口",
+        status: "completed",
+        user_id: 45,
+        organisation_id: 1,
+        created_at: new Date("2022-2-4"),
+      },
+      {
+        conversation:
+          "昨天有人發現這小朋友, 於大埔某村內徘徊, 明顯地是一位年紀很大的小毛孩。在頸上亦發現1個，很大的傷口",
+        status: "completed",
+        user_id: 45,
+        organisation_id: 1,
+        created_at: new Date("2022-2-4"),
+      },
     ]);
     await trx.commit();
   } catch (e) {

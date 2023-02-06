@@ -67,7 +67,7 @@ export default function StripePaymentForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/donation/payment/success",
+        return_url: `${process.env.REACT_APP_FRONTEND_URL}/donation/payment/success`,
         receipt_email,
       },
       redirect: "if_required",

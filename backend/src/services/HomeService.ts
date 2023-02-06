@@ -1,5 +1,11 @@
 import type { Knex } from "knex";
-import { BadgeRank, BadgeType, HomeActivity, HomeAdvertiser } from "../utils/models";
+import {
+  BadgeRank,
+  BadgeType,
+  HomeActivity,
+  HomeAdvertiser,
+  NotificationType,
+} from "../utils/models";
 import { TABLES } from "../utils/tables";
 
 export class HomeService {
@@ -7,7 +13,10 @@ export class HomeService {
 
   getHomeActivities = async () => {
     try {
-      const result = await this.knex<HomeActivity>(TABLES.ACTIVITIES).select();
+      const result = await this.knex<HomeActivity>(TABLES.ACTIVITIES)
+        .select()
+        .where("activities.date", ">", new Date())
+        .orderBy(`${TABLES.ACTIVITIES}.date`, "asc");
       return result;
     } catch (e) {
       console.log(e);
@@ -59,6 +68,11 @@ export class HomeService {
             .andWhere("user_id", uid)
             .andWhere("year", new Date().getFullYear())
             .returning("*");
+          await trx(TABLES.NOTIFICATION).insert({
+            type: NotificationType.badge,
+            content: "恭喜！剛剛廣告慈善家徽章升級成金徽章了！",
+            user_id: uid,
+          });
         } else if (userRecordResult[0]["total_advertising_watch_times"] > 10) {
           badgeResult = await trx(TABLES.BADGE_USER_JUNCTION)
             .update({
@@ -69,6 +83,11 @@ export class HomeService {
             .andWhere("year", new Date().getFullYear())
             .andWhere("user_id", uid)
             .returning("*");
+          await trx(TABLES.NOTIFICATION).insert({
+            type: NotificationType.badge,
+            content: "恭喜！剛剛廣告慈善家徽章升級成銀徽章了！",
+            user_id: uid,
+          });
         }
         console.log(badgeResult);
         if (isAdvertiserRecordExist) {
@@ -117,6 +136,11 @@ export class HomeService {
             user_id: uid,
           })
           .returning("*");
+        await trx(TABLES.NOTIFICATION).insert({
+          type: NotificationType.badge,
+          content: "恭喜！剛剛獲得了廣告慈善家銅徽章！",
+          user_id: uid,
+        });
         console.log(badgeResult);
         if (isAdvertiserRecordExist) {
           const adsRecordResult = await trx(TABLES.ADVERTISER_WATCHED_PER_YEAR)
@@ -152,6 +176,24 @@ export class HomeService {
     } catch (e) {
       console.log(e);
       await trx.rollback();
+      throw e;
+    }
+  };
+
+  getNotification = async (uid: number) => {
+    try {
+      const result = await this.knex(TABLES.NOTIFICATION).select().where("user_id", uid);
+      return result;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  };
+  deleteNotification = async (notificationId: number) => {
+    try {
+      await this.knex(TABLES.NOTIFICATION).delete().where("id", notificationId);
+    } catch (e) {
+      console.log(e);
       throw e;
     }
   };

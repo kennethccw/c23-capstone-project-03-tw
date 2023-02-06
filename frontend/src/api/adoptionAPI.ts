@@ -1,6 +1,6 @@
 import { fetchJson } from "./utilsAPI";
 
-const ADOPTION_API_PATH = "http://localhost:8080/adoption";
+const ADOPTION_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/adoption`;
 
 export interface PetDetail {
   pet_id: number;
