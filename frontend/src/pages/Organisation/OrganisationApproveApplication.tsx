@@ -1,11 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import styles from "../../css/organisationMoreDetails.module.scss";
-import { HiChevronLeft } from "react-icons/hi";
+import { HiCalendar, HiChevronLeft, HiOutlineLocationMarker } from "react-icons/hi";
 import { MantineProvider, Tabs, Button, Checkbox } from "@mantine/core";
+import { ApplicationContainer } from "../../components/ScheduleComponents";
+import { useQuery } from "react-query";
+import { getPendingApplication } from "../../api/approvalActivityAPI";
 // import { ApplicationContainer } from "../../components/ScheduleComponents";
 
 export default function ApproveApplication() {
   const navigate = useNavigate();
+  const { isError, data, error, isLoading } = useQuery({
+    queryKey: ["organisation/application"],
+    queryFn: getPendingApplication,
+  });
+  console.log(data);
   return (
     <MantineProvider
       theme={{
@@ -39,10 +47,7 @@ export default function ApproveApplication() {
 
           <div className={styles.locationContanier}>
             <HiOutlineLocationMarker className={styles.locationIcon} />
-            <div className={styles.locationName}>
-              {" "}
-              香港九龍太子基隆街46號地下{" "}
-            </div>
+            <div className={styles.locationName}> 香港九龍太子基隆街46號地下 </div>
           </div>
 
           <div className={styles.DateContainer}>
@@ -50,7 +55,7 @@ export default function ApproveApplication() {
             <div className={styles.DateTab}> 2023年2月18日（週六） </div>
           </div>
         </div> */}
-        <hr className={styles.lineStyle}></hr>
+        {/* <hr className={styles.lineStyle}></hr> */}
 
         <div className={styles.NameAndApprovalContainer}>
           <div className={styles.memberName}>

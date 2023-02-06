@@ -46,6 +46,10 @@ import { VolunteerRecordService } from "./services/VolunteerRecordService";
 export const volunteerRecordService = new VolunteerRecordService(knex);
 import { VolunteerRecordController } from "./controllers/VolunteerRecordController";
 export const volunteerRecordController = new VolunteerRecordController(volunteerRecordService);
+import { ApprovalActivityService } from "./services/ApprovalActivityService";
+export const approvalActivityService = new ApprovalActivityService(knex);
+import { ApprovalActivityController } from "./controllers/ApprovalActivityController";
+export const approvalActivityController = new ApprovalActivityController(approvalActivityService);
 
 /////// for edit activities and animals page ////////////////////
 import { EditActivitiesService } from "./services/EditActivitiesService";
@@ -71,6 +75,7 @@ import { adoptionRoutes } from "./routers/adoptionRoutes";
 import { helpRoutes } from "./routers/helpRoutes";
 import { editAnimalsRoutes } from "./routers/editAnimalsRoutes";
 import { volunteerRecordRoutes } from "./routers/volunteerRecordRoutes";
+import { approvalActivityRoutes } from "./routers/approvalActivityRoutes";
 
 export const routes = Router();
 
@@ -86,3 +91,4 @@ routes.use("/adoption", adoptionRoutes);
 routes.use("/help", helpRoutes);
 routes.use("/editAnimals", editAnimalsRoutes);
 routes.use("/record", volunteerRecordRoutes);
+routes.use("/activity/approval", approvalActivityRoutes);

@@ -146,6 +146,7 @@ export interface ScheduleActivity {
   start_time: Date;
   end_time: Date;
   date: Date;
+  user_id?: number;
 }
 
 export enum LoginRole {

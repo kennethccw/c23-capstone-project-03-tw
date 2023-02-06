@@ -22,6 +22,7 @@ const config: { [key: string]: Knex.Config } = {
     pool: {
       min: 2,
       max: 10,
+      propagateCreateError: false,
     },
     migrations: {
       tableName: "knex_migrations",
@@ -40,6 +41,7 @@ const config: { [key: string]: Knex.Config } = {
     pool: {
       min: 2,
       max: 10,
+      propagateCreateError: false,
     },
     migrations: {
       tableName: "knex_migrations",
@@ -57,6 +59,7 @@ const config: { [key: string]: Knex.Config } = {
     pool: {
       min: 2,
       max: 10,
+      propagateCreateError: false,
     },
     migrations: {
       tableName: "knex_migrations",

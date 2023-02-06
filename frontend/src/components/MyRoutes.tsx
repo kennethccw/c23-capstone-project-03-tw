@@ -137,7 +137,7 @@ export default function MyRoutes() {
       <Route path="/" element={<AdminsDashboardPicture />}></Route>
       <Route path="/" element={<AdminsHelpToDoListfrom />}></Route>
       <Route path="/" element={<ItHelpFunction />}></Route>
-      <Route path="/" element={<ApproveApplication />}></Route>
+      <Route path="application" element={<ApproveApplication />}></Route>
       <Route path="/" element={<ApprovedResult />}></Route>
       {/* Admin */}
 
