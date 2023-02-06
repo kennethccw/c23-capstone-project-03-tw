@@ -1,9 +1,9 @@
 import { AdoptionService } from "../services/AdoptionService";
-import { Request, Response } from "express";
+import { Request, response, Response } from "express";
 import { AdoptionApplication } from "../utils/models";
 
 export class AdoptionController {
-  constructor(private adoptionService: AdoptionService) {}
+  constructor(private adoptionService: AdoptionService) { }
 
   getPetAdoption = async (req: Request, res: Response) => {
     const id = parseInt(req.query.id as string);
@@ -66,17 +66,53 @@ export class AdoptionController {
   };
 
 
-  getAdoptionApplication = async  (req: Request, res: Response)=>{
+  getAdoptionApplication = async (req: Request, res: Response) => {
     try {
-      const organisationId= parseInt(req.params.organisationID);
-console.log("AdoptionController.ts L72: " ,organisationId )
-let getAdoptionApplicationResult = await this.adoptionService.getAdoptionApplication(organisationId)
-res.status(200).json(getAdoptionApplicationResult)
-    } 
-    catch(e){
+      const organisationId = parseInt(req.params.organisationID);
+      // console.log("AdoptionController.ts L72: " ,organisationId )
+      let getAdoptionApplicationResult = await this.adoptionService.getAdoptionApplication(organisationId)
+      // console.log(getAdoptionApplicationResult, 'AdoptionController.ts L74',)
+      res.status(200).json(getAdoptionApplicationResult)
+    }
+    catch (e) {
       res.status(400).json({ message: "Internal Server Error" });
     }
   }
+
+  approveAdoption = async (req: Request, res: Response) => {
+    try {
+      const { applicationID } = req.body
+      console.log(applicationID, 'AdoptionController.ts L85')
+      await this.adoptionService.approveAdoption(applicationID)
+      response.status(200).json({ message: "已批准申請及拒絕其他人對此的申請" })
+
+
+    }
+    catch (e) { res.status(400).json({ message: "Internal Server Error" }); }
+
+  }
+
+
+  rejectAdoption = async (req: Request, res: Response) => {
+    try {
+      const { applicationID, rejectedReason, otherReason } = req.body;
+      console.log("applicationID:",applicationID)
+console.log("rejectedReason:",rejectedReason );
+console.log('otherReason:',otherReason )
+await this.adoptionService.rejectAdoption(applicationID,rejectedReason,otherReason)
+response.status(200).json({ message: "已拒絕申請" })
+
+
+    }
+    catch (e) { res.status(400).json({ message: "Internal Server Error" }); }
+
+
+
+
+  }
+
+
+
 
 
 }
