@@ -16,6 +16,8 @@ export default function AdoptionApplicationComponent(props: { result: AdoptionRe
     other = "其他原因",
   }
 
+  const role=localStorage.getItem('role')
+
   return (
     <div className={styles.petPaperBigContainer} onClick={props.clickHandler}>
       <Paper shadow="xl" radius="xl" p="xl" className={styles.paperContainer}>
@@ -25,10 +27,15 @@ export default function AdoptionApplicationComponent(props: { result: AdoptionRe
             <div className={styles.petLabelText}>動物名稱：</div>
             <div className={styles.petContentText}>{props.result.name}</div>
           </div>
+          {role==="organisation" && <div className={styles.petLabelContentContainer}>
+            <div className={styles.petLabelText}>申請人姓名：</div>
+            <div className={styles.petContentText}>{props.result.applicant_name}</div>
+          </div>}
           <div className={styles.petLabelContentContainer}>
             <div className={styles.petLabelText}>申請結果：</div>
             <div className={styles.petContentText}>{AdoptionResultChineseStatus[props.result.status]}</div>
           </div>
+         
           {props.result.status === AdoptionResultStatus.fail && (
             <div className={styles.petLabelContentContainer}>
               <div className={styles.petLabelText}>不通過原因：</div>

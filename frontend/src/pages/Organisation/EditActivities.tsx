@@ -83,8 +83,12 @@ export default function EditActivities() {
     const address: string = watch("address")
     const count: number = watch("count")
     // console.log(district)
-    const organsationID: string | null = localStorage.getItem("userId")
+    const organsationID: string | null = localStorage.getItem("userId");
 
+    // || ((parseInt(activityStartTime.slice(0,2)+activityStartTime.slice(3,5)))>(parseInt(activityEndTime.slice(0,2)+activityEndTime.slice(3,5))))
+
+
+   
 
     let activityStartTimeforFetch = year + "/" + month + "/" + dateOfActivity + " " + activityStartTime
 
@@ -172,8 +176,11 @@ export default function EditActivities() {
 
        
 
-        if ((parseInt(activityStartTime.slice(0, 2)) > 23 || parseInt(activityStartTime.slice(3, 5)) > 59 || (activityStartTime[0] === '_') || (activityStartTime[1] === '_') || (activityStartTime[3] === '_') || (activityStartTime[4] === '_') || parseInt(activityEndTime.slice(0, 2)) > 23 || parseInt((activityEndTime.slice(3, 5))) > 59 || (activityEndTime[0] === '_') || (activityEndTime[1] === '_') || (activityEndTime[3] === '_') || (activityEndTime[4] === '_'))) {
-            alert("請填上正確開始時間")
+        if ((parseInt(activityStartTime.slice(0, 2)) > 23 || parseInt(activityStartTime.slice(3, 5)) > 59 || (activityStartTime[0] === '_') || (activityStartTime[1] === '_') || (activityStartTime[3] === '_') || (activityStartTime[4] === '_') || parseInt(activityEndTime.slice(0, 2)) > 23 || parseInt((activityEndTime.slice(3, 5))) > 59 || (activityEndTime[0] === '_') || (activityEndTime[1] === '_') || (activityEndTime[3] === '_') || (activityEndTime[4] === '_') 
+        || (parseInt(activityStartTime.slice(0, 2)+activityStartTime.slice(3,5))>parseInt(activityEndTime.slice(0, 2)+activityEndTime.slice(3,5)))
+     
+        )) {
+            alert("請填上正確時間")
             return;
         }
 
@@ -210,9 +217,9 @@ export default function EditActivities() {
         formData.append("type", "editors_choice")
         
 
-        console.log(activityName)
-        console.log(file)
-        console.log(formData, '   formData')
+        // console.log(activityName)
+        // console.log(file)
+        // console.log(formData, '   formData')
         let resp = await fetch(`${process.env.REACT_APP_BACKEND_URL}/editActivities/addActivities`,
             {
                 method: 'POST',
@@ -227,16 +234,16 @@ export default function EditActivities() {
         if (resp.status === 200) {
 
 
-            console.log(choice, "first");
+         
             alert(result.message);
+            
 
             setChoice("deleteActivities")
-            console.log(choice, 'next', result);
+          
 
 
-        }
+        } else {}
     }
-
 
 
 
@@ -292,21 +299,27 @@ export default function EditActivities() {
 
                             <DatePicker label="活動日期" placeholder="按此選擇日期" required value={date} onChange={setDate} />
 
-
+                         
 
 
                             <Input.Wrapper id="activityStartTime" label="活動開始時間" required>
                                 <Input component={InputMask} mask="99:99" id="activityStartTime" {...register('activityStartTime', { required: true })} />
                             </Input.Wrapper>
-                            {(!activityStartTime) && (<div className={styles.reminder}>請以24小時制（如：23:59）填上</div>)}
-                            {((activityStartTime) && (parseInt(activityStartTime.slice(0, 2)) > 23 || parseInt((activityStartTime.slice(3, 5))) > 59 || (activityStartTime[0] === '_') || (activityStartTime[1] === '_') || (activityStartTime[3] === '_') || (activityStartTime[4] === '_'))) && (<div className={styles.reminder}>請填上正確時間</div>)}
+                            {(!activityStartTime) && (<div className={styles.reminder}>請以24小時制填上如:23:59</div>)}
+                            {((activityStartTime) && (parseInt(activityStartTime.slice(0, 2)) > 23 || parseInt((activityStartTime.slice(3, 5))) > 59 || (activityStartTime[0] === '_') || (activityStartTime[1] === '_') || (activityStartTime[3] === '_') || (activityStartTime[4] === '_'))
+                        //   || (parseInt(activityStartTime.slice(0, 2)+activityStartTime.slice(3,5))>parseInt(activityEndTime.slice(0, 2)+activityEndTime.slice(3,5)))
+
+                             ) && (<div className={styles.reminder}>請填上正確時間</div>)}
 
                             <Input.Wrapper id="activityEndTime" label="活動結束時間" required>
                                 <Input component={InputMask} mask="99:99" id="activityEndTime" {...register('activityEndTime', { required: true })} />
                             </Input.Wrapper>
-                            {(!activityEndTime) && (<div className={styles.reminder}>請以24小時制（如：23:59）填上</div>)}
+                            {(!activityEndTime) && (<div className={styles.reminder}>請以24小時制填上如:23:59</div>)}
 
-                            {((activityEndTime) && (parseInt(activityEndTime.slice(0, 2)) > 23 || (parseInt(activityEndTime.slice(3, 5))) > 59 || (activityEndTime[0] === '_') || (activityEndTime[1] === '_') || (activityEndTime[3] === '_') || (activityEndTime[4] === '_'))) && (<div className={styles.reminder}>請填上正確時間</div>)}
+                            {((activityEndTime) && (parseInt(activityEndTime.slice(0, 2)) > 23 || (parseInt(activityEndTime.slice(3, 5))) > 59 || (activityEndTime[0] === '_') || (activityEndTime[1] === '_') || (activityEndTime[3] === '_') || (activityEndTime[4] === '_')) 
+                            // || (parseInt(activityStartTime.slice(0, 2)+activityStartTime.slice(3,5))>parseInt(activityEndTime.slice(0, 2)+activityEndTime.slice(3,5)))
+                          
+                            ) && (<div className={styles.reminder}>請填上正確時間</div>)}
 
                             <Textarea
                                 label="參加要求"

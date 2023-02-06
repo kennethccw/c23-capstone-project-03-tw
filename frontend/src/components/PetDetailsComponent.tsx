@@ -27,6 +27,9 @@ export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () =>
     }
   };
 
+
+
+
   return (
     <>
       <MantineProvider
@@ -80,7 +83,7 @@ export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () =>
             申請領養
           </Button>
         )}
-        {props.status === AdoptionResultStatus.pending && (
+        {props.status === AdoptionResultStatus.pending &&  role!=="organisation" && (
           <Button className={styles.buttonsecond} color="violet" radius="xl" onClick={() => setOpened(true)}>
             取消申請
           </Button>
