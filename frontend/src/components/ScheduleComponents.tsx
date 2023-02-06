@@ -42,7 +42,7 @@ export function ApplicationContainer(props: { activity: ScheduleActivity; clickH
 
   return (
     <div className={styles.applicationsAppliedContainer} onClick={() => props.clickHandler()}>
-      <img className={styles.applicationsAppliedImg} src={`/photos/activities/${props.activity.image}`} alt="" />
+      <img className={styles.applicationsAppliedImg} src={`${process.env.REACT_APP_BACKEND_URL}/activities/${props.activity.image}`} alt="" />
       <div className={styles.applicationsAppliedTextContent}>
         <div className={styles.organisationName}>{props.activity.organisation}</div>
         <div className={styles.activityName}>{props.activity.activity}</div>

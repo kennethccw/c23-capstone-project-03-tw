@@ -26,12 +26,13 @@ export default function Home2() {
   //   dispatch(homeActivityThunk());
   // }, [dispatch]);
 
-  const socket = io("http://localhost:8080", {
-    withCredentials: true,
-    extraHeaders: {
-      "my-custom-header": "abcd",
-    },
-  });
+  // const socket = io("http://localhost:8080", {
+  //   withCredentials: true,
+  //   extraHeaders: {
+  //     "my-custom-header": "abcd",
+  //   },
+  // });
+
   interface SocketMessageData {
     converation?: string;
     image?: string;
@@ -48,16 +49,13 @@ export default function Home2() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    socket.on("connect", () => {
-      console.log(socket.id);
-    });
-    socket.on(`to-clientId${localStorage.getItem("userId")}`, (data) => {
-      setSocketMessageData(data);
-    });
-    return () => {
-      socket.off("connect");
-      socket.off(`to-clientId${localStorage.getItem("userId")}`);
-    };
+    // socket.on("connect", () => {
+    //   console.log(socket.id);
+    // });
+    // socket.on(`to-clientId${localStorage.getItem("userId")}`, (data) => {
+    //   setSocketMessageData(data);
+    // });
+    return;
   }, []);
 
   const [isChangedState, setIsChangedState] = useState(false);

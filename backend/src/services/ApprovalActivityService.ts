@@ -8,14 +8,20 @@ export class ApprovalActivityService {
   getPendingApplication = async (organisationId: number) => {
     try {
       const result: ScheduleActivity[] = await this.knex(TABLES.ACTIVITY_APPLICATIONS)
-        .select()
-        .where("is_approved", false)
-        .andWhere("organisation_id", organisationId)
+        .select(
+          "*",
+          `${TABLES.ACTIVITIES}.id as activity_id`,
+          `${TABLES.ACTIVITIES}.image as image`
+        )
+        .where(`${TABLES.ACTIVITY_APPLICATIONS}.is_approved`, false)
+        .andWhere(`${TABLES.ACTIVITY_APPLICATIONS}.organisation_id`, organisationId)
         .innerJoin(
           TABLES.ACTIVITIES,
           `${TABLES.ACTIVITIES}.id`,
           `${TABLES.ACTIVITY_APPLICATIONS}.activity_id`
-        );
+        )
+        .innerJoin(TABLES.USERS, `${TABLES.USERS}.id`, `${TABLES.ACTIVITY_APPLICATIONS}.user_id`);
+      console.log(result, "hihihihi");
       return result;
     } catch (e) {
       console.log(e);

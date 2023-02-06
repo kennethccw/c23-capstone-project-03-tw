@@ -20,7 +20,7 @@ export function AnimalShow(props: { pet: PetPreview; clickHandler: () => void; d
       >
         <div className={styles.petContainer}>
           <div className={styles.imgPreviewContainer}>
-            <img className={styles.imgPreview} src={`/photos/pet/${props.pet.image}`}></img>
+            <img className={styles.imgPreview} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.pet.image}`}></img>
             <div className={styles.nameContainer}>
               <div className={styles.nameContentContainer}>
                 <div className={styles.nameTab}>{props.pet.name}</div>

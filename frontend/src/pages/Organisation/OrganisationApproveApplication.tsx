@@ -5,15 +5,16 @@ import { MantineProvider, Tabs, Button, Checkbox } from "@mantine/core";
 import { ApplicationContainer } from "../../components/ScheduleComponents";
 import { useQuery } from "react-query";
 import { getPendingApplication } from "../../api/approvalActivityAPI";
+import ActivitiesApplicantComponent from "../../components/ActivitiesApplicantComponent";
 // import { ApplicationContainer } from "../../components/ScheduleComponents";
 
 export default function ApproveApplication() {
   const navigate = useNavigate();
-  const { isError, data, error, isLoading } = useQuery({
-    queryKey: ["organisation/application"],
-    queryFn: getPendingApplication,
-  });
-  console.log(data);
+  // const { isError, data, error, isLoading } = useQuery({
+  //   queryKey: ["organisation/application"],
+  //   queryFn: getPendingApplication,
+  // });
+  // console.log(data);
   return (
     <MantineProvider
       theme={{
@@ -38,8 +39,17 @@ export default function ApproveApplication() {
             <Tabs.Tab value="處理中">處理中</Tabs.Tab>
           </Tabs.List>
         </Tabs>
-
-        {/* <ApplicationContainer imgPath="photos/寵物美容義工.jpeg" organisation="香港動物群益會" activity="場內清潔義工（大量）" location="香港九龍太子基隆街46號地下" date="2023年2月18日（週六）" /> */}
+        {/* {!data?.length && (
+          <div className={styles.noApplicationContainer}>
+            <h2>沒有未處理的申請</h2>
+          </div>
+        )}
+        {data?.map((activity) => (
+          <>
+            <ApplicationContainer activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}&status=approval`)} /> */}
+        {/* <ActivitiesApplicantComponent member={activity.user_id} /> */}
+        {/* </>
+        ))} */}
 
         {/* <div className={styles.activtyContainer}>
           <div className={styles.OrganisationName}> 香港動物群益會 </div>

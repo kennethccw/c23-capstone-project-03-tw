@@ -2,6 +2,14 @@
   margin-left: 50px;
 }
 
+.noApplicationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 60vh;
+}
+
 .chevronAndAdjustmntIcon {
   color: #b0b2c3;
   justify-content: space-between;
@@ -240,21 +248,21 @@
 }
 
 .searchChance {
-    color: #0f2851;
-    font-weight: bold;
-    font-size: xx-large;
-    margin-left: 40px;
-    position: fixed;
-    top:10vh;
-    // background-color: yellowgreen;
+  color: #0f2851;
+  font-weight: bold;
+  font-size: xx-large;
+  margin-left: 40px;
+  position: fixed;
+  top: 10vh;
+  // background-color: yellowgreen;
 }
 
 .searchBarPart {
-    flex: 4;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 4;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .organisationLogo {
   width: 94%;

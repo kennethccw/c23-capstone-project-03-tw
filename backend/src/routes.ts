@@ -1,4 +1,4 @@
-import { knex } from "./main";
+import { knex } from "../main";
 
 import { UserService } from "./services/UserService";
 export const userService = new UserService(knex);

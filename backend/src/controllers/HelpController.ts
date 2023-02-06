@@ -1,7 +1,7 @@
 import { HelpService } from "../services/HelpService";
 import { Request, Response } from "express";
 import formidable from "formidable";
-import { io } from "../main";
+import { io } from "../../main";
 export class HelpController {
   constructor(private helpService: HelpService) {}
 

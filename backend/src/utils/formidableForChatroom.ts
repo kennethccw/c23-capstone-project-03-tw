@@ -15,16 +15,18 @@ declare global {
 }
 
 // create folder if does not exists
-const uploadDir = path.join(
-  __dirname,
-  "..",
-  "..",
-  "..",
-  "frontend",
-  "public",
-  "photos",
-  "animalNeedHelp"
-);
+// const uploadDir = path.join(
+//   __dirname,
+//   "..",
+//   "..",
+//   "..",
+//   "frontend",
+//   "public",
+//   "photos",
+//   "animalNeedHelp"
+// );
+const uploadDir = path.join(__dirname, "..", "..", "uploads", "animalNeedHelp");
+
 // const uploadDir = path.join(__dirname);
 fs.mkdirSync(uploadDir, { recursive: true });
 

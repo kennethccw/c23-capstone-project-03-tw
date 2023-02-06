@@ -365,7 +365,7 @@ export default function CategorisedActivities() {
   const { isError, data, error, isLoading } = useQuery({
     queryKey: ["activity", { category: params.get("category") }],
     queryFn: getActivities,
-    refetchInterval: 5_000,
+    // refetchInterval: 5_000,
     staleTime: 10_000,
     retry: 1,
   });
