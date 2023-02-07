@@ -14,4 +14,18 @@ export class ApprovalActivityController {
       res.status(400).json({ message: "Internal Server Error" });
     }
   };
+
+
+  getApprovedApplication = async (req: Request, res: Response) => {
+    try {
+      const organisationId = req.user?.id!;
+      const result = await this.approvalActivityService.getApprovedApplication(organisationId);
+      console.log(result, "ApprovalActivityController.ts L23");
+      res.status(200).json(result);
+    } catch (e) {
+      res.status(400).json({ message: "Internal Server Error" });
+    }
+  }
+
+
 }
