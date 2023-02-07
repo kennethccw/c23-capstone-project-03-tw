@@ -13,4 +13,3 @@ dist
 docker.env
 pgdata
 
-build
