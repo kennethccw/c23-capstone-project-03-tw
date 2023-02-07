@@ -62,7 +62,7 @@ import { EditAnimalsController } from "./controllers/EditAnimalsController";
 export const editAnimalsController = new EditAnimalsController(editAnimalsService);
 /////////////////////////////////////////////////////////
 
-import { FileS3Controller } from "./utils/FileS3Controller";
+import { FileS3Controller } from "./utils/formidableS3";
 export const fileS3 = new FileS3Controller();
 
 import { Router } from "express";
