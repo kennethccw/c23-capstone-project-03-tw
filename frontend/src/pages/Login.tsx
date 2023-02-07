@@ -42,8 +42,8 @@ export default function Login() {
   };
   const onGoogleLogin = (event: React.MouseEvent) => {
     event.preventDefault();
-    // window.location.href = `${process.env.REACT_APP_BACKEND_URL}/connect/google`;
-    window.location.href = `http://localhost:8080/connect/google`;
+    window.location.href = `${process.env.REACT_APP_BACKEND_URL}/connect/google`;
+    // window.location.href = `http://localhost:8080/connect/google`;
   };
 
   return (

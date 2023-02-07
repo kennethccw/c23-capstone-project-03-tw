@@ -64,7 +64,13 @@ export default function AnimalSupportChat() {
 
   const getUserChatroomNoParam = async () => {
     const result = await getUserChatroom(uid);
-    const dateStringArr = result.message.map((message) => `${new Date(message.created_at!).getFullYear()}-${new Date(message.created_at!).getMonth() + 1}-${new Date(message.created_at!).getDate()}`);
+    const dateStringArr = result.message.map(
+      (message) =>
+        `${new Date(message.created_at!).getFullYear()}-${(new Date(message.created_at!).getMonth() + 1).toString().padStart(2, "0")}-${new Date(message.created_at!)
+          .getDate()
+          .toString()
+          .padStart(2, "0")}`
+    );
     const dateSet = new Set<string>();
     for (const dateString of dateStringArr) {
       dateSet.add(dateString);
@@ -73,7 +79,11 @@ export default function AnimalSupportChat() {
     const idxOfMessageArr: number[] = [];
     for (const date of dateArr) {
       const idxOfMessage = result.message.findIndex(
-        (message) => `${new Date(message.created_at!).getFullYear()}-${new Date(message.created_at!).getMonth() + 1}-${new Date(message.created_at!).getDate()}` === date
+        (message) =>
+          `${new Date(message.created_at!).getFullYear()}-${(new Date(message.created_at!).getMonth() + 1).toString().padStart(2, "0")}-${new Date(message.created_at!)
+            .getDate()
+            .toString()
+            .padStart(2, "0")}` === date
       );
       // if (idxOfMessage === 0) {
       //   idxOfMessageArr.push(-1);
@@ -83,7 +93,7 @@ export default function AnimalSupportChat() {
     }
     for (let i = 0; i < idxOfMessageArr.length; i++) {
       result.message.splice(idxOfMessageArr[i] + i, 0, dateArr[i] as any);
-      if (dateArr[i] === `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`) {
+      if (dateArr[i] === `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, "0")}-${new Date().getDate().toString().padStart(2, "0")}`) {
         setIsTodayAppeared(true);
       }
     }
@@ -211,7 +221,7 @@ export default function AnimalSupportChat() {
 
             {data?.result.message.map((message, idx) =>
               new Date(message as any).toString() !== "Invalid Date" ? (
-                `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}` === (message as any) ? (
+                `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, "0")}-${new Date().getDate().toString().padStart(2, "0")}` === (message as any) ? (
                   <div className={styles.dateContainer}>
                     <div className={styles.dateTab} key={`message-${idx}`}>
                       <div>今天</div>

@@ -6,19 +6,19 @@ import { UnstyledButton, Checkbox, Text, createStyles, MantineProvider, Button }
 import { useUncontrolled } from "@mantine/hooks";
 import { PetPreview } from "../api/adoptionAPI";
 import { memo } from "react";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import DeleteActivityModal from "./DeleteActivityModal";
 
 export function AnimalShow(props: { pet: PetPreview; clickHandler: () => void; displayDeleteButton?: boolean; onRemove?: () => void; animalToBeDeleted?: string }) {
   const [shouldShowModal, setShouldShowModal] = useState(false);
   const showModal = () => {
-      setShouldShowModal(true);
+    setShouldShowModal(true);
   };
 
   const hideModal = () => {
-      setShouldShowModal(false);
+    setShouldShowModal(false);
   };
-  
+
   return (
     <>
       <MantineProvider
@@ -31,28 +31,41 @@ export function AnimalShow(props: { pet: PetPreview; clickHandler: () => void; d
       >
         <div className={styles.petContainer}>
           <div className={styles.imgPreviewContainer}>
-            <img className={styles.imgPreview} src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/pet/${props.pet.image}`}></img>
-            {/* <img className={styles.imgPreview} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.pet.image}`}></img> */}
+            {/* <img className={styles.imgPreview} src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/pet/${props.pet.image}`}></img> */}
+            <img className={styles.imgPreview} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.pet.image}`}></img>
             <div className={styles.nameContainer}>
               <div className={styles.nameContentContainer}>
                 <div className={styles.nameTab}>{props.pet.name}</div>
                 <div className={styles.nameTab}>{props.pet.age}</div>
               </div>
               <Button className={styles.button} color="violet" radius="xl" onClick={props.clickHandler}>
-                {props.displayDeleteButton ? <div className={styles.deleteButton} onClick={(e) => { showModal(); e.stopPropagation() }}>刪除動物</div> : <>詳細資料</>}
+                {props.displayDeleteButton ? (
+                  <div
+                    className={styles.deleteButton}
+                    onClick={(e) => {
+                      showModal();
+                      e.stopPropagation();
+                    }}
+                  >
+                    刪除動物
+                  </div>
+                ) : (
+                  <>詳細資料</>
+                )}
               </Button>
             </div>
           </div>
         </div>
-       
       </MantineProvider>
       <DeleteActivityModal
-            isShow={shouldShowModal}
-            onDelete={() => { props.onRemove!(); hideModal() }}
-            onHide={() => hideModal()}
-            activityNameToBeDeleted={props.animalToBeDeleted}
-        />
-
+        isShow={shouldShowModal}
+        onDelete={() => {
+          props.onRemove!();
+          hideModal();
+        }}
+        onHide={() => hideModal()}
+        activityNameToBeDeleted={props.animalToBeDeleted}
+      />
     </>
   );
 }

@@ -9,6 +9,7 @@ import Knex from "knex";
 import http from "http";
 import { Server as SocketIO } from "socket.io";
 import knexConfigs from "./knexfile";
+import path from "path";
 
 const configMode = process.env.NODE_ENV || "development";
 const knexConfig = knexConfigs[configMode];
@@ -56,6 +57,8 @@ declare module "express-session" {
     user?: { id: number; username: string };
   }
 }
+
+app.use(express.static(path.join(__dirname, "uploads")));
 
 import grant from "grant";
 const grantExpress = grant.express({
