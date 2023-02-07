@@ -148,34 +148,39 @@ export class AdoptionService {
 
 
 
-  approveAdoption = async (applicationID: number) => {
+  approveAdoption = async (applicationID: number, animalID:number) => {
     const txn = await this.knex.transaction();
     try {
-
+      console.log(applicationID, "AdoptiopnService.ts L154")
       await txn("adoption_applications").update("status", 'success').where("id", applicationID)
-      await txn("adoption_applications").update("status", 'fail').whereNot("id", applicationID)
+      await txn("adoption_applications").update("status", 'fail').where('pet_id', animalID).whereNot("id", applicationID)
 
 
       console.log('updated status of the application     AdoptiopnService.ts L159')
+      await txn.commit();
+      return;
 
     }
     catch (e) {
       console.log(e);
       await txn.rollback();
-      return;
+      throw(e)
+   
     }
 
   }
 
   rejectAdoption = async (applicationID: number, rejectedReason: string, otherReason: string) => {
     try {
-    
-await this.knex("adoption_applications").update({status:"fail",
-fail_reason:rejectedReason,
-other_fail_reason: otherReason}).where('id',applicationID)
 
+      await this.knex("adoption_applications").update({
+        status: "fail",
+        fail_reason: rejectedReason,
+        other_fail_reason: otherReason,
+      }).where('id', applicationID)
 
-     }
+return;
+    }
     catch (e) {
       console.log(e);
       throw e;

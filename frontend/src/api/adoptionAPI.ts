@@ -142,14 +142,14 @@ export const getPetAdoptionResultByOrganisation = async (organisationID: number)
   return data;
 };
 
-export const approvalOfAdoption = async (applicationID: number) => {
+export const approvalOfAdoption = async (applicationID: number, animalID: number) => {
   const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/adoption/approveAdoption`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ applicationID }),
+    body: JSON.stringify({ applicationID, animalID }),
   });
   return data;
 };

@@ -28,7 +28,7 @@ export function OrganisationAdoptionApplicationPending(props:OrganisationAdoptio
         NO_WINDOW_SCREEN = "沒有裝窗網",
         OTHER_REASON = "其他原因",
       }
-    const [rejectedReason, setRejectedReason] = useState(RejectedReason.NOT_AVALIABLE as string);
+    let [rejectedReason, setRejectedReason] = useState(RejectedReason.NOT_AVALIABLE as string);
     const [otherReason, setOtherReason]=useState<string>("")
     
 console.log(rejectedReason)
@@ -47,11 +47,11 @@ return;}
 else{ 
 console.log("application ID: ",props.result?.application_id)
 console.log("petID:", props.result?.pet_id )
-const resp=await approvalOfAdoption(props.result?.application_id!)
+const resp=await approvalOfAdoption(props.result?.application_id!, props.result?.pet_id!)
 const data= await resp.json();
 console.log(data)
 if (resp.status===200){
-    alert(data.message)
+    alert("已批准申請及拒絕其他人對此的申請")
 }
 else{
     alert(data.message)
@@ -60,19 +60,26 @@ else{
 }
 }
 
-
+ 
 
 const handleSubmitRejectForm= async ()=>{
-    if(rejectedReason===RejectedReason.NOT_AVALIABLE){alert("輸入錯誤")}
+  
+    if(rejectedReason===RejectedReason.NOT_AVALIABLE){console.log("application ID: ",props.result?.application_id)
+    console.log("petID:", props.result?.pet_id );alert("輸入錯誤")}
     else if(rejectedReason==="其他原因" && otherReason===""){alert("請輸入其他原因")
     console.log("application ID: ",props.result?.application_id)
     console.log("petID:", props.result?.pet_id )
 }
 else{
+ if(rejectedReason===RejectedReason.NO_WINDOW_SCREEN){rejectedReason="no_window_screen"}
+  if(rejectedReason===RejectedReason.UNDER_21){rejectedReason="age_under_21"}
+  if(rejectedReason===RejectedReason.OTHER_REASON){rejectedReason="other"}
+
+  
     console.log("application ID: ",props.result?.application_id)
     console.log("petID:", props.result?.pet_id )
     console.log("rejectedReason:",rejectedReason,'otherReason:',otherReason )
-    const resp=await rejectOfAdoption(props.result?.application_id!, rejectedReason, otherReason)
+    const resp=await rejectOfAdoption(props.result?.application_id!, rejectedReason!, otherReason!)
     const data= await resp.json();
     console.log(data)
     if (resp.status===200){

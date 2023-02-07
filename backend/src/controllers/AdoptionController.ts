@@ -1,5 +1,5 @@
 import { AdoptionService } from "../services/AdoptionService";
-import { Request, response, Response } from "express";
+import { Request, Response } from "express";
 import { AdoptionApplication } from "../utils/models";
 
 export class AdoptionController {
@@ -81,10 +81,10 @@ export class AdoptionController {
 
   approveAdoption = async (req: Request, res: Response) => {
     try {
-      const { applicationID } = req.body
+      const { applicationID, animalID } = req.body
       console.log(applicationID, 'AdoptionController.ts L85')
-      await this.adoptionService.approveAdoption(applicationID)
-      response.status(200).json({ message: "已批准申請及拒絕其他人對此的申請" })
+      await this.adoptionService.approveAdoption(applicationID,animalID)
+      res.status(200).json({ message: "已批准申請及拒絕其他人對此的申請" })
 
 
     }
@@ -96,11 +96,11 @@ export class AdoptionController {
   rejectAdoption = async (req: Request, res: Response) => {
     try {
       const { applicationID, rejectedReason, otherReason } = req.body;
-      console.log("applicationID:",applicationID)
-console.log("rejectedReason:",rejectedReason );
-console.log('otherReason:',otherReason )
-await this.adoptionService.rejectAdoption(applicationID,rejectedReason,otherReason)
-response.status(200).json({ message: "已拒絕申請" })
+      console.log("applicationID:", applicationID)
+      console.log("rejectedReason:", rejectedReason);
+      console.log('otherReason:', otherReason)
+      await this.adoptionService.rejectAdoption(applicationID, rejectedReason, otherReason)
+      res.status(200).json({ message: "已拒絕申請" })
 
 
     }
