@@ -1,7 +1,7 @@
 import { fetchJson } from "./utilsAPI";
 
-// const ADOPTION_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/adoption`;
-const ADOPTION_API_PATH = `${"http://localhost:8080"}/adoption`;
+const ADOPTION_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/adoption`;
+// const ADOPTION_API_PATH = `${"http://localhost:8080"}/adoption`;
 
 export interface PetDetail {
   pet_id: number;
@@ -37,7 +37,7 @@ export interface AdoptionApplication {
   image?: string;
   pet_name?: string;
   pet_image?: string;
-  id?:number;
+  id?: number;
   created_at?: string;
 }
 
@@ -45,7 +45,7 @@ export interface AdoptionResult {
   application_id: number;
   pet_id: number;
   name?: string;
-  applicant_name?:string;
+  applicant_name?: string;
   image: string;
   status: AdoptionResultStatus;
   fail_reason: AdoptionResultFailReason;
@@ -131,8 +131,7 @@ export const getPetAdoptionResult = async () => {
   return data;
 };
 
-
-export const getPetAdoptionResultByOrganisation = async (organisationID:number) => {
+export const getPetAdoptionResultByOrganisation = async (organisationID: number) => {
   const data = await fetchJson<AdoptionResult[]>(`${ADOPTION_API_PATH}/result/${organisationID}`, {
     method: "GET",
     headers: {
@@ -144,28 +143,25 @@ export const getPetAdoptionResultByOrganisation = async (organisationID:number) 
 };
 
 export const approvalOfAdoption = async (applicationID: number) => {
-  const data =await fetch(`${process.env.REACT_APP_BACKEND_URL}/adoption/approveAdoption`,
-  {
-    method: 'POST',
-    headers:{
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
+  const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/adoption/approveAdoption`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({applicationID}),
-}) ;
+    body: JSON.stringify({ applicationID }),
+  });
   return data;
-}
+};
 
-
-export const rejectOfAdoption = async (applicationID: number,rejectedReason:string,otherReason: string ) => {
-  const data =await fetch(`${process.env.REACT_APP_BACKEND_URL}/adoption/rejectAdoption`,
-  {
-    method: 'POST',
-    headers:{
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
+export const rejectOfAdoption = async (applicationID: number, rejectedReason: string, otherReason: string) => {
+  const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/adoption/rejectAdoption`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({applicationID, rejectedReason, otherReason}),
-}) ;
+    body: JSON.stringify({ applicationID, rejectedReason, otherReason }),
+  });
   return data;
-}
+};
