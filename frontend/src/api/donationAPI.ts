@@ -1,6 +1,7 @@
 import { fetchJson } from "./utilsAPI";
 
-const DONATION_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/donation`;
+// const DONATION_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/donation`;
+const DONATION_API_PATH = `${"http://localhost:8080"}/donation`;
 
 export interface Donation {
   receipt_name: string;

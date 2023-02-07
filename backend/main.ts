@@ -20,14 +20,23 @@ const app = express();
 const server = new http.Server(app);
 export const io = new SocketIO(server, {
   cors: {
-    origin: process.env.FRONTEND_URL,
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
   },
 });
+// export const io = new SocketIO(server, {
+//   cors: {
+//     origin: process.env.FRONTEND_URL,
+//     methods: ["GET", "POST"],
+//     allowedHeaders: ["my-custom-header"],
+//     credentials: true,
+//   },
+// });
 
-app.use(cors({ origin: [process.env.FRONTEND_URL ?? ""] }));
+// app.use(cors({ origin: [process.env.FRONTEND_URL ?? ""] }));
+app.use(cors({ origin: ["http://localhost:3000" ?? ""] }));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   next();

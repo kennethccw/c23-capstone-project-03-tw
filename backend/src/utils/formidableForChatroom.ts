@@ -3,16 +3,17 @@ import formidable from "formidable";
 import path from "path";
 import type { Request, Response, NextFunction } from "express";
 
-declare global {
-  namespace Express {
-    interface Request {
-      form: {
-        fields: formidable.Fields;
-        files: formidable.Files;
-      };
-    }
-  }
-}
+// declare global {
+//   namespace Express {
+//     interface Request {
+//       form: {
+//         fields: formidable.Fields;
+//         files: formidable.Files;
+//         s3Files: aws.S3.ManagedUpload.SendData[];
+//       };
+//     }
+//   }
+// }
 
 // create folder if does not exists
 // const uploadDir = path.join(

@@ -1,6 +1,7 @@
 import { fetchJson } from "./utilsAPI";
 
-const BADGE_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/badge`;
+// const BADGE_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/badge`;
+const BADGE_API_PATH = `${"http://localhost:8080"}/badge`;
 
 export enum BadgeType {
   warmhearted = 1,

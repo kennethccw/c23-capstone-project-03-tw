@@ -42,7 +42,8 @@ export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () =>
       >
         <div className={styles.petContainer}>
           <div className={styles.imgContainer}>
-            <img className={styles.imgContent} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.pet.image}`}></img>
+            <img className={styles.imgContent} src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/pet/${props.pet.image}`}></img>
+            {/* <img className={styles.imgContent} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.pet.image}`}></img> */}
           </div>
 
           <div className={styles.detailsBigContainer}>

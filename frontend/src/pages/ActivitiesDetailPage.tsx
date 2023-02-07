@@ -153,7 +153,8 @@ export default function ActivitiesDetailPage() {
             <div className={detailStyles.basicInfo}>
               <div className={detailStyles.chanceInstances}>
                 <div className={detailStyles.box}>
-                  <img src={`${process.env.REACT_APP_BACKEND_URL}/activities/${data?.data.image}`} className={detailStyles.chancePhoto}></img>
+                  {/* <img src={`${process.env.REACT_APP_BACKEND_URL}/activities/${data?.data.image}`} className={detailStyles.chancePhoto}></img> */}
+                  <img src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/activities/${data?.data.image}`} className={detailStyles.chancePhoto}></img>
                 </div>
                 <div className={detailStyles.organisationName}>{data?.data.organisation}</div>
                 <div className={detailStyles.taskName}>{data?.data.activity}</div>

@@ -19,7 +19,8 @@ export default function AdoptionApplicationComponent(props: { result: AdoptionRe
   return (
     <div className={styles.petPaperBigContainer} onClick={props.clickHandler}>
       <Paper shadow="xl" radius="xl" p="xl" className={styles.paperContainer}>
-        <img className={styles.petImg} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.result.image}`} alt="" />
+        <img className={styles.petImg} src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/pet/${props.result.image}`} alt="" />
+        {/* <img className={styles.petImg} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.result.image}`} alt="" /> */}
         <div className={styles.petDetailContainer}>
           <div className={styles.petLabelContentContainer}>
             <div className={styles.petLabelText}>動物名稱：</div>

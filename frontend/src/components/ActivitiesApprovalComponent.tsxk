@@ -1,0 +1,8 @@
+// import { Button, Checkbox } from "@mantine/core";
+// import styles from "../css/organisationMoreDetails.module.scss";
+
+// export default function ActivitiesApprovalComponent(props: { member: string; clickHandler: () => void }) {
+//   return (
+
+//   );
+// }
