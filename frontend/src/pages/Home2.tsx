@@ -44,8 +44,8 @@ export default function Home2() {
     count: number;
   }
 
-  const [socketMessageData, setSocketMessageData] = useState<SocketMessageData>();
-  const [socketMessageDataArr, setSocketMessageDataArr] = useState<SocketMessageData[]>([]);
+  // const [socketMessageData, setSocketMessageData] = useState<SocketMessageData>();
+  // const [socketMessageDataArr, setSocketMessageDataArr] = useState<SocketMessageData[]>([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -60,17 +60,17 @@ export default function Home2() {
 
   const [isChangedState, setIsChangedState] = useState(false);
 
-  useEffect(() => {
-    if (socketMessageData) {
-      setSocketMessageDataArr((socketMessageDataArr) => {
-        socketMessageDataArr.push(socketMessageData);
-        return socketMessageDataArr;
-      });
-      setIsChangedState(!isChangedState);
-    }
-  }, [socketMessageData, socketMessageDataArr]);
+  // useEffect(() => {
+  //   if (socketMessageData) {
+  //     setSocketMessageDataArr((socketMessageDataArr) => {
+  //       socketMessageDataArr.push(socketMessageData);
+  //       return socketMessageDataArr;
+  //     });
+  //     setIsChangedState(!isChangedState);
+  //   }
+  // }, [socketMessageData, socketMessageDataArr]);
 
-  console.log(socketMessageDataArr);
+  // console.log(socketMessageDataArr);
 
   const getHomeActivitiesAndNotification = async () => {
     const activityArr = await getHomeActivities();
@@ -138,11 +138,9 @@ export default function Home2() {
         </div>
         <div className={styles.bellIconContainer} onClick={() => setIsNotificationBtnClicked(true)}>
           <CiBellOn className={styles.bellIcon} />
-          {!!(socketMessageDataArr.length + (data?.messageArr.length || 0) + (data?.badgeArr.length || 0) + (data?.activityApprovedArr.length || 0) + (data?.adoptionApprovedArr.length || 0)) && (
+          {!!((data?.messageArr.length || 0) + (data?.badgeArr.length || 0) + (data?.activityApprovedArr.length || 0) + (data?.adoptionApprovedArr.length || 0)) && (
             <div className={styles.bellCount}>
-              <div>
-                {socketMessageDataArr.length + (data?.messageArr.length || 0) + (data?.badgeArr.length || 0) + (data?.activityApprovedArr.length || 0) + (data?.adoptionApprovedArr.length || 0)}
-              </div>
+              <div>{(data?.messageArr.length || 0) + (data?.badgeArr.length || 0) + (data?.activityApprovedArr.length || 0) + (data?.adoptionApprovedArr.length || 0)}</div>
             </div>
           )}
         </div>

@@ -23,8 +23,8 @@ export function Activity(props: { activity: ActivityPreview; clickHandler: () =>
   return (
     <>
       <div className={styles.applicationsAppliedContainer} onClick={() => props.clickHandler()}>
-        <img className={styles.applicationsAppliedImg} src={`${process.env.REACT_APP_BACKEND_URL}/activities/${props.activity.image}`} alt="" />
-        {/* <img className={styles.applicationsAppliedImg} src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/activities/${props.activity.image}`} alt="" /> */}
+        {/* <img className={styles.applicationsAppliedImg} src={`${process.env.REACT_APP_BACKEND_URL}/activities/${props.activity.image}`} alt="" /> */}
+        <img className={styles.applicationsAppliedImg} src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/activities/${props.activity.image}`} alt="" />
         <div className={styles.detailPart}>
           <div className={styles.applicationsAppliedTextContent}>
             <div className={styles.organisationName}>{props.activity.organisation}</div>

@@ -1,7 +1,6 @@
 import { fetchJson } from "./utilsAPI";
 
-const AUTH_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/user`;
-// const AUTH_API_PATH = `${"http://localhost:8080"}/user`;
+const AUTH_API_PATH = process.env.REACT_APP_NODE_ENV === "production" ? `${process.env.REACT_APP_BACKEND_URL}/user` : `${"http://localhost:8080"}/user`;
 
 export interface UserLoginInfo {
   userIdentity: string;

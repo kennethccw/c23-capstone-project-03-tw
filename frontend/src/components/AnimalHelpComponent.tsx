@@ -20,8 +20,8 @@ export function AnimalHelpPurple(props: { text?: string; image?: File | string; 
     <div className={styles.clientSideBigContainer}>
       <div className={styles.clientSideContainer}>
         {props.text && <div className={styles.clientSide}>{props.text}</div>}
-        {props.image && <img className={styles.imgContainer} src={`${process.env.REACT_APP_BACKEND_URL}/animalNeedHelp/${props.image}`}></img>}
-        {/* {props.image && <img className={styles.imgContainer} src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/animalNeedHelp/${props.image}`}></img>} */}
+        {/* {props.image && <img className={styles.imgContainer} src={`${process.env.REACT_APP_BACKEND_URL}/animalNeedHelp/${props.image}`}></img>} */}
+        {props.image && <img className={styles.imgContainer} src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/animalNeedHelp/${props.image}`}></img>}
         {/* <div className={styles.clientSide}>我係城門水塘見到有隻狗媽媽生左好多小狗狗，狗媽媽受傷，呼吸困難。</div> */}
         <div className={styles.time}>{timeNow}</div>
       </div>

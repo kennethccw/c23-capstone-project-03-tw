@@ -143,7 +143,11 @@ export class UserController {
         payload.role = LoginRole.user;
       }
       const token = jwtSimple.encode(payload, jwt.jwtSecret);
-      res.redirect(`${process.env.FRONTEND_URL}/google-callback?token=${token}`);
+      res.redirect(
+        `${
+          process.env.NODE_ENV === "production" ? process.env.FRONTEND_URL : "http://localhost:3000"
+        }/google-callback?token=${token}`
+      );
       // res.redirect(`${"http://localhost:3000"}/google-callback?token=${token}`);
     } catch (e) {
       res.status(400).json({ email: data.email, message: "User not found" });
