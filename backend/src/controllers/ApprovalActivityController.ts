@@ -8,7 +8,7 @@ export class ApprovalActivityController {
     const organisationId = req.user?.id!;
     try {
       const result = await this.approvalActivityService.getPendingApplication(organisationId);
-      console.log(result, "controller");
+      console.log(result, "ApprovalActivityController.ts L11");
       res.status(200).json(result);
     } catch (e) {
       res.status(400).json({ message: "Internal Server Error" });

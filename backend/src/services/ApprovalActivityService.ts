@@ -23,7 +23,7 @@ export class ApprovalActivityService {
           `${TABLES.ACTIVITY_APPLICATIONS}.activity_id`
         )
         .innerJoin(TABLES.USERS, `${TABLES.USERS}.id`, `${TABLES.ACTIVITY_APPLICATIONS}.user_id`);
-      console.log(result, "hihihihi");
+      console.log(result, "ApprovalActivityService.ts L26");
       return result;
     } catch (e) {
       console.log(e);
