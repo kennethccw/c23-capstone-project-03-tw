@@ -223,7 +223,7 @@ var UserController = /** @class */ (function () {
                             payload.role = models_1.LoginRole.user;
                         }
                         token = jwt_simple_1.default.encode(payload, jwt_1.default.jwtSecret);
-                        res.redirect("".concat(process.env.FRONTEND_URL, "/google-callback?token=").concat(token));
+                        res.redirect("".concat(process.env.NODE_ENV === "production" ? process.env.FRONTEND_URL : "http://localhost:3000", "/google-callback?token=").concat(token));
                         return [3 /*break*/, 6];
                     case 5:
                         e_4 = _b.sent();

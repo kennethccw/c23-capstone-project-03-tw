@@ -2,7 +2,6 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.io = exports.knex = void 0;
 var dotenv_1 = __importDefault(require("dotenv"));
@@ -15,29 +14,25 @@ var knex_1 = __importDefault(require("knex"));
 var http_1 = __importDefault(require("http"));
 var socket_io_1 = require("socket.io");
 var knexfile_1 = __importDefault(require("./knexfile"));
+var path_1 = __importDefault(require("path"));
 var configMode = process.env.NODE_ENV || "development";
 var knexConfig = knexfile_1.default[configMode];
 exports.knex = (0, knex_1.default)(knexConfig);
 var app = (0, express_1.default)();
 var server = new http_1.default.Server(app);
-// export const io = new SocketIO(server, {
-//   cors: {
-//     origin: "http://localhost:3000",
-//     methods: ["GET", "POST"],
-//     allowedHeaders: ["my-custom-header"],
-//     credentials: true,
-//   },
-// });
 exports.io = new socket_io_1.Server(server, {
     cors: {
-        origin: process.env.FRONTEND_URL,
+        origin: process.env.NODE_ENV === "production" ? process.env.FRONTEND_URL : "http://localhost:3000",
         methods: ["GET", "POST"],
         allowedHeaders: ["my-custom-header"],
         credentials: true,
     },
 });
-app.use((0, cors_1.default)({ origin: [(_a = process.env.FRONTEND_URL) !== null && _a !== void 0 ? _a : ""] }));
-// app.use(cors({ origin: ["http://localhost:3000" ?? ""] }));
+app.use((0, cors_1.default)({
+    origin: [
+        process.env.NODE_ENV === "production" ? process.env.FRONTEND_URL : "http://localhost:3000",
+    ],
+}));
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     next();
@@ -48,11 +43,11 @@ app.use((0, express_session_1.default)({
     resave: true,
     saveUninitialized: true,
 }));
+app.use(express_1.default.static(path_1.default.join(__dirname, "uploads")));
 var grant_1 = __importDefault(require("grant"));
 var grantExpress = grant_1.default.express({
     defaults: {
-        origin: process.env.BACKEND_URL,
-        // origin: "http://localhost:8080",
+        origin: process.env.NODE_ENV === "production" ? process.env.BACKEND_URL : "http://localhost:8080",
         transport: "session",
         state: true,
     },
