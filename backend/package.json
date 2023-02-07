@@ -7,7 +7,10 @@
     "start": "ts-node main.ts",
     "dev": "ts-node-dev --rs main.ts",
     "test": "jest",
-    "lint": "eslint \"**/*.ts\" --fix"
+    "lint": "eslint \"**/*.ts\" --fix",
+    "build": "yarn clean && tsc --project tsconfig.json && yarn move",
+    "clean": "rm -rf build",
+    "move": "cp -r public build/public && cp -r private build/private"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",

@@ -8,7 +8,7 @@ import cors from "cors";
 import Knex from "knex";
 import http from "http";
 import { Server as SocketIO } from "socket.io";
-import path from "path";
+// import path from "path";
 import knexConfigs from "./knexfile";
 
 const configMode = process.env.NODE_ENV || "development";
@@ -43,7 +43,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static(path.join(__dirname, "uploads")));
+// app.use(express.static(path.join(__dirname, "uploads")));
 app.use(express.json({ limit: "50mb" }));
 app.use(
   expressSession({

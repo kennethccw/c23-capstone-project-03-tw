@@ -12,3 +12,5 @@ dist
 .env
 docker.env
 pgdata
+
+build
