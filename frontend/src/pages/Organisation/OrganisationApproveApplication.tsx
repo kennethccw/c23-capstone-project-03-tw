@@ -6,11 +6,18 @@ import { ApplicationContainer } from "../../components/ScheduleComponents";
 import { useQuery } from "react-query";
 import { getPendingApplication } from "../../api/approvalActivityAPI";
 import { Activity } from "../../components/ActivitiesUtilis";
+import { useState } from "react";
 // import ActivitiesApprovalComponent from "../../components/ActivitiesApprovalComponent";
 // import { ApplicationContainer } from "../../components/ScheduleComponents";
 
 export default function ApproveApplication() {
   const navigate = useNavigate();
+enum Status{
+  pending="penging",
+  approved="approved"
+}
+const [status,setStatus]=useState<Status>(Status.pending)
+
   const { isError, data, error, isLoading } = useQuery({
     queryKey: ["organisation/application"],
     queryFn: getPendingApplication,
@@ -36,16 +43,16 @@ export default function ApproveApplication() {
 
         <Tabs defaultValue="處理中" color="ocean" className={styles.tabList}>
           <Tabs.List grow>
-            <Tabs.Tab value="處理中">處理中</Tabs.Tab>
-            <Tabs.Tab value="已批核">已批核</Tabs.Tab>
+            <Tabs.Tab value="處理中" onClick={()=>setStatus(Status.pending)}>處理中</Tabs.Tab>
+            <Tabs.Tab value="已批核" onClick={()=>setStatus(Status.approved)}>已批核</Tabs.Tab>
           </Tabs.List>
         </Tabs>
-        {!data?.length && (
+        {!data?.length && status===Status.pending &&(
           <div className={styles.noApplicationContainer}>
             <h2>沒有未處理的申請</h2>
           </div>
         )}
-        {data?.map((activity, idx) => (
+        {status===Status.pending && data?.map((activity, idx) => (
           <>
             <ApplicationContainer activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}&status=approval`)} />
             {/* <ActivitiesApprovalComponent member={activity.user_fullname!} /> */}
@@ -111,7 +118,6 @@ export default function ApproveApplication() {
 
 
 
-{/* <Activity key={activity.activity_id} activity={activity} clickHandler={(…) => navigate(`/activity/detail?id=${activity.activity_id}`)} displayDeleteButton={true} onRemove={() => deleteActivity(activity)} activityToBeDeleted={activity.activity} /> */}
       </div>
     </MantineProvider>
   );
