@@ -269,7 +269,7 @@ export default function EditActivities() {
                 <Tabs defaultValue="基本資料" color="ocean" >
                     <Tabs.List className={styles.choices}>
                         <Tabs.Tab className={styles.choiceFontSize} value="新增活動" onClick={() => click('addActivities')}>新增活動</Tabs.Tab>
-                        <Tabs.Tab className={styles.choiceFontSize} value="刪除活動" onClick={() => click('deleteActivities')}>刪除活動</Tabs.Tab>
+                        <Tabs.Tab className={styles.choiceFontSize} value="編輯活動" onClick={() => click('deleteActivities')}>編輯活動</Tabs.Tab>
                     </Tabs.List>
                 </Tabs>
             </div>

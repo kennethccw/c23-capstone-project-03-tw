@@ -5,6 +5,7 @@ import { MantineProvider, Tabs, Button, Checkbox } from "@mantine/core";
 import { ApplicationContainer } from "../../components/ScheduleComponents";
 import { useQuery } from "react-query";
 import { getPendingApplication } from "../../api/approvalActivityAPI";
+import { Activity } from "../../components/ActivitiesUtilis";
 // import ActivitiesApprovalComponent from "../../components/ActivitiesApprovalComponent";
 // import { ApplicationContainer } from "../../components/ScheduleComponents";
 
@@ -107,6 +108,10 @@ export default function ApproveApplication() {
             <Checkbox className={styles.addressList} />
           </div>
         </div> */}
+
+
+
+{/* <Activity key={activity.activity_id} activity={activity} clickHandler={(…) => navigate(`/activity/detail?id=${activity.activity_id}`)} displayDeleteButton={true} onRemove={() => deleteActivity(activity)} activityToBeDeleted={activity.activity} /> */}
       </div>
     </MantineProvider>
   );

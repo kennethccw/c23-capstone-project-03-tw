@@ -20,8 +20,7 @@ import { PetPreview } from "../../api/adoptionAPI";
 import { useQuery } from "react-query";
 import { fetchJson } from "../../api/utilsAPI";
 import { AnimalShow } from "../../components/AnimationSlideShowComponent";
-
-
+import { HiSearch } from "react-icons/hi";
 
 
 export default function EditAnimals() {
@@ -50,7 +49,13 @@ export default function EditAnimals() {
         resetRef.current?.();
     };
 
+    enum ContentToBeDisplayed{
+        addAnimals="addAnimals",
+        deleteAnimals="deleteAnimals"
+    }
+    
 
+    const [search, setSearch] = useState<string | null>("");
 
 
     const animalName: string = watch("animalName")
@@ -67,6 +72,8 @@ export default function EditAnimals() {
     console.log('breed:', breed)
     console.log("remark:", remark,)
     console.log("file:", file)
+
+
     const getOrganisationAnimals = async () => {
         const data = await fetchJson<PetPreview[]>(`${process.env.REACT_APP_BACKEND_URL}/editAnimals/getAnimals/${organsationID}`,
             {
@@ -97,7 +104,20 @@ export default function EditAnimals() {
     }
 
 
+    ////////////////////////////  search bar to find specific pets ////////////////////////
+const searching = (searchValue: string) => {
+    if (searchValue.trim() === "") {
+     
+      setSearch("");
+    //   setActivityData([...activityData]);
+    //   console.log("searchState: ", search);
+    }
 
+    if (searchValue.trim() !== "") {
+      setSearch(searchValue.toLowerCase().trim());
+    }
+  };
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 
     const deleteAnimal = async (animalToBeDeleted: PetPreview) => {
@@ -128,7 +148,7 @@ export default function EditAnimals() {
         console.log(data.result)
         if (resp.status === 200) {
             // setAnimal(animalToBeDisplay!.filter(singleAnimal => singleAnimal.pet_id !== animalID)); 
-            
+
             animalToBeDisplay?.filter(singleAnimal => singleAnimal.pet_id !== animalID)
             //this is to ensure the data to be deleted is successfully to be "deleted" in the database before it "disappears" in the UI view         
             alert(data.result)
@@ -202,7 +222,21 @@ export default function EditAnimals() {
     }
 
 
-
+    useEffect(() => {
+        animalToBeDisplay?.filter(
+          (eachAnimalData) =>
+            eachAnimalData.name.toLowerCase().slice(0, search!.length) === search ||
+            eachAnimalData.name.toLowerCase().includes(search!) ||
+            eachAnimalData.name.toLowerCase()[0] === search![0] 
+           
+            // eachAnimalData.activity.toLowerCase().slice(0, search!.length) === search ||
+            // eachAnimalData.activity.toLowerCase().includes(search!) ||
+          
+            // eachAnimalData.activity.toLowerCase()[0] === search![0] ||
+            // eachAnimalData.location.toLowerCase().includes(search!)
+        );
+        // setActivityDataForSearch(filterActivityData);
+      }, [search]);
 
 
 
@@ -214,7 +248,18 @@ export default function EditAnimals() {
             <div className={styles.upperPart}>
                 <div className={styles.leftArrow}><ChevronLeft className={styles.leftArrowIcon} onClick={() => { navigate("/organisationHomePage") }} /></div>
                 <div className={styles.searchBarPart}>
-
+                    {/* {choice=== ContentToBeDisplayed.deleteAnimals && <Input.Wrapper>
+                        <Input
+                            // style={pageCategory === PageCategory.all ? { marginLeft: 50 } : undefined}
+                            type="search"
+                            className={styles.searchContainer}
+                            icon={<HiSearch className={styles.searchIcon} />}
+                            placeholder="搜尋關鍵字"
+                            onChange={(e) => {
+                                searching(e.target.value);
+                            }}
+                        />
+                    </Input.Wrapper>} */}
                 </div>
             </div>
 
@@ -225,14 +270,14 @@ export default function EditAnimals() {
                 <Tabs defaultValue="基本資料" color="ocean" >
                     <Tabs.List className={styles.choices}>
                         <Tabs.Tab className={styles.choiceFontSize} value="新增動物" onClick={() => click('addAnimals')}>新增動物</Tabs.Tab>
-                        <Tabs.Tab className={styles.choiceFontSize} value="刪除動物" onClick={() => click('deleteAnimals')}>刪除動物</Tabs.Tab>
+                        <Tabs.Tab className={styles.choiceFontSize} value="編輯動物" onClick={() => click('deleteAnimals')}>編輯動物</Tabs.Tab>
                     </Tabs.List>
                 </Tabs>
             </div>
 
 
             <div className={styles.lowerPart}>
-                {choice === "addAnimals" ?
+                {choice === ContentToBeDisplayed.addAnimals ?
 
                     <div className={styles.formPart}>
                         <form>
@@ -322,7 +367,7 @@ export default function EditAnimals() {
                         </form>
                     </div> :
                     <div>
-                       
+
 
                         {animalToBeDisplay?.map((eachAnimal) => (
                             <AnimalShow key={eachAnimal.pet_id} pet={eachAnimal} clickHandler={() => navigate(`/adoption/detail?id=${eachAnimal.pet_id}`)} displayDeleteButton={true}
