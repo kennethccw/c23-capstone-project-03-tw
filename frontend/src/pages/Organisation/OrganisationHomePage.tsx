@@ -42,7 +42,7 @@ export default function OrganisationHomePageContainer() {
         <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="blue">
           即時拯救流浪動物
         </Button>
-        <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="ocean">
+        <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="ocean" onClick={()=>{ navigate("/organisationAdoption")}}>
           領養申請
         </Button>
         <Button

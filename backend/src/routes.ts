@@ -56,10 +56,10 @@ import { EditActivitiesService } from "./services/EditActivitiesService";
 export const editActivitiesService = new EditActivitiesService(knex);
 import { EditActivitiesController } from "./controllers/EditActivitiesController";
 export const editActivitiesController = new EditActivitiesController(editActivitiesService);
-// import { EditAnimalsService } from "./services/EditAnimalsService";
-// export const editAnimalsService = new EditAnimalsService(knex);
+import { EditAnimalsService } from "./services/EditAnimalsService";
+export const editAnimalsService = new EditAnimalsService(knex);
 import { EditAnimalsController } from "./controllers/EditAnimalsController";
-export const editAnimalsController = new EditAnimalsController(EditAnimalsController);
+export const editAnimalsController = new EditAnimalsController(editAnimalsService);
 /////////////////////////////////////////////////////////
 
 import { Router } from "express";

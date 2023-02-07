@@ -31,10 +31,10 @@ export default function EditAnimals() {
         setChoice(value);
 
     }
-    console.log(choice)
+    console.log('choice=>', choice)
     const [animal, setAnimal] = useState<PetPreview[]>()
     let animalToBeDisplay = animal;
-
+    console.log("animals to display:", animalToBeDisplay)
 
 
 
@@ -57,17 +57,16 @@ export default function EditAnimals() {
     let gender: string = watch("gender")
     const age: string = watch("age")
     const breed: string = watch("breed")
-    const illnessRecord: string = watch("illnessRecord")
-    const remark: string= watch('remark')
+    const remark: string = watch('remark')
     const organsationID: string | null = localStorage.getItem("userId")
 
-    console.log(animalName, 'animalName')
-    console.log(gender, 'gender')
-    console.log(age, 'age of animal')
-    console.log(breed, 'breed')
-    console.log(illnessRecord, 'illnessRecord')
-
-
+    console.log('animalName:', animalName)
+    console.log('gender:', gender,)
+    console.log('age of animal:', age,)
+    console.log('weight:', weight)
+    console.log('breed:', breed)
+    console.log("remark:", remark,)
+    console.log("file:", file)
     const getOrganisationAnimals = async () => {
         const data = await fetchJson<PetPreview[]>(`${process.env.REACT_APP_BACKEND_URL}/editAnimals/getAnimals/${organsationID}`,
             {
@@ -92,7 +91,7 @@ export default function EditAnimals() {
         retry: 1,
     });
 
-    console.log(data!)
+    console.log('fetched data=>', data!)
     if (data && data !== animal) {
         setAnimal(data)
     }
@@ -104,13 +103,14 @@ export default function EditAnimals() {
     const deleteAnimal = async (animalToBeDeleted: PetPreview) => {
 
 
-        console.log(animalToBeDeleted)
+        console.log('animal ID to be deleted =>', animalToBeDeleted.pet_id)
         let animalID = animalToBeDeleted.pet_id;
         let organisationID = localStorage.getItem('userId')
         let formBody = {
             animalID: animalID, organisationID: organisationID
         }
-
+        console.log("animalID: ", animalID)
+        console.log("organisationID: ", organisationID)
 
         const resp = await fetch(
             `${process.env.REACT_APP_BACKEND_URL}/editAnimals/deleteAnimals`,
@@ -127,7 +127,10 @@ export default function EditAnimals() {
         const data = await resp.json();
         console.log(data.result)
         if (resp.status === 200) {
-            setAnimal(animalToBeDisplay!.filter(singleAnimal => singleAnimal.pet_id !== animalID)); //this is to ensure the data to be deleted is successfully to be "deleted" in the database before it "disappears" in the UI view         
+            // setAnimal(animalToBeDisplay!.filter(singleAnimal => singleAnimal.pet_id !== animalID)); 
+            
+            animalToBeDisplay?.filter(singleAnimal => singleAnimal.pet_id !== animalID)
+            //this is to ensure the data to be deleted is successfully to be "deleted" in the database before it "disappears" in the UI view         
             alert(data.result)
         }
         else {
@@ -156,7 +159,7 @@ export default function EditAnimals() {
             gender = "female"
         }
 
-        if (breed === "" || illnessRecord === "" || age === "" || parseFloat(weight) <= 0) {
+        if (breed === "" || remark === "" || age === "" || parseFloat(weight) <= 0) {
             alert("請填上所有資料")
             return;
         }
@@ -171,8 +174,8 @@ export default function EditAnimals() {
         formData.append("age", age)
         formData.append("remark", remark)
 
-        console.log(organsationID)
-        console.log(formData)
+        console.log("organisationID", organsationID)
+        console.log('formData', formData)
 
         let resp = await fetch(`${process.env.REACT_APP_BACKEND_URL}/editAnimals/addAnimals`,
             {
@@ -281,7 +284,7 @@ export default function EditAnimals() {
 
 
 
-                        
+
 
 
                             <Textarea
@@ -319,10 +322,10 @@ export default function EditAnimals() {
                         </form>
                     </div> :
                     <div>
-
+                       
 
                         {animalToBeDisplay?.map((eachAnimal) => (
-                            <AnimalShow key={eachAnimal.pet_id} pet={eachAnimal} clickHandler={() => navigate(`/activity/detail?id=${eachAnimal.pet_id}`)} displayDeleteButton={true}
+                            <AnimalShow key={eachAnimal.pet_id} pet={eachAnimal} clickHandler={() => navigate(`/adoption/detail?id=${eachAnimal.pet_id}`)} displayDeleteButton={true}
                                 onRemove={() => deleteAnimal(eachAnimal)} animalToBeDeleted={eachAnimal.name}
                             />
                         ))

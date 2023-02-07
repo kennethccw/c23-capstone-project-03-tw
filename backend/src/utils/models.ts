@@ -60,6 +60,7 @@ export interface OrganisationList {
   id: number;
   name: string;
   logo: string;
+  district: string;
 }
 
 export interface OrganisationDetail {
@@ -205,6 +206,11 @@ export interface AdoptionApplication {
   remark?: string;
   pet_id: number;
   user_id?: number;
+  image?: string;
+  pet_name?: string;
+  pet_image?: string;
+  id?:number;
+  created_at?: string;
 }
 
 export interface AdoptionResult {

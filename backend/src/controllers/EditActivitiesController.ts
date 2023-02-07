@@ -26,6 +26,7 @@ export class EditActivitiesController {
       const type = req.form.fields.type
       const organisation_id = req.form.fields.organisation_id
 
+
       await this.editActivitiesService.addActivities(activityName as string, activityDetails as string, date as string, activityStartTime as string, activityEndTime as string, requirements as string, district as string, address as string, parseInt(count as string), parseInt(remaining_place as string), parseInt(fee as string),
         newFile as string,
         type as string, parseInt(organisation_id as string));

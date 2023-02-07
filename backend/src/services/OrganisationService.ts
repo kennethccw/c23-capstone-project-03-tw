@@ -8,7 +8,9 @@ export class OrganisationService {
   getOrganisationList = async () => {
     try {
       const result = await this.knex<OrganisationList>(TABLES.ORGANISATIONS).select();
+      // console.log("organisationList: ", result)
       return result;
+      
     } catch (e) {
       console.log(e);
       throw e;

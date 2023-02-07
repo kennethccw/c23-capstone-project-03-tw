@@ -8,8 +8,11 @@ import {
 } from "../utils/models";
 import { TABLES } from "../utils/tables";
 
+
+
+
 export class AdoptionService {
-  constructor(private knex: Knex) {}
+  constructor(private knex: Knex) { }
 
   getPetAdoption = async (id: number) => {
     console.log("hihihi");
@@ -96,4 +99,89 @@ export class AdoptionService {
       throw e;
     }
   };
+
+
+  getAdoptionApplication = async (organisationId: number) => {
+
+    try {
+      let getAdoptionApplicationResult = await this.knex.select<AdoptionResult[]>(
+        "adoption_applications.id as application_id", "adoption_applications.pet_id",
+        "adoption_applications.name as applicant_name",
+        'pets.name as name',
+        "pets.image", "adoption_applications.status",
+        "adoption_applications.fail_reason",
+        "adoption_applications.other_fail_reason",
+        "organisations.id as organisation_id"
+
+
+
+        // 'adoption_applications.id as application_id','adoption_applications.name','adoption_applications.user_id','adoption_applications.created_at', 'pets.name as pet_name', "pets.image"
+      )
+        .from('adoption_applications'
+        )
+        .innerJoin('pets', 'pets.id', 'adoption_applications.pet_id').join('organisations', 'organisations.id', 'pets.organisation_id')
+
+        .where('organisation_id', organisationId)
+
+
+
+      // let distinctPetName=await this.knex.distinct<AdoptionApplication[]>('pets.name as pet_name')
+      // .from('adoption_applications')
+      // .join('pets', 'pets.id', 'adoption_applications.pet_id').join('organisations', 'organisations.id','pets.organisation_id').where('organisation_id', organisationId).where('status','pending')
+      // SELECT adoption_applications.name,status,pet_id,organisation_id from adoption_applications join pets on adoption_applications.pet_id=pets.id join organisations on organisation_id=organisations.id where organisation_id=1 and status='pending';
+
+
+      // console.log(getAdoptionApplicationResult, 'AdoptionService.ts L107-------------------------------')
+
+      // console.log(getAdoptionApplicationResult.length,' pending+fail case AdoptionService.ts L114' )
+      return getAdoptionApplicationResult
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+
+  }
+
+
+
+
+
+
+
+  approveAdoption = async (applicationID: number) => {
+    const txn = await this.knex.transaction();
+    try {
+
+      await txn("adoption_applications").update("status", 'success').where("id", applicationID)
+      await txn("adoption_applications").update("status", 'fail').whereNot("id", applicationID)
+
+
+      console.log('updated status of the application     AdoptiopnService.ts L159')
+
+    }
+    catch (e) {
+      console.log(e);
+      await txn.rollback();
+      return;
+    }
+
+  }
+
+  rejectAdoption = async (applicationID: number, rejectedReason: string, otherReason: string) => {
+    try {
+    
+await this.knex("adoption_applications").update({status:"fail",
+fail_reason:rejectedReason,
+other_fail_reason: otherReason}).where('id',applicationID)
+
+
+     }
+    catch (e) {
+      console.log(e);
+      throw e;
+    }
+
+
+  }
+
 }

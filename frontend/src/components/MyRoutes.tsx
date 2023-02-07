@@ -144,8 +144,8 @@ export default function MyRoutes() {
       {/* Organisation  */}
       <Route path="/" element={<OrganisationFilterContainer />}></Route>
       <Route path="organisationHomePage" element={<OrganisationHomePageContainer />}></Route>
-      <Route path="/" element={<OrganisationAdoptionApplicationResult />}></Route>
-      <Route path="/" element={<AdoptionApplicationResult />}></Route>
+      <Route path="/organisationAdoption" element={<OrganisationAdoptionApplicationResult />}></Route>
+      <Route path="/OrgRes" element={<AdoptionApplicationResult />}></Route>  
       <Route path="/" element={<AnimalHelpToDoListfrom />}></Route>
       <Route path="/" element={<ApprovalFunction />}></Route>
 
