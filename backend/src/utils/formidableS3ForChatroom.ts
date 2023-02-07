@@ -16,7 +16,7 @@ declare global {
   }
 }
 
-export class FileControllerForChatroom {
+export class FileController {
   counter = 0;
   s3: aws.S3;
 
@@ -31,7 +31,7 @@ export class FileControllerForChatroom {
     });
   }
 
-  upload = (req: Request, res: Response, next: NextFunction) => {
+  uploadForChatroom = (req: Request, res: Response, next: NextFunction) => {
     let uploads: aws.S3.ManagedUpload[] = [];
     let filename = "";
     let form = new formidable.Formidable({
@@ -41,6 +41,100 @@ export class FileControllerForChatroom {
           {
             Body: passThroughStream,
             Bucket: `${env.S3_BUCKET_NAME!}/photos/animalNeedHelp`,
+            Key: filename,
+          },
+          {}
+        );
+        upload.send();
+        uploads.push(upload);
+        return passThroughStream;
+      },
+      filename: (name, ext, part, form) => {
+        let field = part.name;
+        let timestamp = Date.now();
+        this.counter++;
+        filename = `${field}-${timestamp}-${this.counter}`;
+        console.log({ filename });
+        return filename;
+      },
+    });
+    form.parse(req, (err, fields, files) => {
+      if (err) {
+        uploads.forEach((upload) => upload.abort());
+        res.status(400).json({ error: "Failed to parse form data. " + String(err) });
+        return;
+      }
+      Promise.all(uploads.map((upload) => upload.promise()))
+        .then((s3Files) => {
+          // TODO pass to fileService to store the s3 keys into database
+          req.form = { fields, files, s3Files };
+          next();
+        })
+        .catch((err) => {
+          uploads.forEach((upload) => upload.abort());
+          console.log(err);
+          res.status(502).json({ error: "Failed to upload to S3. " + String(err) });
+        });
+    });
+  };
+
+  uploadForAnimal = (req: Request, res: Response, next: NextFunction) => {
+    let uploads: aws.S3.ManagedUpload[] = [];
+    let filename = "";
+    let form = new formidable.Formidable({
+      fileWriteStreamHandler: () => {
+        let passThroughStream = new stream.PassThrough();
+        let upload = this.s3.upload(
+          {
+            Body: passThroughStream,
+            Bucket: `${env.S3_BUCKET_NAME!}/photos/pet`,
+            Key: filename,
+          },
+          {}
+        );
+        upload.send();
+        uploads.push(upload);
+        return passThroughStream;
+      },
+      filename: (name, ext, part, form) => {
+        let field = part.name;
+        let timestamp = Date.now();
+        this.counter++;
+        filename = `${field}-${timestamp}-${this.counter}`;
+        console.log({ filename });
+        return filename;
+      },
+    });
+    form.parse(req, (err, fields, files) => {
+      if (err) {
+        uploads.forEach((upload) => upload.abort());
+        res.status(400).json({ error: "Failed to parse form data. " + String(err) });
+        return;
+      }
+      Promise.all(uploads.map((upload) => upload.promise()))
+        .then((s3Files) => {
+          // TODO pass to fileService to store the s3 keys into database
+          req.form = { fields, files, s3Files };
+          next();
+        })
+        .catch((err) => {
+          uploads.forEach((upload) => upload.abort());
+          console.log(err);
+          res.status(502).json({ error: "Failed to upload to S3. " + String(err) });
+        });
+    });
+  };
+
+  uploadForActivities = (req: Request, res: Response, next: NextFunction) => {
+    let uploads: aws.S3.ManagedUpload[] = [];
+    let filename = "";
+    let form = new formidable.Formidable({
+      fileWriteStreamHandler: () => {
+        let passThroughStream = new stream.PassThrough();
+        let upload = this.s3.upload(
+          {
+            Body: passThroughStream,
+            Bucket: `${env.S3_BUCKET_NAME!}/photos/activities`,
             Key: filename,
           },
           {}

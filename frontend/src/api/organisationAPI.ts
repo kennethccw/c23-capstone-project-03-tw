@@ -1,7 +1,7 @@
 import { fetchJson } from "./utilsAPI";
 
-const ORGANISATION_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/organisation`;
-// const ORGANISATION_API_PATH = `${"http://localhost:8080"}/organisation`;
+// const ORGANISATION_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/organisation`;
+const ORGANISATION_API_PATH = `${"http://localhost:8080"}/organisation`;
 
 export interface OrganisationList {
   id: number;

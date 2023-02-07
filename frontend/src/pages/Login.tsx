@@ -17,14 +17,13 @@ export default function Login() {
     e.preventDefault();
     dispatch(loginThunk({ userIdentity: watchUserIdentity, password: getValues().password }))
       .unwrap()
-      .then(
-        () => {
-          if (localStorage.getItem('role') === "user") { navigate("/home") }
-          else {
-            navigate("/organisationHomePage")
-          }
+      .then(() => {
+        if (localStorage.getItem("role") === "user") {
+          navigate("/home");
+        } else {
+          navigate("/organisationHomePage");
         }
-      )
+      })
       .catch((err) => {
         alert(err.message);
       });
@@ -43,7 +42,8 @@ export default function Login() {
   };
   const onGoogleLogin = (event: React.MouseEvent) => {
     event.preventDefault();
-    window.location.href = `${process.env.REACT_APP_BACKEND_URL}/connect/google`;
+    // window.location.href = `${process.env.REACT_APP_BACKEND_URL}/connect/google`;
+    window.location.href = `http://localhost:8080/connect/google`;
   };
 
   return (

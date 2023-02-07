@@ -1,7 +1,7 @@
 import { fetchJson } from "../api/utilsAPI";
 
-const SCHEDULE_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/schedule`;
-// const SCHEDULE_API_PATH = `${"http://localhost:8080"}/schedule`;
+// const SCHEDULE_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/schedule`;
+const SCHEDULE_API_PATH = `${"http://localhost:8080"}/schedule`;
 
 export interface ScheduleActivity {
   application_id: number;

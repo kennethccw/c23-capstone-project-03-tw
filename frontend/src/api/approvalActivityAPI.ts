@@ -13,8 +13,8 @@ export interface ScheduleActivity {
   user_id?: number;
   user_fullname?: string;
 }
-const ACTIVITY_APPROVAL_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/activity/approval`;
-// const ACTIVITY_APPROVAL_API_PATH = `${"http://localhost:8080"}/activity/approval`;
+// const ACTIVITY_APPROVAL_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/activity/approval`;
+const ACTIVITY_APPROVAL_API_PATH = `${"http://localhost:8080"}/activity/approval`;
 
 export const getPendingApplication = async () => {
   console.log("getPendingApplication");

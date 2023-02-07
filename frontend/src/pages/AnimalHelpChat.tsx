@@ -16,18 +16,18 @@ export default function AnimalHelpChatroom() {
   const params = new URLSearchParams(document.location.search);
   const organisationId = params.get("id")!;
 
-  // const socket = io("http://localhost:8080", {
-  //   withCredentials: true,
-  //   extraHeaders: {
-  //     "my-custom-header": "abcd",
-  //   },
-  // });
-  const socket = io(process.env.REACT_APP_BACKEND_URL!, {
+  const socket = io("http://localhost:8080", {
     withCredentials: true,
     extraHeaders: {
       "my-custom-header": "abcd",
     },
   });
+  // const socket = io(process.env.REACT_APP_BACKEND_URL!, {
+  //   withCredentials: true,
+  //   extraHeaders: {
+  //     "my-custom-header": "abcd",
+  //   },
+  // });
   enum Role {
     support,
     client,
@@ -216,14 +216,14 @@ export default function AnimalHelpChatroom() {
             {data?.result.message.map((message, idx) =>
               new Date(message as any).toString() !== "Invalid Date" ? (
                 `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}` === (message as any) ? (
-                  <div className={styles.dateContainer}>
-                    <div className={styles.dateTab} key={`message-${idx}`}>
+                  <div className={styles.dateContainer} key={`timestamp-${idx}`}>
+                    <div className={styles.dateTab}>
                       <div>今天</div>
                     </div>
                   </div>
                 ) : (
-                  <div className={styles.dateContainer}>
-                    <div className={styles.dateTab} key={`message-${idx}`}>
+                  <div className={styles.dateContainer} key={`timestamp-${idx}`}>
+                    <div className={styles.dateTab}>
                       <div>{message as any}</div>
                     </div>
                   </div>
