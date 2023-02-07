@@ -13,16 +13,34 @@ import { useState } from "react";
 export default function ApproveApplication() {
   const navigate = useNavigate();
 enum Status{
-  pending="penging",
-  approved="approved"
+  pending="處理中",
+  approved="己批核"
 }
+
+
+
+const getPendingAndApprovalApplication=async()=>{
+  const pendingApplication=await getPendingApplication();
+
+
+  return{pendingApplication}
+}
+
+
+console.log(getPendingApplication)
+
 const [status,setStatus]=useState<Status>(Status.pending)
 
   const { isError, data, error, isLoading } = useQuery({
     queryKey: ["organisation/application"],
-    queryFn: getPendingApplication,
+    queryFn: getPendingAndApprovalApplication,
   });
   console.log(data);
+
+
+
+
+
   return (
     <MantineProvider
       theme={{
@@ -47,17 +65,17 @@ const [status,setStatus]=useState<Status>(Status.pending)
             <Tabs.Tab value="已批核" onClick={()=>setStatus(Status.approved)}>已批核</Tabs.Tab>
           </Tabs.List>
         </Tabs>
-        {!data?.length && status===Status.pending &&(
+        {!data?.pendingApplication.length && status===Status.pending &&(
           <div className={styles.noApplicationContainer}>
             <h2>沒有未處理的申請</h2>
           </div>
         )}
-        {status===Status.pending && data?.map((activity, idx) => (
+        {status===Status.pending && data?.pendingApplication.map((activity, idx) => (
           <>
             <ApplicationContainer activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}&status=approval`)} />
             {/* <ActivitiesApprovalComponent member={activity.user_fullname!} /> */}
 
-            {idx !== data.length - 1 && <hr className={styles.hr90vw} />}
+            {idx !== data.pendingApplication.length - 1 && <hr className={styles.hr90vw} />}
           </>
         ))}
 

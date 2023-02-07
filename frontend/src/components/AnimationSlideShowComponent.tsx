@@ -31,14 +31,14 @@ export function AnimalShow(props: { pet: PetPreview; clickHandler: () => void; d
       >
         <div className={styles.petContainer}>
           <div className={styles.imgPreviewContainer}>
-            <img className={styles.imgPreview} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.pet.image}`}></img>
+            <img className={styles.imgPreview} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.pet.image}`} onClick={props.clickHandler}></img>
             <div className={styles.nameContainer}>
               <div className={styles.nameContentContainer}>
                 <div className={styles.nameTab}>{props.pet.name}</div>
                 <div className={styles.nameTab}>{props.pet.age}</div>
               </div>
               <Button className={styles.button} color="violet" radius="xl" onClick={props.clickHandler}>
-                {props.displayDeleteButton ? <div className={styles.deleteButton} onClick={(e) => { showModal(); e.stopPropagation() }}>刪除動物</div> : <>詳細資料</>}
+                {props.displayDeleteButton ? <div className={styles.deleteButton} onClick={(e) => { showModal(); e.stopPropagation() }}>刪除動物</div> : <div onClick={props.clickHandler}>詳細資料</div>}
               </Button>
             </div>
           </div>
