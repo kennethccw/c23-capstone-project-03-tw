@@ -1,7 +1,7 @@
 import { fetchJson } from "./utilsAPI";
 
-// const VOLUNTEER_RECORD_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/record`;
-const VOLUNTEER_RECORD_API_PATH = `${"http://localhost:8080"}/record`;
+const VOLUNTEER_RECORD_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/record`;
+// const VOLUNTEER_RECORD_API_PATH = `${"http://localhost:8080"}/record`;
 
 export interface ActivityRecord {
   activity_name: string;

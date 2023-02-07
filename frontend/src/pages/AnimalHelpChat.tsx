@@ -66,7 +66,13 @@ export default function AnimalHelpChatroom() {
 
   const getOrganisationChatroomNoParam = async () => {
     const result = await getOrganisationChatroom(organisationId);
-    const dateStringArr = result.message.map((message) => `${new Date(message.created_at!).getFullYear()}-${new Date(message.created_at!).getMonth() + 1}-${new Date(message.created_at!).getDate()}`);
+    const dateStringArr = result.message.map(
+      (message) =>
+        `${new Date(message.created_at!).getFullYear()}-${(new Date(message.created_at!).getMonth() + 1).toString().padStart(2, "0")}-${new Date(message.created_at!)
+          .getDate()
+          .toString()
+          .padStart(2, "0")}`
+    );
     const dateSet = new Set<string>();
     for (const dateString of dateStringArr) {
       dateSet.add(dateString);
@@ -75,7 +81,11 @@ export default function AnimalHelpChatroom() {
     const idxOfMessageArr: number[] = [];
     for (const date of dateArr) {
       const idxOfMessage = result.message.findIndex(
-        (message) => `${new Date(message.created_at!).getFullYear()}-${new Date(message.created_at!).getMonth() + 1}-${new Date(message.created_at!).getDate()}` === date
+        (message) =>
+          `${new Date(message.created_at!).getFullYear()}-${(new Date(message.created_at!).getMonth() + 1).toString().padStart(2, "0")}-${new Date(message.created_at!)
+            .getDate()
+            .toString()
+            .padStart(2, "0")}` === date
       );
       // if (idxOfMessage === 0) {
       //   idxOfMessageArr.push(-1);
@@ -85,12 +95,18 @@ export default function AnimalHelpChatroom() {
     }
     for (let i = 0; i < idxOfMessageArr.length; i++) {
       result.message.splice(idxOfMessageArr[i] + i, 0, dateArr[i] as any);
-      if (dateArr[i] === `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`) {
+      if (dateArr[i] === `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, "0")}-${new Date().getDate().toString().padStart(2, "0")}`) {
         setIsTodayAppeared(true);
       }
     }
     console.log(dateArr);
     console.log(idxOfMessageArr);
+    console.log(result);
+    for (const item of result.message) {
+      console.log("item", item);
+      const conversion = new Date(item as any);
+      console.log("converted", conversion.toString());
+    }
     return { result, dateArr, idxOfMessageArr };
   };
 
@@ -215,7 +231,7 @@ export default function AnimalHelpChatroom() {
 
             {data?.result.message.map((message, idx) =>
               new Date(message as any).toString() !== "Invalid Date" ? (
-                `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}` === (message as any) ? (
+                `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, "0")}-${new Date().getDate().toString().padStart(2, "0")}` === (message as any) ? (
                   <div className={styles.dateContainer} key={`timestamp-${idx}`}>
                     <div className={styles.dateTab}>
                       <div>今天</div>

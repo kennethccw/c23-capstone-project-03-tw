@@ -15,8 +15,8 @@ export function HomeActivityComponent(props: { activity: HomeActivity }) {
   return (
     <Carousel.Slide className={styles.carouselSlide}>
       <div className={styles.box} onClick={() => navigate(`/activity/detail?id=${props.activity.id}`)}>
-        {/* <img src={`${process.env.REACT_APP_BACKEND_URL}/activities/${props.activity.image}`} className={styles.recommendInstancePhoto}></img> */}
-        <img src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/activities/${props.activity.image}`} className={styles.recommendInstancePhoto}></img>
+        <img src={`${process.env.REACT_APP_BACKEND_URL}/activities/${props.activity.image}`} className={styles.recommendInstancePhoto}></img>
+        {/* <img src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/activities/${props.activity.image}`} className={styles.recommendInstancePhoto}></img> */}
         <div className={styles.remainingPlace}>
           <Person /> 剩餘名額 <span>{props.activity.remaining_place}</span>
         </div>
