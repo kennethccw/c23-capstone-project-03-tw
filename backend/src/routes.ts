@@ -62,6 +62,9 @@ import { EditAnimalsController } from "./controllers/EditAnimalsController";
 export const editAnimalsController = new EditAnimalsController(editAnimalsService);
 /////////////////////////////////////////////////////////
 
+import { FileS3Controller } from "./utils/FileS3Controller";
+export const fileS3 = new FileS3Controller();
+
 import { Router } from "express";
 import { userRoutes } from "./routers/userRoutes";
 import { homeRoutes } from "./routers/homeRoutes";

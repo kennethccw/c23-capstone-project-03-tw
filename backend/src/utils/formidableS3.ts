@@ -5,6 +5,7 @@ import stream from "stream";
 import { Request, Response, NextFunction } from "express";
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
     interface Request {
       form: {
@@ -16,31 +17,28 @@ declare global {
   }
 }
 
-export class FileControllerForAnimal {
+export class FileS3Controller {
   counter = 0;
   s3: aws.S3;
 
   constructor() {
-    let credentials = new aws.Credentials({
-      accessKeyId: env.AWS_ACCESS_KEY_ID!,
-      secretAccessKey: env.AWS_SECRET_ACCESS_KEY!,
+    const credentials = new aws.Credentials({
+      accessKeyId: env.AWS_ACCESS_KEY_ID ?? "",
+      secretAccessKey: env.AWS_SECRET_ACCESS_KEY ?? "",
     });
-    this.s3 = new aws.S3({
-      credentials,
-      region: env.S3_REGION,
-    });
+    this.s3 = new aws.S3({ credentials, region: env.S3_REGION });
   }
 
-  upload = (req: Request, res: Response, next: NextFunction) => {
-    let uploads: aws.S3.ManagedUpload[] = [];
+  upload = (bucketPath: string) => (req: Request, res: Response, next: NextFunction) => {
     let filename = "";
-    let form = new formidable.Formidable({
+    const uploads: aws.S3.ManagedUpload[] = [];
+    const form = new formidable.Formidable({
       fileWriteStreamHandler: () => {
-        let passThroughStream = new stream.PassThrough();
-        let upload = this.s3.upload(
+        const passThroughStream = new stream.PassThrough();
+        const upload = this.s3.upload(
           {
             Body: passThroughStream,
-            Bucket: `${env.S3_BUCKET_NAME!}/photos/pet`,
+            Bucket: `${env.S3_BUCKET_NAME ?? ""}${bucketPath}`,
             Key: filename,
           },
           {}
@@ -49,12 +47,10 @@ export class FileControllerForAnimal {
         uploads.push(upload);
         return passThroughStream;
       },
-      filename: (name, ext, part, form) => {
-        let field = part.name;
-        let timestamp = Date.now();
-        this.counter++;
-        filename = `${field}-${timestamp}-${this.counter}`;
-        console.log({ filename });
+      filename: (name, ext, part) => {
+        const field = part.name;
+        const timestamp = Date.now();
+        filename = `${field}-${timestamp}-${++this.counter}`;
         return filename;
       },
     });
