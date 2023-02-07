@@ -4,7 +4,7 @@ import { HiCalendar, HiChevronLeft, HiOutlineLocationMarker } from "react-icons/
 import { MantineProvider, Tabs, Button, Checkbox } from "@mantine/core";
 import { ApplicationContainer } from "../../components/ScheduleComponents";
 import { useQuery } from "react-query";
-import { getPendingApplication } from "../../api/approvalActivityAPI";
+import { getApprovedApplication, getPendingApplication } from "../../api/approvalActivityAPI";
 import { Activity } from "../../components/ActivitiesUtilis";
 import { useState } from "react";
 // import ActivitiesApprovalComponent from "../../components/ActivitiesApprovalComponent";
@@ -12,24 +12,24 @@ import { useState } from "react";
 
 export default function ApproveApplication() {
   const navigate = useNavigate();
-enum Status{
-  pending="處理中",
-  approved="己批核"
-}
+  enum Status {
+    pending = "處理中",
+    approved = "己批核"
+  }
 
 
 
-const getPendingAndApprovalApplication=async()=>{
-  const pendingApplication=await getPendingApplication();
+  const getPendingAndApprovalApplication = async () => {
+    const pendingApplication = await getPendingApplication();
+    const approvedApplication = await getApprovedApplication();
+
+    return { pendingApplication, approvedApplication }
+  }
 
 
-  return{pendingApplication}
-}
+  console.log(getPendingApplication)
 
-
-console.log(getPendingApplication)
-
-const [status,setStatus]=useState<Status>(Status.pending)
+  const [status, setStatus] = useState<Status>(Status.pending)
 
   const { isError, data, error, isLoading } = useQuery({
     queryKey: ["organisation/application"],
@@ -52,7 +52,7 @@ const [status,setStatus]=useState<Status>(Status.pending)
     >
       <div className={styles.controlPanelContainer}>
         <div className={styles.chevronAndAdjustmntIcon}>
-          <HiChevronLeft className={styles.chevronIcon} onClick={()=>navigate(-1)}/>
+          <HiChevronLeft className={styles.chevronIcon} onClick={() => navigate(-1)} />
         </div>
 
         <div className={styles.headerContainer}>
@@ -61,23 +61,44 @@ const [status,setStatus]=useState<Status>(Status.pending)
 
         <Tabs defaultValue="處理中" color="ocean" className={styles.tabList}>
           <Tabs.List grow>
-            <Tabs.Tab value="處理中" onClick={()=>setStatus(Status.pending)}>處理中</Tabs.Tab>
-            <Tabs.Tab value="已批核" onClick={()=>setStatus(Status.approved)}>已批核</Tabs.Tab>
+            <Tabs.Tab value="處理中" onClick={() => setStatus(Status.pending)}>處理中</Tabs.Tab>
+            <Tabs.Tab value="已批核" onClick={() => setStatus(Status.approved)}>已批核</Tabs.Tab>
           </Tabs.List>
         </Tabs>
-        {!data?.pendingApplication.length && status===Status.pending &&(
+        {!data?.pendingApplication.length && status === Status.pending && (
           <div className={styles.noApplicationContainer}>
             <h2>沒有未處理的申請</h2>
           </div>
         )}
-        {status===Status.pending && data?.pendingApplication.map((activity, idx) => (
+        {status === Status.pending && data?.pendingApplication.map((activity, idx) => (
           <>
             <ApplicationContainer activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}&status=approval`)} />
+
+
+
             {/* <ActivitiesApprovalComponent member={activity.user_fullname!} /> */}
 
             {idx !== data.pendingApplication.length - 1 && <hr className={styles.hr90vw} />}
           </>
         ))}
+
+        {/* {!data?.approvedApplication.length && status===Status.approved&&(
+          <div className={styles.noApplicationContainer}>
+            <h2>暫未有已批核的申請</h2>
+          </div>
+        )} */}
+
+        {/* {status === Status.approved && data?.approvedApplication.map((activity, idx) => (
+          <>
+            <ApplicationContainer activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}&status=approval`)} />
+
+
+
+
+            {idx !== data.approvedApplication.length - 1 && <hr className={styles.hr90vw} />}
+          </>
+        ))} */}
+
 
         {/* <div className={styles.activtyContainer}>
           <div className={styles.OrganisationName}> 香港動物群益會 </div>
