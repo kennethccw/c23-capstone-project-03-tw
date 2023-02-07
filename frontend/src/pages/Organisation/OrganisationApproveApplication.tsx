@@ -26,7 +26,7 @@ export default function ApproveApplication() {
     >
       <div className={styles.controlPanelContainer}>
         <div className={styles.chevronAndAdjustmntIcon}>
-          <HiChevronLeft className={styles.chevronIcon} />
+          <HiChevronLeft className={styles.chevronIcon} onClick={()=>navigate(-1)}/>
         </div>
 
         <div className={styles.headerContainer}>
