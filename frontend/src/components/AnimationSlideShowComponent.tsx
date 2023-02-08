@@ -31,8 +31,8 @@ export function AnimalShow(props: { pet: PetPreview; clickHandler: () => void; d
       >
         <div className={styles.petContainer}>
           <div className={styles.imgPreviewContainer}>
-            <img className={styles.imgPreview} src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/pet/${props.pet.image}`}></img>
-            {/* <img className={styles.imgPreview} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.pet.image}`}></img> */}
+            <img className={styles.imgPreview} src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/pet/${props.pet.image}`} onClick={props.clickHandler}></img>
+            {/* <img className={styles.imgPreview} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.pet.image}`} onClick={props.clickHandler}></img> */}
             <div className={styles.nameContainer}>
               <div className={styles.nameContentContainer}>
                 <div className={styles.nameTab}>{props.pet.name}</div>
@@ -50,7 +50,7 @@ export function AnimalShow(props: { pet: PetPreview; clickHandler: () => void; d
                     刪除動物
                   </div>
                 ) : (
-                  <>詳細資料</>
+                  <div onClick={props.clickHandler}>詳細資料</div>
                 )}
               </Button>
             </div>

@@ -209,7 +209,7 @@ export interface AdoptionApplication {
   image?: string;
   pet_name?: string;
   pet_image?: string;
-  id?:number;
+  id?: number;
   created_at?: string;
 }
 
@@ -284,4 +284,12 @@ export enum NotificationType {
   message = "message",
   activity = "activity",
   adoption = "adoption",
+}
+
+export interface ActivityApproval {
+  fullname: string;
+  user_id: number;
+  activity_id: number;
+  is_approved: boolean;
+  is_rejected: boolean;
 }

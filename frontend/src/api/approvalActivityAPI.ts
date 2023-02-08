@@ -26,3 +26,35 @@ export const getPendingApplication = async () => {
   });
   return data;
 };
+
+export const getApprovedApplication = async () => {
+  console.log("getApprovedApplication");
+  const data = await fetchJson<ScheduleActivity[]>(`${ACTIVITY_APPROVAL_API_PATH}/alreadyApproved`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return data;
+};
+export const putPendingApplication = async (
+  application: {
+    fullname: string;
+    user_id: number;
+    activity_id: number;
+    is_approved: boolean;
+    is_rejected: boolean;
+  }[]
+) => {
+  console.log("postPendingApplication");
+  const data = await fetch(`${ACTIVITY_APPROVAL_API_PATH}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({ application }),
+  });
+  return data;
+};

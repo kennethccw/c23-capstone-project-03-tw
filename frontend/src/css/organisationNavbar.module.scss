@@ -17,6 +17,42 @@
   font-size: 45px;
 }
 
+
+.topPart{
+margin-bottom: 100px;
+}
+
+.logoIconContainer {
+  height: 80px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  // background-color: red;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+
+.logoIcon {
+  height: 64px;
+  width: 64px;
+  margin-left: 12px;
+  // background-color: yellow;
+}
+
+
+
+.greeting{
+  font-size: 20px;
+  color: #0f2851;
+  // background-color: green;
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  font-size:x-large;
+}
   .navBArList {
   position: fixed;
   // bottom: 14px;
@@ -44,4 +80,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  // background-color: blue;
+  // margin-bottom: 150px;
+
+  // position: fixed;
 }
