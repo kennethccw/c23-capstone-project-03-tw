@@ -16,7 +16,7 @@ export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () =>
 
   const [opened, setOpened] = useState(false);
   const navigate = useNavigate();
-  let role=localStorage.getItem('role')
+  let role = localStorage.getItem("role");
   const cancelAdoptionApplication = async () => {
     const resp = await putPetAdoptionApplication(props.pet.pet_id);
     const result = await resp.json();
@@ -42,7 +42,8 @@ export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () =>
       >
         <div className={styles.petContainer}>
           <div className={styles.imgContainer}>
-            <img className={styles.imgContent} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.pet.image}`}></img>
+            <img className={styles.imgContent} src={`${process.env.REACT_APP_S3_UPLOAD_BUCKET_URL}/pet/${props.pet.image}`}></img>
+            {/* <img className={styles.imgContent} src={`${process.env.REACT_APP_BACKEND_URL}/pet/${props.pet.image}`}></img> */}
           </div>
 
           <div className={styles.detailsBigContainer}>
@@ -78,12 +79,12 @@ export function PetDetailsComponent(props: { pet: PetDetail; clickHandler: () =>
             </div>
           </div>
         </div>
-        {!props.status && role!=="organisation" && (
+        {!props.status && role !== "organisation" && (
           <Button className={styles.buttonsecond} color="violet" radius="xl" onClick={props.clickHandler}>
             申請領養
           </Button>
         )}
-        {props.status === AdoptionResultStatus.pending &&  role!=="organisation" && (
+        {props.status === AdoptionResultStatus.pending && role !== "organisation" && (
           <Button className={styles.buttonsecond} color="violet" radius="xl" onClick={() => setOpened(true)}>
             取消申請
           </Button>

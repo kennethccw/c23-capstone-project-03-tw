@@ -8,8 +8,8 @@ import cors from "cors";
 import Knex from "knex";
 import http from "http";
 import { Server as SocketIO } from "socket.io";
-import path from "path";
 import knexConfigs from "./knexfile";
+import path from "path";
 
 const configMode = process.env.NODE_ENV || "development";
 const knexConfig = knexConfigs[configMode];
@@ -20,20 +20,27 @@ const app = express();
 const server = new http.Server(app);
 export const io = new SocketIO(server, {
   cors: {
-    origin: process.env.FRONTEND_URL,
+    origin:
+      process.env.NODE_ENV === "production" ? process.env.FRONTEND_URL : "http://localhost:3000",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
   },
 });
 
-app.use(cors({ origin: [process.env.FRONTEND_URL ?? ""] }));
+app.use(
+  cors({
+    origin: [
+      process.env.NODE_ENV === "production" ? process.env.FRONTEND_URL! : "http://localhost:3000",
+    ],
+  })
+);
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
 
-app.use(express.static(path.join(__dirname, "uploads")));
 app.use(express.json({ limit: "50mb" }));
 app.use(
   expressSession({
@@ -48,10 +55,14 @@ declare module "express-session" {
     user?: { id: number; username: string };
   }
 }
+
+app.use(express.static(path.join(__dirname, "uploads")));
+
 import grant from "grant";
 const grantExpress = grant.express({
   defaults: {
-    origin: process.env.BACKEND_URL,
+    origin:
+      process.env.NODE_ENV === "production" ? process.env.BACKEND_URL : "http://localhost:8080",
     transport: "session",
     state: true,
   },

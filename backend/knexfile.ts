@@ -1,8 +1,6 @@
 import type { Knex } from "knex";
 import dotenv from "dotenv";
 dotenv.config();
-// Update with your config settings.
-console.log("check env", process.env.DB_NAME);
 
 console.log(`
 database: ${process.env.DB_NAME},
@@ -62,8 +60,6 @@ const config: { [key: string]: Knex.Config } = {
     },
   },
 };
-
-console.log("check knexfile config", config);
 
 module.exports = config;
 export default config;

@@ -1,14 +1,20 @@
 import { Router } from "express";
-import { editAnimalsController } from "../routes";
-import { uploadMiddlewareForAnimal } from "../utils/formidableForAnimal";
+import { editAnimalsController, fileS3 } from "../routes";
+// import { uploadMiddlewareForAnimal } from "../utils/formidableForAnimal";
 import { isLoggedInAPI } from "../utils/guards";
 
 export const editAnimalsRoutes = Router();
 
+// editAnimalsRoutes.post(
+//   "/addAnimals",
+//   isLoggedInAPI,
+//   uploadMiddlewareForAnimal,
+//   editAnimalsController.addAnimals
+// );
 editAnimalsRoutes.post(
   "/addAnimals",
   isLoggedInAPI,
-  uploadMiddlewareForAnimal,
+  fileS3.upload("/photos/pet"),
   editAnimalsController.addAnimals
 );
 editAnimalsRoutes.post("/deleteAnimals", isLoggedInAPI, editAnimalsController.deleteAnimals);

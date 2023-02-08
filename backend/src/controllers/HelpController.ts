@@ -66,6 +66,7 @@ export class HelpController {
       const uid = req.user?.id!;
       const organisationId = parseInt(req.form.fields.id as string);
       const image = (req.form.files["chatroomImage"] as formidable.File)?.newFilename;
+      console.log(image);
       const result = await this.helpService.postClientImageChatroom(uid, organisationId, image);
       setTimeout(() => {
         io.emit(`clientId${uid}-to-supportId${organisationId}`, { image });

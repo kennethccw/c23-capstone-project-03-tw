@@ -3,7 +3,7 @@ import notificationStyles from "../css/notification.module.scss";
 import { HiChevronLeft, HiOutlineAdjustments } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { HomeActivity } from "../redux/home";
-import { delHomeAdvertiser, HomeNotification } from "../api/homeAPI";
+import { delHomeNotification, HomeNotification } from "../api/homeAPI";
 import NotificationComponent from "./NotificationComponent";
 import { Divider } from "@mantine/core";
 
@@ -53,7 +53,7 @@ export default function Notification(props: {
             key={message.id}
             content={`你收到${message.count}個來自${message.content}的新信息`}
             clickHandler={async () => {
-              await delHomeAdvertiser(message.id);
+              await delHomeNotification(message.id);
               navigate(`/help/chatroom?id=${message.any_id}`);
             }}
           />
@@ -68,7 +68,7 @@ export default function Notification(props: {
             key={badge.id}
             content={badge.content}
             clickHandler={async () => {
-              await delHomeAdvertiser(badge.id);
+              await delHomeNotification(badge.id);
               navigate("/badge");
             }}
           />
@@ -79,7 +79,14 @@ export default function Notification(props: {
           </>
         )}
         {props.data?.activityApprovedArr?.map((activity) => (
-          <NotificationComponent key={activity.id} content={activity.content} clickHandler={() => navigate("/badge")} />
+          <NotificationComponent
+            key={activity.id}
+            content={activity.content}
+            clickHandler={async () => {
+              await delHomeNotification(activity.id);
+              navigate(`/activity/detail?id=${activity.any_id}&status=approval`);
+            }}
+          />
         ))}
         {!!props.data?.adoptionApprovedArr?.length && (
           <>

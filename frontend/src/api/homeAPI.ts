@@ -1,6 +1,6 @@
 import { HomeActivity } from "../redux/home";
 import { fetchJson } from "./utilsAPI";
-const HOME_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/home`;
+const HOME_API_PATH = process.env.REACT_APP_NODE_ENV === "production" ? `${process.env.REACT_APP_BACKEND_URL}/home` : `${"http://localhost:8080"}/home`;
 
 export interface HomeAdvertiser {
   id: number;
@@ -64,7 +64,7 @@ export const postHomeAdvertiser = async (adsId: number) => {
   });
   return resp;
 };
-export const delHomeAdvertiser = async (notificationId: number) => {
+export const delHomeNotification = async (notificationId: number) => {
   const resp = await fetch(`${HOME_API_PATH}/notification`, {
     method: "DELETE",
     headers: {

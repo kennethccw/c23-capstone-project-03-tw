@@ -27,7 +27,8 @@ export class ScheduleService {
         )
         .where("activity_applications.user_id", uid)
         .andWhere("activity_applications.is_approved", true)
-        .andWhere("activity_applications.is_cancelled", false);
+        .andWhere("activity_applications.is_cancelled", false)
+        .andWhere("activity_applications.is_rejected", false);
       const pendingActivities = await this.knex<ScheduleActivity>(TABLES.ACTIVITY_APPLICATIONS)
         .select(
           "*",
@@ -47,7 +48,8 @@ export class ScheduleService {
         )
         .where("activity_applications.user_id", uid)
         .andWhere("activity_applications.is_approved", false)
-        .andWhere("activity_applications.is_cancelled", false);
+        .andWhere("activity_applications.is_cancelled", false)
+        .andWhere("activity_applications.is_rejected", false);
       console.log(confirmedActivities, pendingActivities);
       return { confirmed: confirmedActivities, pending: pendingActivities };
     } catch (e) {

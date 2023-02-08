@@ -1,0 +1,16 @@
+// import { Button, Checkbox } from "@mantine/core";
+// import styles from "../css/organisationMoreDetails.module.scss";
+
+// export default function ActivitiesApprovalComponent(props: { member: string; clickHandler: () => void }) {
+//   return (
+{
+  /* <div className={styles.memberName} onClick={() => navigate(`/user/detail?id=${applicant.user_id}`)}>
+                      會員：<span className={styles.nameTab}>{applicant.fullname}</span>
+                    </div>
+                    <div className={styles.approveContainer}>
+                      <div className={styles.approveTab}>批核</div>
+                      <Checkbox value={`${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}`} className={styles.addressList} onChange={() => setIsChecked(!isChecked)} />
+                    </div> */
+}
+//   );
+// }

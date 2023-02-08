@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ApprovalActivityService } from "../services/ApprovalActivityService";
+import { ActivityApproval } from "../utils/models";
 
 export class ApprovalActivityController {
   constructor(private approvalActivityService: ApprovalActivityService) {}
@@ -14,7 +15,20 @@ export class ApprovalActivityController {
       res.status(400).json({ message: "Internal Server Error" });
     }
   };
-
+  putPendingApplication = async (req: Request, res: Response) => {
+    const organisationId = req.user?.id!;
+    const applicationArr: ActivityApproval[] = req.body.application;
+    try {
+      const result = await this.approvalActivityService.putPendingApplication(
+        organisationId,
+        applicationArr
+      );
+      console.log(result, "ApprovalActivityController.ts L11");
+      res.status(200).json(result);
+    } catch (e) {
+      res.status(400).json({ message: "Internal Server Error" });
+    }
+  };
 
   getApprovedApplication = async (req: Request, res: Response) => {
     try {
@@ -25,7 +39,5 @@ export class ApprovalActivityController {
     } catch (e) {
       res.status(400).json({ message: "Internal Server Error" });
     }
-  }
-
-
+  };
 }

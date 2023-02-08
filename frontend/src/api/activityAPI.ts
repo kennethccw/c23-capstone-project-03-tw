@@ -1,7 +1,7 @@
 import { Profile } from "./profileAPI";
 import { fetchJson } from "./utilsAPI";
 
-const ACTIVITY_API_PATH = `${process.env.REACT_APP_BACKEND_URL}/activity`;
+const ACTIVITY_API_PATH = process.env.REACT_APP_NODE_ENV === "production" ? `${process.env.REACT_APP_BACKEND_URL}/activity` : `${"http://localhost:8080"}/activity`;
 
 export enum District {
   kowloon = "kowloon",
