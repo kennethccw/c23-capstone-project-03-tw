@@ -54,7 +54,7 @@ var ApprovalActivityController = /** @class */ (function () {
                         return [4 /*yield*/, this.approvalActivityService.getPendingApplication(organisationId)];
                     case 2:
                         result = _b.sent();
-                        console.log(result, "controller");
+                        // console.log(result, "ApprovalActivityController.ts L11");
                         res.status(200).json(result);
                         return [3 /*break*/, 4];
                     case 3:
@@ -62,6 +62,54 @@ var ApprovalActivityController = /** @class */ (function () {
                         res.status(400).json({ message: "Internal Server Error" });
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
+                }
+            });
+        }); };
+        this.putPendingApplication = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var organisationId, applicationArr, result, e_2;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        organisationId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id;
+                        applicationArr = req.body.application;
+                        _b.label = 1;
+                    case 1:
+                        _b.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.approvalActivityService.putPendingApplication(organisationId, applicationArr)];
+                    case 2:
+                        result = _b.sent();
+                        // console.log(result, "ApprovalActivityController.ts L11");
+                        res.status(200).json(result);
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_2 = _b.sent();
+                        console.log(e_2);
+                        res.status(400).json({ message: "Internal Server Error" });
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        }); };
+        this.getApprovedApplication = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var organisationId, result, e_3;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _b.trys.push([0, 2, , 3]);
+                        organisationId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id;
+                        return [4 /*yield*/, this.approvalActivityService.getApprovedApplication(organisationId)];
+                    case 1:
+                        result = _b.sent();
+                        // console.log(result, "ApprovalActivityController.ts L23");
+                        res.status(200).json(result);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_3 = _b.sent();
+                        res.status(400).json({ message: "Internal Server Error" });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
                 }
             });
         }); };

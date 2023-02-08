@@ -52,6 +52,7 @@ var ActivityService = /** @class */ (function () {
                                 .select("*", "organisations.name as organisation", "activities.name as activity", "activities.id as activity_id")
                                 .where("activities.date", ">", new Date())
                                 .orderBy("".concat(tables_1.TABLES.ACTIVITIES, ".date"), "asc")
+                                .andWhereNot("remaining_place", 0)
                                 .innerJoin(tables_1.TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id")];
                     case 1:
                         result = _a.sent();

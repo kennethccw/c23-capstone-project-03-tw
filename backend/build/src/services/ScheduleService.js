@@ -57,7 +57,8 @@ var ScheduleService = /** @class */ (function () {
                                 .innerJoin(tables_1.TABLES.ORGANISATIONS, "".concat(tables_1.TABLES.ACTIVITIES, ".organisation_id"), "".concat(tables_1.TABLES.ORGANISATIONS, ".id"))
                                 .where("activity_applications.user_id", uid)
                                 .andWhere("activity_applications.is_approved", true)
-                                .andWhere("activity_applications.is_cancelled", false)];
+                                .andWhere("activity_applications.is_cancelled", false)
+                                .andWhere("activity_applications.is_rejected", false)];
                     case 2:
                         confirmedActivities = _a.sent();
                         return [4 /*yield*/, this.knex(tables_1.TABLES.ACTIVITY_APPLICATIONS)
@@ -66,10 +67,11 @@ var ScheduleService = /** @class */ (function () {
                                 .innerJoin(tables_1.TABLES.ORGANISATIONS, "".concat(tables_1.TABLES.ACTIVITIES, ".organisation_id"), "".concat(tables_1.TABLES.ORGANISATIONS, ".id"))
                                 .where("activity_applications.user_id", uid)
                                 .andWhere("activity_applications.is_approved", false)
-                                .andWhere("activity_applications.is_cancelled", false)];
+                                .andWhere("activity_applications.is_cancelled", false)
+                                .andWhere("activity_applications.is_rejected", false)];
                     case 3:
                         pendingActivities = _a.sent();
-                        console.log(confirmedActivities, pendingActivities);
+                        // console.log(confirmedActivities, pendingActivities);
                         return [2 /*return*/, { confirmed: confirmedActivities, pending: pendingActivities }];
                     case 4:
                         e_1 = _a.sent();

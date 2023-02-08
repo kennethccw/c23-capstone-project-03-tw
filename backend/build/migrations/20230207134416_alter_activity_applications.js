@@ -36,55 +36,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrganisationController = void 0;
-var OrganisationController = /** @class */ (function () {
-    function OrganisationController(organisationService) {
-        var _this = this;
-        this.organisationService = organisationService;
-        this.getOrganisationList = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var data, e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.organisationService.getOrganisationList()];
-                    case 1:
-                        data = _a.sent();
-                        // console.log(data, "OrganisationController.ts L10")
-                        res.status(200).json(data);
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        res.status(400).json({ message: "Internal Server Error" });
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        }); };
-        this.getOrganisationDetail = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var id, data, e_2;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        id = parseInt(req.query.id);
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.organisationService.getOrganisationDetail(id)];
-                    case 2:
-                        data = _a.sent();
-                        res.status(200).json(data);
-                        return [3 /*break*/, 4];
-                    case 3:
-                        e_2 = _a.sent();
-                        res.status(400).json({ message: "Internal Server Error" });
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
-                }
-            });
-        }); };
-    }
-    return OrganisationController;
-}());
-exports.OrganisationController = OrganisationController;
-//# sourceMappingURL=OrganisationController.js.map
+exports.down = exports.up = void 0;
+var tables_1 = require("../src/utils/tables");
+var tableName = tables_1.TABLES.ACTIVITY_APPLICATIONS;
+function up(knex) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, knex.schema.alterTable(tableName, function (table) {
+                        table.boolean("is_rejected").defaultTo(false);
+                    })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.up = up;
+function down(knex) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, knex.schema.alterTable(tableName, function (table) {
+                        table.dropColumn("is_rejected");
+                    })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.down = down;
+//# sourceMappingURL=20230207134416_alter_activity_applications.js.map

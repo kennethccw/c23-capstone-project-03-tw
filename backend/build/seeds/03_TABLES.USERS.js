@@ -63,6 +63,7 @@ function seed(knex) {
                             _d.birthday = "09-09-1997",
                             _d.gender = "female",
                             _d.is_experienced = false,
+                            _d.fullname = "陳大文",
                             _d)
                     ];
                     _e = {
@@ -77,6 +78,7 @@ function seed(knex) {
                             _e.birthday = "09-09-1993",
                             _e.gender = "male",
                             _e.is_experienced = true,
+                            _e.fullname = "陳小文",
                             _e)
                     ]);
                     _f = {
@@ -91,6 +93,7 @@ function seed(knex) {
                             _f.birthday = "09-09-2005",
                             _f.gender = "female",
                             _f.is_experienced = true,
+                            _f.fullname = "陳忠文",
                             _f)
                     ]);
                     _g = {
@@ -105,6 +108,7 @@ function seed(knex) {
                             _g.birthday = "09-09-2001",
                             _g.gender = "male",
                             _g.is_experienced = true,
+                            _g.fullname = "陳世文",
                             _g)
                     ]);
                     _h = {
@@ -119,6 +123,7 @@ function seed(knex) {
                             _h.birthday = "09-09-1993",
                             _h.gender = "male",
                             _h.is_experienced = true,
+                            _h.fullname = "陳細文",
                             _h)
                     ]);
                     _j = {
@@ -133,6 +138,7 @@ function seed(knex) {
                             _j.birthday = "09-09-1899",
                             _j.gender = "male",
                             _j.is_experienced = true,
+                            _j.fullname = "陳中文",
                             _j)
                     ]);
                     _k = {
@@ -144,9 +150,10 @@ function seed(knex) {
                     _c = _c.concat([
                         (_k.password = _24.sent(),
                             _k.mobile = "12345678",
-                            _k.birthday = "09-09-181",
+                            _k.birthday = "09-09-1999",
                             _k.gender = "male",
                             _k.is_experienced = true,
+                            _k.fullname = "陳英文",
                             _k)
                     ]);
                     _l = {
@@ -161,6 +168,7 @@ function seed(knex) {
                             _l.birthday = "01-03-1999",
                             _l.gender = "male",
                             _l.is_experienced = true,
+                            _l.fullname = "陳巨文",
                             _l)
                     ]);
                     _m = {
@@ -175,6 +183,7 @@ function seed(knex) {
                             _m.birthday = "09-09-2004",
                             _m.gender = "female",
                             _m.is_experienced = true,
+                            _m.fullname = "陳具文",
                             _m)
                     ]);
                     _o = {
@@ -189,6 +198,7 @@ function seed(knex) {
                             _o.birthday = "09-03-1905",
                             _o.gender = "male",
                             _o.is_experienced = true,
+                            _o.fullname = "陳思文",
                             _o)
                     ]);
                     _p = {
@@ -203,6 +213,7 @@ function seed(knex) {
                             _p.birthday = "03-08-1991",
                             _p.gender = "male",
                             _p.is_experienced = true,
+                            _p.fullname = "陳斯文",
                             _p)
                     ]);
                     _q = {
@@ -217,6 +228,7 @@ function seed(knex) {
                             _q.birthday = "09-09-1989",
                             _q.gender = "female",
                             _q.is_experienced = true,
+                            _q.fullname = "陳絲文",
                             _q)
                     ]);
                     _r = {
@@ -231,6 +243,7 @@ function seed(knex) {
                             _r.birthday = "09-02-1999",
                             _r.gender = "female",
                             _r.is_experienced = true,
+                            _r.fullname = "陳文",
                             _r)
                     ]);
                     _s = {
@@ -245,6 +258,7 @@ function seed(knex) {
                             _s.birthday = "09-09-2001",
                             _s.gender = "female",
                             _s.is_experienced = true,
+                            _s.fullname = "陳加文",
                             _s)
                     ]);
                     _t = {
@@ -259,6 +273,7 @@ function seed(knex) {
                             _t.birthday = "01-04-1989",
                             _t.gender = "male",
                             _t.is_experienced = true,
+                            _t.fullname = "陳嘉文",
                             _t)
                     ]);
                     _u = {
@@ -273,6 +288,7 @@ function seed(knex) {
                             _u.birthday = "09-02-1989",
                             _u.gender = "female",
                             _u.is_experienced = true,
+                            _u.fullname = "陳乘文",
                             _u)
                     ]);
                     _v = {
@@ -287,6 +303,7 @@ function seed(knex) {
                             _v.birthday = "09-03-1992",
                             _v.gender = "female",
                             _v.is_experienced = true,
+                            _v.fullname = "陳成文",
                             _v)
                     ]);
                     _w = {
@@ -301,6 +318,7 @@ function seed(knex) {
                             _w.birthday = "09-02-1990",
                             _w.gender = "male",
                             _w.is_experienced = true,
+                            _w.fullname = "陳承文",
                             _w)
                     ]);
                     _x = {
@@ -315,6 +333,7 @@ function seed(knex) {
                             _x.birthday = "09-02-1991",
                             _x.gender = "male",
                             _x.is_experienced = true,
+                            _x.fullname = "陳除文",
                             _x)
                     ]);
                     _y = {
@@ -329,6 +348,7 @@ function seed(knex) {
                             _y.birthday = "01-02-1991",
                             _y.gender = "female",
                             _y.is_experienced = true,
+                            _y.fullname = "陳隨文",
                             _y)
                     ]);
                     _z = {
@@ -343,6 +363,7 @@ function seed(knex) {
                             _z.birthday = "01-02-1891",
                             _z.gender = "female",
                             _z.is_experienced = true,
+                            _z.fullname = "陳法文",
                             _z)
                     ]);
                     _0 = {
@@ -357,6 +378,7 @@ function seed(knex) {
                             _0.birthday = "01-02-1993",
                             _0.gender = "female",
                             _0.is_experienced = true,
+                            _0.fullname = "陳德文",
                             _0)
                     ]);
                     _1 = {
@@ -371,6 +393,7 @@ function seed(knex) {
                             _1.birthday = "01-02-1992",
                             _1.gender = "male",
                             _1.is_experienced = true,
+                            _1.fullname = "陳美文",
                             _1)
                     ]);
                     _2 = {
@@ -385,6 +408,7 @@ function seed(knex) {
                             _2.birthday = "01-02-1991",
                             _2.gender = "female",
                             _2.is_experienced = true,
+                            _2.fullname = "陳俄文",
                             _2)
                     ]);
                     _3 = {
@@ -399,6 +423,7 @@ function seed(knex) {
                             _3.birthday = "01-02-1891",
                             _3.gender = "female",
                             _3.is_experienced = true,
+                            _3.fullname = "陳國文",
                             _3)
                     ]);
                     _4 = {
@@ -413,6 +438,7 @@ function seed(knex) {
                             _4.birthday = "01-02-1891",
                             _4.gender = "female",
                             _4.is_experienced = true,
+                            _4.fullname = "陳日文",
                             _4)
                     ]);
                     _5 = {
@@ -427,6 +453,7 @@ function seed(knex) {
                             _5.birthday = "01-02-1891",
                             _5.gender = "female",
                             _5.is_experienced = true,
+                            _5.fullname = "陳手文",
                             _5)
                     ]);
                     _6 = {
@@ -441,6 +468,7 @@ function seed(knex) {
                             _6.birthday = "01-02-1891",
                             _6.gender = "female",
                             _6.is_experienced = true,
+                            _6.fullname = "陳田文",
                             _6)
                     ]);
                     _7 = {
@@ -455,6 +483,7 @@ function seed(knex) {
                             _7.birthday = "01-02-1891",
                             _7.gender = "female",
                             _7.is_experienced = true,
+                            _7.fullname = "陳水文",
                             _7)
                     ]);
                     _8 = {
@@ -469,6 +498,7 @@ function seed(knex) {
                             _8.birthday = "01-02-1891",
                             _8.gender = "female",
                             _8.is_experienced = true,
+                            _8.fullname = "陳口文",
                             _8)
                     ]);
                     _9 = {
@@ -483,6 +513,7 @@ function seed(knex) {
                             _9.birthday = "01-02-1891",
                             _9.gender = "female",
                             _9.is_experienced = true,
+                            _9.fullname = "陳廿文",
                             _9)
                     ]);
                     _10 = {
@@ -497,6 +528,7 @@ function seed(knex) {
                             _10.birthday = "01-02-1891",
                             _10.gender = "female",
                             _10.is_experienced = true,
+                            _10.fullname = "陳卜文",
                             _10)
                     ]);
                     _11 = {
@@ -511,6 +543,7 @@ function seed(knex) {
                             _11.birthday = "01-02-1891",
                             _11.gender = "female",
                             _11.is_experienced = true,
+                            _11.fullname = "陳山文",
                             _11)
                     ]);
                     _12 = {
@@ -525,6 +558,7 @@ function seed(knex) {
                             _12.birthday = "01-02-1891",
                             _12.gender = "female",
                             _12.is_experienced = true,
+                            _12.fullname = "陳戈文",
                             _12)
                     ]);
                     _13 = {
@@ -539,6 +573,7 @@ function seed(knex) {
                             _13.birthday = "01-02-1995",
                             _13.gender = "female",
                             _13.is_experienced = true,
+                            _13.fullname = "陳戈文",
                             _13)
                     ]);
                     _14 = {
@@ -553,6 +588,7 @@ function seed(knex) {
                             _14.birthday = "01-02-1895",
                             _14.gender = "female",
                             _14.is_experienced = true,
+                            _14.fullname = "陳人文",
                             _14)
                     ]);
                     _15 = {
@@ -567,6 +603,7 @@ function seed(knex) {
                             _15.birthday = "10-02-1997",
                             _15.gender = "female",
                             _15.is_experienced = true,
+                            _15.fullname = "陳心文",
                             _15)
                     ]);
                     _16 = {
@@ -581,6 +618,7 @@ function seed(knex) {
                             _16.birthday = "06-12-1891",
                             _16.gender = "female",
                             _16.is_experienced = true,
+                            _16.fullname = "陳木文",
                             _16)
                     ]);
                     _17 = {
@@ -595,6 +633,7 @@ function seed(knex) {
                             _17.birthday = "05-06-1898",
                             _17.gender = "female",
                             _17.is_experienced = true,
+                            _17.fullname = "陳火文",
                             _17)
                     ]);
                     _18 = {
@@ -609,6 +648,7 @@ function seed(knex) {
                             _18.birthday = "11-05-1891",
                             _18.gender = "female",
                             _18.is_experienced = true,
+                            _18.fullname = "陳土文",
                             _18)
                     ]);
                     _19 = {
@@ -623,6 +663,7 @@ function seed(knex) {
                             _19.birthday = "01-09-2003",
                             _19.gender = "female",
                             _19.is_experienced = true,
+                            _19.fullname = "陳竹文",
                             _19)
                     ]);
                     _20 = {
@@ -637,6 +678,7 @@ function seed(knex) {
                             _20.birthday = "11-04-1993",
                             _20.gender = "female",
                             _20.is_experienced = true,
+                            _20.fullname = "陳十文",
                             _20)
                     ]);
                     _21 = {
@@ -651,6 +693,7 @@ function seed(knex) {
                             _21.birthday = "01-02-2001",
                             _21.gender = "female",
                             _21.is_experienced = true,
+                            _21.fullname = "陳難文",
                             _21)
                     ]);
                     _22 = {
@@ -665,6 +708,7 @@ function seed(knex) {
                             _22.birthday = "01-08-2003",
                             _22.gender = "female",
                             _22.is_experienced = true,
+                            _22.fullname = "陳金文",
                             _22)
                     ]);
                     _23 = {
@@ -675,10 +719,11 @@ function seed(knex) {
                 case 47: return [4 /*yield*/, _b.apply(_a, [_c.concat([
                             (_23.password = _24.sent(),
                                 _23.mobile = "12345678",
-                                _23.birthday = "17-10-1998",
+                                _23.birthday = "10-10-1998",
                                 _23.gender = "male",
                                 _23.is_experienced = true,
                                 _23.created_at = new Date("2023-01-01"),
+                                _23.fullname = "陳月文",
                                 _23)
                         ])])];
                 case 48:
