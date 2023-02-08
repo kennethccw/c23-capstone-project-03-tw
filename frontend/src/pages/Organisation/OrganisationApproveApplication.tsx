@@ -63,6 +63,9 @@ export default function ApproveApplication() {
   const { isError, data, error, isLoading } = useQuery({
     queryKey: ["organisation/application"],
     queryFn: getPendingAndApprovalApplication,
+    refetchInterval: 5_000,
+    staleTime: 10_000,
+    retry: 1,
   });
   console.log(data);
   const [isChecked, setIsChecked] = useState(false);
@@ -151,7 +154,7 @@ export default function ApproveApplication() {
                         checked={applicantApprovalArr.includes(`${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-approved`)}
                         value={`${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}`}
                         className={styles.addressList}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        onChange={() =>
                           setApplicantApprovalArr(
                             // applicantApprovalArr.includes(`${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-rejected`) ||
                             applicantApprovalArr.includes(`${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-approved`)
@@ -160,7 +163,14 @@ export default function ApproveApplication() {
                                     // item !== `${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-rejected` &&
                                     item !== `${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-approved`
                                 )
-                              : [...applicantApprovalArr, `${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-approved`]
+                              : [
+                                  ...applicantApprovalArr.filter(
+                                    (item) =>
+                                      // item !== `${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-approved` &&
+                                      item !== `${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-rejected`
+                                  ),
+                                  `${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-approved`,
+                                ]
                           )
                         }
                       />
@@ -169,7 +179,7 @@ export default function ApproveApplication() {
                         value={`${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}`}
                         checked={applicantApprovalArr.includes(`${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-rejected`)}
                         className={styles.addressList}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        onChange={() =>
                           setApplicantApprovalArr(
                             // applicantApprovalArr.includes(`${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-approved`) ||
                             applicantApprovalArr.includes(`${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-rejected`)
@@ -178,7 +188,14 @@ export default function ApproveApplication() {
                                     // item !== `${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-approved` &&
                                     item !== `${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-rejected`
                                 )
-                              : [...applicantApprovalArr, `${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-rejected`]
+                              : [
+                                  ...applicantApprovalArr.filter(
+                                    (item) =>
+                                      // item !== `${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-approved` &&
+                                      item !== `${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-approved`
+                                  ),
+                                  `${applicant.fullname}-${applicant.user_id}-${activityObj.activity.activity_id}-rejected`,
+                                ]
                           )
                         }
                       />
