@@ -12,6 +12,7 @@ export interface ScheduleActivity {
   start_time: Date;
   end_time: Date;
   date: Date;
+  fullname?:string;
 }
 export interface Schedule {
   confirmed: ScheduleActivity[];

@@ -38,7 +38,7 @@ export default function ApproveApplication() {
   //   return applicationArr;
   // };
   const getPendingAndApprovalApplication = async () => {
-    const approvedApplication = await getApprovedApplication();
+    const approvedApplicationResult = await getApprovedApplication();
     const results = await getPendingApplication();
     const activityIdSet = new Set<number>();
     for (const result of results) {
@@ -56,7 +56,48 @@ export default function ApproveApplication() {
       pendingApplication.push({ activity: filteredArr[0], applicants: applicantArr });
     }
 
-    return { pendingApplication, approvedApplication };
+    /////////// make approvedApplication to be Array of [{ each approved activity detail},[each approved activity person list]]///////// ==> [[{each activity detail},[each activity person list]],[{each activity detail},[each activity person list]],[{each activity detail},[each activity person list]]..........]
+
+    const arrayOfAllApprovedActivity: { activity: ScheduleActivity; applicants: { fullname: string; user_id: number }[] }[] = ([] = []);
+
+    let arrayOfApprovedActivityID: any = new Set();
+
+    for (let eachApprovedActivity of approvedApplicationResult) {
+      arrayOfApprovedActivityID.add(eachApprovedActivity.activity_id);
+    }
+    console.log(typeof arrayOfApprovedActivityID);
+
+    for (let eachNumberInArrayOfApprovedActivityID of arrayOfApprovedActivityID) {
+      let approvedApplication = [];
+      let arrayOfPersonList = [];
+      console.log(eachNumberInArrayOfApprovedActivityID);
+
+      arrayOfPersonList.push({
+        fullname: approvedApplicationResult
+          .filter((eachApprovedApplication) => eachApprovedApplication.activity_id === eachNumberInArrayOfApprovedActivityID)
+          .map((eachActivity) => eachActivity.user_fullname)[0]!,
+        user_id: approvedApplicationResult
+          .filter((eachApprovedApplication) => eachApprovedApplication.activity_id === eachNumberInArrayOfApprovedActivityID)
+          .map((eachActivity) => eachActivity.user_id)[0]!,
+      });
+      approvedApplication.push({
+        activity: approvedApplicationResult.find((eachApprovedApplication) => eachApprovedApplication.activity_id === eachNumberInArrayOfApprovedActivityID)!,
+        applicants: arrayOfPersonList,
+      });
+
+      console.log(arrayOfPersonList);
+
+      // arrayOfEachApprovedActivityWithPersonList.push(approvedApplication)
+
+      console.log(approvedApplication); // => now become [[{},[]] ........]
+
+      arrayOfAllApprovedActivity.push(approvedApplication as any);
+    }
+
+    console.log(arrayOfAllApprovedActivity);
+    console.log(pendingApplication);
+
+    return { pendingApplication, arrayOfAllApprovedActivity };
   };
 
   const { isError, data, error, isLoading } = useQuery({
@@ -66,9 +107,11 @@ export default function ApproveApplication() {
     staleTime: 10_000,
     retry: 1,
   });
-  console.log("approvedApplications: ",data?.approvedApplication);
+  console.log("approvedApplications: ", data?.arrayOfAllApprovedActivity);
 
-  console.log("pendingApplications" ,data?.pendingApplication)
+  // console.log(data?.arrayOfAllApprovedActivity.map((each) => each[0]))
+
+  console.log("pendingApplications", data?.pendingApplication);
   console.log(data);
   const [isChecked, setIsChecked] = useState(false);
   enum Status {
@@ -220,22 +263,20 @@ export default function ApproveApplication() {
             </>
           ))} */}
 
-        {!data?.approvedApplication.length && status===Status.approved&&(
+        {!data?.arrayOfAllApprovedActivity.length && status === Status.approved && (
           <div className={styles.noApplicationContainer}>
             <h2>暫未有已批核的申請</h2>
           </div>
         )}
 
-        {status === Status.approved && data?.approvedApplication.map((activity, idx) => (
-          <>
-            <ApplicationContainer activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}&status=approval`)} status={"approved"}/>
+        {status === Status.approved &&
+          data?.arrayOfAllApprovedActivity.map((activity, idx) => (
+            <>
+              <ApplicationContainer activity={activity.activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity.activity_id}&status=approval`)} status={"approved"} />
 
-
-
-
-            {idx !== data.approvedApplication.length - 1 && <hr className={styles.hr90vw} />}
-          </>
-        ))}
+              {idx !== data.arrayOfAllApprovedActivity.length - 1 && <hr className={styles.hr90vw} />}
+            </>
+          ))}
 
         {/* <div className={styles.activtyContainer}>
           <div className={styles.OrganisationName}> 香港動物群益會 </div>
