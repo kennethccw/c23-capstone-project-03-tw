@@ -35,7 +35,9 @@ export default function ApproveApplication() {
     queryKey: ["organisation/application"],
     queryFn: getPendingAndApprovalApplication,
   });
-  console.log(data);
+  console.log("approvedApplications: ",data?.approvedApplication);
+
+  console.log("pendingApplications" ,data?.pendingApplication)
 
 
 
@@ -82,22 +84,22 @@ export default function ApproveApplication() {
           </>
         ))}
 
-        {/* {!data?.approvedApplication.length && status===Status.approved&&(
+        {!data?.approvedApplication.length && status===Status.approved&&(
           <div className={styles.noApplicationContainer}>
             <h2>暫未有已批核的申請</h2>
           </div>
-        )} */}
+        )}
 
-        {/* {status === Status.approved && data?.approvedApplication.map((activity, idx) => (
+        {status === Status.approved && data?.approvedApplication.map((activity, idx) => (
           <>
-            <ApplicationContainer activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}&status=approval`)} />
+            <ApplicationContainer activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}&status=approval`)} status={"approved"}/>
 
 
 
 
             {idx !== data.approvedApplication.length - 1 && <hr className={styles.hr90vw} />}
           </>
-        ))} */}
+        ))}
 
 
         {/* <div className={styles.activtyContainer}>
