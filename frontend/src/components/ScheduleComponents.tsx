@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { HiCalendar, HiOutlineLocationMarker } from "react-icons/hi";
 import { ScheduleActivity } from "../api/scheduleAPI";
 import { ApprovedActivityPersonList } from "./ApprovedActivityPersonList";
+import { Activity } from "./ActivitiesUtilis";
 
 export function NoApplicationContainer() {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ interface Application {
   date: string;
 }
 
-export function ApplicationContainer(props: { activity: ScheduleActivity; clickHandler: () => void; status?: string }) {
+export function ApplicationContainer(props: { activity: ScheduleActivity; clickHandler: () => void; status?: string ; personList?:Array<string>}) {
   const startTime = new Date(props.activity.start_time);
   const startMonth = startTime.getMonth() + 1;
   const startDate = startTime.getDate();
@@ -41,6 +42,8 @@ export function ApplicationContainer(props: { activity: ScheduleActivity; clickH
   const endMonth = endTime.getMonth() + 1;
   const endDate = endTime.getDate();
   console.log(props.activity.fullname);
+console.log(props.personList)
+ 
   return (
     <>
       <div className={styles.applicationsAppliedContainer} onClick={() => props.clickHandler()}>
@@ -68,7 +71,9 @@ export function ApplicationContainer(props: { activity: ScheduleActivity; clickH
       </div>
       {props.status === "approved" && (
         <div className={styles.approvedList}>
-          <ApprovedActivityPersonList activity={props.activity} />
+          {props.personList?.map((eachPersonName: string)=>
+          <ApprovedActivityPersonList eachPerson={eachPersonName} />)  }
+          {/* <ApprovedActivityPersonList activity={props.activity} person /> */}
         </div>
       )}
     </>

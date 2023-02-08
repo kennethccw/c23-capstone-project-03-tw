@@ -58,28 +58,38 @@ export default function ApproveApplication() {
 
     /////////// make approvedApplication to be Array of [{ each approved activity detail},[each approved activity person list]]///////// ==> [[{each activity detail},[each activity person list]],[{each activity detail},[each activity person list]],[{each activity detail},[each activity person list]]..........]
 
-    const arrayOfAllApprovedActivity: { activity: ScheduleActivity; applicants: { fullname: string; user_id: number }[] }[] = ([] = []);
+    const arrayOfAllApprovedActivity: { activity: ScheduleActivity; applicants: { fullname: string; user_id: number }[] }[] =[];
 
-    let arrayOfApprovedActivityID: any = new Set();
+    let arrayOfApprovedActivityID = new Set<number>();
+
+  console.log(approvedApplicationResult)
 
     for (let eachApprovedActivity of approvedApplicationResult) {
+      console.log(eachApprovedActivity.activity_id)
       arrayOfApprovedActivityID.add(eachApprovedActivity.activity_id);
     }
     console.log(typeof arrayOfApprovedActivityID);
 
-    for (let eachNumberInArrayOfApprovedActivityID of arrayOfApprovedActivityID) {
+    const realArrayOfApprovedActivityID =  Array.from(arrayOfApprovedActivityID)
+
+console.log(realArrayOfApprovedActivityID)
+
+    for (let eachNumberInArrayOfApprovedActivityID of realArrayOfApprovedActivityID) {
       let approvedApplication = [];
       let arrayOfPersonList = [];
       console.log(eachNumberInArrayOfApprovedActivityID);
+      const arrOfUsername = approvedApplicationResult
+          .filter((eachApprovedApplication) => eachApprovedApplication.activity_id === eachNumberInArrayOfApprovedActivityID)
+          .map((eachActivity) => eachActivity.user_fullname)
+          for (let i = 0; i < arrOfUsername.length; i ++) {
+            arrayOfPersonList.push({
+              fullname:arrOfUsername[i]!,
+              user_id: approvedApplicationResult
+                .filter((eachApprovedApplication) => eachApprovedApplication.activity_id === eachNumberInArrayOfApprovedActivityID)
+                .map((eachActivity) => eachActivity.user_id)[i]!,
+            });
 
-      arrayOfPersonList.push({
-        fullname: approvedApplicationResult
-          .filter((eachApprovedApplication) => eachApprovedApplication.activity_id === eachNumberInArrayOfApprovedActivityID)
-          .map((eachActivity) => eachActivity.user_fullname)[0]!,
-        user_id: approvedApplicationResult
-          .filter((eachApprovedApplication) => eachApprovedApplication.activity_id === eachNumberInArrayOfApprovedActivityID)
-          .map((eachActivity) => eachActivity.user_id)[0]!,
-      });
+          }
       approvedApplication.push({
         activity: approvedApplicationResult.find((eachApprovedApplication) => eachApprovedApplication.activity_id === eachNumberInArrayOfApprovedActivityID)!,
         applicants: arrayOfPersonList,
@@ -272,7 +282,7 @@ export default function ApproveApplication() {
         {status === Status.approved &&
           data?.arrayOfAllApprovedActivity.map((activity, idx) => (
             <>
-              <ApplicationContainer activity={activity.activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity.activity_id}&status=approval`)} status={"approved"} />
+              <ApplicationContainer activity={activity.activity} personList={activity.applicants.map(applicant =>applicant.fullname)} clickHandler={() => navigate(`/activity/detail?id=${activity.activity.activity_id}&status=approval`)} status={"approved"} />
 
               {idx !== data.arrayOfAllApprovedActivity.length - 1 && <hr className={styles.hr90vw} />}
             </>
