@@ -37,15 +37,15 @@ export class ApprovalActivityService {
     try {
       const resultArr = [];
       for (const application of applicationArr) {
+        const activityName = await trx(TABLES.ACTIVITIES)
+          .select("name")
+          .where("id", application.activity_id);
         if (application.is_approved) {
           const result = await trx(TABLES.ACTIVITY_APPLICATIONS)
             .update({ is_approved: true, updated_at: new Date() })
             .where("user_id", application.user_id)
             .andWhere("activity_id", application.activity_id)
             .returning("*");
-          const activityName = await trx(TABLES.ACTIVITIES)
-            .select("name")
-            .where("id", application.activity_id);
           resultArr.push(result[0]);
           const notificationResult = await trx(TABLES.NOTIFICATION)
             .insert({
@@ -56,14 +56,22 @@ export class ApprovalActivityService {
             })
             .returning("*");
           resultArr.push(notificationResult[0]);
-        }
-        if (application.is_rejected) {
+        } else if (application.is_rejected) {
           const result = await trx(TABLES.ACTIVITY_APPLICATIONS)
             .update({ is_rejected: true, updated_at: new Date() })
             .where("user_id", application.user_id)
             .andWhere("activity_id", application.activity_id)
             .returning("*");
           resultArr.push(result[0]);
+          const notificationResult = await trx(TABLES.NOTIFICATION)
+            .insert({
+              type: "activity",
+              content: `${activityName[0].name}的活動申請沒有被接納`,
+              any_id: application.activity_id,
+              user_id: application.user_id,
+            })
+            .returning("*");
+          resultArr.push(notificationResult[0]);
         }
       }
       await trx.commit();

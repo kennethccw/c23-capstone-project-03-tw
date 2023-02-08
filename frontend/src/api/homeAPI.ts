@@ -64,7 +64,7 @@ export const postHomeAdvertiser = async (adsId: number) => {
   });
   return resp;
 };
-export const delHomeAdvertiser = async (notificationId: number) => {
+export const delHomeNotification = async (notificationId: number) => {
   const resp = await fetch(`${HOME_API_PATH}/notification`, {
     method: "DELETE",
     headers: {
