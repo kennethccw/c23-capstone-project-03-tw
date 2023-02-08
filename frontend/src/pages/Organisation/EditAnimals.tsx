@@ -1,6 +1,4 @@
-import { ChevronLeft, Filter } from "react-bootstrap-icons"
 import { FileButton, Group, NativeSelect, NumberInput, Textarea, TextInput } from '@mantine/core'; //https://ui.mantine.dev/category/inputs
-import { IconSearch } from '@tabler/icons';
 import { useNavigate } from "react-router-dom";
 import styles from "../../css/organisation/editActivities.module.scss";
 import { Tabs, Button } from "@mantine/core";
@@ -9,18 +7,12 @@ import { useEffect, useRef, useState } from "react";
 import { Input } from '@mantine/core';
 import { useForm } from "react-hook-form";
 
-import InputMask from 'react-input-mask';
-import { Activity } from "../../components/ActivitiesUtilis";
 // import { RiContactsBookLine } from "react-icons/ri";
-import { DatePicker } from "@mantine/dates";
-import { textSpanContainsPosition } from "typescript";
-import { ActivityPreview } from "../../api/activityAPI";
-import { act } from "react-dom/test-utils";
 import { PetPreview } from "../../api/adoptionAPI";
 import { useQuery } from "react-query";
 import { fetchJson } from "../../api/utilsAPI";
 import { AnimalShow } from "../../components/AnimationSlideShowComponent";
-import { HiSearch } from "react-icons/hi";
+import { HiChevronLeft } from 'react-icons/hi';
 
 
 export default function EditAnimals() {
@@ -38,7 +30,7 @@ export default function EditAnimals() {
 
 
     const [weight, setWeight] = useState<number | any>(0.00)
-    const { register, watch, handleSubmit } = useForm(
+    const { register, watch } = useForm(
 
     )
     const [file, setFile] = useState<File | null>(null);
@@ -88,9 +80,7 @@ export default function EditAnimals() {
 
     }
 
-
-
-    const { isLoading, isError, data, error } = useQuery({
+    const { data } = useQuery({
         queryKey: ["editAnimals/getAnimals"],
         queryFn: getOrganisationAnimals,
         refetchInterval: 5_000,
@@ -107,7 +97,7 @@ export default function EditAnimals() {
     ////////////////////////////  search bar to find specific pets ////////////////////////
 const searching = (searchValue: string) => {
     if (searchValue.trim() === "") {
-     
+    
       setSearch("");
     //   setActivityData([...activityData]);
     //   console.log("searchState: ", search);
@@ -161,10 +151,6 @@ const searching = (searchValue: string) => {
     }
 
     const handleSubmitForm = async () => {
-
-
-
-
 
 
         if (!file) {     //stop the submission if no photo is submitted
@@ -228,7 +214,7 @@ const searching = (searchValue: string) => {
             eachAnimalData.name.toLowerCase().slice(0, search!.length) === search ||
             eachAnimalData.name.toLowerCase().includes(search!) ||
             eachAnimalData.name.toLowerCase()[0] === search![0] 
-           
+          
             // eachAnimalData.activity.toLowerCase().slice(0, search!.length) === search ||
             // eachAnimalData.activity.toLowerCase().includes(search!) ||
           
@@ -246,7 +232,10 @@ const searching = (searchValue: string) => {
 
 
             <div className={styles.upperPart}>
-                <div className={styles.leftArrow}><ChevronLeft className={styles.leftArrowIcon} onClick={() => { navigate("/organisationHomePage") }} /></div>
+                {/* <div className={styles.leftArrow}><ChevronLeft className={styles.leftArrowIcon} onClick={() => { navigate("/organisationHomePage") }} /></div> */}
+                <div className={styles.chevronAndAdjustmntIcon}>
+          <HiChevronLeft className={styles.chevronIcon} onClick={() => navigate(-1)} />
+        </div>
                 <div className={styles.searchBarPart}>
                     {/* {choice=== ContentToBeDisplayed.deleteAnimals && <Input.Wrapper>
                         <Input
@@ -264,7 +253,7 @@ const searching = (searchValue: string) => {
             </div>
 
             <div className={styles.searchChance}>
-                編輯流浪動物
+                新增待領養的動物
             </div>
             <div className={styles.tabList}>
                 <Tabs defaultValue="基本資料" color="ocean" >

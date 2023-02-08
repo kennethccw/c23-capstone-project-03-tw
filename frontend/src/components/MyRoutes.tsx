@@ -33,9 +33,9 @@ import SearchShowResultFunction from "../pages/SearchShowResultPage";
 import ApprovalFunction from "../pages/Organisation/ControlUserPanel";
 import ActivitiesDetailPage from "../pages/ActivitiesDetailPage";
 import AllActivitiesFilter from "../pages/AllActivitiesFilter";
-import EditorsChoice from "../pages/EditorsChoice";
-import Urgent from "../pages/Urgent";
-import Popular from "../pages/Popular";
+// import EditorsChoice from "../pages/EditorsChoice";
+// import Urgent from "../pages/Urgent";
+// import Popular from "../pages/Popular";
 import VolunteerRecord from "../pages/VolunteerRecord";
 import Badge from "../pages/Badge";
 import { BadgeFilterYear } from "../pages/BadgeFilterYear";
@@ -67,7 +67,7 @@ import Dashboard from "../pages/Organisation/OrganisationDashboard";
 import AnimalSupportChat from "../pages/Organisation/AnimalSupportChat";
 import AnimalSupportPanel from "../pages/Organisation/AnimalSupportPanel";
 import EditAnimals from "../pages/Organisation/EditAnimals";
-import Notification from "./Notification";
+// import Notification from "./Notification";
 export default function MyRoutes() {
   return (
     <Routes>

@@ -52,11 +52,11 @@ export default function OrganisationHomePageContainer() {
           >
             新增義工活動
           </Button>
-          <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="ocean">
+          <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="ocean" onClick={() => { navigate("/support/panel") }}>
             即時拯救流浪動物
           </Button>
           <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="blue" onClick={() => { navigate("/organisationAdoption") }}>
-            領養申請
+            申請領養
           </Button>
           <Button
             style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }}
@@ -65,7 +65,7 @@ export default function OrganisationHomePageContainer() {
               navigate("/editAnimals");
             }}
           >
-            待領養動物
+            新增可領養的動物
           </Button>
         </div>
         <div className={styles.containerForAll}>

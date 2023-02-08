@@ -125,7 +125,7 @@ export default function ApproveApplication() {
               處理中
             </Tabs.Tab>
             <Tabs.Tab value="已批核" onClick={() => setStatus(Status.approved)}>
-              已批核
+              批核結果
             </Tabs.Tab>
           </Tabs.List>
         </Tabs>
