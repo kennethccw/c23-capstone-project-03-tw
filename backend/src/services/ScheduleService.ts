@@ -50,7 +50,7 @@ export class ScheduleService {
         .andWhere("activity_applications.is_approved", false)
         .andWhere("activity_applications.is_cancelled", false)
         .andWhere("activity_applications.is_rejected", false);
-      console.log(confirmedActivities, pendingActivities);
+      // console.log(confirmedActivities, pendingActivities);
       return { confirmed: confirmedActivities, pending: pendingActivities };
     } catch (e) {
       console.log(e);

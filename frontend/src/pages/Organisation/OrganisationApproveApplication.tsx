@@ -45,9 +45,9 @@ export default function ApproveApplication() {
       activityIdSet.add(result.activity_id);
     }
     const activityIdArr = Array.from(activityIdSet);
-    const applicantArr: { fullname: string; user_id: number }[] = [];
     const pendingApplication: { activity: ScheduleActivity; applicants: { fullname: string; user_id: number }[] }[] = [];
     for (const activityId of activityIdArr) {
+      const applicantArr: { fullname: string; user_id: number }[] = [];
       const filteredArr = results.filter((result) => activityId === result.activity_id);
       filteredArr.forEach((activity) => {
         applicantArr.push({ fullname: activity.user_fullname!, user_id: activity.user_id! });
@@ -55,7 +55,6 @@ export default function ApproveApplication() {
       });
       pendingApplication.push({ activity: filteredArr[0], applicants: applicantArr });
     }
-    console.log(applicantArr);
 
     return { pendingApplication, approvedApplication };
   };

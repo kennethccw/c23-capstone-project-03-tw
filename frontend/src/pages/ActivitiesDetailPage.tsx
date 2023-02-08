@@ -116,7 +116,7 @@ export default function ActivitiesDetailPage() {
         },
       }}
     >
-      <div>
+      <div className={styles.containerForAll}>
         <LoadingOverlay visible={isLoading} overlayBlur={2} />
 
         <div className={styles.upperPart}>

@@ -16,6 +16,7 @@ export class ActivityService {
         )
         .where("activities.date", ">", new Date())
         .orderBy(`${TABLES.ACTIVITIES}.date`, "asc")
+        .andWhereNot("remaining_place", 0)
 
         .innerJoin(TABLES.ORGANISATIONS, "activities.organisation_id", "organisations.id");
       // console.log(result, 'ActivityService.ts L18');

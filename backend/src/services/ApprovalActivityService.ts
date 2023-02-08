@@ -25,7 +25,7 @@ export class ApprovalActivityService {
           `${TABLES.ACTIVITY_APPLICATIONS}.activity_id`
         )
         .innerJoin(TABLES.USERS, `${TABLES.USERS}.id`, `${TABLES.ACTIVITY_APPLICATIONS}.user_id`);
-      console.log(result, "ApprovalActivityService.ts L26");
+      // console.log(result, "ApprovalActivityService.ts L26");
       return result;
     } catch (e) {
       console.log(e);
@@ -47,6 +47,12 @@ export class ApprovalActivityService {
             .andWhere("activity_id", application.activity_id)
             .returning("*");
           resultArr.push(result[0]);
+          const activityResult = await trx(TABLES.ACTIVITIES)
+            .decrement("remaining_place", 1)
+            .update("updated_at", new Date())
+            .where("id", application.activity_id)
+            .returning("*");
+          resultArr.push(activityResult[0]);
           const notificationResult = await trx(TABLES.NOTIFICATION)
             .insert({
               type: "activity",
@@ -100,7 +106,7 @@ export class ApprovalActivityService {
           `${TABLES.ACTIVITY_APPLICATIONS}.activity_id`
         )
         .innerJoin(TABLES.USERS, `${TABLES.USERS}.id`, `${TABLES.ACTIVITY_APPLICATIONS}.user_id`);
-      console.log(result, "ApprovalActivityService.ts L53");
+      // console.log(result, "ApprovalActivityService.ts L53");
       return result;
     } catch (e) {
       console.log(e);

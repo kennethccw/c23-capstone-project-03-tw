@@ -84,45 +84,47 @@ export default function AllPetShowcase() {
         },
       }}
     >
-      <LoadingOverlay visible={isLoading} overlayBlur={2} />
-      <div className={styles.upperPart}>
-        <div className={styles.chevronAndAdjustmntIcon}>
-          <HiChevronLeft className={styles.backIcon} onClick={() => navigate(-1)} />
-          <Input.Wrapper>
-            <Input
-              type="search"
-              className={styles.searchContainer}
-              icon={<HiSearch className={styles.searchIcon} />}
-              placeholder="搜尋關鍵字"
-              onChange={(e) => {
-                searching(e.target.value);
-              }}
-            />
-          </Input.Wrapper>
-          <div className={styles.adjustmentFilterIconContainer}>
-            <HiOutlineAdjustments className={styles.adjustmentFilterIcon} />
+      <div className={styles.containerForallPet}>
+        <LoadingOverlay visible={isLoading} overlayBlur={2} />
+        <div className={styles.upperPart}>
+          <div className={styles.chevronAndAdjustmntIcon}>
+            <HiChevronLeft className={styles.backIcon} onClick={() => navigate(-1)} />
+            <Input.Wrapper>
+              <Input
+                type="search"
+                className={styles.searchContainer}
+                icon={<HiSearch className={styles.searchIcon} />}
+                placeholder="搜尋關鍵字"
+                onChange={(e) => {
+                  searching(e.target.value);
+                }}
+              />
+            </Input.Wrapper>
+            <div className={styles.adjustmentFilterIconContainer}>
+              <HiOutlineAdjustments className={styles.adjustmentFilterIcon} />
+            </div>
           </div>
         </div>
-      </div>
-      <div className={styles.bottomPart}>
-        {/* <div className={styles.searchBarPart}>
+        <div className={styles.bottomPart}>
+          {/* <div className={styles.searchBarPart}>
           <TextInput className={styles.searchBar} icon={<IconSearch size={30} stroke={1.5} className={styles.iconSearch} />} radius="xl" size="xl" placeholder="尋找關鍵字" rightSectionWidth={42} />
         </div> */}
-        {/* <div className={styles.filter}>
+          {/* <div className={styles.filter}>
           <Filter className={styles.filterIcon} />
         </div> */}
 
-        <div className={styles.headerContainer}>
-          <h1 className={styles.organisationTab}>動物領養</h1>
+          <div className={styles.headerContainer}>
+            <h1 className={styles.organisationTab}>動物領養</h1>
+          </div>
+          {/* <hr className={styles.adoptionDetailHr} /> */}
+
+          {petDataForSearch?.map((pet) => (
+            <AnimalShow key={pet.pet_id} pet={pet} clickHandler={() => navigate(`/adoption/detail?id=${pet.pet_id}`)} />
+          ))}
         </div>
-        {/* <hr className={styles.adoptionDetailHr} /> */}
 
-        {petDataForSearch?.map((pet) => (
-          <AnimalShow key={pet.pet_id} pet={pet} clickHandler={() => navigate(`/adoption/detail?id=${pet.pet_id}`)} />
-        ))}
+        <NewNavbar activeBtn="home" />
       </div>
-
-      <NewNavbar activeBtn="home" />
     </MantineProvider>
   );
 }
