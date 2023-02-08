@@ -4,8 +4,16 @@ import { isLoggedInAPI } from "../utils/guards";
 
 export const approvalActivityRoutes = Router();
 
-approvalActivityRoutes.get("/", isLoggedInAPI, approvalActivityController.getPendingApplication);
-approvalActivityRoutes.put("/", isLoggedInAPI, approvalActivityController.putPendingApplication);
+approvalActivityRoutes.get(
+  "/pending",
+  isLoggedInAPI,
+  approvalActivityController.getPendingApplication
+);
+approvalActivityRoutes.put(
+  "/pending",
+  isLoggedInAPI,
+  approvalActivityController.putPendingApplication
+);
 approvalActivityRoutes.get(
   "/alreadyApproved",
   isLoggedInAPI,

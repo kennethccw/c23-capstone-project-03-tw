@@ -17,7 +17,7 @@ const ACTIVITY_APPROVAL_API_PATH = process.env.REACT_APP_NODE_ENV === "productio
 
 export const getPendingApplication = async () => {
   console.log("getPendingApplication");
-  const data = await fetchJson<ScheduleActivity[]>(`${ACTIVITY_APPROVAL_API_PATH}`, {
+  const data = await fetchJson<ScheduleActivity[]>(`${ACTIVITY_APPROVAL_API_PATH}/pending`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export const putPendingApplication = async (
   }[]
 ) => {
   console.log("postPendingApplication");
-  const data = await fetch(`${ACTIVITY_APPROVAL_API_PATH}`, {
+  const data = await fetch(`${ACTIVITY_APPROVAL_API_PATH}/pending`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

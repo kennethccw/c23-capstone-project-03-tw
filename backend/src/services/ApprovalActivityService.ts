@@ -16,6 +16,7 @@ export class ApprovalActivityService {
           `${TABLES.USERS}.fullname as user_fullname`
         )
         .where(`${TABLES.ACTIVITY_APPLICATIONS}.is_approved`, false)
+        .where(`${TABLES.ACTIVITY_APPLICATIONS}.is_cancelled`, false)
         .andWhere(`${TABLES.ACTIVITY_APPLICATIONS}.is_rejected`, false)
         .andWhere(`${TABLES.ACTIVITIES}.organisation_id`, organisationId)
         .innerJoin(
