@@ -142,7 +142,7 @@ export const getPetAdoptionResultByOrganisation = async (organisationID: number)
 };
 
 export const approvalOfAdoption = async (applicationID: number, animalID: number) => {
-  const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/adoption/approveAdoption`, {
+  const data = await fetch(`${ADOPTION_API_PATH}/approveAdoption`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -154,7 +154,7 @@ export const approvalOfAdoption = async (applicationID: number, animalID: number
 };
 
 export const rejectOfAdoption = async (applicationID: number, rejectedReason: string, otherReason: string) => {
-  const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/adoption/rejectAdoption`, {
+  const data = await fetch(`${ADOPTION_API_PATH}/rejectAdoption`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
