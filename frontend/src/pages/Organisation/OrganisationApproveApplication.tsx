@@ -91,7 +91,7 @@ export default function ApproveApplication() {
 
       console.log(approvedApplication); // => now become [[{},[]] ........]
 
-      arrayOfAllApprovedActivity.push(approvedApplication as any);
+      arrayOfAllApprovedActivity.push(approvedApplication[0]);
     }
 
     console.log(arrayOfAllApprovedActivity);

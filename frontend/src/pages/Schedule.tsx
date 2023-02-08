@@ -75,7 +75,7 @@ export default function Schedule() {
         {/* NO APPLICATION COMPONENT */}
         {/* <NoApplicationContainer /> */}
         {tabButton === ScheduleButton.pending &&
-          (data?.pending.length ? (
+          (data?.pending.length && data.pending.length > 0 ? (
             <div className={styles.applicationContainer}>
               {data?.pending.map((activity) => (
                 <ApplicationContainer
@@ -105,7 +105,7 @@ export default function Schedule() {
           ))}
 
         {tabButton === ScheduleButton.confirmed &&
-          (data?.confirmed.length ? (
+          (data?.confirmed.length && data.confirmed.length > 0 ? (
             <div className={styles.applicationContainer}>
               {data?.confirmed.map((activity) => (
                 <ApplicationContainer
