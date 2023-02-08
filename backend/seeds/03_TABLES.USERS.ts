@@ -451,7 +451,7 @@ export async function seed(knex: Knex): Promise<void> {
         email: "kennethccw@gmail.com",
         password: await hashPassword("abc12345678!"),
         mobile: "12345678",
-        birthday: "17-10-1998",
+        birthday: "10-10-1998",
         gender: "male",
         is_experienced: true,
         created_at: new Date("2023-01-01"),
