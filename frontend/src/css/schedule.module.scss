@@ -71,7 +71,8 @@
 .applicationsAppliedImg {
   width: 80vw;
   height: 240px;
-  object-fit: cover; /* Do not scale the image */
+  object-fit: cover;
+  /* Do not scale the image */
   object-position: center;
   border-radius: 20px;
   box-shadow: 0 7px 7px 1px #cccccc;
@@ -199,4 +200,40 @@
   width: 40%;
   border-radius: 10px;
   // flex: 1;
+}
+
+.approvedList {
+  height: 80px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  // background-color: palegreen;
+
+}
+
+.approvedWord {
+  color: #0f2851;
+  font-weight: bold;
+  flex:1;
+  display: flex;
+  justify-content: start;
+  // background-color: yellow;
+  justify-content: center;
+}
+
+.memberName {
+  color: #0f2851;
+  font-weight: bold;
+  flex:1;
+  // background-color: red;
+  padding-left:10px;
+}
+
+.nameList{
+  display: flex;
+  flex: row;
+  display: flex;
+  flex-direction: row;
+
 }

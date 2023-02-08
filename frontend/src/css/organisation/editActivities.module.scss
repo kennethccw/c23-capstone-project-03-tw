@@ -122,9 +122,6 @@
     // padding:10px;
 }
 
-
-
-
 .uploadImagePart{
     margin-top:20px;
 }
@@ -138,4 +135,36 @@
 
 .reminder{
     color: #585ce5;
+}
+
+.chevronAndAdjustmntIcon {
+  color: #b0b2c3;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 100vw;
+  height: 85px;
+  margin-top: 30px;
+}
+
+.chevronIcon {
+  margin-left: 30px;
+  font-size: 38px;
+  color: #b0b2c3;
+}
+
+.chevronAndAdjustmntIcon {
+  color: #b0b2c3;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 100vw;
+  height: 85px;
+  margin-top: 30px;
+}
+
+.chevronIcon {
+  margin-left: 30px;
+  font-size: 38px;
+  color: #b0b2c3;
 }

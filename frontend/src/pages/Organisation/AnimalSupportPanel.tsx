@@ -6,24 +6,37 @@ import { io } from "socket.io-client";
 import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import { getSupportPanel, SupportPanel } from "../../api/helpAPI";
-import SupportPanelComponent, { Status } from "../../components/SupportPanelComponent";
+import SupportPanelComponent, {
+  Status,
+} from "../../components/SupportPanelComponent";
 
 export default function AnimalHelpToDoListfrom() {
   const navigate = useNavigate();
   const organisationId = localStorage.getItem("userId");
 
-  const socket = io(process.env.REACT_APP_NODE_ENV === "production" ? process.env.REACT_APP_BACKEND_URL! : "http://localhost:8080", {
-    withCredentials: true,
-    extraHeaders: {
-      "my-custom-header": "abcd",
-    },
-  });
+  const socket = io(
+    process.env.REACT_APP_NODE_ENV === "production"
+      ? process.env.REACT_APP_BACKEND_URL!
+      : "http://localhost:8080",
+    {
+      withCredentials: true,
+      extraHeaders: {
+        "my-custom-header": "abcd",
+      },
+    }
+  );
 
   const [stateChange, setStateChange] = useState<boolean>(true);
 
-  const [socketData, setSocketData] = useState<{ converation?: string; image?: string; user: { id: number; username: string } }>();
+  const [socketData, setSocketData] = useState<{
+    converation?: string;
+    image?: string;
+    user: { id: number; username: string };
+  }>();
   // const [userArr, setUserArr] = useState<string[]>();
-  const [containerArr, setContainerArr] = useState<{ id: number; username?: string; count?: number }[]>([]);
+  const [containerArr, setContainerArr] = useState<
+    { id: number; username?: string; count?: number }[]
+  >([]);
   const messageCountArr: number[] = [];
 
   useEffect(() => {
@@ -46,14 +59,20 @@ export default function AnimalHelpToDoListfrom() {
     console.log(socketData?.user.username);
     console.log(data);
     if (socketData?.user.username) {
-      const index = containerArr.findIndex((container) => container.username === socketData?.user.username);
+      const index = containerArr.findIndex(
+        (container) => container.username === socketData?.user.username
+      );
       console.log(index);
       setContainerArr((containerArr) => {
         if (index > 0) {
           containerArr[index].count = containerArr[index].count! + 1;
           console.log("changed state", containerArr);
         } else {
-          containerArr.push({ id: socketData.user.id, username: socketData.user.username, count: 1 });
+          containerArr.push({
+            id: socketData.user.id,
+            username: socketData.user.username,
+            count: 1,
+          });
           console.log("changed state", containerArr);
         }
         return containerArr;
@@ -81,7 +100,12 @@ export default function AnimalHelpToDoListfrom() {
     return finalResultArr;
   };
 
-  const { isError, error, isLoading, data } = useQuery({ queryKey: ["support/panel"], queryFn: getSupportPanel, refetchOnWindowFocus: false, retry: 1 });
+  const { isLoading, data } = useQuery({
+    queryKey: ["support/panel"],
+    queryFn: getSupportPanel,
+    refetchOnWindowFocus: false,
+    retry: 1,
+  });
   useEffect(() => {
     if (!isLoading) {
       const userNameSet = new Set<string>();
@@ -128,35 +152,43 @@ export default function AnimalHelpToDoListfrom() {
     <MantineProvider
       theme={{
         colors: {
-          ocean: ["#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93", "#F7BB93"],
+          ocean: [
+            "#F7BB93",
+            "#F7BB93",
+            "#F7BB93",
+            "#F7BB93",
+            "#F7BB93",
+            "#F7BB93",
+            "#F7BB93",
+            "#F7BB93",
+            "#F7BB93",
+            "#F7BB93",
+          ],
         },
       }}
     >
       <div>
         <div>
-          <div className={styles.chevronIconContainer}>
-            <HiChevronLeft className={styles.chevronIconTab} onClick={() => navigate(-1)} />
-          </div>
-        </div>
-
-        <div>
-          <div className={styles.taskContanier}>
-            <div className={styles.taskTab}>你有2個信息來自嗶哩叭啦星球</div>
-          </div>
-          <div className={styles.statusContainer}>
-            <div className={styles.statusTab}>拯救進行中</div>
-          </div>
-        </div>
-
-        {containerArr?.map((user) => (
-          <SupportPanelComponent
-            key={`userMessage-${user.id}`}
-            username={user.username!}
-            numberOfMessages={user.count!}
-            status={"pending" as Status}
-            clickHandler={() => navigate(`/support/chatroom?id=${user.id}`)}
+          <div className={styles.chevronAndAdjustmntIcon} />
+          <HiChevronLeft
+            className={styles.chevronIcon}
+            onClick={() => navigate(-1)}
           />
-        ))}
+        </div>
+
+        <div className={styles.chatroomContainer}>
+          <div className={styles.chatTab}>
+            {containerArr?.map((user) => (
+              <SupportPanelComponent
+                key={`userMessage-${user.id}`}
+                username={user.username!}
+                numberOfMessages={user.count!}
+                status={"pending" as Status}
+                clickHandler={() => navigate(`/support/chatroom?id=${user.id}`)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </MantineProvider>
   );

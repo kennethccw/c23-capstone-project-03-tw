@@ -30,10 +30,10 @@ export default function OrganisationHomePageContainer() {
         }}
       >
         <div className={styles.buttonContainer}>
-
-          <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="blue">
-            義工報告
-          </Button>
+          <br></br>
+          <br></br>
+          <br></br>
+          
           <Button
             style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }}
             color="ocean"
@@ -50,25 +50,22 @@ export default function OrganisationHomePageContainer() {
               navigate("/editActivities");
             }}
           >
-            義工活動
+            新增義工活動
           </Button>
-          <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="ocean">
-            技術支援
-          </Button>
-          <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="blue">
+          <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="ocean" onClick={() => { navigate("/support/panel") }}>
             即時拯救流浪動物
           </Button>
-          <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="ocean" onClick={() => { navigate("/organisationAdoption") }}>
-            領養申請
+          <Button style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }} color="blue" onClick={() => { navigate("/organisationAdoption") }}>
+            申請領養
           </Button>
           <Button
             style={{ width: 218, height: 55, color: "white", fontSize: 16, marginLeft: 0, marginTop: 30, borderRadius: 30, fontWeight: 700 }}
-            color="blue"
+            color="ocean"
             onClick={() => {
               navigate("/editAnimals");
             }}
           >
-            更新流浪動物
+            新增可領養的動物
           </Button>
         </div>
         <div className={styles.containerForAll}>

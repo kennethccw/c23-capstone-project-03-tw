@@ -66,6 +66,9 @@ export default function ApproveApplication() {
     staleTime: 10_000,
     retry: 1,
   });
+  console.log("approvedApplications: ",data?.approvedApplication);
+
+  console.log("pendingApplications" ,data?.pendingApplication)
   console.log(data);
   const [isChecked, setIsChecked] = useState(false);
   enum Status {
@@ -124,7 +127,7 @@ export default function ApproveApplication() {
               處理中
             </Tabs.Tab>
             <Tabs.Tab value="已批核" onClick={() => setStatus(Status.approved)}>
-              已批核
+              批核結果
             </Tabs.Tab>
           </Tabs.List>
         </Tabs>
@@ -217,22 +220,22 @@ export default function ApproveApplication() {
             </>
           ))} */}
 
-        {/* {!data?.approvedApplication.length && status===Status.approved&&(
+        {!data?.approvedApplication.length && status===Status.approved&&(
           <div className={styles.noApplicationContainer}>
             <h2>暫未有已批核的申請</h2>
           </div>
-        )} */}
+        )}
 
-        {/* {status === Status.approved && data?.approvedApplication.map((activity, idx) => (
+        {status === Status.approved && data?.approvedApplication.map((activity, idx) => (
           <>
-            <ApplicationContainer activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}&status=approval`)} />
+            <ApplicationContainer activity={activity} clickHandler={() => navigate(`/activity/detail?id=${activity.activity_id}&status=approval`)} status={"approved"}/>
 
 
 
 
             {idx !== data.approvedApplication.length - 1 && <hr className={styles.hr90vw} />}
           </>
-        ))} */}
+        ))}
 
         {/* <div className={styles.activtyContainer}>
           <div className={styles.OrganisationName}> 香港動物群益會 </div>

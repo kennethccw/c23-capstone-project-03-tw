@@ -1,11 +1,6 @@
-import { ClassNames } from "@emotion/react";
 import styles from "../css/searchResult.module.scss";
-import { HiOutlineX } from "react-icons/hi";
-
-import { UnstyledButton, Checkbox, Text, createStyles, MantineProvider, Button } from "@mantine/core";
-import { useUncontrolled } from "@mantine/hooks";
+import { MantineProvider, Button } from "@mantine/core";
 import { PetPreview } from "../api/adoptionAPI";
-import { memo } from "react";
 import React, { useState } from "react";
 import DeleteActivityModal from "./DeleteActivityModal";
 
