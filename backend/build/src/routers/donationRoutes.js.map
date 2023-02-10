@@ -1,1 +1,0 @@
-{"version":3,"file":"donationRoutes.js","sourceRoot":"","sources":["../../../src/routers/donationRoutes.ts"],"names":[],"mappings":";;;AAAA,mCAAiC;AACjC,oCAA+C;AAC/C,0CAAgD;AAEnC,QAAA,cAAc,GAAG,IAAA,gBAAM,GAAE,CAAC;AAEvC,sBAAc,CAAC,GAAG,CAAC,GAAG,EAAE,sBAAa,EAAE,2BAAkB,CAAC,oBAAoB,CAAC,CAAC;AAChF,sBAAc,CAAC,IAAI,CAAC,GAAG,EAAE,sBAAa,EAAE,2BAAkB,CAAC,kBAAkB,CAAC,CAAC"}
