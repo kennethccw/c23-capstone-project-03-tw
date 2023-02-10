@@ -8,8 +8,14 @@
   align-items: center;
   display: flex;
   width: 100vw;
-  height: 85px;
-  margin-top: 30px;
+  height: 115px;
+  top: 0;
+  // margin-top: 20px;
+  background-color: #ffffff;
+  position: fixed;
+  align-items: flex-end;
+  z-index: 99;
+  border-bottom: 1px solid rgba(237, 238, 251, 0.8);
 }
 
 .conversationContainer {
@@ -18,7 +24,7 @@
 }
 
 .chevronIcon {
-  margin-left: 47px;
+  margin-left: 30px;
   font-size: 38px;
   margin-bottom: 16px;
 }
@@ -235,18 +241,18 @@
   color: #000000;
 }
 
-.chatroomContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-}
+// .chatroomContainer {
+//   display: flex;
+//   flex-direction: column;
+//   width: 100vw;
+// }
 
-.chatTab {
-  align-content: center;
-  justify-content: center;
-  width: 100vw;
-  /* margin-left: 20px; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+// .chatTab {
+//   align-content: center;
+//   justify-content: center;
+//   width: 100vw;
+//   /* margin-left: 20px; */
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
